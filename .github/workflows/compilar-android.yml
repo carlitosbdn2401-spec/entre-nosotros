@@ -1,0 +1,63 @@
+name: Compilar Entre Nosotros APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  compilar:
+    name: Crear APK de Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el proyecto
+        uses: actions/checkout@v4
+
+      - name: Instalar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.12.0'
+          cache: npm
+
+      - name: Preparar Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Aceptar licencias de Android
+        run: yes | sdkmanager --licenses
+
+      - name: Instalar herramientas de Android
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar la aplicacion web
+        run: npm run build
+
+      - name: Sincronizar Capacitor
+        run: npx cap sync android
+
+      - name: Generar APK
+        run: |
+          chmod +x android/gradlew
+          cd android
+          ./gradlew assembleDebug
+
+      - name: Guardar el APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Entre-Nosotros-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7

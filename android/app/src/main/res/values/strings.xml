@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Entre Nosotros</string>
+    <string name="title_activity_main">Entre Nosotros</string>
+    <string name="package_name">com.entrenosotros.app</string>
+    <string name="custom_url_scheme">com.entrenosotros.app</string>
+</resources>
