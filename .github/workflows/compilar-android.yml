@@ -31,7 +31,7 @@ jobs:
           cache: npm
 
       - name: Preparar Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: Aceptar licencias de Android
         run: yes | sdkmanager --licenses
