@@ -48,6 +48,14 @@ jobs:
       - name: Sincronizar Capacitor
         run: npx cap sync android
 
+      - name: Recuperar configuracion Firebase
+        env:
+          GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
+        run: |
+          test -n "$GOOGLE_SERVICES_JSON_B64" || { echo "ERROR: falta el secreto GOOGLE_SERVICES_JSON_B64"; exit 1; }
+          printf "%s" "$GOOGLE_SERVICES_JSON_B64" | base64 --decode > android/app/google-services.json
+          node -e 'const f=require("./android/app/google-services.json"); if(f.project_info?.project_id!=="entre-nosotros-16e41" || f.client?.[0]?.client_info?.android_client_info?.package_name!=="com.entrenosotros.app") process.exit(1); console.log("Configuracion Firebase validada.");'
+
       - name: Generar APK
         run: |
           chmod +x android/gradlew

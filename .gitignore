@@ -109,3 +109,6 @@ local.properties
 # Archivos generados de Android
 captures/
 .externalNativeBuild/
+
+# Configuracion local de Firebase para Android
+android/app/google-services.json
