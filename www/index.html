@@ -227,6 +227,77 @@ button.tarjeta-acceso {
   #navegacion-inferior button { font-size:9px; }
 }
 
+
+/* Ruleta del amor */
+#navegacion-inferior{grid-template-columns:repeat(6,minmax(0,1fr))}
+.ruleta-cabecera{text-align:center;padding:24px 18px 12px}
+.ruleta-sello{font-size:10px;letter-spacing:3px;color:var(--oro)}
+.ruleta-cabecera h2{font-size:25px;margin:12px 0;color:#ffe1e8}
+.ruleta-cabecera p,.ruleta-aviso p{color:var(--suave);line-height:1.5}
+.ruleta-aviso{display:flex;gap:12px;align-items:center;padding:15px;margin:12px 0 22px;border:1px solid rgba(216,183,121,.3);border-radius:16px;background:linear-gradient(135deg,#2b1722,#160d12)}
+.ruleta-aviso>span{font-size:28px;color:#e88ca5}
+.ruleta-aviso strong{color:var(--oro)}
+.ruleta-aviso p{margin:5px 0 0;font-size:13px}
+.ruleta-contenedor{width:min(82vw,310px);aspect-ratio:1;margin:12px auto 24px;position:relative}
+.ruleta-flecha{position:absolute;z-index:3;top:-8px;left:50%;transform:translateX(-50%);color:#ffe2a0;font-size:30px;text-shadow:0 2px 8px #000}
+.ruleta-disco{width:100%;height:100%;box-sizing:border-box;border-radius:50%;position:relative;border:5px solid #d8b779;box-shadow:0 0 0 5px #351522,0 0 28px rgba(197,44,75,.35);background:conic-gradient(#6b1934 0deg 108deg,#291522 108deg 198deg,#78304b 198deg 270deg,#321321 270deg 338.4deg,#130b10 338.4deg 342deg,#49301d 342deg 360deg);transition:transform 5s cubic-bezier(.12,.72,.08,1);overflow:hidden}
+.ruleta-disco:before{content:"🪙";position:absolute;top:16%;left:42%;font-size:25px}
+.ruleta-disco:after{content:"💋";position:absolute;top:43%;right:12%;font-size:23px}
+.ruleta-centro{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:radial-gradient(circle,#4c1b30,#160b12);border:3px solid #d8b779;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 14px #160b12}
+.ruleta-centro span{font-size:29px;color:#ffd6e1;line-height:1}
+.ruleta-centro small{font-size:9px;letter-spacing:2px;color:var(--oro);margin-top:4px}
+.ruleta-leyenda{display:grid;gap:8px;margin:20px 0}
+.ruleta-leyenda>div{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:9px;padding:11px 12px;border-radius:12px;border:1px solid rgba(216,183,121,.18);background:#1b1017;font-size:13px}
+.ruleta-leyenda i{font-style:normal;font-size:18px}
+.ruleta-leyenda b{color:var(--oro);font-size:12px}
+.ruleta-secreto{border-color:#7c344c!important;background:linear-gradient(90deg,#1b1017,#30101e)!important}
+.ruleta-secreto span{color:#ffc0d1}
+.ruleta-boton{width:100%;padding:16px;border:1px solid #e5c98f;border-radius:15px;background:linear-gradient(110deg,#76213d,#bd3c62);color:white;font-size:16px;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.ruleta-boton:disabled{opacity:.55}
+.ruleta-estado{text-align:center;color:var(--suave);font-size:12px;line-height:1.5}
+.ruleta-resultado{margin-top:20px;padding:22px 18px;text-align:center;border:1px solid rgba(216,183,121,.5);border-radius:20px;background:radial-gradient(circle at top,#482033,#1b1017 70%);animation:ruletaEntrada .7s ease both}
+.ruleta-resultado-icono{font-size:38px}
+.ruleta-resultadotitulo{font-size:22px;font-weight:bold;color:var(--oro);margin:9px 0}
+.ruleta-resultado p{color:#f2dfe5;line-height:1.6}
+.ruleta-revelacion{margin-top:15px;padding:18px;border-radius:15px;background:linear-gradient(145deg,#260d19,#10090d);border:1px solid #8b3655}
+.ruleta-revelacion h3{color:#ff9ab7}
+.ruleta-corazon-misterio{font-size:52px;animation:ruletaLatido 1.2s infinite}
+.ruleta-nota{display:flex;gap:10px;margin:24px 0 12px;padding:12px;border-radius:12px;background:#160d12;color:var(--suave);font-size:11px;line-height:1.5}
+.ruleta-nota p{margin:0}
+.ruleta-nota strong{color:var(--oro)}
+@keyframes ruletaEntrada{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ruletaLatido{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+
+/* Nuestra tienda romántica */
+.tienda-cabecera{text-align:center;margin:12px 0 22px}
+.tienda-cabecera h2{font-size:27px;margin:10px 0;color:#f7d5df}
+.tienda-cabecera p,.tienda-aviso p{color:#d9c0ca;line-height:1.5}
+.tienda-sello{font-size:10px;letter-spacing:3px;color:#e6b4c5}
+.tienda-aviso,.tienda-saldo,.tienda-prueba,.tienda-nota{background:linear-gradient(135deg,#321722,#21121b);border:1px solid #6c354b;border-radius:16px;padding:15px;margin:12px 0}
+.tienda-saldo{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tienda-saldo strong{font-size:23px;color:#ffd1df}
+.tienda-subtitulo{margin:24px 0 12px;color:#f4cbd8}
+.tienda-catalogo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.tienda-producto{background:#24141d;border:1px solid #613349;border-radius:15px;padding:13px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.tienda-producto .producto-icono{font-size:29px}
+.tienda-producto h4{margin:0;color:#ffe3eb;font-size:15px}
+.tienda-producto p{font-size:12px;line-height:1.45;color:#d9c4cc;margin:0;overflow-wrap:anywhere}
+.tienda-producto .producto-precio{font-weight:bold;color:#f5c6d6;margin-top:auto}
+.tienda-producto button{font-size:12px;padding:10px 5px;margin-top:4px}
+.tienda-etiqueta{font-size:10px;color:#e7a9bf}
+.tienda-formulario{background:#20131b;border:1px solid #543044;border-radius:16px;padding:15px}
+.tienda-formulario label{display:block;margin:12px 0 6px;color:#e6c8d2;font-size:13px}
+.tienda-formulario input,.tienda-formulario textarea,.tienda-formulario select,#tienda-persona{width:100%;box-sizing:border-box;margin-bottom:8px}
+.tienda-canjes{display:grid;gap:10px}
+.tienda-canje{padding:13px;border:1px solid #634052;border-radius:13px;background:#261720}
+.tienda-canje strong{color:#f4c5d5}
+.tienda-estado{font-size:12px;color:#e4b8c8}
+.tienda-nota{font-size:12px;line-height:1.6;color:#d8c2cb}
+#navegacion-inferior{grid-template-columns:repeat(7,minmax(0,1fr))}
+#navegacion-inferior button{min-width:0;padding-left:1px;padding-right:1px}
+@media(max-width:380px){.tienda-catalogo{grid-template-columns:1fr}#navegacion-inferior button{font-size:8px}}
+
 </style>
 </head>
 <body>
@@ -277,13 +348,125 @@ button.tarjeta-acceso {
       </button>
       <h2 class="titulo-accesos">Nuestro espacio</h2>
       <div class="rejilla-accesos">
+        <button type="button" class="tarjeta-acceso" data-vista-menu="tienda">
+          <span class="icono-acceso">🛍️</span>
+          <span class="nombre-acceso">Nuestra tienda</span>
+          <span class="detalle-acceso">Premios y pequeños caprichos ❤️</span>
+        </button>
+
         <button type="button" class="tarjeta-acceso" data-vista-menu="mensajes"><span class="icono-acceso">💌</span><span class="nombre-acceso">Mensajes <span id="contador-no-leidos" style="display:none;background:#c52c4b;color:white;border-radius:20px;padding:2px 7px;font-size:12px;">0</span></span><span class="detalle-acceso">Un detalle para alegrarte el día</span></button>
         <button type="button" class="tarjeta-acceso" data-vista-menu="retos"><span class="icono-acceso">☀️</span><span class="nombre-acceso">Nuestros retos</span><span class="detalle-acceso">Un momento para nosotros</span></button>
         <button type="button" class="tarjeta-acceso" data-vista-menu="diario"><span class="icono-acceso">📖</span><span class="nombre-acceso">Nuestro diario</span><span class="detalle-acceso">Pequeños recuerdos que guardar</span></button>
         <button type="button" class="tarjeta-acceso" data-vista-menu="nosotros"><span class="icono-acceso">💑</span><span class="nombre-acceso">Nosotros</span><span class="detalle-acceso">Nuestros nombres y símbolos</span></button>
+      
+<button type="button" class="tarjeta-acceso" data-vista-menu="ruleta">
+  <span class="icono-acceso">🎰</span>
+  <span class="nombre-acceso">Ruleta del amor</span>
+  <span class="detalle-acceso">Un giro especial para nosotros ❤️</span>
+</button>
+</div>
+    </section>
+
+
+    
+    <section class="sobre" data-vista="tienda" id="pantalla-tienda" style="display:none">
+      <div class="tienda-cabecera">
+        <div class="tienda-sello">DETALLES SOLO NUESTROS</div>
+        <h2>🛍️ Nuestra tienda</h2>
+        <p>Pequeñas recompensas para seguir creando recuerdos juntos.</p>
+      </div>
+
+      <div class="tienda-aviso">
+        <strong>💎 Nuestros puntos</strong>
+        <p>Cada persona tiene su propio saldo y elige cómo gastarlo.</p>
+      </div>
+
+      <label for="tienda-persona">¿Quién va a comprar?</label>
+      <select id="tienda-persona">
+        <option value="yo">Yo</option>
+        <option value="pareja">Mi pareja</option>
+      </select>
+
+      <div class="tienda-saldo">
+        <span>Tu saldo disponible</span>
+        <strong><span id="tienda-puntos">0</span> 💎</strong>
+      </div>
+
+      <div class="tienda-prueba">
+        <p>Modo de prueba: añade puntos ficticios para probar las compras.</p>
+        <button type="button" class="secundario" id="tienda-añadir-puntos">＋ Añadir 50 puntos de prueba</button>
+      </div>
+
+      <h3 class="tienda-subtitulo">💝 Recompensas para elegir</h3>
+      <div id="tienda-catalogo" class="tienda-catalogo"></div>
+
+      <h3 class="tienda-subtitulo">✨ Crear una recompensa</h3>
+      <div class="tienda-formulario">
+        <label for="tienda-nombre-nuevo">Nombre de la recompensa</label>
+        <input id="tienda-nombre-nuevo" maxlength="60" placeholder="Ej.: Un masaje de 15 minutos">
+
+        <label for="tienda-descripcion-nueva">Descripción</label>
+        <textarea id="tienda-descripcion-nueva" maxlength="240" placeholder="¿Qué incluye esta recompensa?"></textarea>
+
+        <label for="tienda-precio-nuevo">Precio en puntos</label>
+        <input id="tienda-precio-nuevo" type="number" min="1" max="100000" value="30">
+
+        <label for="tienda-tipo-nuevo">¿Cómo se canjea?</label>
+        <select id="tienda-tipo-nuevo">
+          <option value="inmediato">Disponible al comprar</option>
+          <option value="aprobacion">Necesita aprobación de mi pareja</option>
+        </select>
+
+        <button type="button" id="tienda-crear-recompensa">＋ Añadir a nuestra tienda</button>
+      </div>
+
+      <h3 class="tienda-subtitulo">💌 Mis canjes</h3>
+      <div id="tienda-canjes" class="tienda-canjes"></div>
+
+      <div class="tienda-nota">
+        🔒 <strong>Versión de prueba:</strong> los puntos y las compras se guardan en este dispositivo.
+        Todavía no se comparten con el otro móvil. Los puntos de prueba no son puntos reales.
       </div>
     </section>
 
+    <section class="sobre" data-vista="ruleta" id="pantalla-ruleta" style="display:none">
+  <div class="ruleta-cabecera">
+    <div class="ruleta-sello">PARA NOSOTROS DOS</div>
+    <h2>🎰 La ruleta del amor</h2>
+    <p>Un giro, una sorpresa y un recuerdo más juntos.</p>
+  </div>
+  <div class="ruleta-aviso">
+    <span>♡</span><div><strong>Nuestro momento especial</strong>
+    <p>La suerte decidirá qué categoría de premio te espera.</p></div>
+  </div>
+  <div class="ruleta-contenedor">
+    <div class="ruleta-flecha">▼</div>
+    <div class="ruleta-disco" id="ruleta-disco" aria-label="Ruleta de premios">
+      <div class="ruleta-centro"><span>♥</span><small>GIRA</small></div>
+    </div>
+  </div>
+  <div class="ruleta-leyenda">
+    <div><i>🪙</i><span>Puntos extra</span><b>30%</b></div>
+    <div><i>💋</i><span>Vales románticos</span><b>25%</b></div>
+    <div><i>🍽️</i><span>Cenas y experiencias</span><b>20%</b></div>
+    <div><i>🔥</i><span>Premios picantes normales</span><b>19%</b></div>
+    <div class="ruleta-secreto"><i>🖤❔</i><span>Premio secreto</span><b>1%</b></div>
+    <div><i>👑</i><span>Premios exclusivos legendarios</span><b>5%</b></div>
+  </div>
+  <button type="button" id="boton-girar-ruleta" class="ruleta-boton">✨ Girar mi ruleta</button>
+  <p id="ruleta-estado" class="ruleta-estado" aria-live="polite">Giro de prueba disponible en este dispositivo.</p>
+  <div id="ruleta-resultado" class="ruleta-resultado" hidden aria-live="polite">
+    <div id="ruleta-resultado-icono" class="ruleta-resultado-icono">❤️</div>
+    <div class="ruleta-resultadotitulo" id="ruleta-resultado-titulo">Tu premio</div>
+    <p id="ruleta-resultado-texto"></p>
+    <div id="ruleta-secreto-revelado" hidden class="ruleta-revelacion">
+      <div class="ruleta-corazon-misterio">🖤</div>
+      <h3>Nuestro secreto ❤️‍🔥</h3>
+      <p>La experiencia concreta deberá respetar las preferencias aprobadas por ambos.</p>
+    </div>
+  </div>
+  <div class="ruleta-nota"><span>🔒</span><p><strong>Versión de prueba:</strong> el resultado se guarda solo en este dispositivo. Aún falta sincronizarlo y proteger el límite mensual con Firebase.</p></div>
+</section>
 
     <section class="perfil" data-vista="nosotros">
       <div class="hora">Solo nosotros · Nuestros perfiles</div>
@@ -422,10 +605,17 @@ button.tarjeta-acceso {
       <button type="button" data-vista-menu="retos"><span class="nav-icono">☀️</span>Retos</button>
       <button type="button" data-vista-menu="diario"><span class="nav-icono">📖</span>Diario</button>
       <button type="button" data-vista-menu="nosotros"><span class="nav-icono">💑</span>Nosotros</button>
-    </nav>
+    
+<button type="button" data-vista-menu="tienda" aria-label="Nuestra tienda">
+  <span class="nav-icono">🛍️</span>Tienda
+</button>
+    <button type="button" data-vista-menu="ruleta" aria-label="Ruleta del amor">
+  <span class="nav-icono">🎰</span>Ruleta
+</button>
+</nav>
     <script>
     function mostrarVista(nombre) {
-      const validas = ['inicio','mensajes','retos','diario','nosotros'];
+      const validas = ['inicio','mensajes','retos','diario','nosotros','ruleta','tienda'];
       if (!validas.includes(nombre)) return;
       document.body.dataset.vistaActual = nombre;
       document.dispatchEvent(new CustomEvent('vista-cambiada', { detail: { nombre: nombre } }));
@@ -561,5 +751,7 @@ button.tarjeta-acceso {
   <script type="module" src="/js/sync-perfiles.js"></script>
   <script type="module" src="/js/notificaciones.js"></script>
   <script type="module" src="/js/mensajes.js"></script>
+  <script type="module" src="/js/ruleta.js"></script>
+  <script type="module" src="/js/tienda.js"></script>
 </body>
 </html>
