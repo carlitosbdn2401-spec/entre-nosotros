@@ -2,9 +2,12 @@ import { auth, db } from "./firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   addDoc,
+  arrayUnion,
   collection,
+  doc,
   onSnapshot,
-  serverTimestamp
+  serverTimestamp,
+  updateDoc
 } from "firebase/firestore";
 
 const UID_MIEMBROS = [
@@ -65,7 +68,9 @@ function actualizarContador() {
 
   const leidos = new Set(idsLeidos());
   const pendientes = documentosActuales.filter(m =>
-    m.para === usuarioActual.uid && !leidos.has(m.id)
+    m.para === usuarioActual.uid &&
+    !(Array.isArray(m.leidoPor) && m.leidoPor.includes(usuarioActual.uid)) &&
+    !leidos.has(m.id)
   ).length;
 
   if (avisoRomantico) avisoRomantico.style.display = pendientes ? "block" : "none";
@@ -79,16 +84,34 @@ function actualizarContador() {
   }
 }
 
-function marcarMensajesComoLeidos() {
+async function marcarMensajesComoLeidos() {
   if (!usuarioActual) return;
 
-  const leidos = idsLeidos();
-  const nuevos = documentosActuales
-    .filter(m => m.para === usuarioActual.uid)
-    .map(m => m.id);
+  const uid = usuarioActual.uid;
+  const recibidos = documentosActuales.filter(m => m.para === uid);
 
-  guardarLeidos([...leidos, ...nuevos]);
+  guardarLeidos([...idsLeidos(), ...recibidos.map(m => m.id)]);
   actualizarContador();
+
+  const pendientes = recibidos.filter(
+    m => !Array.isArray(m.leidoPor) || !m.leidoPor.includes(uid)
+  );
+
+  await Promise.all(pendientes.map(async mensaje => {
+    try {
+      await updateDoc(
+        doc(db, "parejas", "nuestro-espacio", "mensajes", mensaje.id),
+        { leidoPor: arrayUnion(uid) }
+      );
+    } catch (error) {
+      console.error(
+        "Error sincronizando lectura:",
+        mensaje.id,
+        error.code,
+        error.message
+      );
+    }
+  }));
 }
 
 document.addEventListener("vista-cambiada", evento => {
