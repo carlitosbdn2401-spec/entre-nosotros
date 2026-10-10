@@ -246,13 +246,47 @@ if (boton) {
     mostrarEstado("Preparando una sorpresa para tu persona favorita… 💗");
 
     try {
-      await addDoc(coleccionMensajes(), {
+      const referenciaMensaje = await addDoc(coleccionMensajes(), {
         de: usuarioActual.uid,
         para: destinatario,
         texto: elegido.texto,
         tipo: elegido.tipo,
         creado: serverTimestamp()
       });
+
+      try {
+        const tokenFirebase = await usuarioActual.getIdToken();
+        const respuestaAviso = await fetch(
+          "https://avisos123.carlitos-bdn9836.workers.dev/notificar",
+          {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${tokenFirebase}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              messageId: referenciaMensaje.id
+            })
+          }
+        );
+
+        const resultadoAviso = await respuestaAviso.json().catch(() => ({}));
+
+        if (!respuestaAviso.ok) {
+          console.error(
+            "La cartita se guardó, pero falló la notificación:",
+            respuestaAviso.status,
+            resultadoAviso.error || "Error desconocido"
+          );
+        } else {
+          console.log("Solicitud de notificación completada.");
+        }
+      } catch (errorAviso) {
+        console.error(
+          "La cartita se guardó, pero no se pudo solicitar el aviso:",
+          errorAviso.message
+        );
+      }
 
       if (textoSorpresa) textoSorpresa.textContent = elegido.texto;
       if (tarjeta) tarjeta.style.display = "block";
