@@ -298,6 +298,124 @@ button.tarjeta-acceso {
 #navegacion-inferior button{min-width:0;padding-left:1px;padding-right:1px}
 @media(max-width:380px){.tienda-catalogo{grid-template-columns:1fr}#navegacion-inferior button{font-size:8px}}
 
+
+/* === ENTRE NOSOTROS: RUEDA DE LUJO === */
+.ruleta-contenedor {
+  width: min(84vw, 330px);
+  margin: 26px auto 30px;
+  filter: drop-shadow(0 16px 22px #0009);
+  isolation: isolate;
+}
+.ruleta-contenedor::before {
+  content: "";
+  position: absolute;
+  inset: -13px;
+  z-index: -1;
+  border-radius: 50%;
+  background: conic-gradient(#fff0c2,#8b642b,#f7df9c,#6f491d,#fff0c2,#a87a37,#f7df9c,#fff0c2);
+  box-shadow: 0 0 0 2px #3b201b,0 0 25px #d8b77955;
+}
+.ruleta-disco {
+  border: 7px solid #d8b779;
+  outline: 2px solid #fff0bd;
+  outline-offset: -12px;
+  background:
+    radial-gradient(circle at 50% 50%,transparent 0 18%,#fff2c722 18.5% 19%,transparent 19.5%),
+    conic-gradient(#7c1e3b 0deg 108deg,#321321 108deg 198deg,#8a3551 198deg 270deg,#421326 270deg 338.4deg,#130b10 338.4deg 342deg,#62431f 342deg 360deg);
+  box-shadow: inset 0 0 0 4px #4c2630,inset 0 0 22px #000b,0 0 0 3px #8b642b,0 0 24px #c52c4b55;
+}
+.ruleta-centro {
+  width: 84px;
+  height: 84px;
+  background: radial-gradient(circle at 35% 25%,#8e4058,transparent 45%),radial-gradient(circle,#4c1b30,#10070d 78%);
+  border: 4px double #f1d69a;
+  box-shadow: 0 0 0 4px #4b2630,0 0 22px #000,inset 0 0 12px #000;
+}
+.ruleta-centro span { text-shadow: 0 0 12px #ffb4c8,0 2px 4px #000; }
+.ruleta-flecha {
+  z-index: 5;
+  top: -17px;
+  font-size: 34px;
+  color: #ffe7a7;
+  text-shadow: 0 2px 0 #6f491d,0 4px 8px #000;
+}
+.ruleta-boton {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(110deg,#511329,#a82b4d 48%,#6b1934);
+  box-shadow: inset 0 1px #ffe5ad88,0 7px 20px #0006;
+  transition: transform .2s,filter .2s,box-shadow .2s;
+}
+.ruleta-boton:not(:disabled):active { transform: scale(.97);filter: brightness(1.2); }
+.ruleta-boton:not(:disabled)::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: -40%;
+  width: 25%;
+  transform: rotate(20deg);
+  background: #fff4d944;
+  animation: brilloBoton 4s ease-in-out infinite;
+}
+.ruleta-resultado {
+  border-color: #e2c17d;
+  box-shadow: 0 0 28px #a92b4b33,inset 0 0 22px #d8b7790b;
+}
+.ruleta-resultado-icono {
+  filter: drop-shadow(0 0 10px #d8b77955);
+  animation: premioFlota 2s ease-in-out infinite;
+}
+.ruleta-contenedor.girando .ruleta-disco { filter: brightness(1.13) saturate(1.15); }
+.ruleta-contenedor.girando::before { animation: haloRuleta 1s linear infinite; }
+@keyframes brilloBoton {
+  0%,65% { left: -40%; }
+  100% { left: 130%; }
+}
+@keyframes haloRuleta { to { transform: rotate(360deg); } }
+@keyframes premioFlota {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ruleta-boton::after,.ruleta-resultado-icono,.ruleta-contenedor.girando::before { animation: none !important; }
+}
+
+
+/* Contador romantico de las dos tiradas mensuales */
+.ruleta-contador {
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin:18px auto 4px;
+}
+.ruleta-tirada {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border:1px solid #d5ad72;
+  border-radius:50%;
+  color:#e9b9c9;
+  background:linear-gradient(145deg,#501326,#210812);
+  box-shadow:0 0 12px #a64b6833;
+  font-size:23px;
+  transition:all .3s ease;
+}
+.ruleta-tirada.usada {
+  color:#8b7b80;
+  background:#21171b;
+  border-color:#69535a;
+  box-shadow:none;
+}
+.ruleta-tiradas-texto {
+  text-align:center;
+  margin:5px auto 14px;
+  color:#e8c5d0;
+  font-size:.92rem;
+}
+
 </style>
 </head>
 <body>
@@ -439,6 +557,11 @@ button.tarjeta-acceso {
     <span>♡</span><div><strong>Nuestro momento especial</strong>
     <p>La suerte decidirá qué categoría de premio te espera.</p></div>
   </div>
+  <div id="ruleta-contador" class="ruleta-contador" aria-label="Tiradas mensuales">
+    <span class="ruleta-tirada">♥</span>
+    <span class="ruleta-tirada">♥</span>
+  </div>
+  <p id="ruleta-tiradas-texto" class="ruleta-tiradas-texto">Tienes 2 tiradas disponibles este mes ❤️</p>
   <div class="ruleta-contenedor">
     <div class="ruleta-flecha">▼</div>
     <div class="ruleta-disco" id="ruleta-disco" aria-label="Ruleta de premios">
