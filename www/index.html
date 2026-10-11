@@ -531,6 +531,7 @@ button.tarjeta-acceso {
       </div>
       <button onclick="abrirReto('manana')">Abrir nuestro reto ♡</button>
       <div class="estado" id="estado-manana"></div>
+      <div id="respuestas-manana" class="respuestas-compartidas" aria-live="polite"></div>
       <div id="reto-manana" class="reto">
         <p>¿Qué pequeño detalle de nuestra relación te hace sonreír incluso cuando no estamos juntos?</p>
         <textarea id="respuesta-manana" placeholder="Escribe aquí lo que sientes..."></textarea>
@@ -547,6 +548,7 @@ button.tarjeta-acceso {
       </div>
       <button onclick="abrirReto('noche')">Descubrir el reto ✧</button>
       <div class="estado" id="estado-noche"></div>
+      <div id="respuestas-noche" class="respuestas-compartidas" aria-live="polite"></div>
       <div id="reto-noche" class="reto">
         <p>Si pudieras revivir un momento conmigo, ¿cuál elegirías y por qué?</p>
         <textarea id="respuesta-noche" placeholder="Cuéntamelo con sinceridad..."></textarea>
@@ -652,18 +654,6 @@ button.tarjeta-acceso {
       document.getElementById('reto-' + tipo).style.display = 'block';
     }
 
-    function guardar(tipo) {
-      const campo = document.getElementById('respuesta-' + tipo);
-      const respuesta = campo.value.trim();
-      if (!respuesta) {
-        alert('Escribe primero tu respuesta ♡');
-        return;
-      }
-      localStorage.setItem('respuesta-' + tipo + '-' + fecha.toDateString(), respuesta);
-      document.getElementById('estado-' + tipo).textContent = 'Tu respuesta está guardada en este teléfono ♡';
-      document.getElementById('reto-' + tipo).style.display = 'none';
-      campo.value = '';
-    }
 
     function diario() {
       const caja = document.getElementById('diario');
@@ -696,12 +686,6 @@ button.tarjeta-acceso {
       })[c]);
     }
 
-    ['manana', 'noche'].forEach(tipo => {
-      const guardada = localStorage.getItem('respuesta-' + tipo + '-' + fecha.toDateString());
-      if (guardada) {
-        document.getElementById('estado-' + tipo).textContent = 'Tu respuesta está guardada en este teléfono ♡';
-      }
-    });
   
     function cargarPerfiles() {
       const datos = JSON.parse(localStorage.getItem('perfiles-pareja') || '{}');
@@ -754,5 +738,6 @@ button.tarjeta-acceso {
   <script type="module" src="/js/ruleta.js"></script>
   <script type="module" src="/js/tienda.js"></script>
     <script type="module" src="/js/recordatorios.js"></script>
+    <script type="module" src="/js/retos.js"></script>
 </body>
 </html>
