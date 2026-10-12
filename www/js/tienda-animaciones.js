@@ -37,7 +37,9 @@ export function mostrarAnimacionCanje(recompensa, estado) {
   @keyframes entrada{from{transform:scale(.3) rotate(-8deg);opacity:0}to{transform:scale(1);opacity:1}}
   @keyframes flotar{50%{transform:translateY(-10px) scale(1.08)}}
   
-  #animacion-canje .sobre{position:relative;width:260px;height:175px;margin:25px auto 15px;background:radial-gradient(ellipse at 50% 45%,#6b3459,#32182d 72%);border:1px solid #e9b949;border-radius:18px;box-shadow:inset 0 0 22px #e9b94933,0 8px 25px #0006;perspective:500px;overflow:visible}
+  #animacion-canje .sobre{position:relative;width:260px;height:175px;margin:25px auto 15px;background:linear-gradient(145deg,#6b3459,#32182d);border:1px solid #d8b56a;border-radius:18px;box-shadow:inset 0 0 22px #e9b94922,0 8px 25px #0006;perspective:700px;overflow:visible}
+  #animacion-canje .foto-premio{display:block;width:218px;height:145px;object-fit:cover;object-position:center;margin:14px auto;border:2px solid #d8b56a;border-radius:12px;box-shadow:0 5px 20px #0008;animation:foto-revelada 1.3s 0.85s both}
+  @keyframes foto-revelada{from{opacity:0;transform:translateY(16px) scale(.94);filter:brightness(.55) blur(3px)}to{opacity:1;transform:translateY(0) scale(1);filter:brightness(1) blur(0)}}
   #animacion-canje .escena-3d{display:block;width:210px;height:160px;margin:auto;filter:drop-shadow(0 10px 12px #0005);animation:escena-flotante 2.5s ease-in-out infinite}
   @keyframes escena-flotante{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
   #animacion-canje .solapa{position:absolute;z-index:3;inset:0;background:linear-gradient(145deg,#d6a45b,#7e3c57);clip-path:polygon(0 0,100% 0,50% 65%);transform-origin:top;animation:abrir-sobre .9s .4s forwards;pointer-events:none}
