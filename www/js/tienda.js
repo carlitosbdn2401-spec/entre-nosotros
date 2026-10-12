@@ -1,3 +1,4 @@
+import { mostrarAnimacionCanje } from "./tienda-animaciones.js";
 const CLAVE = "entreNosotrosTiendaPruebaV1";
 const recompensasIniciales = [
   {id:"r1",icono:"💋",nombre:"Vale de besos",descripcion:"Un momento lleno de besos.",precio:25,tipo:"inmediato",personalizada:false},
@@ -66,7 +67,7 @@ document.addEventListener("click",e=>{
       fecha:new Date().toISOString()
     });
     guardar();renderizar();
-    aviso(r.tipo==="aprobacion"?"Canje registrado como pendiente de aprobación. En esta versión de prueba, la otra persona todavía no recibe una solicitud.":"¡Recompensa canjeada! Ya aparece como disponible en tus canjes.");
+    mostrarAnimacionCanje(r, r.tipo==="aprobacion"?"pendiente":"disponible");
   }
 });
 document.getElementById("tienda-persona")?.addEventListener("change",renderizar);
