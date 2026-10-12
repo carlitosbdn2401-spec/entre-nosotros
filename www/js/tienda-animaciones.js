@@ -1,3 +1,4 @@
+import { crearEscena3D } from "./escenas-3d.js";
 const escenas = {
 r1:["💌","💋","Lluvia de besos"],
 r2:["🫂","💕","Abrazo para dos"],
@@ -31,14 +32,16 @@ export function mostrarAnimacionCanje(recompensa, estado) {
   #animacion-canje{position:fixed;inset:0;z-index:99999;background:#160812ed;display:grid;place-items:center;padding:20px}
   #animacion-canje .tarjeta{background:linear-gradient(145deg,#6b2348,#24101f);color:#fff0f6;text-align:center;padding:30px 20px;border-radius:25px;border:2px solid #e9a5c7;max-width:330px;width:100%;box-shadow:0 0 40px #ff69b477;animation:entrada .6s ease}
   #animacion-canje .icono{font-size:75px;animation:flotar 1.5s infinite}
-  #animacion-canje .destellos{font-size:30px;margin:18px}
+  #animacion-canje .destellos{height:22px;margin:18px;position:relative} #animacion-canje .destellos:before{content:"✦  ✧  ✦";color:#e9b949;font-size:24px;letter-spacing:12px}
   #animacion-canje button{background:#f5b5d2;color:#42142d;border:0;border-radius:20px;padding:12px 25px;font-weight:bold}
   @keyframes entrada{from{transform:scale(.3) rotate(-8deg);opacity:0}to{transform:scale(1);opacity:1}}
   @keyframes flotar{50%{transform:translateY(-10px) scale(1.08)}}
   
-  #animacion-canje .sobre{position:relative;width:230px;height:145px;margin:25px auto 15px;background:linear-gradient(145deg,#f7c5dc,#b64c80);border-radius:8px;box-shadow:0 8px 25px #ff75b855;perspective:500px}
-  #animacion-canje .solapa{position:absolute;z-index:3;inset:0;background:#fce1ed;clip-path:polygon(0 0,100% 0,50% 65%);transform-origin:top;animation:abrir-sobre .9s .4s forwards}
-  #animacion-canje .revelacion{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:salir-sobre 1s 1s both}
+  #animacion-canje .sobre{position:relative;width:260px;height:175px;margin:25px auto 15px;background:radial-gradient(ellipse at 50% 45%,#6b3459,#32182d 72%);border:1px solid #e9b949;border-radius:18px;box-shadow:inset 0 0 22px #e9b94933,0 8px 25px #0006;perspective:500px;overflow:visible}
+  #animacion-canje .escena-3d{display:block;width:210px;height:160px;margin:auto;filter:drop-shadow(0 10px 12px #0005);animation:escena-flotante 2.5s ease-in-out infinite}
+  @keyframes escena-flotante{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
+  #animacion-canje .solapa{position:absolute;z-index:3;inset:0;background:linear-gradient(145deg,#d6a45b,#7e3c57);clip-path:polygon(0 0,100% 0,50% 65%);transform-origin:top;animation:abrir-sobre .9s .4s forwards;pointer-events:none}
+  #animacion-canje .revelacion{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:visible;animation:salir-sobre 1s 1s both}
   #animacion-canje .revelacion .icono{font-size:65px}
   #animacion-canje .extra-cena,#animacion-canje .extra-masaje,#animacion-canje .extra-besos,#animacion-canje .extra-abrazo,#animacion-canje .extra-pelicula,#animacion-canje .extra-rosa,#animacion-canje .extra-pasion,#animacion-canje .extra-premio{font-size:27px;line-height:1.8;animation:salir-sobre 1.2s 1.2s both;filter:drop-shadow(0 0 8px #ffd66b)}
   #animacion-canje .brillo{font-size:25px;filter:drop-shadow(0 0 8px #ffd66b);animation:destello 1s infinite alternate}
@@ -58,16 +61,17 @@ export function mostrarAnimacionCanje(recompensa, estado) {
   @keyframes relax{to{transform:translateY(-5px)}}
   @keyframes rosa{to{transform:scale(1.15) rotate(5deg)}}
   @keyframes brillo{to{transform:scale(1.15);filter:drop-shadow(0 0 15px #ffd66b)}}
-  #animacion-canje .tarjeta:after{content:"✦ ✧ ✨ ✦";position:absolute;top:12px;left:0;width:100%;font-size:24px;letter-spacing:12px;color:#ffe99a;text-shadow:0 0 12px #ffd66b;pointer-events:none;animation:destellos-premium 1.2s ease-in-out infinite alternate}
-  @keyframes destellos-premium{from{opacity:.25;transform:translateY(4px) scale(.9)}to{opacity:1;transform:translateY(-4px) scale(1.08)}}
+
+#animacion-canje .sobre:after{content:"";position:absolute;z-index:8;left:50%;top:40%;width:240px;height:240px;pointer-events:none;background:radial-gradient(circle,#fff8b0 1px,transparent 2px),radial-gradient(circle,#e9b949 1.5px,transparent 3px),radial-gradient(circle,#fff 1px,transparent 2px);background-size:17px 19px,29px 31px,11px 13px;transform:translate(-50%,-50%) scale(.15);opacity:0;animation:purpurina-dorada 2.4s 1.1s ease-out forwards}
+@keyframes purpurina-dorada{0%{transform:translate(-50%,-50%) scale(.15);opacity:0}15%{opacity:1}60%{transform:translate(-50%,-20%) scale(1.2);opacity:.9}100%{transform:translate(-50%,35%) scale(1.6);opacity:0}}
 </style>
   <div class="tarjeta">
-  <div>✨ UNA RECOMPENSA PARA VOSOTROS ✨</div>
-  <div class="sobre"><div class="solapa"></div><div class="revelacion"><div class="icono">${e[0]}</div><div class="brillo">${e[1]} ✨ 💖</div>${escenaExtra}</div></div>
+  <div class="cabecera-premio">UNA RECOMPENSA PARA VOSOTROS</div>
+  <div class="sobre"><div class="solapa"></div><div class="revelacion">${crearEscena3D(recompensa.id)}</div></div>
   <h2>${e[2]}</h2>
-  <div class="destellos">${e[1]} ✨ 💖</div>
+  <div class="destellos"></div>
   <p>${estado==="pendiente"?"¡Canje registrado! Pendiente de aprobación.":"¡Recompensa canjeada! Disfrutad vuestro momento."}</p>
-  <button id="cerrar-animacion">Continuar ❤️</button>
+  <button id="cerrar-animacion">Continuar</button>
   </div>`;
   document.body.appendChild(modal);
   modal.querySelector("#cerrar-animacion").onclick = () => modal.remove();
