@@ -25,6 +25,7 @@ export function mostrarAnimacionCanje(recompensa, estado) {
   };
   const escenaExtra = escenasExtra[recompensa.id] || "";
   modal.id = "animacion-canje";
+  modal.classList.add(recompensa.id || "r8");
   modal.innerHTML = `
   <style>
   #animacion-canje{position:fixed;inset:0;z-index:99999;background:#160812ed;display:grid;place-items:center;padding:20px}
@@ -44,6 +45,19 @@ export function mostrarAnimacionCanje(recompensa, estado) {
   @keyframes abrir-sobre{to{transform:rotateX(180deg);z-index:0}}
   @keyframes salir-sobre{from{transform:translateY(45px) scale(.35);opacity:0}to{transform:translateY(-18px) scale(1);opacity:1}}
   @keyframes destello{to{filter:drop-shadow(0 0 15px #ffd66b);transform:scale(1.12)}}
+  #animacion-canje.r1 .extra-besos{animation:besos 1.5s infinite alternate}
+  #animacion-canje.r2 .extra-abrazo{animation:abrazo 1.2s infinite alternate}
+  #animacion-canje.r3 .extra-masaje{animation:relax 3s infinite alternate}
+  #animacion-canje.r4 .extra-cena{animation:brillo 1.5s infinite alternate}
+  #animacion-canje.r5 .extra-pelicula{animation:flotar 2s infinite}
+  #animacion-canje.r6 .extra-rosa{animation:rosa 2s infinite alternate}
+  #animacion-canje.r7 .extra-pasion{animation:brillo .8s infinite alternate}
+  #animacion-canje.r8 .extra-premio{animation:brillo 1s infinite alternate}
+  @keyframes besos{to{transform:translateY(-10px) scale(1.1)}}
+  @keyframes abrazo{to{transform:scale(1.12)}}
+  @keyframes relax{to{transform:translateY(-5px)}}
+  @keyframes rosa{to{transform:scale(1.15) rotate(5deg)}}
+  @keyframes brillo{to{transform:scale(1.15);filter:drop-shadow(0 0 15px #ffd66b)}}
 </style>
   <div class="tarjeta">
   <div>✨ UNA RECOMPENSA PARA VOSOTROS ✨</div>
