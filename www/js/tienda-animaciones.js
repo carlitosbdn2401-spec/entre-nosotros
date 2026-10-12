@@ -58,6 +58,8 @@ export function mostrarAnimacionCanje(recompensa, estado) {
   @keyframes relax{to{transform:translateY(-5px)}}
   @keyframes rosa{to{transform:scale(1.15) rotate(5deg)}}
   @keyframes brillo{to{transform:scale(1.15);filter:drop-shadow(0 0 15px #ffd66b)}}
+  #animacion-canje .tarjeta:after{content:"✦ ✧ ✨ ✦";position:absolute;top:12px;left:0;width:100%;font-size:24px;letter-spacing:12px;color:#ffe99a;text-shadow:0 0 12px #ffd66b;pointer-events:none;animation:destellos-premium 1.2s ease-in-out infinite alternate}
+  @keyframes destellos-premium{from{opacity:.25;transform:translateY(4px) scale(.9)}to{opacity:1;transform:translateY(-4px) scale(1.08)}}
 </style>
   <div class="tarjeta">
   <div>✨ UNA RECOMPENSA PARA VOSOTROS ✨</div>
