@@ -378,11 +378,18 @@ button.tarjeta-acceso {
   50% { transform: translateY(-4px) scale(1.06); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ruleta-boton::after,.ruleta-resultado-icono,.ruleta-contenedor.girando::before { animation: none !important; }
+  .ruleta-boton::after,.ruleta-contenedor.girando::before { animation: none !important; }
 }
 
 
 
+.ruleta-resultado{position:relative;isolation:isolate;overflow:hidden}
+.ruleta-resultado::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;background-image:radial-gradient(circle at 12% 22%,#fff4bd 0 2px,transparent 4px),radial-gradient(circle at 83% 18%,#ffd45c 0 2px,transparent 4px),radial-gradient(circle at 72% 76%,#ff8fb8 0 2px,transparent 4px),radial-gradient(circle at 24% 82%,#fff0bd 0 2px,transparent 4px),radial-gradient(circle at 50% 12%,#fff 0 1px,transparent 3px);animation:purpurinaPremio 1.8s ease-out both}
+@keyframes purpurinaPremio{0%{opacity:0;transform:scale(.96)}25%{opacity:1}75%{opacity:.85}100%{opacity:0;transform:scale(1.04)}}
+.ruleta-resultado>*{position:relative;z-index:1}
+.ruleta-resultado.premio-legendario::after{background-image:radial-gradient(circle at 12% 22%,#fff 0 2px,transparent 4px),radial-gradient(circle at 83% 18%,#ffd45c 0 3px,transparent 5px),radial-gradient(circle at 72% 76%,#ffdf85 0 2px,transparent 4px),radial-gradient(circle at 24% 82%,#fff0bd 0 3px,transparent 5px);animation-duration:2.5s}
+
+@media (prefers-reduced-motion: reduce){.ruleta-resultado::after{animation:none!important}}
 /* Aro dorado metalico de lujo */
 .ruleta-contenedor::before{inset:-12px;background:conic-gradient(#fff8d9,#9c7130,#f9e5a5,#68451e,#fff0bd,#b1843c,#fff8d9,#76501e,#e8ca83,#fff3c5,#8a6129,#f9e6a8,#6d481e,#fff0bd,#a77a35,#fff7d7,#79521f,#f2d591,#fff4c8,#8b642b,#fff8d9);box-shadow:0 0 0 2px #3b201b,0 0 30px #d8b77988,inset 0 1px 2px #fff8d9}
 .ruleta-disco{border:8px solid #d8b779;outline:2px solid #fff0bd;outline-offset:-13px;box-shadow:inset 0 0 0 3px #f4d994,inset 0 0 0 7px #4c2630,inset 0 0 24px #000b,0 0 0 3px #8b642b,0 0 0 6px #321321,0 0 26px #c52c4b66}
@@ -421,6 +428,125 @@ button.tarjeta-acceso {
   font-size:.92rem;
 }
 
+
+/* RUleta DE LUJO: metal dorado, gajos finos y volumen */
+.ruleta-disco {
+  background:
+    repeating-conic-gradient(
+      from -.35deg,
+      rgba(255,231,174,.96) 0deg .7deg,
+      transparent .7deg 9deg
+    ),
+    radial-gradient(circle at 32% 23%, #ffffff26, transparent 38%),
+    repeating-conic-gradient(
+      #7c1e3b 0deg 9deg,
+      #321321 9deg 18deg,
+      #8a3551 18deg 27deg,
+      #421326 27deg 36deg
+    );
+  border: 8px solid #d8b779;
+  outline: 2px solid #fff0bd;
+  outline-offset: -13px;
+  box-shadow:
+    inset 0 0 0 3px #f4d994,
+    inset 0 0 0 7px #4c2630,
+    inset 0 0 25px #000b,
+    0 0 0 3px #8b642b,
+    0 0 0 6px #321321,
+    0 0 28px #c52c4b66;
+  transition: transform 7.5s cubic-bezier(.12,.78,.08,1);
+}
+.ruleta-contenedor {
+  filter: drop-shadow(0 16px 22px #000b);
+  margin-bottom: 12px;
+}
+.ruleta-boton {
+  display: block;
+  position: relative;
+  margin: 0 auto 18px;
+  overflow: hidden;
+  background: linear-gradient(110deg, #5b142d, #a82e51 48%, #76213d);
+  box-shadow: inset 0 1px 0 #ffe9b0aa, 0 6px 20px #0007;
+}
+.ruleta-boton:active {
+  transform: scale(.98);
+}
+
+
+/* Preparación de la ruleta de 40 gajos */
+.ruleta-disco {
+  isolation: isolate;
+  overflow: hidden;
+}
+.ruleta-disco::before,
+.ruleta-disco::after {
+  content: none !important;
+  display: none !important;
+}
+.ruleta-gajos {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.ruleta-marca {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 27px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 2px 2px #000c);
+  user-select: none;
+}
+.ruleta-centro {
+  z-index: 2;
+}
+
+
+/* RULETA 40 GAJOS */
+.ruleta-gajos {
+  background: repeating-conic-gradient(
+    from -.35deg,
+    #d8b779 0deg 0.7deg,
+    transparent 0.7deg 9deg
+  );
+}
+.ruleta-marca {
+  position: absolute;
+  width: 27px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 2px 2px #000c);
+}
+
+
+/* ANIMACIONES-PREMIOS-EN */
+.ruleta-resultado.premio-puntos{border-color:#ffd45c;background:radial-gradient(circle at top,#6c4b12,#1b1017 75%);box-shadow:0 0 30px #ffd45c55}
+.ruleta-resultado.premio-romantico{border-color:#ff8fb8;background:radial-gradient(circle at top,#70203f,#1b1017 75%);box-shadow:0 0 30px #ff5caa55}
+.ruleta-resultado.premio-experiencia{border-color:#e9d09a;background:radial-gradient(circle at top,#51402b,#1b1017 75%);box-shadow:0 0 30px #e9d09a44}
+.ruleta-resultado.premio-picante{border-color:#ff654f;background:radial-gradient(circle at top,#721d25,#1b1017 75%);box-shadow:0 0 32px #ff3d3155}
+.ruleta-resultado.premio-secreto{border-color:#c35b91;background:radial-gradient(circle at top,#38112e,#09070d 80%);box-shadow:0 0 35px #b62b8555}
+.ruleta-resultado.premio-legendario{border-color:#ffe7a0;background:radial-gradient(circle at top,#80601c,#261526 75%);box-shadow:0 0 42px #ffd45c88}
+
+.ruleta-resultado.premio-puntos .icono-revelando{animation:premioMonedas 1.1s ease-out both}@keyframes premioMonedas{0%{opacity:0;transform:translateY(-30px) scale(.4)}70%{opacity:1;transform:translateY(4px) scale(1.2)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.ruleta-resultado.premio-romantico .icono-revelando{animation:premioCorazones 1.2s ease-in-out both}@keyframes premioCorazones{0%{opacity:0;transform:scale(.2)}50%{opacity:1;transform:scale(1.35)}100%{opacity:1;transform:scale(1)}}
+.ruleta-resultado.premio-experiencia .icono-revelando{animation:premioDestello 1.1s ease-out both}@keyframes premioDestello{0%{opacity:0;transform:scale(.5) rotate(-12deg);filter:brightness(2)}60%{opacity:1;transform:scale(1.25) rotate(8deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+.ruleta-resultado.premio-picante .icono-revelando{animation:premioLlamas 1s ease-out both}@keyframes premioLlamas{0%{opacity:0;transform:translateY(15px) scale(.5)}45%{opacity:1;transform:translateY(-7px) scale(1.3)}100%{opacity:1;transform:translateY(0) scale(1)}}
+.ruleta-resultado.premio-secreto .icono-revelando{animation:premioMisterio 1.5s ease-in-out both}@keyframes premioMisterio{0%{opacity:0;transform:scale(.2);filter:brightness(0)}55%{opacity:1;transform:scale(1.2);filter:brightness(1.8)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
+.ruleta-resultado.premio-legendario .icono-revelando{animation:premioLegendario 1.5s cubic-bezier(.16,1,.3,1) both}@keyframes premioLegendario{0%{opacity:0;transform:scale(.1) rotate(-30deg);filter:brightness(3)}60%{opacity:1;transform:scale(1.5) rotate(12deg);filter:brightness(2)}80%{transform:scale(.9) rotate(-4deg)}100%{opacity:1;transform:scale(1) rotate(0);filter:brightness(1)}}
 </style>
 </head>
 <body>
@@ -570,9 +696,11 @@ button.tarjeta-acceso {
   <div class="ruleta-contenedor">
     <div class="ruleta-flecha">▼</div>
     <div class="ruleta-disco" id="ruleta-disco" aria-label="Ruleta de premios">
+      <div class="ruleta-gajos" id="ruleta-gajos" aria-hidden="true"></div>
       <div class="ruleta-centro"><span>♥</span><small>GIRA</small></div>
     </div>
   </div>
+  <button type="button" id="boton-girar-ruleta" class="ruleta-boton">✨ Girar mi ruleta</button>
   <div class="ruleta-leyenda">
     <div><i>🪙</i><span>Puntos extra</span><b>30%</b></div>
     <div><i>💋</i><span>Vales románticos</span><b>25%</b></div>
@@ -581,7 +709,6 @@ button.tarjeta-acceso {
     <div class="ruleta-secreto"><i>🖤❔</i><span>Premio secreto</span><b>1%</b></div>
     <div><i>👑</i><span>Premios exclusivos legendarios</span><b>5%</b></div>
   </div>
-  <button type="button" id="boton-girar-ruleta" class="ruleta-boton">✨ Girar mi ruleta</button>
   <p id="ruleta-estado" class="ruleta-estado" aria-live="polite">Giro de prueba disponible en este dispositivo.</p>
   <div id="ruleta-resultado" class="ruleta-resultado" hidden aria-live="polite">
     <div id="ruleta-resultado-icono" class="ruleta-resultado-icono">❤️</div>

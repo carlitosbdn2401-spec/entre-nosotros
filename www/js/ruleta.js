@@ -53,6 +53,40 @@ const premios = [
   }
 ];
 
+
+const capaGajos = document.getElementById("ruleta-gajos");
+
+function crearGajosRuleta() {
+  if (!capaGajos) return;
+
+  const cantidades = [12, 10, 8, 7, 1, 2];
+  const orden = cantidades.flatMap((cantidad, indice) =>
+    Array(cantidad).fill(indice)
+  );
+
+  for (let i = orden.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [orden[i], orden[j]] = [orden[j], orden[i]];
+  }
+
+  capaGajos.replaceChildren();
+
+  orden.forEach((premioIndice, gajoIndice) => {
+    const marca = document.createElement("span");
+    const angulo = (gajoIndice + 0.5) * 9;
+      const radianes = angulo * Math.PI / 180;
+    marca.className = "ruleta-marca";
+    marca.dataset.premioIndice = premioIndice;
+    marca.dataset.gajoIndice = gajoIndice;
+    marca.textContent = premios[premioIndice].icono;
+    marca.style.left = `${50 + Math.sin(radianes) * 36}%`;
+    marca.style.top = `${50 - Math.cos(radianes) * 36}%`;
+    capaGajos.appendChild(marca);
+  });
+}
+
+crearGajosRuleta();
+
 function actualizarContador() {
   const restantes = Math.max(0, Math.min(2, disponibles));
 
@@ -139,13 +173,26 @@ function mostrarPremio(nombre) {
     throw new Error("El servidor ha devuelto un premio desconocido.");
   }
 
+  const clases = [
+    "premio-puntos", "premio-romantico", "premio-experiencia",
+    "premio-picante", "premio-secreto", "premio-legendario"
+  ];
+
+  resultado.classList.remove(...clases);
+  resultadoIcono.classList.remove("icono-revelando");
   resultadoIcono.textContent = premio.icono;
   resultadoTitulo.textContent = premio.secreto
     ? "Nuestro secreto ❤️‍🔥"
     : premio.nombre;
   resultadoTexto.textContent = premio.texto;
   secreto.hidden = !premio.secreto;
+
+  resultado.classList.add(clases[premios.indexOf(premio)]);
   resultado.hidden = false;
+  void resultado.offsetWidth;
+  resultadoIcono.classList.remove("icono-revelando");
+  void resultadoIcono.offsetWidth;
+  resultadoIcono.classList.add("icono-revelando");
 }
 
 async function girarRuleta() {
@@ -238,10 +285,23 @@ async function girarRuleta() {
     sessionStorage.removeItem(CLAVE_SOLICITUD_PENDIENTE);
     solicitudPendiente = null;
 
-    const gradosAntes = pesos.slice(0, indice).reduce((a, b) => a + b, 0) * 3.6;
-    const gradosSector = pesos[indice] * 3.6;
-    const centroSector = gradosAntes + gradosSector / 2;
-    const anguloFinal = (360 - centroSector + 360) % 360;
+    const marcas = [...(capaGajos?.querySelectorAll(".ruleta-marca") || [])]
+      .filter(marca => Number(marca.dataset.premioIndice) === indice);
+
+    let anguloFinal;
+
+    if (marcas.length) {
+      const marcaElegida = marcas[Math.floor(Math.random() * marcas.length)];
+      const gajoIndice = Number(marcaElegida.dataset.gajoIndice);
+      const centroGajo = (gajoIndice + 0.5) * 9;
+      anguloFinal = (360 - centroGajo + 360) % 360;
+    } else {
+      const gradosAntes = pesos.slice(0, indice).reduce((a, b) => a + b, 0) * 3.6;
+      const gradosSector = pesos[indice] * 3.6;
+      const centroSector = gradosAntes + gradosSector / 2;
+      anguloFinal = (360 - centroSector + 360) % 360;
+    }
+
     const posicionActual = ((rotacionActual % 360) + 360) % 360;
     const ajuste = (anguloFinal - posicionActual + 360) % 360;
     const vueltas = rotacionActual + 360 * 6 + ajuste;
@@ -274,7 +334,7 @@ async function girarRuleta() {
         girando = false;
         actualizarContador();
       }
-    }, 5100);
+    }, 7600);
 
   } catch (error) {
     console.error("Error al girar la ruleta:", error);
