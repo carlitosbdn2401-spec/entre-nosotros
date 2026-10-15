@@ -86,7 +86,12 @@ document.addEventListener("click",e=>{
       fecha:new Date().toISOString()
     });
     guardar();renderizar();
-    mostrarAnimacionCanje(r, r.tipo==="aprobacion"?"pendiente":"disponible");
+    const paginaVale = paginasVales[r.id];
+    if (paginaVale) {
+      window.location.href = "./" + paginaVale;
+    } else {
+      mostrarAnimacionCanje(r, r.tipo==="aprobacion"?"pendiente":"disponible");
+    }
   }
 });
 document.getElementById("tienda-persona")?.addEventListener("change",renderizar);
