@@ -1,5 +1,16 @@
 import { mostrarAnimacionCanje } from "./tienda-animaciones.js";
 const CLAVE = "entreNosotrosTiendaPruebaV1";
+const paginasVales = {
+  r1: "prueba-vale-besos.html",
+  r2: "prueba-abrazo-para-dos.html",
+  r3: "prueba-momento-relax.html",
+  r4: "prueba-cena-especial.html",
+  r5: "prueba-noche-de-peli.html",
+  r6: "prueba-caja-misteriosa.html",
+  r7: "prueba-vale-picante.html",
+  r8: "prueba-premio-exclusivo.html"
+};
+
 const recompensasIniciales = [
   {id:"r1",icono:"💋",nombre:"Vale de besos",descripcion:"Un momento lleno de besos.",precio:25,tipo:"inmediato",personalizada:false},
   {id:"r2",icono:"🤗",nombre:"Abrazo largo",descripcion:"Un abrazo sin prisas, solo para nosotros.",precio:20,tipo:"inmediato",personalizada:false},
@@ -45,11 +56,19 @@ function renderizar(){
       <strong>${escapar(c.nombre)}</strong>
       <div class="tienda-estado">${c.estado==="pendiente"?"⏳ Pendiente de aprobación":c.estado==="disponible"?"💗 Disponible para utilizar":"❤️ Canje registrado"}</div>
       <small>${new Date(c.fecha).toLocaleDateString()}</small>
+      ${paginasVales[c.recompensaId] ? `<button type="button" data-abrir-vale="${escapar(c.recompensaId)}">Abrir mi vale ❤️</button>` : ""}
     </div>`).join("") : '<p class="descripcion">Todavía no tienes canjes. ¡Elige una recompensa que te haga ilusión! ❤️</p>';
 }
 function aviso(msg){ window.alert(msg); }
 
 document.addEventListener("click",e=>{
+  const abrirVale = e.target.closest("[data-abrir-vale]");
+  if (abrirVale) {
+    const pagina = paginasVales[abrirVale.dataset.abrirVale];
+    if (pagina) window.location.href = "./" + pagina;
+    return;
+  }
+
   const comprar = e.target.closest("[data-comprar]");
   if(comprar){
     const r = datos.recompensas.find(x=>x.id===comprar.dataset.comprar);
@@ -62,7 +81,7 @@ document.addEventListener("click",e=>{
     if(!confirm(`¿Canjear «${r.nombre}» por ${r.precio} puntos?`)) return;
     datos.saldos[p] -= Number(r.precio);
     datos.canjes.push({
-      id:"c"+Date.now(),persona:p,nombre:r.nombre,precio:Number(r.precio),
+      id:"c"+Date.now(),persona:p,nombre:r.nombre,recompensaId:r.id,precio:Number(r.precio),
       estado:r.tipo==="aprobacion"?"pendiente":"disponible",
       fecha:new Date().toISOString()
     });
