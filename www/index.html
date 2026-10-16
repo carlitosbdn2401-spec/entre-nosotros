@@ -548,6 +548,7 @@ button.tarjeta-acceso {
 .ruleta-resultado.premio-secreto .icono-revelando{animation:premioMisterio 1.5s ease-in-out both}@keyframes premioMisterio{0%{opacity:0;transform:scale(.2);filter:brightness(0)}55%{opacity:1;transform:scale(1.2);filter:brightness(1.8)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
 .ruleta-resultado.premio-legendario .icono-revelando{animation:premioLegendario 1.5s cubic-bezier(.16,1,.3,1) both}@keyframes premioLegendario{0%{opacity:0;transform:scale(.1) rotate(-30deg);filter:brightness(3)}60%{opacity:1;transform:scale(1.5) rotate(12deg);filter:brightness(2)}80%{transform:scale(.9) rotate(-4deg)}100%{opacity:1;transform:scale(1) rotate(0);filter:brightness(1)}}
 </style>
+<link rel="stylesheet" href="/css/diario-libro.css">
 </head>
 <body>
   <main class="app">
@@ -838,19 +839,31 @@ button.tarjeta-acceso {
     </section>
 
     <section class="sobre" data-vista="diario">
-      <div class="hora">Nuestro espacio privado</div>
-      <h2>Un secreto compartido</h2>
-      <div class="descripcion">
-        Un lugar para guardar lo que queramos recordar, las palabras
-        que nos acercan y los momentos que son solo nuestros.
-      </div>
-      <button class="secundario" onclick="diario()">Abrir nuestro diario ♡</button>
-      <div id="diario" style="display:none">
-        <textarea id="nota" placeholder="Guarda aquí un recuerdo especial..."></textarea>
-        <button onclick="guardarNota()">Guardar recuerdo</button>
-        <div id="recuerdos" class="descripcion"></div>
-      </div>
-    </section>
+<div class="hora">Nuestro espacio privado</div>
+<h2>Un secreto compartido</h2>
+<div class="descripcion">Nuestro libro de recuerdos ❤️</div>
+<button class="secundario" onclick="diario()">Abrir nuestro diario ♡</button>
+<div id="diario" class="diario-libro" style="display:none">
+<div id="diario-animacion"><img src="/assets/gifapp.gif" alt="Abriendo nuestro diario"></div>
+<div id="diario-libro-contenido" hidden>
+<div class="diario-paginas"><img class="diario-indice" src="/assets/indice-del-gif.png" alt="Índice del diario"></div>
+<div class="diario-opciones">
+<button onclick="seleccionarTipoDiario('recuerdo')">♡ Recuerdos</button>
+<button onclick="seleccionarTipoDiario('foto')">✧ Fotografías</button>
+<button onclick="seleccionarTipoDiario('mensaje')">✉ Mensajes</button>
+<button onclick="seleccionarTipoDiario('dedicatoria')">❦ Dedicatorias</button>
+</div>
+<div id="diario-editor" hidden>
+<h3 id="diario-editor-titulo"></h3>
+<textarea id="diario-texto" placeholder="Escribe aquí con el corazón..."></textarea>
+<input id="diario-foto" type="file" accept="image/*" hidden>
+<button onclick="elegirFotoDiario()">Elegir foto</button>
+<div id="diario-foto-nombre"></div>
+<button onclick="guardarEntradaDiario()">Guardar ❤️</button>
+<button onclick="cancelarEntradaDiario()">Volver</button>
+</div>
+<div id="recuerdos"></div>
+</div></div></section>
 
     <div class="pie">
       Dos personas · Un pequeño universo<br>
@@ -994,5 +1007,6 @@ button.tarjeta-acceso {
   <script type="module" src="/js/tienda.js"></script>
     <script type="module" src="/js/recordatorios.js"></script>
     <script type="module" src="/js/retos.js"></script>
+<script type="module" src="/js/diario-libro.js"></script>
 </body>
 </html>
