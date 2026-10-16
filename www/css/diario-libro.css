@@ -12,3 +12,167 @@
 .diario-entrada h4{font:30px Qwigley,serif;color:#681b32;margin:0 0 5px}
 .diario-entrada p{white-space:pre-wrap;font:25px Qwigley,serif}
 .diario-entrada img{display:block;max-width:100%;max-height:300px;margin:8px auto}
+body{background:#12090e!important;color:#f3e5d8}
+.app{max-width:400px;margin:auto;padding:20px;background:radial-gradient(circle at top,#2b111a,#12090e 70%);border:1px solid #3d1b26;border-radius:20px}
+header h1{font-family:Qwigley,cursive;font-size:54px;font-weight:400;color:#f3e5d8}
+.simbolo,.fecha,.titulo-accesos{color:#d4af37}
+.subtitulo{font-size:11px;letter-spacing:2px;color:#c5b299}
+.bienvenida{background:linear-gradient(135deg,#621731,#400e20);border:1px solid #802342;border-radius:15px;padding:20px;box-shadow:0 8px 20px #0008}
+.rejilla-accesos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+button.tarjeta-acceso{min-height:112px;background:linear-gradient(145deg,#30232a,#1b1117);color:#f3e5d8;border:1px solid #8c737f;border-radius:12px}
+#navegacion-inferior{background:#1b1117;border-top:1px solid #8c737f}
+
+/* === INTERFAZ PRINCIPAL: CUERO BURDEOS Y ORO === */
+body{
+  background:#12090e!important;
+  color:#f3e5d8!important;
+}
+main.app{
+  box-sizing:border-box;
+  width:100%;
+  max-width:440px!important;
+  min-height:100vh;
+  margin:0 auto!important;
+  padding:20px 18px 100px!important;
+  background:radial-gradient(ellipse at top,#2b111a 0%,#190b12 48%,#12090e 100%)!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#f3e5d8!important;
+}
+main.app header{
+  text-align:center!important;
+  padding:18px 0 25px!important;
+}
+main.app header h1{
+  font-family:Qwigley,cursive!important;
+  font-size:54px!important;
+  line-height:1.15!important;
+  font-weight:400!important;
+  color:#f3e5d8!important;
+  margin:8px 0!important;
+  text-shadow:0 2px 12px #0008;
+}
+main.app .simbolo,
+main.app .fecha,
+main.app .titulo-accesos{
+  color:#d4af37!important;
+}
+main.app .subtitulo{
+  color:#c5b299!important;
+  font-size:11px!important;
+  letter-spacing:2px!important;
+}
+main.app .bienvenida{
+  box-sizing:border-box;
+  width:100%;
+  margin:0 0 28px!important;
+  padding:23px 20px!important;
+  background:linear-gradient(145deg,#70203a 0%,#541329 48%,#390d1d 100%)!important;
+  border:1px solid #8b304b!important;
+  border-radius:17px!important;
+  box-shadow:0 12px 28px #0007,inset 0 1px 1px #ffffff20!important;
+  color:#f3e5d8!important;
+}
+main.app .bienvenida .mini-titulo{
+  color:#e0c16b!important;
+  font-size:10px!important;
+  letter-spacing:2px!important;
+  text-transform:uppercase;
+}
+main.app .bienvenida h2{
+  color:#f8e9e1!important;
+  font-size:25px!important;
+  line-height:1.35!important;
+}
+main.app .bienvenida p{
+  color:#e6d1d3!important;
+  line-height:1.65!important;
+}
+main.app .titulo-accesos{
+  margin:24px 0 14px!important;
+  text-align:left!important;
+  font-size:20px!important;
+  letter-spacing:.5px;
+}
+main.app .rejilla-accesos{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:11px!important;
+}
+main.app button.tarjeta-acceso{
+  box-sizing:border-box;
+  display:grid!important;
+  grid-template-columns:44px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  column-gap:12px!important;
+  align-items:center!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:78px!important;
+  padding:15px 16px!important;
+  text-align:left!important;
+  background:linear-gradient(135deg,#30202a 0%,#21131c 100%)!important;
+  color:#f3e5d8!important;
+  border:1px solid #60404e!important;
+  border-radius:14px!important;
+  box-shadow:0 5px 13px #0004,inset 0 1px #ffffff08!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+}
+main.app button.tarjeta-acceso .icono-acceso{
+  grid-column:1;
+  grid-row:1/3;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:42px;
+  min-height:42px;
+  font-size:27px!important;
+}
+main.app button.tarjeta-acceso .nombre-acceso{
+  grid-column:2;
+  grid-row:1;
+  align-self:end;
+  color:#f5dfc7!important;
+  font-size:16px!important;
+  font-weight:600!important;
+}
+main.app button.tarjeta-acceso .detalle-acceso{
+  grid-column:2;
+  grid-row:2;
+  align-self:start;
+  margin-top:4px!important;
+  color:#cbb7c0!important;
+  font-size:12px!important;
+  line-height:1.45!important;
+}
+main.app button.tarjeta-acceso:active{
+  background:linear-gradient(135deg,#492333,#2a1721)!important;
+  border-color:#c5a45d!important;
+}
+main.app #navegacion-inferior{
+  box-sizing:border-box;
+  background:#1b1117!important;
+  border-top:1px solid #654354!important;
+  box-shadow:0 -5px 18px #0005!important;
+}
+main.app #navegacion-inferior button{
+  color:#cbb7c0!important;
+}
+main.app #navegacion-inferior button.activo{
+  color:#e3c36c!important;
+}
+main.app .sobre,
+main.app .perfil{
+  color:#f3e5d8;
+}
+main.app .sobre{
+  background:linear-gradient(145deg,#28151f,#1b1017);
+  border:1px solid #513041;
+  border-radius:16px;
+  padding:18px;
+}
+@media(max-width:360px){
+  main.app{padding-left:12px!important;padding-right:12px!important}
+  main.app .bienvenida{padding:18px 15px!important}
+}

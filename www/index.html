@@ -6,6 +6,12 @@
   <meta name="theme-color" content="#10090d">
   <title>Entre Nosotros</title>
   <style>
+    @font-face {
+      font-family: Qwigley;
+      src: url("assets/Qwigley-Regular.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
     :root {
       --fondo: #10090d;
       --panel: #211018;
@@ -21,9 +27,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(ellipse at top, #421526 0%, transparent 48%),
-        var(--fondo);
+      background: var(--fondo);
       color: var(--texto);
       font-family: Georgia, "Times New Roman", serif;
     }
@@ -45,9 +49,12 @@
 
     h1 {
       margin: 0;
-      font-size: 34px;
+      font-family: Qwigley, cursive;
+      color: var(--oro);
+      font-size: 54px;
+      line-height: 1.15;
       font-weight: normal;
-      letter-spacing: 1px;
+      letter-spacing: 0;
     }
 
     .subtitulo {
@@ -548,70 +555,437 @@ button.tarjeta-acceso {
 .ruleta-resultado.premio-secreto .icono-revelando{animation:premioMisterio 1.5s ease-in-out both}@keyframes premioMisterio{0%{opacity:0;transform:scale(.2);filter:brightness(0)}55%{opacity:1;transform:scale(1.2);filter:brightness(1.8)}100%{opacity:1;transform:scale(1);filter:brightness(1)}}
 .ruleta-resultado.premio-legendario .icono-revelando{animation:premioLegendario 1.5s cubic-bezier(.16,1,.3,1) both}@keyframes premioLegendario{0%{opacity:0;transform:scale(.1) rotate(-30deg);filter:brightness(3)}60%{opacity:1;transform:scale(1.5) rotate(12deg);filter:brightness(2)}80%{transform:scale(.9) rotate(-4deg)}100%{opacity:1;transform:scale(1) rotate(0);filter:brightness(1)}}
 
-/* UNIVERSO-ROMANTICO-ESTRELLAS */
+
+/* ESTILO-INTERFAZ-IMAGEN-20261016 */
+
+/* Fondo oscuro con profundidad */
 body {
-  position: relative;
-  isolation: isolate;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(104, 27, 50, .48), transparent 58%),
-    radial-gradient(ellipse at 10% 65%, rgba(83, 24, 48, .16), transparent 48%),
-    #10090d;
+    radial-gradient(ellipse at top, #351522 0%, transparent 65%),
+    #12090e;
+  color: #f3e5d8;
 }
 
-body::before,
-body::after {
+/* Contenedor principal */
+.app {
+  max-width: 480px;
+  padding: 24px 20px 40px;
+  background: radial-gradient(circle at top, #2b111a 0%, #12090e 70%);
+  border: 1px solid #3d1b26;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.65);
+}
+
+/* Cabecera: conserva Qwigley y el tamaño de 54 px */
+header h1 {
+  font-family: Qwigley, cursive;
+  font-size: 54px;
+  line-height: 1.15;
+  font-weight: normal;
+  color: #d4af37;
+  letter-spacing: 0;
+}
+
+.simbolo {
+  color: #d4af37;
+}
+
+.subtitulo {
+  color: #c5b299;
+  letter-spacing: 2px;
+}
+
+.fecha {
+  color: #d4af37;
+}
+
+/* Tarjeta principal: efecto cuero burdeos */
+.bienvenida {
+  background: linear-gradient(135deg, #621731 0%, #400e20 100%);
+  border: 1px solid #802342;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.5),
+    inset 0 1px 2px rgba(255,255,255,.15);
+}
+
+.bienvenida .mini-titulo {
+  color: #d4af37;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.bienvenida h2 {
+  color: #f3e5d8;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.35;
+}
+
+.bienvenida p {
+  color: #ebdcd0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.corazon-decorativo {
+  color: #d4af37;
+  text-align: right;
+  margin-top: 15px;
+}
+
+/* Título de accesos */
+.titulo-accesos {
+  color: #d4af37;
+  font-size: 19px;
+  font-weight: normal;
+  margin: 27px 0 15px;
+}
+
+/* Tarjetas de navegación */
+.rejilla-accesos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+button.tarjeta-acceso {
+  width: 100%;
+  min-width: 0;
+  min-height: 112px;
+  margin: 0;
+  padding: 15px 12px;
+  text-align: left;
+  color: #f3e5d8;
+  background: linear-gradient(145deg, #2b111a, #190d13);
+  border: 1px solid #542233;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+button.tarjeta-acceso:active {
+  transform: scale(.98);
+  background: linear-gradient(145deg, #400e20, #211018);
+}
+
+.icono-acceso {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+.nombre-acceso {
+  display: block;
+  color: #f3e5d8;
+  font-size: 15px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.detalle-acceso {
+  display: block;
+  color: #baa393;
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* Acceso: mantiene los campos y el formulario de Firebase */
+#accesoFirebase {
+  background: linear-gradient(145deg, #2b111a, #190d13) !important;
+  border-color: #754052 !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+}
+
+#accesoFirebase h2 {
+  color: #d4af37 !important;
+}
+
+#accesoFirebase input {
+  padding: 12px;
+  border: 1px solid #754052;
+  border-radius: 10px;
+  background: #130b10;
+  color: #f3e5d8;
+  font-size: 15px;
+}
+
+@media (max-width: 360px) {
+  .app {
+    padding: 20px 12px 30px;
+  }
+
+  .rejilla-accesos {
+    gap: 8px;
+  }
+
+  button.tarjeta-acceso {
+    padding: 12px 9px;
+  }
+}
+
+
+/* ACABADO-CUERO-METAL-V2 */
+
+/* Marco general */
+body {
+  background:
+    radial-gradient(ellipse at 50% 0%, #48202e 0%, transparent 48%),
+    radial-gradient(ellipse at 50% 100%, #28101a 0%, transparent 55%),
+    #12090e;
+  color: #f3e5d8;
+}
+
+.app {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(89,38,54,.24), transparent 58%),
+    linear-gradient(160deg, #1c0d14, #12090e 65%);
+  border: 1px solid #57303b;
+  border-radius: 22px 22px 0 0;
+  box-shadow:
+    0 0 0 1px rgba(212,175,55,.07),
+    0 12px 35px rgba(0,0,0,.48);
+}
+
+/* Cabecera elegante */
+header {
+  padding-top: 25px;
+  padding-bottom: 22px;
+}
+
+header h1 {
+  font-family: Qwigley, cursive;
+  font-size: 54px;
+  font-weight: normal;
+  line-height: 1.15;
+  color: #e4c779;
+  text-shadow: 0 2px 12px rgba(212,175,55,.16);
+}
+
+.simbolo {
+  color: #e4c779;
+  text-shadow: 0 0 12px rgba(212,175,55,.24);
+}
+
+.subtitulo {
+  color: #c8ad99;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+}
+
+.fecha {
+  color: #e4c779;
+}
+
+/* Tarjeta principal: cuero burdeos */
+.bienvenida {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 24px 21px;
+  border: 1px solid #985064;
+  border-radius: 15px;
+  background:
+    repeating-linear-gradient(
+      117deg,
+      transparent 0px,
+      rgba(255,225,205,.018) 1px,
+      transparent 3px,
+      rgba(0,0,0,.035) 5px
+    ),
+    radial-gradient(ellipse at 90% 0%, rgba(160,65,86,.30), transparent 55%),
+    linear-gradient(145deg, #702039 0%, #53152b 48%, #360d1d 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,231,205,.18),
+    inset 0 -8px 18px rgba(0,0,0,.20),
+    0 9px 22px rgba(0,0,0,.38);
+}
+
+.bienvenida::before {
   content: "";
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  z-index: -1;
+  inset: 5px;
+  border: 1px solid rgba(225,193,126,.22);
+  border-radius: 10px;
   pointer-events: none;
 }
 
-body::before {
-  z-index: 0;
-  background-image:
-    radial-gradient(1px 1px at 7% 13%, #ffe9b0 99%, transparent),
-    radial-gradient(1.5px 1.5px at 18% 37%, #fff4d6 99%, transparent),
-    radial-gradient(1px 1px at 29% 9%, #d8b779 99%, transparent),
-    radial-gradient(2px 2px at 41% 27%, #fff0c2 99%, transparent),
-    radial-gradient(1px 1px at 53% 62%, #ffe9b0 99%, transparent),
-    radial-gradient(1.5px 1.5px at 67% 18%, #fff4d6 99%, transparent),
-    radial-gradient(1px 1px at 76% 44%, #d8b779 99%, transparent),
-    radial-gradient(2px 2px at 89% 23%, #fff0c2 99%, transparent),
-    radial-gradient(1px 1px at 94% 71%, #ffe9b0 99%, transparent),
-    radial-gradient(1px 1px at 12% 83%, #d8b779 99%, transparent),
-    radial-gradient(1.5px 1.5px at 36% 91%, #fff4d6 99%, transparent),
-    radial-gradient(1px 1px at 61% 86%, #ffe9b0 99%, transparent),
-    radial-gradient(1px 1px at 82% 94%, #d8b779 99%, transparent);
-  background-repeat: repeat;
-  opacity: .65;
-  animation: universoRespira 5s ease-in-out infinite alternate;
+.bienvenida .mini-titulo {
+  color: #e5c67e;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
-body::after {
-  z-index: 0;
-  background:
-    radial-gradient(ellipse at 15% 25%, rgba(216, 183, 121, .07), transparent 35%),
-    radial-gradient(ellipse at 85% 70%, rgba(197, 44, 75, .09), transparent 40%);
-  opacity: .9;
+.bienvenida h2 {
+  color: #fff0e7;
+  font-size: 25px;
+  font-weight: normal;
+  line-height: 1.35;
 }
 
-/* Mantiene el contenido de la interfaz por encima de las estrellas. */
-body > * {
+.bienvenida p {
+  color: #ead6d0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.corazon-decorativo {
+  color: #e5c67e;
+}
+
+/* Títulos de sección */
+.titulo-accesos {
+  color: #e4c779;
+  font-size: 19px;
+  font-weight: normal;
+  letter-spacing: .4px;
+}
+
+/* Tarjetas de acceso con borde metálico */
+button.tarjeta-acceso {
   position: relative;
-  z-index: 1;
+  overflow: hidden;
+  min-height: 120px;
+  padding: 15px 13px;
+  color: #f3e5d8;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.045), transparent 42%),
+    repeating-linear-gradient(
+      135deg,
+      transparent 0px,
+      rgba(255,255,255,.012) 2px,
+      transparent 4px
+    ),
+    linear-gradient(145deg, #321824, #211019 70%, #180c12);
+  border: 1px solid #70505a;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,220,.13),
+    inset 0 -3px 7px rgba(0,0,0,.25),
+    0 4px 10px rgba(0,0,0,.20);
+  transition: border-color .2s, transform .2s, filter .2s;
 }
 
-@keyframes universoRespira {
-  from { opacity: .38; }
-  to   { opacity: .82; }
+button.tarjeta-acceso::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  right: 7px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(228,199,121,.4), transparent);
+  pointer-events: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  body::before { animation: none; opacity: .6; }
+button.tarjeta-acceso:active {
+  transform: scale(.98);
+  filter: brightness(1.2);
+  border-color: #d4af70;
+}
+
+.icono-acceso {
+  font-size: 27px;
+}
+
+.nombre-acceso {
+  color: #f7e7db;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.detalle-acceso {
+  color: #c8b0ac;
+  line-height: 1.45;
+}
+
+/* Botones normales con acabado metálico.
+   No altera el aspecto especial de las tarjetas ni de la ruleta. */
+button:not(.tarjeta-acceso):not(.ruleta-boton):not(#navegacion-inferior button) {
+  color: #fff0e6;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), transparent 48%),
+    linear-gradient(135deg, #68515b, #40303a 48%, #2b1b24);
+  border: 1px solid #a38a83;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,245,224,.25),
+    inset 0 -2px 3px rgba(0,0,0,.25),
+    0 4px 9px rgba(0,0,0,.20);
+}
+
+button:not(.tarjeta-acceso):not(.ruleta-boton):not(#navegacion-inferior button):active {
+  filter: brightness(1.2);
+}
+
+/* Formulario de acceso */
+#accesoFirebase {
+  background:
+    radial-gradient(ellipse at top, rgba(116,44,68,.28), transparent 70%),
+    linear-gradient(145deg, #29131e, #170c12) !important;
+  border: 1px solid #80606a !important;
+  border-radius: 16px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 8px 24px rgba(0,0,0,.35);
+}
+
+#accesoFirebase h2 {
+  color: #e4c779 !important;
+}
+
+#accesoFirebase input {
+  background: #130b10;
+  color: #f3e5d8;
+  border: 1px solid #80606a;
+  border-radius: 9px;
+}
+
+#accesoFirebase input:focus {
+  outline: 1px solid #d4af70;
+  border-color: #d4af70;
+}
+
+/* Navegación inferior integrada con el acabado */
+#navegacion-inferior {
+  background: rgba(22,10,16,.97);
+  border-top: 1px solid rgba(212,175,55,.38);
+  box-shadow: 0 -5px 20px rgba(0,0,0,.25);
+  backdrop-filter: blur(12px);
+}
+
+#navegacion-inferior button.activo {
+  color: #f4d98f;
+  background: linear-gradient(145deg, rgba(112,32,57,.42), rgba(52,19,33,.55));
+  border-color: rgba(212,175,55,.3);
+}
+
+@media (max-width: 360px) {
+  .app {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  header h1 {
+    font-size: 54px;
+  }
+
+  .bienvenida {
+    padding: 20px 16px;
+  }
+
+  button.tarjeta-acceso {
+    min-height: 112px;
+    padding: 12px 9px;
+  }
 }
 
 </style>
 <link rel="stylesheet" href="/css/diario-libro.css">
+
 </head>
 <body>
   <main class="app">

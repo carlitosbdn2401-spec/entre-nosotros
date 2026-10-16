@@ -45,6 +45,22 @@ jobs:
       - name: Compilar la aplicacion web
         run: npm run build
 
+      - name: Incluir el diseño personalizado
+        run: |
+          mkdir -p www/dist/css
+          cp www/css/diario-libro.css www/dist/css/diario-libro.css
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'www/dist/index.html';
+          let html = fs.readFileSync(p, 'utf8');
+          const link = '<link rel="stylesheet" href="/css/diario-libro.css">';
+          if (!html.includes(link)) {
+            html = html.replace('<head>', '<head>\n  ' + link);
+          }
+          fs.writeFileSync(p, html);
+          console.log('Diseño personalizado incluido en la compilación.');
+          NODE
+
       - name: Sincronizar Capacitor
         run: npx cap sync android
 
