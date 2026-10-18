@@ -5,7 +5,7 @@
 .diario-paginas{padding:7px;background:#f4e8ca;border:1px solid #b89a68;box-shadow:inset 0 0 12px #8a653522}
 .diario-indice{display:block;width:100%;height:auto}
 .diario-opciones{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
-.diario-opciones button,#diario-editor button{border:1px solid #c5a45d;border-radius:10px;background:#681b32;color:#f8e5b4;padding:12px 7px;font:27px Qwigley,serif}
+.diario-opciones button,#diario-editor button{border:1px solid #F7D9A5;border-radius:10px;background:#681b32;color:#f8e5b4;padding:12px 7px;font:27px Qwigley,serif}
 #diario-editor h3{font:36px Qwigley,serif;color:#681b32;text-align:center}
 #diario-texto{width:100%;min-height:120px;padding:12px;background:#fff8e8;color:#49252b;border:1px solid #c4a878;border-radius:8px;font:25px Qwigley,serif}
 .diario-entrada{margin:12px 0;padding:12px;background:#fff5df;border:1px solid #d2b981;border-radius:8px;color:#49252b}
@@ -15,7 +15,7 @@
 body{background:#12090e!important;color:#f3e5d8}
 .app{max-width:400px;margin:auto;padding:20px;background:radial-gradient(circle at top,#2b111a,#12090e 70%);border:1px solid #3d1b26;border-radius:20px}
 header h1{font-family:Qwigley,cursive;font-size:54px;font-weight:400;color:#f3e5d8}
-.simbolo,.fecha,.titulo-accesos{color:#d4af37}
+.simbolo,.fecha,.titulo-accesos{color:#F7D9A5}
 .subtitulo{font-size:11px;letter-spacing:2px;color:#c5b299}
 .bienvenida{background:linear-gradient(135deg,#621731,#400e20);border:1px solid #802342;border-radius:15px;padding:20px;box-shadow:0 8px 20px #0008}
 .rejilla-accesos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -56,7 +56,7 @@ main.app header h1{
 main.app .simbolo,
 main.app .fecha,
 main.app .titulo-accesos{
-  color:#d4af37!important;
+  color:#F7D9A5!important;
 }
 main.app .subtitulo{
   color:#c5b299!important;
@@ -148,7 +148,7 @@ main.app button.tarjeta-acceso .detalle-acceso{
 }
 main.app button.tarjeta-acceso:active{
   background:linear-gradient(135deg,#492333,#2a1721)!important;
-  border-color:#c5a45d!important;
+  border-color:#F7D9A5!important;
 }
 main.app #navegacion-inferior{
   box-sizing:border-box;
@@ -175,4 +175,89 @@ main.app .sobre{
 @media(max-width:360px){
   main.app{padding-left:12px!important;padding-right:12px!important}
   main.app .bienvenida{padding:18px 15px!important}
+}
+
+/* Paginas del diario */
+.diario-pagina{background:#f8eee3;color:#4b2637;border:2px solid #c5a15b;border-radius:12px;padding:18px;margin:12px 0;min-height:280px;font-family:serif;position:relative}
+.diario-indice{position:relative;width:100%;max-width:318px;margin:auto}
+.diario-indice img{display:block;width:100%;height:auto}
+.diario-zona{position:absolute;left:0;width:100%;height:12%;background:transparent;border:0}
+.diario-zona:focus-visible{outline:2px solid #c5a15b}
+.diario-pagina textarea{width:100%;min-height:130px;box-sizing:border-box;background:#fffaf4;color:#4b2637;border:1px solid #c5a15b;border-radius:8px;padding:12px}
+.diario-pagina button{margin:6px;padding:9px 12px;border-radius:8px}
+.diario-entrada{border-bottom:1px solid #c5a15b;padding:12px 0}
+.diario-entrada img{max-width:100%;height:auto;border-radius:8px}
+
+/* Zonas invisibles del indice: solo detectan los toques */
+.diario-zona{appearance:none!important;-webkit-appearance:none!important;display:block;position:absolute;left:0;width:100%;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;color:transparent!important;outline:none!important;font-size:0!important;}
+
+
+/* Efecto de paso de pagina del diario */
+#diario-libro-contenido #diario-pagina-actual {
+  position: relative;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+#diario-pagina-actual > .diario-pagina {
+  box-sizing: border-box;
+  backface-visibility: hidden;
+}
+#diario-pagina-actual > .diario-hoja-saliente {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  margin: 0;
+  overflow: hidden;
+  transform-origin: right center;
+  pointer-events: none;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+
+/* Ajustes del libro: acciones abajo y hoja animada */
+#diario-pagina-actual > .diario-pagina {
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+  min-height:320px;
+}
+#diario-pagina-actual > .diario-pagina .diario-pie-acciones {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  margin-top:auto;
+  padding-top:18px;
+  box-sizing:border-box;
+}
+#diario-pagina-actual > .diario-pagina .diario-accion-texto {
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  padding:4px 0;
+  margin:0;
+  font:inherit;
+  font-size:13px;
+  color:#6b4b50;
+}
+#diario-pagina-actual {position:relative;perspective:1200px}
+#diario-pagina-actual > .diario-hoja-saliente {
+  position:absolute;
+  z-index:10;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  min-height:320px;
+  margin:0;
+  overflow:hidden;
+  transform-origin:left center;
+  pointer-events:none;
+  backface-visibility:hidden;
+  will-change:transform;
 }

@@ -40,9 +40,10 @@ onAuthStateChanged(auth, (usuario) => {
     if (!document.getElementById("botonCerrarSesion")) {
       const boton = document.createElement("button");
       boton.id = "botonCerrarSesion";
-      boton.textContent = "Cerrar sesión";
-      boton.style.cssText =
-        "display:block;margin:12px auto;padding:10px 16px;border-radius:10px;";
+      boton.setAttribute("aria-label", "Cerrar sesión");
+      boton.title = "Cerrar sesión";
+      boton.innerHTML = '<img src="/assets/iconos-realistas/Power.png" alt="" style="width:21px;height:23px;object-fit:contain;display:block;">';
+      boton.style.cssText = "display:flex;align-items:center;justify-content:center;width:30px;height:30px;margin:3px 3px 3px auto;padding:0;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:linear-gradient(145deg,#333,#171717);box-shadow:0 2px 5px rgba(0,0,0,.28);cursor:pointer;";
       boton.addEventListener("click", async () => {
         await signOut(auth);
       });

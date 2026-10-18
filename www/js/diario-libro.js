@@ -1,136 +1,273 @@
-const DIARIO_DB = 'entre-nosotros-diario';
-let diarioTipo = 'recuerdo';
-let diarioFoto = null;
-let diarioTimer = null;
+const DB='entre-nosotros-diario';
+const tipos=['recuerdo','foto','mensaje','dedicatoria'];
+const nombres=['Añadir recuerdo','Añadir foto','Mensajes','Dedicatorias'];
+let pagina=-1, foto=null, inicioX=0, inicioY=0, timer, pasandoPagina=false, modoLibro=false;
 
-function abrirBaseDiario() {
-  return new Promise((ok, error) => {
-    const r = indexedDB.open(DIARIO_DB, 1);
-    r.onupgradeneeded = () => r.result.createObjectStore('entradas', {
-      keyPath: 'id', autoIncrement: true
-    });
-    r.onsuccess = () => ok(r.result);
-    r.onerror = () => error(r.error);
-  });
+function abrirDB(){
+ return new Promise((ok,fail)=>{
+  const r=indexedDB.open(DB,1);
+  r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains('entradas'))r.result.createObjectStore('entradas',{keyPath:'id',autoIncrement:true})};
+  r.onsuccess=()=>ok(r.result);r.onerror=()=>fail(r.error);
+ });
+}
+async function entradas(){
+ const db=await abrirDB();
+ return new Promise((ok,fail)=>{
+  const r=db.transaction('entradas').objectStore('entradas').getAll();
+  r.onsuccess=()=>{db.close();ok(r.result.reverse())};
+  r.onerror=()=>{db.close();fail(r.error)};
+ });
+}
+function zona(texto,top,accion){
+ const b=document.createElement('button');b.className='diario-zona';
+ b.style.top=top+'%';b.setAttribute('aria-label',texto);b.onclick=accion;return b;
+}
+function indice(){
+ pagina=-1;foto=null;modoLibro=false;
+ const c=document.getElementById('diario-pagina-actual');c.replaceChildren();
+ const caja=document.createElement('div');caja.className='diario-indice';
+ const img=document.createElement('img');img.src='/assets/indice-del-gif.png';img.alt='Índice de nuestro diario';caja.append(img);
+ [24,36,48,60].forEach((top,i)=>caja.append(zona(nombres[i],top,()=>mostrarPagina(i,0,true))));
+ c.append(caja);
+}
+async function mostrarPagina(i, numero=0, editar=false){
+ modoLibro=false;
+ pagina=i;
+ window.diarioNumero=numero;
+ const c=document.getElementById("diario-pagina-actual");
+ c.replaceChildren();
+ const p=document.createElement("div");
+ p.className="diario-pagina";
+ const listaEntradas=(await entradas()).filter(e=>e.tipo===tipos[i]);
+ numero=Math.max(0,Math.min(numero,Math.max(0,listaEntradas.length-1)));
+ window.diarioNumero=numero;
+ const e=listaEntradas[numero];
+ const accion=(texto,fn,clase)=>{
+  const el=document.createElement("span");
+  el.textContent=texto;
+  el.className="diario-accion-texto "+(clase||"");
+  el.setAttribute("role","button");
+  el.tabIndex=0;
+  el.onclick=fn;
+  el.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();fn()}};
+  return el;
+ };
+ const pie=document.createElement("div");
+ pie.className="diario-pie-acciones";
+ let eliminar;
+ if(editar){
+  const area=document.createElement("textarea");
+  area.placeholder=i===0?"Escribe nuestro recuerdo…":i===1?"Escribe algo sobre esta foto…":i===2?"Escribe tu mensaje…":"Escribe tu dedicatoria…";
+  p.append(area);
+  let archivo=null;
+  if(i===1){
+   const input=document.createElement("input");
+   input.type="file";input.accept="image/*";
+   input.onchange=()=>{archivo=input.files[0]||null};
+   p.append(input);
+  }
+  const guardar=document.createElement("button");
+  guardar.textContent="Guardar ❤️";
+  guardar.onclick=async()=>{
+   const texto=area.value.trim();
+   if(!texto&&!archivo){alert("Escribe algo o elige una foto ❤️");return}
+   try{
+    const db=await abrirDB();
+    const tx=db.transaction("entradas","readwrite");
+    tx.objectStore("entradas").add({tipo:tipos[i],texto,foto:archivo,fecha:new Date().toLocaleDateString("es-ES")});
+    tx.oncomplete=async()=>{
+     db.close();
+     const actualizadas=(await entradas()).filter(x=>x.tipo===tipos[i]);
+     alert("Guardado en nuestro diario ❤️");
+     mostrarPagina(i,Math.max(0,actualizadas.length-1),false);
+    };
+    tx.onerror=()=>{db.close();alert("No se ha podido guardar")};
+   }catch(err){alert("Error al guardar: "+err.message)}
+  };
+  p.append(guardar);
+  pie.append(accion("Índice",indice));
+ }else{
+  if(e){
+   if(e.texto){
+    const texto=document.createElement("p");
+    texto.textContent=e.texto;
+    texto.style.whiteSpace="pre-wrap";
+    p.append(texto);
+   }
+   if(e.foto){
+    const im=document.createElement("img");
+    im.src=URL.createObjectURL(e.foto);
+    im.alt="Foto guardada en nuestro diario";
+    im.style.maxWidth="100%";im.style.height="auto";
+    p.append(im);
+   }
+   if(e.fecha){
+    const fecha=document.createElement("small");
+    fecha.textContent=e.fecha;
+    p.append(fecha);
+   }
+   eliminar=accion("Eliminar",async()=>{
+    if(!confirm("¿Eliminar solo esta entrada?"))return;
+    const db=await abrirDB();
+    const tx=db.transaction("entradas","readwrite");
+    tx.objectStore("entradas").delete(e.id);
+    tx.oncomplete=async()=>{
+     db.close();
+     const restantes=(await entradas()).filter(x=>x.tipo===tipos[i]);
+     mostrarPagina(i,Math.min(numero,Math.max(0,restantes.length-1)),false);
+    };
+    tx.onerror=()=>{db.close();alert("No se ha podido eliminar")};
+   },"diario-eliminar");
+  }
+  pie.append(accion("Índice",indice));
+  if(e)pie.append(eliminar);
+ }
+ p.append(pie);
+ c.append(p);
 }
 
-window.diario = function() {
-  const caja = document.getElementById('diario');
-  const abrir = caja.style.display !== 'block';
-  caja.style.display = abrir ? 'block' : 'none';
-  if (!abrir) return;
-
-  const animacion = document.getElementById('diario-animacion');
-  const contenido = document.getElementById('diario-libro-contenido');
-  contenido.hidden = true;
-  animacion.hidden = false;
-  animacion.querySelector('img').src =
-    '/assets/gifapp.gif?v=' + Date.now();
-
-  clearTimeout(diarioTimer);
-  diarioTimer = setTimeout(() => {
-    animacion.hidden = true;
-    contenido.hidden = false;
-    mostrarEntradasDiario();
-  }, 4240);
+window.diario=function(){
+ const caja=document.getElementById('diario');
+ const abrir=caja.style.display!=='block';
+ caja.style.display=abrir?'block':'none';
+ if(!abrir)return;
+ const anim=document.getElementById('diario-animacion');
+ const contenido=document.getElementById('diario-libro-contenido');
+ contenido.hidden=true;
+ anim.hidden=false;
+ const im=anim.querySelector('img');
+ if(im)im.src='/assets/gifapp.gif?v='+Date.now();
+ clearTimeout(timer);
+ timer=setTimeout(()=>{
+  anim.hidden=true;
+  contenido.hidden=false;
+  indice();
+ },4240);
 };
-
-async function mostrarEntradasDiario() {
-  const db = await abrirBaseDiario();
-  const tx = db.transaction('entradas', 'readonly');
-  const req = tx.objectStore('entradas').getAll();
-
-  req.onsuccess = () => {
-    const caja = document.getElementById('recuerdos');
-    caja.replaceChildren();
-    req.result.reverse().forEach(e => {
-      const item = document.createElement('article');
-      item.className = 'diario-entrada';
-      const titulo = document.createElement('h4');
-      titulo.textContent = e.tipo;
-      const fecha = document.createElement('small');
-      fecha.textContent = e.fecha;
-      item.append(titulo, fecha);
-      if (e.texto) {
-        const texto = document.createElement('p');
-        texto.textContent = e.texto;
-        item.append(texto);
-      }
-      if (e.foto) {
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(e.foto);
-        item.append(img);
-      }
-      caja.append(item);
-    });
-    db.close();
+async function mostrarPaginaLibro(numero=0){
+ modoLibro=true;
+ const todas=await entradas();
+ const c=document.getElementById('diario-pagina-actual');
+ c.replaceChildren();
+ if(!todas.length){
+  pagina=-2;
+  const p=document.createElement('div');
+  p.className='diario-pagina';
+  p.textContent='Todavía no hay páginas guardadas.';
+  const volver=document.createElement('span');
+  volver.className='diario-accion-texto';
+  volver.textContent='Índice';
+  volver.setAttribute('role','button');
+  volver.onclick=indice;
+  p.append(volver);
+  c.append(p);
+  window.diarioNumero=0;
+  return;
+ }
+ numero=Math.max(0,Math.min(numero,todas.length-1));
+ pagina=-2;
+ window.diarioNumero=numero;
+ const e=todas[numero];
+ const p=document.createElement('div');
+ p.className='diario-pagina';
+ const titulo=document.createElement('small');
+ titulo.textContent=({recuerdo:'Recuerdo',foto:'Foto',mensaje:'Mensaje',dedicatoria:'Dedicatoria'}[e.tipo]||'Diario');
+ p.append(titulo);
+ if(e.texto){
+  const texto=document.createElement('p');
+  texto.textContent=e.texto;
+  texto.style.whiteSpace='pre-wrap';
+  p.append(texto);
+ }
+ if(e.foto){
+  const im=document.createElement('img');
+  im.src=URL.createObjectURL(e.foto);
+  im.alt='Foto guardada en nuestro diario';
+  im.style.maxWidth='100%';
+  im.style.maxHeight='300px';
+  im.style.height='auto';
+  p.append(im);
+ }
+ if(e.fecha){
+  const fecha=document.createElement('small');
+  fecha.textContent=e.fecha;
+  p.append(fecha);
+ }
+ const pie=document.createElement('div');
+ pie.className='diario-pie-acciones';
+ const accion=(texto,fn,clase)=>{
+  const el=document.createElement('span');
+  el.textContent=texto;
+  el.className='diario-accion-texto '+(clase||'');
+  el.setAttribute('role','button');
+  el.tabIndex=0;
+  el.onclick=fn;
+  el.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fn()}};
+  return el;
+ };
+ pie.append(accion('Índice',indice));
+ pie.append(accion('Eliminar',async()=>{
+  if(!confirm('¿Eliminar solo esta entrada?'))return;
+  const db=await abrirDB();
+  const tx=db.transaction('entradas','readwrite');
+  tx.objectStore('entradas').delete(e.id);
+  tx.oncomplete=async()=>{
+   db.close();
+   const restantes=await entradas();
+   if(restantes.length)mostrarPaginaLibro(Math.min(numero,restantes.length-1));
+   else mostrarPaginaLibro(0);
   };
-};
-
-window.seleccionarTipoDiario = function(tipo) {
-  diarioTipo = tipo;
-  diarioFoto = null;
-  const nombres = {
-    recuerdo: 'Nuestro recuerdo',
-    foto: 'Una foto especial',
-    mensaje: 'Un mensaje para ti',
-    dedicatoria: 'Una dedicatoria'
-  };
-  document.getElementById('diario-editor-titulo').textContent =
-    nombres[tipo] || nombres.recuerdo;
-  document.getElementById('diario-texto').value = '';
-  document.getElementById('diario-foto').value = '';
-  document.getElementById('diario-foto-nombre').textContent = '';
-  document.getElementById('diario-editor').hidden = false;
-};
-
-window.elegirFotoDiario = function() {
-  document.getElementById('diario-foto').click();
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  const campo = document.getElementById('diario-foto');
-  if (!campo) return;
-  campo.addEventListener('change', () => {
-    diarioFoto = campo.files[0] || null;
-    document.getElementById('diario-foto-nombre').textContent =
-      diarioFoto ? diarioFoto.name : '';
-    if (diarioFoto) diarioTipo = 'foto';
-  });
-});
-
-window.cancelarEntradaDiario = function() {
-  document.getElementById('diario-editor').hidden = true;
-};
-
-window.guardarEntradaDiario = async function() {
-  const texto = document.getElementById('diario-texto').value.trim();
-  if (!texto && !diarioFoto) {
-    alert('Escribe algo o elige una foto ❤️');
-    return;
+  tx.onerror=()=>{db.close();alert('No se ha podido eliminar')};
+ },'diario-eliminar'));
+ p.append(pie);
+ c.append(p);
+}
+const contenido=document.getElementById('diario-libro-contenido');
+if(contenido){
+ contenido.addEventListener('touchstart',e=>{
+  if(!e.changedTouches.length)return;
+  inicioX=e.changedTouches[0].screenX;
+  inicioY=e.changedTouches[0].screenY;
+ },{passive:true});
+ contenido.addEventListener('touchend',async e=>{
+  if(!e.changedTouches.length||pasandoPagina)return;
+  const dx=e.changedTouches[0].screenX-inicioX;
+  const dy=e.changedTouches[0].screenY-inicioY;
+  if(Math.abs(dx)<=60||Math.abs(dx)<=Math.abs(dy)*1.25)return;
+  if(e.target.closest('.diario-pie-acciones,.diario-zona,textarea,input,button'))return;
+  if(pagina===-1){
+   if(dx<0){
+    pasandoPagina=true;
+    try{await mostrarPaginaLibro(0)}catch(err){console.error(err)}
+    finally{pasandoPagina=false}
+   }
+   return;
   }
-  try {
-    const db = await abrirBaseDiario();
-    const tx = db.transaction('entradas', 'readwrite');
-    tx.objectStore('entradas').add({
-      tipo: diarioTipo,
-      texto,
-      foto: diarioFoto,
-      fecha: new Date().toLocaleDateString('es-ES')
-    });
-    tx.oncomplete = async () => {
-      db.close();
-      document.getElementById('diario-editor').hidden = true;
-      await mostrarEntradasDiario();
-      alert('Guardado en nuestro diario ❤️');
-    };
-    tx.onerror = () => {
-      db.close();
-      alert('No se ha podido guardar. Inténtalo de nuevo.');
-    };
-  } catch (e) {
-    alert('Error al guardar: ' + e.message);
-  }
-};
-
-window.mostrarRecuerdos = mostrarEntradasDiario;
+  const actual=Number.isInteger(window.diarioNumero)?window.diarioNumero:0;
+  const siguiente=actual+(dx<0?1:-1);
+  const contenedorPagina=document.getElementById('diario-pagina-actual');
+  const hojaActual=contenedorPagina.querySelector(':scope > .diario-pagina');
+  if(!hojaActual||hojaActual.querySelector('textarea,input,button'))return;
+  const lista=modoLibro?await entradas():(await entradas()).filter(x=>x.tipo===tipos[pagina]);
+  if(!lista[actual]||siguiente<0||siguiente>=lista.length)return;
+  pasandoPagina=true;
+  const hojaSaliente=hojaActual.cloneNode(true);
+  hojaSaliente.classList.add('diario-hoja-saliente');
+  hojaSaliente.setAttribute('aria-hidden','true');
+  try{
+   if(modoLibro)await mostrarPaginaLibro(siguiente);
+   else await mostrarPagina(pagina,siguiente,false);
+   contenedorPagina.append(hojaSaliente);
+   const haciaIzquierda=dx<0;
+   hojaSaliente.style.transformOrigin=haciaIzquierda?"right center":"left center";
+   const animacion=hojaSaliente.animate([
+    {transform:'translateX(0) rotateY(0deg)',boxShadow:'0 0 5px #0002',opacity:1},
+    {transform:haciaIzquierda?'translateX(-105%) rotateY(78deg)':'translateX(105%) rotateY(-78deg)',boxShadow:haciaIzquierda?'-18px 4px 22px #0005':'18px 4px 22px #0005',opacity:.96}
+   ],{duration:650,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+   await animacion.finished;
+   hojaSaliente.remove();
+  }catch(err){hojaSaliente.remove();console.error('No se pudo pasar la página:',err)}
+  finally{pasandoPagina=false}
+ },{passive:true});
+}
+window.mostrarRecuerdos=entradas;

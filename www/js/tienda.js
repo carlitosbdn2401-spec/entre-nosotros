@@ -40,9 +40,12 @@ function renderizar(){
   if(!saldo) return;
   saldo.textContent = datos.saldos[persona()] || 0;
   const catalogo = document.getElementById("tienda-catalogo");
-  catalogo.innerHTML = datos.recompensas.map(r=>`
+  catalogo.innerHTML = datos.recompensas.map(r=>paginasVales[r.id] ? `
+    <button type="button" class="tienda-tarjeta-vale" data-comprar="${escapar(r.id)}" aria-label="Canjear ${escapar(r.nombre)} por ${Number(r.precio)} puntos">
+      <img src="/imagenes/vales/vale-${escapar(r.id)}.png" alt="${escapar(r.nombre)}">
+    </button>` : `
     <article class="tienda-producto">
-      <span class="producto-icono">${r.icono || "💝"}</span>
+      <span class="producto-icono">${escapar(r.icono || "💝")}</span>
       <h4>${escapar(r.nombre)}</h4>
       <p>${escapar(r.descripcion || "Una recompensa para nosotros.")}</p>
       <span class="tienda-etiqueta">${r.tipo==="aprobacion"?"💌 Requiere aprobación":"💗 Canje inmediato"}</span>
