@@ -1,3 +1,4 @@
+import { combinarEntradas, eliminarEntradaCompartida, compartirEntradaLocal } from "./diario-sync.js";
 const DB='entre-nosotros-diario';
 const tipos=['recuerdo','foto','mensaje','dedicatoria'];
 const nombres=['Añadir recuerdo','Añadir foto','Mensajes','Dedicatorias'];
@@ -14,10 +15,29 @@ async function entradas(){
  const db=await abrirDB();
  return new Promise((ok,fail)=>{
   const r=db.transaction('entradas').objectStore('entradas').getAll();
-  r.onsuccess=()=>{db.close();ok(r.result.reverse())};
+  r.onsuccess=async()=>{
+   const locales=r.result.reverse();
+   db.close();
+   try{ok(await combinarEntradas(locales))}
+   catch(error){console.error("Error al combinar el diario:",error);ok(locales)}
+  };
   r.onerror=()=>{db.close();fail(r.error)};
  });
 }
+async function borrarEntradaDiario(entrada) {
+ if(entrada.cloudId){
+  await eliminarEntradaCompartida(entrada);
+  return;
+ }
+ const db=await abrirDB();
+ return new Promise((resolve,reject)=>{
+  const tx=db.transaction("entradas","readwrite");
+  tx.objectStore("entradas").delete(entrada.id);
+  tx.oncomplete=()=>{db.close();resolve()};
+  tx.onerror=()=>{db.close();reject(tx.error)};
+ });
+}
+
 function zona(texto,top,accion){
  const b=document.createElement('button');b.className='diario-zona';
  b.style.top=top+'%';b.setAttribute('aria-label',texto);b.onclick=accion;return b;
@@ -72,16 +92,43 @@ async function mostrarPagina(i, numero=0, editar=false){
    const texto=area.value.trim();
    if(!texto&&!archivo){alert("Escribe algo o elige una foto ❤️");return}
    try{
+    const fecha=new Date().toLocaleDateString("es-ES");
+    const entrada={tipo:tipos[i],texto,foto:archivo,fecha};
     const db=await abrirDB();
     const tx=db.transaction("entradas","readwrite");
-    tx.objectStore("entradas").add({tipo:tipos[i],texto,foto:archivo,fecha:new Date().toLocaleDateString("es-ES")});
-    tx.oncomplete=async()=>{
+    const solicitud=tx.objectStore("entradas").add(entrada);
+    let idGuardado=null;
+    solicitud.onsuccess=()=>{idGuardado=solicitud.result};
+
+    try{
+     await new Promise((resolve,reject)=>{
+      tx.oncomplete=resolve;
+      tx.onerror=()=>reject(tx.error);
+      tx.onabort=()=>reject(tx.error||new Error("Se canceló el guardado local."));
+     });
+    }catch(error){
      db.close();
-     const actualizadas=(await entradas()).filter(x=>x.tipo===tipos[i]);
-     alert("Guardado en nuestro diario ❤️");
-     mostrarPagina(i,Math.max(0,actualizadas.length-1),false);
-    };
-    tx.onerror=()=>{db.close();alert("No se ha podido guardar")};
+     throw error;
+    }
+    db.close();
+
+    entrada.id=idGuardado;
+    let cloudId=null;
+
+    try{
+     cloudId=await compartirEntradaLocal(entrada);
+    }catch(error){
+     console.error("No se pudo sincronizar la entrada del diario:",error);
+     alert("La entrada está guardada en este dispositivo, pero no se pudo sincronizar con Firebase: "+error.message);
+     mostrarPagina(i,0,false);
+     return;
+    }
+
+    const actualizadas=(await entradas()).filter(x=>x.tipo===tipos[i]);
+    alert(cloudId
+     ? "Guardado y sincronizado con Firebase ❤️"
+     : "Guardado en este dispositivo, pero no sincronizado. Comprueba que has iniciado sesión con una cuenta autorizada.");
+    mostrarPagina(i,Math.max(0,actualizadas.length-1),false);
    }catch(err){alert("Error al guardar: "+err.message)}
   };
   p.append(guardar);
@@ -94,9 +141,10 @@ async function mostrarPagina(i, numero=0, editar=false){
     texto.style.whiteSpace="pre-wrap";
     p.append(texto);
    }
-   if(e.foto){
+   const fuenteFoto = e.fotoData || (e.foto ? URL.createObjectURL(e.foto) : null);
+  if(fuenteFoto){
     const im=document.createElement("img");
-    im.src=URL.createObjectURL(e.foto);
+    im.src=fuenteFoto;
     im.alt="Foto guardada en nuestro diario";
     im.style.maxWidth="100%";im.style.height="auto";
     p.append(im);
@@ -108,15 +156,14 @@ async function mostrarPagina(i, numero=0, editar=false){
    }
    eliminar=accion("Eliminar",async()=>{
     if(!confirm("¿Eliminar solo esta entrada?"))return;
-    const db=await abrirDB();
-    const tx=db.transaction("entradas","readwrite");
-    tx.objectStore("entradas").delete(e.id);
-    tx.oncomplete=async()=>{
-     db.close();
+    try{
+     await borrarEntradaDiario(e);
      const restantes=(await entradas()).filter(x=>x.tipo===tipos[i]);
      mostrarPagina(i,Math.min(numero,Math.max(0,restantes.length-1)),false);
-    };
-    tx.onerror=()=>{db.close();alert("No se ha podido eliminar")};
+    }catch(error){
+     console.error("Error al eliminar la entrada:",error);
+     alert("No se ha podido eliminar");
+    }
    },"diario-eliminar");
   }
   pie.append(accion("Índice",indice));
@@ -179,9 +226,10 @@ async function mostrarPaginaLibro(numero=0){
   texto.style.whiteSpace='pre-wrap';
   p.append(texto);
  }
- if(e.foto){
+ const fuenteFoto = e.fotoData || (e.foto ? URL.createObjectURL(e.foto) : null);
+  if(fuenteFoto){
   const im=document.createElement('img');
-  im.src=URL.createObjectURL(e.foto);
+  im.src=fuenteFoto;
   im.alt='Foto guardada en nuestro diario';
   im.style.maxWidth='100%';
   im.style.maxHeight='300px';
@@ -208,16 +256,15 @@ async function mostrarPaginaLibro(numero=0){
  pie.append(accion('Índice',indice));
  pie.append(accion('Eliminar',async()=>{
   if(!confirm('¿Eliminar solo esta entrada?'))return;
-  const db=await abrirDB();
-  const tx=db.transaction('entradas','readwrite');
-  tx.objectStore('entradas').delete(e.id);
-  tx.oncomplete=async()=>{
-   db.close();
+  try{
+   await borrarEntradaDiario(e);
    const restantes=await entradas();
    if(restantes.length)mostrarPaginaLibro(Math.min(numero,restantes.length-1));
    else mostrarPaginaLibro(0);
-  };
-  tx.onerror=()=>{db.close();alert('No se ha podido eliminar')};
+  }catch(error){
+   console.error("Error al eliminar la entrada:",error);
+   alert("No se ha podido eliminar");
+  }
  },'diario-eliminar'));
  p.append(pie);
  c.append(p);
@@ -270,4 +317,23 @@ if(contenido){
   finally{pasandoPagina=false}
  },{passive:true});
 }
+window.addEventListener("diario-sincronizado", () => {
+ const caja = document.getElementById("diario");
+ if (!caja || caja.style.display !== "block") return;
+
+ const contenedor = document.getElementById("diario-pagina-actual");
+ if (!contenedor || contenedor.querySelector("textarea,input,button")) return;
+
+ if (pagina === -1) return;
+
+ const numero = Number.isInteger(window.diarioNumero)
+  ? window.diarioNumero : 0;
+
+ if (pagina === -2) {
+  mostrarPaginaLibro(numero);
+ } else if (pagina >= 0) {
+  mostrarPagina(pagina, numero, false);
+ }
+});
+
 window.mostrarRecuerdos=entradas;
