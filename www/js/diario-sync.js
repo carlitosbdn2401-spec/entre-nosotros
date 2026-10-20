@@ -4,6 +4,7 @@ import {
   collection,
   doc,
   onSnapshot,
+  getDoc,
   setDoc,
   deleteDoc,
   serverTimestamp
@@ -15,6 +16,9 @@ const UID_MIEMBROS = [
 ];
 
 const RUTA = ["parejas", "nuestro-espacio", "diarioEntradas"];
+
+const URL_AVISOS_DIARIO =
+  "https://avisos-diario.carlitos-bdn9836.workers.dev/notificar-diario";
 
 let usuarioActual = null;
 let entradasRemotas = [];
@@ -106,6 +110,43 @@ function comprimirFoto(archivo) {
   });
 }
 
+async function avisarNuevaEntrada(entradaId) {
+  try {
+    const usuario = auth.currentUser;
+
+    if (
+      !usuario ||
+      usuario.uid !== usuarioActual?.uid ||
+      !UID_MIEMBROS.includes(usuario.uid)
+    ) {
+      return;
+    }
+
+    const token = await usuario.getIdToken();
+
+    const respuesta = await fetch(URL_AVISOS_DIARIO, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ entradaId })
+    });
+
+    if (!respuesta.ok) {
+      const detalle = await respuesta.text();
+      throw new Error(`HTTP ${respuesta.status}: ${detalle}`);
+    }
+
+    console.info("[Diario] Solicitud de notificación enviada.");
+  } catch (error) {
+    console.error(
+      "[Diario] La entrada se guardó, pero no se pudo enviar el aviso:",
+      error
+    );
+  }
+}
+
 async function guardarEnNube(entrada, idDocumento) {
   if (!usuarioActual || !UID_MIEMBROS.includes(usuarioActual.uid)) {
     throw new Error("Inicia sesión con una cuenta autorizada.");
@@ -132,10 +173,19 @@ async function guardarEnNube(entrada, idDocumento) {
     ? doc(db, ...RUTA, idDocumento)
     : doc(coleccionDiario());
 
+  // Consultamos antes de guardar para no avisar al reintentar
+  // la sincronización de una entrada que ya existe.
+  const documentoAnterior = await getDoc(referencia);
+  const esNuevaEntrada = !documentoAnterior.exists();
+
   await setDoc(referencia, {
     ...datos,
     creado: serverTimestamp()
   }, { merge: true });
+
+  if (esNuevaEntrada) {
+    await avisarNuevaEntrada(referencia.id);
+  }
 
   return referencia.id;
 }
