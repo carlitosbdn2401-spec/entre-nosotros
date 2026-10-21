@@ -80,7 +80,7 @@ function crearGajosRuleta() {
     marca.dataset.gajoIndice = gajoIndice;
     marca.textContent = premios[premioIndice].icono;
     marca.style.left = `${50 + Math.sin(radianes) * 36}%`;
-    marca.style.top = `${50 - Math.cos(radianes) * 36}%`;
+    marca.style.top = `calc(${50 - Math.cos(radianes) * 36}% - 69px)`;
     capaGajos.appendChild(marca);
   });
 }

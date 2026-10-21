@@ -2083,5 +2083,62 @@ header h1, h1 { font-family: Qwigley, cursive; }
     <script type="module" src="/js/recordatorios.js"></script>
     <script type="module" src="/js/retos.js"></script>
 <script type="module" src="/js/diario-libro.js"></script>
+
+
+<style>
+/* RULETA: DISCO NUEVO GIRATORIO Y MARCO COMPLETO FIJO */
+.ruleta-contenedor {
+  position: relative !important;
+  width: min(96vw, 500px) !important;
+  height: auto !important;
+  aspect-ratio: 1080 / 2400 !important;
+  margin: 18px auto 26px !important;
+  isolation: isolate !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 12px 18px #0009) !important;
+}
+.ruleta-contenedor::before {
+  content: none !important;
+  display: none !important;
+}
+.ruleta-disco {
+  position: absolute !important;
+  z-index: 1 !important;
+  left: 9.0741% !important;
+  top: 27.875% !important;
+  width: 79.0741% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: url("./assets/disco_recortado.png") center / 100% 100% no-repeat !important;
+  overflow: visible !important;
+  transform-origin: 50% 50% !important;
+}
+.ruleta-contenedor::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+  background: url("./assets/marco_recortado.png") center / 100% 100% no-repeat !important;
+}
+.ruleta-flecha {
+  display: none !important;
+}
+.ruleta-disco::before,
+.ruleta-disco::after,
+.ruleta-disco > .ruleta-gajos,
+.ruleta-disco > .ruleta-centro {
+  content: none !important;
+  display: none !important;
+}
+</style>
+
 </body>
 </html>
