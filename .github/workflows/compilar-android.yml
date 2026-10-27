@@ -49,6 +49,7 @@ jobs:
         run: |
           mkdir -p www/dist/css
           cp www/css/diario-libro.css www/dist/css/diario-libro.css
+          cp www/css/lugares-especiales.css www/dist/css/lugares-especiales.css
           node <<'NODE'
           const fs = require('fs');
           const p = 'www/dist/index.html';

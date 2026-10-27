@@ -13,6 +13,24 @@ const perfilRef = () =>
 let detenerEscucha = null;
 let guardandoDesdeNube = false;
 
+function normalizarAvatar(valor) {
+  const antiguos = {
+    '❤️': '/assets/iconos-realistas/Icono1.png',
+    '💕': '/assets/iconos-realistas/Icono1.png',
+    '🌹': '/assets/iconos-realistas/perfil-rosa.png',
+    '🖤': '/assets/iconos-realistas/perfil-corazon-negro.png',
+    '🦋': '/assets/iconos-realistas/perfil-mariposa.png',
+    '🌙': '/assets/iconos-realistas/perfil-luna.png',
+    '🐻': '/assets/iconos-realistas/perfil-oso.png',
+    '😘': '/assets/iconos-realistas/perfil-beso.png',
+    '✨': '/assets/iconos-realistas/Icono8.png'
+  };
+  if (antiguos[valor]) return antiguos[valor];
+  if (Object.values(antiguos).includes(valor)) return valor;
+  return '/assets/iconos-realistas/Icono1.png';
+}
+
+
 function leerPerfilesLocales() {
   try {
     return JSON.parse(
@@ -26,7 +44,14 @@ function leerPerfilesLocales() {
 function aplicarPerfiles(datos) {
   guardandoDesdeNube = true;
 
-  localStorage.setItem("perfiles-pareja", JSON.stringify(datos));
+
+  datos = {
+    ...datos,
+    miAvatar: normalizarAvatar(datos.miAvatar || '❤️'),
+    parejaAvatar: normalizarAvatar(datos.parejaAvatar || '💕')
+  };
+
+localStorage.setItem("perfiles-pareja", JSON.stringify(datos));
 
   const campos = {
     miNombre: datos.miNombre || "",

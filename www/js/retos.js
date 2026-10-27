@@ -1,4 +1,5 @@
 import { auth, db } from "./firebase.js";
+import { ponerTextoConIconos } from "./iconos-texto.js";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   collection,
@@ -45,7 +46,7 @@ function fechaLocal() {
 
 function mostrarEstado(tipo, mensaje) {
   const elemento = document.getElementById(tipos[tipo].estado);
-  if (elemento) elemento.textContent = mensaje;
+  if (elemento) ponerTextoConIconos(elemento, mensaje);
 }
 
 function pintarRespuestas() {
@@ -63,7 +64,7 @@ function pintarRespuestas() {
 
     if (delDia.length === 0) {
       const nota = document.createElement("p");
-      nota.textContent = "Todavía no hay respuestas para este reto. 💕";
+      ponerTextoConIconos(nota, "Todavía no hay respuestas para este reto. 💕");
       contenedor.appendChild(nota);
       continue;
     }
@@ -78,12 +79,12 @@ function pintarRespuestas() {
         "border:1px solid rgba(220,120,150,.3);";
 
       const autor = document.createElement("strong");
-      autor.textContent = propia ? "Tu respuesta ❤️" : "Tu pareja 💕";
+      ponerTextoConIconos(autor, propia ? "Tu respuesta ❤️" : "Tu pareja 💕");
 
       const texto = document.createElement("p");
       texto.style.cssText =
         "white-space:pre-wrap;overflow-wrap:anywhere;margin-bottom:0;";
-      texto.textContent = respuesta.respuesta || "";
+      ponerTextoConIconos(texto, respuesta.respuesta || "");
 
       tarjeta.append(autor, texto);
       contenedor.appendChild(tarjeta);

@@ -179,8 +179,18 @@
     }
 
     .avatar {
-      font-size: 34px;
-      margin-bottom: 7px;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 7px;
+    }
+    .avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .nombre-perfil {
@@ -1594,8 +1604,323 @@ header h1, h1 { font-family: Qwigley, cursive; }
   transform: translate(-50%, -50%) !important;
   filter: drop-shadow(0 3px 4px rgba(0,0,0,.45)) !important;
 }
+
+@font-face {
+  font-family: 'Fontix';
+  src: url('/assets/Fontix.ttf') format('truetype');
+  font-display: swap;
+}
+
 </style>
 <link rel="stylesheet" href="/css/diario-libro.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="/css/lugares-especiales.css">
+
+
+<style id="estilo-nosotros-dorado">
+/* Los estilos unificados controlan esta pantalla. */
+</style>
+
+
+
+<style id="tema-unificado-entre-nosotros">
+@font-face {
+  font-family: 'Great Vibes';
+  src: url('/assets/fuentes/GreatVibes-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --oro: #F7D9A5;
+  --burdeos: #681b32;
+  --fondo: #12090e;
+  --panel: #211018;
+}
+body {
+  background-color: var(--fondo);
+}
+button,
+input[type="button"],
+input[type="submit"] {
+  font-family: 'Great Vibes', cursive !important;
+}
+h1, h2, h3, h4,
+.tienda-cabecera h2,
+.ruleta-cabecera h2,
+.tienda-subtitulo {
+  font-family: 'Great Vibes', cursive !important;
+}
+p, .descripcion, .estado, label,
+input, textarea, select,
+.tienda-producto p, .tienda-estado,
+.ruleta-aviso p, .ruleta-estado, .ruleta-nota {
+  font-family: Lora, Georgia, serif;
+}
+button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
+  border: 1.5px solid var(--oro);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #351522, #1c1017);
+  color: #fff;
+}
+.sobre, .perfil,
+.tienda-aviso, .tienda-saldo, .tienda-prueba, .tienda-nota,
+.tienda-producto, .tienda-formulario, .tienda-canje,
+.ruleta-aviso, .ruleta-leyenda > div, .ruleta-resultado,
+.ruleta-revelacion, .ruleta-nota {
+  border-color: var(--oro);
+  border-width: 1.5px;
+}
+.perfil input, .perfil select,
+.tienda-formulario input, .tienda-formulario textarea,
+.tienda-formulario select, #tienda-persona {
+  border: 1.5px solid var(--oro) !important;
+  background: linear-gradient(145deg, #211018, #130b10);
+  color: #fff;
+}
+#navegacion-inferior {
+  border-top: 1.5px solid var(--oro) !important;
+}
+.pie {
+  border-color: var(--oro);
+}
+.perfil .pareja-resumen > div {
+  border: 1.5px solid var(--oro);
+  background: linear-gradient(145deg, #351522, #1c1017);
+  border-radius: 16px;
+}
+#boton-pregunta-diaria {
+  padding: 8px !important;
+  background: #12090e !important;
+  border: 1.5px solid var(--oro) !important;
+  border-radius: 16px !important;
+}
+#boton-pregunta-diaria img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: auto;
+  border-radius: 12px;
+}
+/* La ruleta conserva su marco y su diseño decorativo propios. */
+.ruleta-disco {
+  border-color: #F7D9A5;
+}
+</style>
+
+
+
+<style id="estilos-nosotros-relieve">
+/* Marco principal de Nosotros: relieve burdeos */
+.perfil[data-vista="nosotros"] {
+  box-sizing: border-box;
+  border: 1px solid #B89A62 !important;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #351522 0%, #211018 48%, #130b10 100%) !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(247,217,165,.18),
+    inset -2px -2px 4px rgba(0,0,0,.48),
+    0 5px 0 #0b0609,
+    0 9px 18px rgba(0,0,0,.55);
+}
+
+/* Título y etiquetas */
+.perfil[data-vista="nosotros"] h2 {
+  color: #F7D9A5;
+  text-shadow: 0 2px 3px #000, 0 0 10px rgba(247,217,165,.12);
+}
+
+.perfil[data-vista="nosotros"] label {
+  color: #F7D9A5;
+}
+
+/* Campos de nombres y selectores */
+.perfil[data-vista="nosotros"] input,
+.perfil[data-vista="nosotros"] select {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #B89A62 !important;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #130b10, #211018) !important;
+  color: #F7D9A5 !important;
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,.48),
+    0 1px 0 rgba(247,217,165,.08);
+}
+
+/* Tarjetas de los dos perfiles con relieve */
+.perfil[data-vista="nosotros"] .pareja-resumen > div {
+  box-sizing: border-box;
+  border: 1px solid #B89A62 !important;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #482033 0%, #351522 48%, #1c1017 100%) !important;
+  padding: 12px 16px;
+  box-shadow:
+    inset 1px 1px 0 rgba(247,217,165,.2),
+    inset -2px -2px 3px rgba(0,0,0,.4),
+    0 3px 0 #0b0609,
+    0 6px 10px rgba(0,0,0,.4);
+}
+
+.perfil[data-vista="nosotros"] .avatar {
+  text-shadow: 0 3px 4px rgba(0,0,0,.55);
+}
+
+.perfil[data-vista="nosotros"] .nombre-perfil {
+  color: #F7D9A5;
+  text-shadow: 0 2px 3px #000;
+}
+
+/* Botón Guardar nuestros perfiles */
+.perfil[data-vista="nosotros"] button[onclick="guardarPerfiles()"] {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #B89A62 !important;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #702844 0%, #512037 45%, #1c1017 100%) !important;
+  color: #F7D9A5 !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(247,217,165,.22),
+    inset -1px -2px 3px rgba(0,0,0,.35),
+    0 3px 0 #0b0609,
+    0 6px 12px rgba(0,0,0,.4);
+}
+
+/* Nuestra pregunta diaria: imagen panorámica completa */
+#boton-pregunta-diaria {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 8px !important;
+  background: #12090e !important;
+  border: 1px solid #B89A62 !important;
+  border-radius: 16px !important;
+}
+
+#boton-pregunta-diaria img {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain;
+  border-radius: 12px;
+}
+</style>
+
+
+<style id="estilos-nuestro-momento-hoy">
+#nuestro-momento-hoy {
+  margin: 20px 0;
+  padding: 16px 12px;
+  border: 1px solid #B89A62;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #351522, #211018 55%, #130b10);
+  box-shadow: inset 1px 1px 0 rgba(247,217,165,.16),
+              inset -2px -2px 4px rgba(0,0,0,.35),
+              0 4px 0 #0b0609,
+              0 7px 14px rgba(0,0,0,.4);
+}
+#nuestro-momento-hoy .momento-titulo {
+  margin: 0 0 14px;
+  text-align: center;
+  color: #F7D9A5;
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 1.3;
+}
+#nuestro-momento-hoy .momento-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+#nuestro-momento-hoy .momento-tarjeta {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px 5px;
+  text-align: center;
+  border: 1px solid #B89A62;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #482033, #351522 55%, #1c1017);
+  box-shadow: inset 1px 1px 0 rgba(247,217,165,.15),
+              0 3px 0 #0b0609,
+              0 5px 8px rgba(0,0,0,.3);
+}
+#nuestro-momento-hoy .momento-simbolo {
+  display: block;
+  margin-bottom: 7px;
+  color: #F7D9A5;
+  font-size: 25px;
+  line-height: 1.2;
+}
+#nuestro-momento-hoy .momento-nombre {
+  display: block;
+  margin-bottom: 6px;
+  color: #F7D9A5;
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 19px;
+  font-weight: normal;
+  line-height: 1.3;
+}
+#nuestro-momento-hoy .momento-detalle {
+  display: block;
+  color: #ead9df;
+  font-family: Lora, Georgia, serif !important;
+  font-size: 11px;
+  line-height: 1.4;
+}
+@media (max-width: 360px) {
+  #nuestro-momento-hoy { padding: 12px 8px; }
+  #nuestro-momento-hoy .momento-tarjetas { gap: 5px; }
+  #nuestro-momento-hoy .momento-tarjeta { padding: 10px 3px; }
+  #nuestro-momento-hoy .momento-nombre { font-size: 17px; }
+  #nuestro-momento-hoy .momento-detalle { font-size: 10px; }
+}
+</style>
+
+
+<style id="estilos-cuadricula-avatares">
+.perfil[data-vista="nosotros"] .cuadricula-avatares {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 10px 0 22px;
+}
+.perfil[data-vista="nosotros"] .opcion-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 8px;
+  border: 1px solid #76513c;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #211018, #12090e);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.45);
+  cursor: pointer;
+}
+.perfil[data-vista="nosotros"] .opcion-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 66px;
+  max-height: 66px;
+  object-fit: contain;
+}
+.perfil[data-vista="nosotros"] .opcion-avatar.seleccionado {
+  border: 2px solid #F7D9A5;
+  background: linear-gradient(145deg, #512037, #29111d);
+  box-shadow: 0 0 0 2px rgba(247,217,165,.16),
+              0 0 12px rgba(247,217,165,.22);
+}
+.perfil[data-vista="nosotros"] .opcion-avatar:focus-visible {
+  outline: 2px solid #F7D9A5;
+  outline-offset: 3px;
+}
+</style>
 
 </head>
 <body>
@@ -1827,30 +2152,32 @@ header h1, h1 { font-family: Qwigley, cursive; }
       <input id="miNombre" maxlength="30" placeholder="Por ejemplo, mi amor">
 
       <label for="miAvatar">Tu avatar</label>
-      <select id="miAvatar">
-        <option>❤️</option>
-        <option>🌹</option>
-        <option>🖤</option>
-        <option>🦋</option>
-        <option>🌙</option>
-        <option>🐻</option>
-        <option>😘</option>
-        <option>✨</option>
+      <div class="cuadricula-avatares" id="cuadriculaMiAvatar" role="group" aria-label="Tu avatar"></div>
+      <select id="miAvatar" aria-label="Tu avatar" style="display:none">
+        <option value="/assets/iconos-realistas/Icono1.png">Corazón</option>
+        <option value="/assets/iconos-realistas/perfil-rosa.png">Rosa</option>
+        <option value="/assets/iconos-realistas/perfil-corazon-negro.png">Corazón negro</option>
+        <option value="/assets/iconos-realistas/perfil-mariposa.png">Mariposa</option>
+        <option value="/assets/iconos-realistas/perfil-luna.png">Luna</option>
+        <option value="/assets/iconos-realistas/perfil-oso.png">Oso</option>
+        <option value="/assets/iconos-realistas/perfil-beso.png">Beso</option>
+        <option value="/assets/iconos-realistas/Icono8.png">Destellos</option>
       </select>
 
       <label for="parejaNombre">Nombre o apodo de tu pareja</label>
       <input id="parejaNombre" maxlength="30" placeholder="Su nombre o apodo">
 
       <label for="parejaAvatar">Avatar de tu pareja</label>
-      <select id="parejaAvatar">
-        <option>💕</option>
-        <option>🌹</option>
-        <option>🖤</option>
-        <option>🦋</option>
-        <option>🌙</option>
-        <option>🐻</option>
-        <option>😘</option>
-        <option>✨</option>
+      <div class="cuadricula-avatares" id="cuadriculaParejaAvatar" role="group" aria-label="Avatar de tu pareja"></div>
+      <select id="parejaAvatar" aria-label="Avatar de tu pareja" style="display:none">
+        <option value="/assets/iconos-realistas/Icono1.png">Corazón</option>
+        <option value="/assets/iconos-realistas/perfil-rosa.png">Rosa</option>
+        <option value="/assets/iconos-realistas/perfil-corazon-negro.png">Corazón negro</option>
+        <option value="/assets/iconos-realistas/perfil-mariposa.png">Mariposa</option>
+        <option value="/assets/iconos-realistas/perfil-luna.png">Luna</option>
+        <option value="/assets/iconos-realistas/perfil-oso.png">Oso</option>
+        <option value="/assets/iconos-realistas/perfil-beso.png">Beso</option>
+        <option value="/assets/iconos-realistas/Icono8.png">Destellos</option>
       </select>
 
       <div class="pareja-resumen">
@@ -1866,6 +2193,78 @@ header h1, h1 { font-family: Qwigley, cursive; }
 
       <button onclick="guardarPerfiles()">Guardar nuestros perfiles ♡</button>
       <div class="estado" id="estado-perfiles"></div>
+
+      <button id="boton-pregunta-diaria" type="button"
+        onclick="mostrarVista('pregunta-diaria')"
+        aria-label="Abrir Nuestra pregunta diaria"
+        style="padding:8px;background:transparent;border:2px solid #754052;border-radius:16px;">
+        <img src="/assets/boton3.jpg" alt="Nuestra pregunta diaria"
+          style="display:block;width:100%;max-width:420px;height:auto;margin:auto;border-radius:12px;">
+      </button>
+
+      <button type="button" class="lugares-acceso" onclick="mostrarVista('lugares-especiales')">
+        <img src="/assets/globo-lugares-recortado.png" alt="Globo terráqueo" style="display:block;width:190px;height:190px;object-fit:contain;margin:0 auto -32px;transform:translateY(20px) scale(1.10);transform-origin:center bottom;">
+        <h3>Nuestros lugares especiales</h3>
+        <p>Los rincones que forman nuestra historia.</p>
+      </button>
+
+    </section>
+
+
+    <section class="perfil lugares-contenedor" data-vista="lugares-especiales" style="display:none">
+  <div class="hora">Solo nosotros</div>
+  <div style="text-align:center;margin:12px auto;"><img src="/assets/globo-lugares-recortado.png" alt="Globo terráqueo" style="display:block;width:300px;height:300px;object-fit:contain;margin:0 auto -36px;transform:translateY(20px) scale(1.15);transform-origin:center bottom;"></div>
+  <h2>Nuestros lugares especiales</h2>
+  <div class="lugares-acciones">
+    <button type="button">Ver todos nuestros lugares</button>
+    <button type="button">Nuestros lugares</button>
+    <button type="button" class="lugar-anadir">+ Añadir lugar</button>
+  </div>
+  <div id="mapa-lugares"></div>
+  <div class="lugares-categorias">
+    <button type="button">Citas románticas</button>
+    <button type="button">Restaurantes y cafeterías</button>
+    <button type="button">Viajes y escapadas</button>
+    <button type="button">Paseos y lugares especiales</button>
+    <button type="button">Favoritos</button>
+  </div>
+  <button type="button" onclick="mostrarVista('nosotros')">Volver a Nosotros</button>
+</section>
+
+    <section class="sobre" data-vista="pregunta-diaria"
+      style="font-family:'Fontix',sans-serif;">
+      <div class="hora">Solo nosotros</div>
+      <h2 style="font-family:'Fontix',sans-serif;">Nuestra pregunta diaria</h2>
+      <div class="descripcion" style="font-family:'Fontix',sans-serif;">
+        Un espacio para compartir nuestras respuestas y descubrir algo nuevo
+        el uno del otro cada día.
+      </div>
+
+      <div id="nuestro-momento-hoy" aria-label="Nuestro momento de hoy">
+        <h3 class="momento-titulo">Nuestro momento de hoy</h3>
+        <div class="momento-tarjetas">
+          <div class="momento-tarjeta">
+            <span class="momento-simbolo" aria-hidden="true">✦</span>
+            <span class="momento-nombre">Una pregunta</span>
+            <span class="momento-detalle">Descubrir algo nuevo</span>
+          </div>
+          <div class="momento-tarjeta">
+            <span class="momento-simbolo" aria-hidden="true">♡</span>
+            <span class="momento-nombre">Dos respuestas</span>
+            <span class="momento-detalle">Compartir lo que sentimos</span>
+          </div>
+          <div class="momento-tarjeta">
+            <span class="momento-simbolo" aria-hidden="true">✧</span>
+            <span class="momento-nombre">Un momento</span>
+            <span class="momento-detalle">Algo especial entre nosotros</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="pregunta-diaria-contenido" aria-live="polite"
+        style="font-family:'Fontix',sans-serif;margin-top:20px;"></div>
+      <button type="button" class="secundario"
+        onclick="mostrarVista('nosotros')">Volver a nuestros perfiles ♡</button>
     </section>
 
 
@@ -1960,7 +2359,7 @@ header h1, h1 { font-family: Qwigley, cursive; }
 </nav>
     <script>
     function mostrarVista(nombre) {
-      const validas = ['inicio','mensajes','retos','diario','nosotros','ruleta','tienda'];
+      const validas = ['inicio','mensajes','retos','diario','nosotros','ruleta','tienda','pregunta-diaria','lugares-especiales'];
       if (!validas.includes(nombre)) return;
       document.body.dataset.vistaActual = nombre;
       document.dispatchEvent(new CustomEvent('vista-cambiada', { detail: { nombre: nombre } }));
@@ -2030,12 +2429,70 @@ header h1, h1 { font-family: Qwigley, cursive; }
     }
 
   
+
+    function normalizarAvatar(valor) {
+      const antiguos = {
+        '❤️': '/assets/iconos-realistas/Icono1.png',
+        '💕': '/assets/iconos-realistas/Icono1.png',
+        '🌹': '/assets/iconos-realistas/perfil-rosa.png',
+        '🖤': '/assets/iconos-realistas/perfil-corazon-negro.png',
+        '🦋': '/assets/iconos-realistas/perfil-mariposa.png',
+        '🌙': '/assets/iconos-realistas/perfil-luna.png',
+        '🐻': '/assets/iconos-realistas/perfil-oso.png',
+        '😘': '/assets/iconos-realistas/perfil-beso.png',
+        '✨': '/assets/iconos-realistas/Icono8.png'
+      };
+      if (antiguos[valor]) return antiguos[valor];
+      if (Object.values(antiguos).includes(valor)) return valor;
+      return '/assets/iconos-realistas/Icono1.png';
+    }
+
+
+    function construirCuadriculaAvatar(selectId, gridId) {
+      const selector = document.getElementById(selectId);
+      const cuadricula = document.getElementById(gridId);
+      cuadricula.replaceChildren();
+
+      Array.from(selector.options).forEach(opcion => {
+        const boton = document.createElement('button');
+        boton.type = 'button';
+        boton.className = 'opcion-avatar';
+        boton.setAttribute('aria-label', opcion.textContent.trim());
+        boton.title = opcion.textContent.trim();
+
+        const imagen = document.createElement('img');
+        imagen.src = opcion.value;
+        imagen.alt = '';
+        imagen.loading = 'eager';
+        boton.appendChild(imagen);
+
+        boton.addEventListener('click', () => {
+          selector.value = opcion.value;
+          selector.dispatchEvent(new Event('change', { bubbles: true }));
+          actualizarSeleccionCuadricula(selectId, gridId);
+        });
+
+        cuadricula.appendChild(boton);
+      });
+    }
+
+    function actualizarSeleccionCuadricula(selectId, gridId) {
+      const selector = document.getElementById(selectId);
+      const cuadricula = document.getElementById(gridId);
+
+      cuadricula.querySelectorAll('.opcion-avatar').forEach((boton, indice) => {
+        const seleccionado = selector.options[indice].value === selector.value;
+        boton.classList.toggle('seleccionado', seleccionado);
+        boton.setAttribute('aria-pressed', String(seleccionado));
+      });
+    }
+
     function cargarPerfiles() {
       const datos = JSON.parse(localStorage.getItem('perfiles-pareja') || '{}');
       document.getElementById('miNombre').value = datos.miNombre || '';
       document.getElementById('parejaNombre').value = datos.parejaNombre || '';
-      document.getElementById('miAvatar').value = datos.miAvatar || '❤️';
-      document.getElementById('parejaAvatar').value = datos.parejaAvatar || '💕';
+      document.getElementById('miAvatar').value = normalizarAvatar(datos.miAvatar || '❤️');
+      document.getElementById('parejaAvatar').value = normalizarAvatar(datos.parejaAvatar || '💕');
       actualizarVistaPerfiles();
     }
 
@@ -2045,10 +2502,19 @@ header h1, h1 { font-family: Qwigley, cursive; }
 
       document.getElementById('vistaMiNombre').textContent = miNombre;
       document.getElementById('vistaParejaNombre').textContent = parejaNombre;
-      document.getElementById('vistaMiAvatar').textContent =
-        document.getElementById('miAvatar').value;
-      document.getElementById('vistaParejaAvatar').textContent =
-        document.getElementById('parejaAvatar').value;
+
+      const mostrar = (id, ruta, nombre) => {
+        const contenedor = document.getElementById(id);
+        const imagen = document.createElement('img');
+        imagen.src = normalizarAvatar(ruta);
+        imagen.alt = nombre;
+        contenedor.replaceChildren(imagen);
+      };
+
+      mostrar('vistaMiAvatar', document.getElementById('miAvatar').value, 'Tu avatar');
+      mostrar('vistaParejaAvatar', document.getElementById('parejaAvatar').value, 'Avatar de tu pareja');
+      actualizarSeleccionCuadricula('miAvatar', 'cuadriculaMiAvatar');
+      actualizarSeleccionCuadricula('parejaAvatar', 'cuadriculaParejaAvatar');
     }
 
     function guardarPerfiles() {
@@ -2070,6 +2536,8 @@ header h1, h1 { font-family: Qwigley, cursive; }
       document.getElementById(id).addEventListener('change', actualizarVistaPerfiles);
     });
 
+    construirCuadriculaAvatar('miAvatar', 'cuadriculaMiAvatar');
+    construirCuadriculaAvatar('parejaAvatar', 'cuadriculaParejaAvatar');
     cargarPerfiles();
 
   </script>
@@ -2138,7 +2606,28 @@ header h1, h1 { font-family: Qwigley, cursive; }
   content: none !important;
   display: none !important;
 }
+
+/* PULSACION GLOBAL BURDEOS Y ORO */
+html, body, body * {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 1px solid rgba(247,217,165,.75);
+  outline-offset: 2px;
+}
+button:not(.ruleta-boton):active,
+[role="button"]:active,
+a:active {
+  background-color: #351522 !important;
+  border-color: rgba(247,217,165,.75) !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 </style>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="/js/lugares-especiales.js"></script>
+<script type="module" src="/js/pregunta-diaria.js"></script>
 </body>
 </html>

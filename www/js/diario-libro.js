@@ -1,4 +1,5 @@
 import { combinarEntradas, eliminarEntradaCompartida, compartirEntradaLocal } from "./diario-sync.js";
+import { ponerTextoConIconos } from "./iconos-texto.js";
 const DB='entre-nosotros-diario';
 const tipos=['recuerdo','foto','mensaje','dedicatoria'];
 const nombres=['Añadir recuerdo','Añadir foto','Mensajes','Dedicatorias'];
@@ -64,7 +65,7 @@ async function mostrarPagina(i, numero=0, editar=false){
  const e=listaEntradas[numero];
  const accion=(texto,fn,clase)=>{
   const el=document.createElement("span");
-  el.textContent=texto;
+  ponerTextoConIconos(el, texto);
   el.className="diario-accion-texto "+(clase||"");
   el.setAttribute("role","button");
   el.tabIndex=0;
@@ -87,7 +88,7 @@ async function mostrarPagina(i, numero=0, editar=false){
    p.append(input);
   }
   const guardar=document.createElement("button");
-  guardar.textContent="Guardar ❤️";
+  ponerTextoConIconos(guardar, "Guardar ❤️");
   guardar.onclick=async()=>{
    const texto=area.value.trim();
    if(!texto&&!archivo){alert("Escribe algo o elige una foto ❤️");return}
@@ -137,7 +138,7 @@ async function mostrarPagina(i, numero=0, editar=false){
   if(e){
    if(e.texto){
     const texto=document.createElement("p");
-    texto.textContent=e.texto;
+    ponerTextoConIconos(texto, e.texto);
     texto.style.whiteSpace="pre-wrap";
     p.append(texto);
    }
@@ -200,10 +201,10 @@ async function mostrarPaginaLibro(numero=0){
   pagina=-2;
   const p=document.createElement('div');
   p.className='diario-pagina';
-  p.textContent='Todavía no hay páginas guardadas.';
+  ponerTextoConIconos(p, 'Todavía no hay páginas guardadas.');
   const volver=document.createElement('span');
   volver.className='diario-accion-texto';
-  volver.textContent='Índice';
+  ponerTextoConIconos(volver, 'Índice');
   volver.setAttribute('role','button');
   volver.onclick=indice;
   p.append(volver);
@@ -218,11 +219,11 @@ async function mostrarPaginaLibro(numero=0){
  const p=document.createElement('div');
  p.className='diario-pagina';
  const titulo=document.createElement('small');
- titulo.textContent=({recuerdo:'Recuerdo',foto:'Foto',mensaje:'Mensaje',dedicatoria:'Dedicatoria'}[e.tipo]||'Diario');
+ ponerTextoConIconos(titulo, ({recuerdo:'Recuerdo',foto:'Foto',mensaje:'Mensaje',dedicatoria:'Dedicatoria'}[e.tipo]||'Diario'));
  p.append(titulo);
  if(e.texto){
   const texto=document.createElement('p');
-  texto.textContent=e.texto;
+  ponerTextoConIconos(texto, e.texto);
   texto.style.whiteSpace='pre-wrap';
   p.append(texto);
  }
@@ -245,7 +246,7 @@ async function mostrarPaginaLibro(numero=0){
  pie.className='diario-pie-acciones';
  const accion=(texto,fn,clase)=>{
   const el=document.createElement('span');
-  el.textContent=texto;
+  ponerTextoConIconos(el, texto);
   el.className='diario-accion-texto '+(clase||'');
   el.setAttribute('role','button');
   el.tabIndex=0;

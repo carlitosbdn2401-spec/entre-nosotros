@@ -1,4 +1,5 @@
 import { auth, db } from "./firebase.js";
+import { ponerTextoConIconos } from "./iconos-texto.js";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   addDoc,
@@ -126,7 +127,7 @@ let cancelarEscucha = null;
 let ultimoTexto = "";
 
 function mostrarEstado(texto) {
-  if (estado) estado.textContent = texto;
+  if (estado) ponerTextoConIconos(estado, texto);
 }
 
 function fechaLegible(fecha) {
@@ -154,7 +155,7 @@ function escaparYMostrarMensajes(documentos) {
   lista.replaceChildren();
 
   if (!propios.length) {
-    lista.textContent = "Todavía no hay cartitas. ¡Puedes enviar la primera! 💌";
+    ponerTextoConIconos(lista, "Todavía no hay cartitas. ¡Puedes enviar la primera! 💌");
     return;
   }
 
@@ -171,7 +172,8 @@ function escaparYMostrarMensajes(documentos) {
 
     const contenido = document.createElement("div");
     contenido.style.cssText = "white-space:pre-wrap;line-height:1.6;";
-    contenido.textContent = mensaje.texto || "";
+    contenido.style.whiteSpace = "pre-wrap";
+    ponerTextoConIconos(contenido, mensaje.texto || "");
 
     tarjetaMensaje.append(etiqueta, contenido);
     lista.append(tarjetaMensaje);
@@ -187,7 +189,7 @@ onAuthStateChanged(auth, usuario => {
   }
 
   if (!usuario) {
-    if (lista) lista.textContent = "Inicia sesión para ver vuestras cartitas.";
+    if (lista) ponerTextoConIconos(lista, "Inicia sesión para ver vuestras cartitas.");
     if (boton) boton.disabled = true;
     return;
   }
@@ -288,7 +290,7 @@ if (boton) {
         );
       }
 
-      if (textoSorpresa) textoSorpresa.textContent = elegido.texto;
+      if (textoSorpresa) ponerTextoConIconos(textoSorpresa, elegido.texto);
       if (tarjeta) tarjeta.style.display = "block";
 
       mostrarEstado("¡Tu cartita se ha enviado! ❤️");

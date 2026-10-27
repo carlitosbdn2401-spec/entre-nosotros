@@ -9,6 +9,8 @@ const formulario = document.getElementById("formularioAcceso");
 const acceso = document.getElementById("accesoFirebase");
 const contenido = document.getElementById("contenidoApp");
 const mensaje = document.getElementById("mensajeAcceso");
+const pruebaRuleta = new URLSearchParams(location.search).get("pruebaRuleta") === "1";
+const pruebaPerfiles = new URLSearchParams(location.search).get("pruebaPerfiles") === "1";
 
 formulario.addEventListener("submit", async (evento) => {
   evento.preventDefault();
@@ -49,6 +51,12 @@ onAuthStateChanged(auth, (usuario) => {
       });
 
       contenido.prepend(boton);
+    }
+  } else if (pruebaRuleta || pruebaPerfiles) {
+    acceso.style.display = "none";
+    contenido.style.display = "block";
+    if (typeof window.mostrarVista === "function") {
+      window.mostrarVista(pruebaPerfiles ? "nosotros" : "ruleta");
     }
   } else {
     contenido.style.display = "none";

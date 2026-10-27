@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite www --host 127.0.0.1",
-    "build": "vite build www && cp www/prueba-vale-besos.html www/prueba-abrazo-para-dos.html www/prueba-momento-relax.html www/prueba-cena-especial.html www/prueba-noche-de-peli.html www/prueba-caja-misteriosa.html www/prueba-vale-picante.html www/prueba-premio-exclusivo.html www/dist/ && mkdir -p www/dist/assets && cp -R www/assets/. www/dist/assets/"
+    "build": "vite build www && mkdir -p www/dist/assets www/dist/css && cp -R www/assets/. www/dist/assets/ && cp www/css/diario-libro.css www/css/lugares-especiales.css www/dist/css/"
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,5 @@
 import { mostrarAnimacionCanje } from "./tienda-animaciones.js";
+import { ponerTextoConIconos } from "./iconos-texto.js";
 const CLAVE = "entreNosotrosTiendaPruebaV1";
 const paginasVales = {
   r1: "prueba-vale-besos.html",
@@ -52,6 +53,12 @@ function renderizar(){
       <span class="producto-precio">💎 ${Number(r.precio)} puntos</span>
       <button type="button" data-comprar="${escapar(r.id)}">Canjear</button>
     </article>`).join("");
+  catalogo.querySelectorAll(".producto-icono").forEach(el =>
+    ponerTextoConIconos(el, el.textContent)
+  );
+  catalogo.querySelectorAll(".tienda-etiqueta, .producto-precio").forEach(el =>
+    ponerTextoConIconos(el, el.textContent)
+  );
   const canjes = document.getElementById("tienda-canjes");
   const mios = datos.canjes.filter(c=>c.persona===persona()).slice().reverse();
   canjes.innerHTML = mios.length ? mios.map(c=>`
@@ -61,8 +68,17 @@ function renderizar(){
       <small>${new Date(c.fecha).toLocaleDateString()}</small>
       ${paginasVales[c.recompensaId] ? `<button type="button" data-abrir-vale="${escapar(c.recompensaId)}">Abrir mi vale ❤️</button>` : ""}
     </div>`).join("") : '<p class="descripcion">Todavía no tienes canjes. ¡Elige una recompensa que te haga ilusión! ❤️</p>';
+  canjes.querySelectorAll(".tienda-estado, button, .descripcion").forEach(el => {
+    ponerTextoConIconos(el, el.textContent);
+  });
+
 }
 function aviso(msg){ window.alert(msg); }
+
+function actualizarIconosCanjes() {
+  document.querySelectorAll("#tienda-canjes .tienda-estado, #tienda-canjes button, #tienda-canjes .descripcion")
+    .forEach(el => ponerTextoConIconos(el, el.textContent));
+}
 
 document.addEventListener("click",e=>{
   const abrirVale = e.target.closest("[data-abrir-vale]");
