@@ -1,5 +1,81 @@
-import { combinarEntradas, eliminarEntradaCompartida, compartirEntradaLocal } from "./diario-sync.js";
+import { combinarEntradas, eliminarEntradaCompartida, compartirEntradaLocal, guardarReaccionDiario } from "./diario-sync.js";
 import { ponerTextoConIconos } from "./iconos-texto.js";
+import { auth } from "./firebase.js";
+
+function añadirReaccionesDiario(p, entrada) {
+ const opciones = [
+  ["❤️","Me encanta"],
+  ["💔","No me gusta"],
+  ["🥰","Me emociona"],
+  ["😂","Me hace reír"],
+  ["🔥","Me calienta"]
+ ];
+ const miembros = [
+  "BO9OTnpEPCSCrljTUjRfs2qu39i2",
+  "j1mbdehEbCansXpAl3Awwc5azcB3"
+ ];
+ const actual = auth.currentUser?.uid;
+ const bloque = document.createElement("section");
+ bloque.className = "diario-reacciones";
+ bloque.style.cssText = "margin:16px 0;padding:10px 0;border-top:1px solid #c5a15b";
+ const titulo = document.createElement("small");
+ titulo.textContent = "¿Qué te hace sentir esta entrada?";
+ bloque.append(titulo);
+ const botones = document.createElement("div");
+ botones.style.cssText = "display:flex;flex-wrap:wrap;gap:7px;margin:10px 0";
+ const reacciones = entrada.reacciones || {};
+ opciones.forEach(([emoji, nombre]) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = emoji + " " + nombre;
+  b.title = nombre;
+  b.style.cssText = "border:1px solid #c5a15b;border-radius:16px;padding:7px 10px;background:" + (reacciones[actual] === emoji ? "#681b32" : "#fff5df") + ";color:" + (reacciones[actual] === emoji ? "#fff5df" : "#49252b") + ";font-size:13px";
+  b.disabled = !actual || !entrada.cloudId;
+  b.addEventListener("click", async () => {
+   try {
+    b.disabled = true;
+    await guardarReaccionDiario(entrada, emoji);
+   } catch (error) {
+    console.error("No se pudo guardar la reacción:", error);
+    alert(error.message || "No se ha podido guardar la reacción.");
+   } finally {
+    b.disabled = false;
+   }
+  });
+  botones.append(b);
+ });
+ bloque.append(botones);
+ const resumen = document.createElement("div");
+ resumen.className = "diario-reacciones-resumen";
+ resumen.style.cssText = "display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:10px 0;font-size:20px";
+ miembros.forEach(uid => {
+  const emoji = reacciones[uid];
+  const opcion = opciones.find(x => x[0] === emoji);
+  if (!opcion) return;
+  const icono = document.createElement("span");
+  icono.textContent = (uid === actual ? "Tú " : "Tu pareja ") + opcion[0];
+  icono.title = (uid === actual ? "Tú: " : "Tu pareja: ") + opcion[1];
+  icono.setAttribute("aria-label", icono.title);
+  resumen.append(icono);
+ });
+ if (resumen.childElementCount) {
+  const ancla = p.querySelector("img") || p.querySelector("p");
+  if (ancla) ancla.insertAdjacentElement("afterend", resumen);
+  else p.append(resumen);
+ }
+ const nombres = miembros.map(uid => {
+  const quien = uid === actual ? "Tú" : "Tu pareja";
+  const emoji = reacciones[uid];
+  const opcion = opciones.find(x => x[0] === emoji);
+  const linea = document.createElement("div");
+  linea.style.cssText = "font-size:13px;margin-top:5px";
+  linea.textContent = quien + ": " + (opcion ? opcion[0] + " " + opcion[1] : "Sin reacción");
+  return linea;
+ });
+ nombres.forEach(linea => bloque.append(linea));
+ p.append(bloque);
+}
+
 const DB='entre-nosotros-diario';
 const tipos=['recuerdo','foto','mensaje','dedicatoria'];
 const nombres=['Añadir recuerdo','Añadir foto','Mensajes','Dedicatorias'];
@@ -170,6 +246,7 @@ async function mostrarPagina(i, numero=0, editar=false){
   pie.append(accion("Índice",indice));
   if(e)pie.append(eliminar);
  }
+ if(e) añadirReaccionesDiario(p, e);
  p.append(pie);
  c.append(p);
 }
@@ -267,6 +344,7 @@ async function mostrarPaginaLibro(numero=0){
    alert("No se ha podido eliminar");
   }
  },'diario-eliminar'));
+ if(e) añadirReaccionesDiario(p, e);
  p.append(pie);
  c.append(p);
 }
@@ -323,7 +401,7 @@ window.addEventListener("diario-sincronizado", () => {
  if (!caja || caja.style.display !== "block") return;
 
  const contenedor = document.getElementById("diario-pagina-actual");
- if (!contenedor || contenedor.querySelector("textarea,input,button")) return;
+ if (!contenedor || contenedor.querySelector("textarea,input")) return;
 
  if (pagina === -1) return;
 

@@ -7,7 +7,8 @@ import {
   getDoc,
   setDoc,
   deleteDoc,
-  serverTimestamp
+  serverTimestamp,
+  updateDoc
 } from "firebase/firestore";
 
 const UID_MIEMBROS = [
@@ -324,6 +325,28 @@ export async function combinarEntradas(locales) {
 
 export async function guardarEntradaCompartida(entrada) {
   return guardarEnNube(entrada, null);
+}
+
+export async function guardarReaccionDiario(entrada, reaccion) {
+  const usuario = auth.currentUser;
+  const reaccionesPermitidas = ["❤️", "💔", "🥰", "😂", "🔥"];
+
+  if (!usuario || !UID_MIEMBROS.includes(usuario.uid)) {
+    throw new Error("Inicia sesión con una cuenta autorizada.");
+  }
+
+  if (!entrada?.cloudId) {
+    throw new Error("Esta entrada todavía no está sincronizada con Firebase.");
+  }
+
+  if (!reaccionesPermitidas.includes(reaccion)) {
+    throw new Error("La reacción seleccionada no es válida.");
+  }
+
+  await updateDoc(doc(db, ...RUTA, entrada.cloudId), {
+    [`reacciones.${usuario.uid}`]: reaccion,
+    actualizado: serverTimestamp()
+  });
 }
 
 export async function eliminarEntradaCompartida(entrada) {
