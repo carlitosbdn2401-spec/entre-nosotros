@@ -1,0 +1,303 @@
+[
+  {
+    "numero": 1,
+    "icono": "01_corazon-entrada",
+    "archivo": "/assets/iconos-app/01_corazon-entrada.png",
+    "seleccion": "16",
+    "origen": "www/assets/iconos-43/coordenadas/icono-16.png"
+  },
+  {
+    "numero": 2,
+    "icono": "02_corazon-ornamental",
+    "archivo": "/assets/iconos-app/02_corazon-ornamental.png",
+    "seleccion": "35",
+    "origen": "www/assets/iconos-43/coordenadas/icono-35.png"
+  },
+  {
+    "numero": 3,
+    "icono": "03_destello",
+    "archivo": "/assets/iconos-app/03_destello.png",
+    "seleccion": "37",
+    "origen": "www/assets/iconos-43/coordenadas/icono-37.png"
+  },
+  {
+    "numero": 4,
+    "icono": "04_destello-fino",
+    "archivo": "/assets/iconos-app/04_destello-fino.png",
+    "seleccion": "nuevo:04-destello-fino",
+    "origen": "www/assets/iconos-43/nuevos/04-destello-fino.png"
+  },
+  {
+    "numero": 5,
+    "icono": "05_adorno-floral",
+    "archivo": "/assets/iconos-app/05_adorno-floral.png",
+    "seleccion": "36",
+    "origen": "www/assets/iconos-43/coordenadas/icono-36.png"
+  },
+  {
+    "numero": 6,
+    "icono": "06_corona-decorativa",
+    "archivo": "/assets/iconos-app/06_corona-decorativa.png",
+    "seleccion": "20",
+    "origen": "www/assets/iconos-43/coordenadas/icono-20.png"
+  },
+  {
+    "numero": 7,
+    "icono": "07_carta-portada",
+    "archivo": "/assets/iconos-app/07_carta-portada.png",
+    "seleccion": "5",
+    "origen": "www/assets/iconos-43/coordenadas/icono-05.png"
+  },
+  {
+    "numero": 8,
+    "icono": "08_corazon-rosa",
+    "archivo": "/assets/iconos-app/08_corazon-rosa.png",
+    "seleccion": "25",
+    "origen": "www/assets/iconos-43/coordenadas/icono-25.png"
+  },
+  {
+    "numero": 9,
+    "icono": "09_tienda",
+    "archivo": "/assets/iconos-app/09_tienda.png",
+    "seleccion": "12",
+    "origen": "www/assets/iconos-43/coordenadas/icono-12.png"
+  },
+  {
+    "numero": 10,
+    "icono": "10_puntos",
+    "archivo": "/assets/iconos-app/10_puntos.png",
+    "seleccion": "30",
+    "origen": "www/assets/iconos-43/coordenadas/icono-30.png"
+  },
+  {
+    "numero": 11,
+    "icono": "11_recompensas",
+    "archivo": "/assets/iconos-app/11_recompensas.png",
+    "seleccion": "24",
+    "origen": "www/assets/iconos-43/coordenadas/icono-24.png"
+  },
+  {
+    "numero": 12,
+    "icono": "12_vale-besos",
+    "archivo": "/assets/iconos-app/12_vale-besos.png",
+    "seleccion": "28",
+    "origen": "www/assets/iconos-43/coordenadas/icono-28.png"
+  },
+  {
+    "numero": 13,
+    "icono": "13_abrazo",
+    "archivo": "/assets/iconos-app/13_abrazo.png",
+    "seleccion": "nuevo:26-abrazo-en-mensajes",
+    "origen": "www/assets/iconos-43/nuevos/26-abrazo-en-mensajes.png"
+  },
+  {
+    "numero": 14,
+    "icono": "14_masaje",
+    "archivo": "/assets/iconos-app/14_masaje.png",
+    "seleccion": "10",
+    "origen": "www/assets/iconos-43/coordenadas/icono-10.png"
+  },
+  {
+    "numero": 15,
+    "icono": "15_cena-especial",
+    "archivo": "/assets/iconos-app/15_cena-especial.png",
+    "seleccion": "3",
+    "origen": "www/assets/iconos-43/coordenadas/icono-03.png"
+  },
+  {
+    "numero": 16,
+    "icono": "16_noche-pelicula",
+    "archivo": "/assets/iconos-app/16_noche-pelicula.png",
+    "seleccion": "7",
+    "origen": "www/assets/iconos-43/coordenadas/icono-07.png"
+  },
+  {
+    "numero": 17,
+    "icono": "17_vale-picante",
+    "archivo": "/assets/iconos-app/17_vale-picante.png",
+    "seleccion": "nuevo:17-vale-picante",
+    "origen": "www/assets/iconos-43/nuevos/17-vale-picante.png"
+  },
+  {
+    "numero": 18,
+    "icono": "18_premio-exclusivo",
+    "archivo": "/assets/iconos-app/18_premio-exclusivo.png",
+    "seleccion": "17",
+    "origen": "www/assets/iconos-43/coordenadas/icono-17.png"
+  },
+  {
+    "numero": 19,
+    "icono": "19_pendiente",
+    "archivo": "/assets/iconos-app/19_pendiente.png",
+    "seleccion": "34",
+    "origen": "www/assets/iconos-43/coordenadas/icono-34.png"
+  },
+  {
+    "numero": 20,
+    "icono": "20_mensaje-tierno",
+    "archivo": "/assets/iconos-app/20_mensaje-tierno.png",
+    "seleccion": "21",
+    "origen": "www/assets/iconos-43/coordenadas/icono-21.png"
+  },
+  {
+    "numero": 21,
+    "icono": "21_mensaje-divertido",
+    "archivo": "/assets/iconos-app/21_mensaje-divertido.png",
+    "seleccion": "23",
+    "origen": "www/assets/iconos-43/coordenadas/icono-23.png"
+  },
+  {
+    "numero": 22,
+    "icono": "22_mensaje-picaro",
+    "archivo": "/assets/iconos-app/22_mensaje-picaro.png",
+    "seleccion": "nuevo:22-mensaje-picaro",
+    "origen": "www/assets/iconos-43/nuevos/22-mensaje-picaro.png"
+  },
+  {
+    "numero": 23,
+    "icono": "23_pasion",
+    "archivo": "/assets/iconos-app/23_pasion.png",
+    "seleccion": "27",
+    "origen": "www/assets/iconos-43/coordenadas/icono-27.png"
+  },
+  {
+    "numero": 24,
+    "icono": "24_libro-recuerdos",
+    "archivo": "/assets/iconos-app/24_libro-recuerdos.png",
+    "seleccion": "8",
+    "origen": "www/assets/iconos-43/coordenadas/icono-08.png"
+  },
+  {
+    "numero": 25,
+    "icono": "25_respuesta-reto",
+    "archivo": "/assets/iconos-app/25_respuesta-reto.png",
+    "seleccion": "22",
+    "origen": "www/assets/iconos-43/coordenadas/icono-22.png"
+  },
+  {
+    "numero": 26,
+    "icono": "26_abrazo-dos",
+    "archivo": "/assets/iconos-app/26_abrazo-dos.png",
+    "seleccion": "4",
+    "origen": "www/assets/iconos-43/coordenadas/icono-04.png"
+  },
+  {
+    "numero": 27,
+    "icono": "27_pareja",
+    "archivo": "/assets/iconos-app/27_pareja.png",
+    "seleccion": "2",
+    "origen": "www/assets/iconos-43/coordenadas/icono-02.png"
+  },
+  {
+    "numero": 28,
+    "icono": "28_manos",
+    "archivo": "/assets/iconos-app/28_manos.png",
+    "seleccion": "26",
+    "origen": "www/assets/iconos-43/coordenadas/icono-26.png"
+  },
+  {
+    "numero": 29,
+    "icono": "29_brindis",
+    "archivo": "/assets/iconos-app/29_brindis.png",
+    "seleccion": "31",
+    "origen": "www/assets/iconos-43/coordenadas/icono-31.png"
+  },
+  {
+    "numero": 30,
+    "icono": "30_palomitas",
+    "archivo": "/assets/iconos-app/30_palomitas.png",
+    "seleccion": "18",
+    "origen": "www/assets/iconos-43/coordenadas/icono-18.png"
+  },
+  {
+    "numero": 31,
+    "icono": "31_rosa",
+    "archivo": "/assets/iconos-app/31_rosa.png",
+    "seleccion": "15",
+    "origen": "www/assets/iconos-43/coordenadas/icono-15.png"
+  },
+  {
+    "numero": 32,
+    "icono": "32_flor",
+    "archivo": "/assets/iconos-app/32_flor.png",
+    "seleccion": "1",
+    "origen": "www/assets/iconos-43/coordenadas/icono-01.png"
+  },
+  {
+    "numero": 33,
+    "icono": "33_regalo",
+    "archivo": "/assets/iconos-app/33_regalo.png",
+    "seleccion": "9",
+    "origen": "www/assets/iconos-43/coordenadas/icono-09.png"
+  },
+  {
+    "numero": 34,
+    "icono": "34_corazon-brillante",
+    "archivo": "/assets/iconos-app/34_corazon-brillante.png",
+    "seleccion": "16",
+    "origen": "www/assets/iconos-43/coordenadas/icono-16.png"
+  },
+  {
+    "numero": 35,
+    "icono": "35_cama",
+    "archivo": "/assets/iconos-app/35_cama.png",
+    "seleccion": "29",
+    "origen": "www/assets/iconos-43/coordenadas/icono-29.png"
+  },
+  {
+    "numero": 36,
+    "icono": "36_plantas",
+    "archivo": "/assets/iconos-app/36_plantas.png",
+    "seleccion": "14",
+    "origen": "www/assets/iconos-43/coordenadas/icono-14.png"
+  },
+  {
+    "numero": 37,
+    "icono": "37_vela",
+    "archivo": "/assets/iconos-app/37_vela.png",
+    "seleccion": "33",
+    "origen": "www/assets/iconos-43/coordenadas/icono-33.png"
+  },
+  {
+    "numero": 38,
+    "icono": "38_flor-tropical",
+    "archivo": "/assets/iconos-app/38_flor-tropical.png",
+    "seleccion": "1",
+    "origen": "www/assets/iconos-43/coordenadas/icono-01.png"
+  },
+  {
+    "numero": 39,
+    "icono": "39_estrellas",
+    "archivo": "/assets/iconos-app/39_estrellas.png",
+    "seleccion": "13",
+    "origen": "www/assets/iconos-43/coordenadas/icono-13.png"
+  },
+  {
+    "numero": 40,
+    "icono": "40_bebida",
+    "archivo": "/assets/iconos-app/40_bebida.png",
+    "seleccion": "11",
+    "origen": "www/assets/iconos-43/coordenadas/icono-11.png"
+  },
+  {
+    "numero": 41,
+    "icono": "41_cubiertos",
+    "archivo": "/assets/iconos-app/41_cubiertos.png",
+    "seleccion": "nuevo:41-cubiertos",
+    "origen": "www/assets/iconos-43/nuevos/41-cubiertos.png"
+  },
+  {
+    "numero": 42,
+    "icono": "42_destellos-animados",
+    "archivo": "/assets/iconos-app/42_destellos-animados.png",
+    "seleccion": "39",
+    "origen": "www/assets/iconos-43/coordenadas/icono-39.png"
+  },
+  {
+    "numero": 43,
+    "icono": "43_beso",
+    "archivo": "/assets/iconos-app/43_beso.png",
+    "seleccion": "nuevo:43-beso",
+    "origen": "www/assets/iconos-43/nuevos/43-beso.png"
+  }
+]
