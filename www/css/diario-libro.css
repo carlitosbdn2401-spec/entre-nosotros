@@ -261,3 +261,43 @@ main.app .sobre{
   backface-visibility:hidden;
   will-change:transform;
 }
+
+
+/* Efecto de hoja curvada 3D: versión de prueba */
+#diario-pagina-actual > .diario-hoja-saliente {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  background: #f4e8ca;
+  border: 1px solid #b89a68;
+  will-change: transform, clip-path, filter;
+}
+#diario-pagina-actual > .diario-hoja-saliente::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 55%,
+    #6b4b5012 76%,
+    #39232d30 100%
+  );
+  backface-visibility: hidden;
+}
+#diario-pagina-actual > .diario-hoja-saliente::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 21;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #e4d3ad 0%,
+    #fff4d8 45%,
+    #d2bd94 100%
+  );
+  border-left: 1px solid #c1a779;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}

@@ -45,6 +45,18 @@ jobs:
       - name: Compilar la aplicacion web
         run: npm run build
 
+      - name: Verificar recursos de la aplicacion
+        run: |
+          test -f www/dist/prueba-dados-eroticos.html
+          test -f www/dist/0/Dados/Reglas.png
+          test -f www/dist/0/Dados/Kama.png
+          test -f www/dist/0/Dados/Karmavolver.png
+          test -f www/dist/assets/dados-eroticos/Botondados.mp4
+          test -f www/dist/assets/dados-eroticos/Videolanza.mp4
+          test -f www/dist/assets/dados-eroticos/Transicion3.mp4
+          test -d www/dist/assets/dados-eroticos/combinaciones
+          echo "Pagina de dados y recursos verificados."
+
       - name: Incluir el diseño personalizado
         run: |
           mkdir -p www/dist/css

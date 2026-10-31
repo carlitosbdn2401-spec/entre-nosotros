@@ -373,7 +373,7 @@ if(contenido){
   const siguiente=actual+(dx<0?1:-1);
   const contenedorPagina=document.getElementById('diario-pagina-actual');
   const hojaActual=contenedorPagina.querySelector(':scope > .diario-pagina');
-  if(!hojaActual||hojaActual.querySelector('textarea,input,button'))return;
+  if(!hojaActual||hojaActual.querySelector('textarea,input'))return;
   const lista=modoLibro?await entradas():(await entradas()).filter(x=>x.tipo===tipos[pagina]);
   if(!lista[actual]||siguiente<0||siguiente>=lista.length)return;
   pasandoPagina=true;
@@ -389,7 +389,7 @@ if(contenido){
    const animacion=hojaSaliente.animate([
     {transform:'translateX(0) rotateY(0deg)',boxShadow:'0 0 5px #0002',opacity:1},
     {transform:haciaIzquierda?'translateX(-105%) rotateY(78deg)':'translateX(105%) rotateY(-78deg)',boxShadow:haciaIzquierda?'-18px 4px 22px #0005':'18px 4px 22px #0005',opacity:.96}
-   ],{duration:650,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
+   ],{duration:1300,easing:'cubic-bezier(.45,.05,.25,1)',fill:'forwards'});
    await animacion.finished;
    hojaSaliente.remove();
   }catch(err){hojaSaliente.remove();console.error('No se pudo pasar la página:',err)}

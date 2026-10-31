@@ -11,6 +11,7 @@
 }
 .lugares-acceso h3 {
   margin:12px 0 6px;
+  font-size:1.35rem;
   color:#F7D9A5;
 }
 .lugares-acceso p {
@@ -23,6 +24,7 @@
 }
 .lugares-contenedor h2 {
   text-align:center;
+  font-size:1.8rem;
 }
 .lugares-acciones,
 .lugares-categorias {
@@ -50,4 +52,57 @@
   border:1px solid #F7D9A5;
   border-radius:14px;
   overflow:hidden;
+}
+
+.lugar-formulario {
+  margin: 14px 0;
+  padding: 14px;
+  border: 1px solid #754052;
+  border-radius: 14px;
+  background: #12090e;
+}
+.lugar-formulario[hidden],
+.lista-lugares[hidden] {
+  display: none !important;
+}
+.lugar-formulario h3 {
+  margin-top: 0;
+  text-align: center;
+}
+.lugar-formulario label:not(.lugar-favorito) {
+  display: block;
+  margin: 10px 0 5px;
+}
+.lugar-formulario input[type="text"],
+.lugar-formulario select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #754052;
+  border-radius: 10px;
+  background: #27121c;
+  color: #F7D9A5;
+  font: inherit;
+}
+.lugar-formulario .lugar-favorito {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+#lugar-coordenadas,
+#estado-ubicacion {
+  text-align: center;
+  color: #ead9df;
+  overflow-wrap: anywhere;
+}
+.lista-lugares {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+.lugares-contenedor .lugar-tarjeta {
+  width: 100%;
+  text-align: left;
+  overflow-wrap: anywhere;
 }

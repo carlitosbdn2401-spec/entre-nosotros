@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dados Eróticos</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;background:#10090d;color:#fff;
+ font-family:Arial,sans-serif;text-align:center;
+}
+header{padding:25px 15px 10px}
+h1{color:#F7D9A5;font-size:27px;margin:10px 0}
+h2{color:#F7D9A5;font-size:23px}
+.panel{padding:12px}
+.accesos{
+ display:flex;justify-content:center;align-items:center;
+ gap:22px;flex-wrap:wrap;margin:25px auto;
+}
+.acceso{
+ width:min(42vw,175px);border:1px solid #681b32;
+ border-radius:18px;background:#211018;padding:12px;
+}
+.acceso video{
+ position:relative;inset:auto;
+ display:block;width:100%;height:auto;object-fit:contain;
+}
+.acceso p{color:#F7D9A5;font-weight:bold;margin:8px 0 2px}
+#juego{display:none}
+#escena{
+ position:relative;width:min(100%,430px);margin:12px auto;
+ aspect-ratio:768/1376;
+ background:#10090d url('assets/dados-eroticos/Interfazdados.jpg') center/100% 100% no-repeat;
+ overflow:hidden;
+}
+#escena > video:not(#botonLanzar){
+ position:absolute;inset:0;width:100%;height:100%;
+ object-fit:contain;display:block;
+}
+#lanzamiento{z-index:1}
+#transicion{z-index:2;opacity:0;display:none;transition:opacity 850ms ease}
+#transicion.visible{opacity:1}
+#resultado{
+ position:absolute;z-index:3;left:52.38%;top:54.81%;
+ width:35%;height:auto;aspect-ratio:1;
+ transform:translate(-50%,-50%);
+ opacity:0;display:none;transition:opacity 850ms ease;
+ pointer-events:none;
+}
+#resultado.visible{opacity:1}
+#resultado canvas{display:block;width:100%;height:auto}
+@font-face{
+ font-family:'Great Vibes';
+ src:url('assets/fuentes/GreatVibes-Regular.ttf') format('truetype');
+}
+#botonLanzar{
+ position:absolute;
+ z-index:5;
+ right:3%;
+ bottom:7%;
+ width:24%;
+ height:auto;
+ aspect-ratio:944/992;
+ object-fit:contain;
+ object-position:center;
+ display:block;
+ cursor:pointer;
+}
+#botonLanzar[hidden]{display:none}
+#textoTirar{
+ position:absolute;
+ z-index:5;
+ right:3%;
+ bottom:1.5%;
+ width:24%;
+ text-align:center;
+ font-family:'Great Vibes',cursive;
+ font-size:clamp(24px,7vw,34px);
+ line-height:1;
+ color:#fff;
+ -webkit-text-stroke:0.45px #fff;
+ text-shadow:0 1px 2px #10090d;
+ pointer-events:none;
+}
+#botonLanzar[hidden] + #textoTirar{display:none}
+#estado{display:none !important}
+#juego{position:relative}
+button.volver{position:absolute;z-index:20;top:-30px;right:10px;display:flex;flex-direction:column;align-items:center;gap:0;padding:0;margin:0;border:0;background:transparent;cursor:pointer}
+button.volver img{display:block;width:140px;height:140px;object-fit:contain}
+button.volver span{margin-top:-50px;font-family:'Great Vibes',cursive;font-size:29px;line-height:1;color:#fff;-webkit-text-stroke:0.45px #fff;text-shadow:0 1px 2px #10090d}
+
+#botonLanzar{
+ width:calc(24% + var(--kama-size, 50px));
+ right:calc(3% - var(--kama-x, 0px));
+ bottom:calc(7% - var(--kama-y, 30px));
+ max-width:none;
+}
+
+</style>
+</head>
+<body>
+
+<section id="entrada">
+ <header>
+  <h1>Ruleta del Amor</h1>
+  <p>Accesos de prueba</p>
+ </header>
+ <div class="accesos">
+  <div class="acceso">
+   <div style="height:125px;display:flex;align-items:center;justify-content:center;color:#F7D9A5">
+    HOT ROULETTE
+   </div>
+   <p>Hot Roulette</p>
+  </div>
+  <button class="acceso" type="button" onclick="abrirJuego()">
+   <video src="assets/dados-eroticos/Botondados.mp4"
+    autoplay muted loop playsinline></video>
+   <p>Dados Eróticos</p>
+  </button>
+ </div>
+</section>
+
+<section id="juego" class="panel">
+
+
+ <div id="escena">
+  <img id="letreroReglas" src="0/Dados/Reglas.png" alt="Reglas de los dados">
+  <video id="lanzamiento" playsinline preload="auto">
+   <source src="assets/dados-eroticos/Videolanza.mp4" type="video/mp4">
+  </video>
+
+  <video id="transicion" playsinline preload="auto">
+   <source src="assets/dados-eroticos/Transicion3.mp4" type="video/mp4">
+  </video>
+
+  <div id="resultado"><canvas id="dados"></canvas></div>
+
+  <img id="botonLanzar" src="0/Dados/Kama.png"
+   role="button" tabindex="0" alt="Lanzar los dados">
+  <div id="textoTirar" aria-hidden="true">Tirar</div>
+ </div>
+
+ <div id="estado">Pulsa el botón animado para lanzar.</div>
+ <button class="volver" type="button" onclick="volver()" aria-label="Volver a la ruleta"><img src="0/Dados/Karmavolver.png" alt=""><span>Volver</span></button>
+</section>
+
+<script>
+const lanzamiento=document.getElementById("lanzamiento");
+const transicion=document.getElementById("transicion");
+const resultado=document.getElementById("resultado");
+const canvas=document.getElementById("dados");
+const ctx=canvas.getContext("2d");
+const escena=document.getElementById("escena");
+const estado=document.getElementById("estado");
+const botonLanzar=document.getElementById("botonLanzar");
+
+const FUNDIDO=0.85;
+const POSICION={x:52.38,y:54.81,tamano:35};
+let transicionIniciada=false;
+let finalizado=false;
+let enCurso=false;
+
+
+function mostrarDiagnostico(datos){
+ const panel=document.getElementById("diagnosticoDados");
+ if(!panel)return;
+ panel.hidden=false;
+ document.getElementById("diagCombinacion").textContent=
+  "Nº "+datos.numero+" → "+datos.valores.join(" - ");
+ document.getElementById("diagDados").textContent=
+  datos.valores.map((v,i)=>"D"+(i+1)+": dado-"+(i+1)+"-numero-"+v+".png").join(" | ");
+ document.getElementById("diagTablero").textContent="Esperando confirmación del tablero…";
+}
+
+function notificarCartel(tipo, valores, numero){
+ if(window.parent===window)return;
+ const mensaje={
+  canal:"dados-eroticos-cartel",
+  tipo
+ };
+ if(Array.isArray(valores))mensaje.valores=valores;
+ if(Number.isInteger(numero))mensaje.numero=numero;
+ window.parent.postMessage(mensaje,window.location.origin);
+}
+
+function abrirJuego(){
+ document.getElementById("entrada").style.display="none";
+ document.getElementById("juego").style.display="block";
+ resultado.style.display="none";
+ transicion.classList.remove("visible");
+ transicion.style.display="none";
+}
+
+function volver(){
+ resultado.style.display="none";
+ transicion.classList.remove("visible");
+ transicion.style.display="none";
+ document.getElementById("juego").style.display="none";
+ if(new URLSearchParams(window.location.search).get("integrado")==="1" && window.parent!==window && typeof window.parent.mostrarVista==="function"){
+  window.parent.mostrarVista("ruleta");
+  return;
+ }
+ document.getElementById("entrada").style.display="block";
+}
+
+function cargarImagen(src){
+ return new Promise((resolve,reject)=>{
+  const im=new Image();
+  im.onload=()=>resolve(im);
+  im.onerror=()=>reject(new Error("No se pudo cargar "+src));
+  im.src=src;
+ });
+}
+
+async function prepararResultado(){
+ const numero=Math.floor(Math.random()*1296)+1;
+ const indice=numero-1;
+ const valores=[
+  Math.floor(indice/216)+1,
+  Math.floor(indice/36)%6+1,
+  Math.floor(indice/6)%6+1,
+  indice%6+1
+ ];
+
+ const imagenes=await Promise.all(valores.map((valor,i)=>
+  cargarImagen("assets/dados-eroticos/dados-individuales/dado-"+(i+1)+"-numero-"+valor+".png")
+ ));
+
+ const ancho=imagenes[0].naturalWidth;
+ const alto=imagenes[0].naturalHeight;
+ const completo=document.createElement("canvas");
+ completo.width=ancho;
+ completo.height=alto;
+ const c=completo.getContext("2d");
+
+ imagenes.forEach(im=>c.drawImage(im,0,0,ancho,alto));
+
+ const pixels=c.getImageData(0,0,ancho,alto).data;
+ let minX=ancho,minY=alto,maxX=-1,maxY=-1;
+
+ for(let py=0;py<alto;py++){
+  for(let px=0;px<ancho;px++){
+   if(pixels[(py*ancho+px)*4+3]>8){
+    minX=Math.min(minX,px);
+    minY=Math.min(minY,py);
+    maxX=Math.max(maxX,px);
+    maxY=Math.max(maxY,py);
+   }
+  }
+ }
+
+ if(maxX<minX)throw new Error("No se encontraron dados visibles.");
+
+ const margen=12;
+ minX=Math.max(0,minX-margen);
+ minY=Math.max(0,minY-margen);
+ maxX=Math.min(ancho-1,maxX+margen);
+ maxY=Math.min(alto-1,maxY+margen);
+
+ canvas.width=maxX-minX+1;
+ canvas.height=maxY-minY+1;
+ ctx.drawImage(completo,minX,minY,canvas.width,canvas.height,
+  0,0,canvas.width,canvas.height);
+
+ return {numero,valores};
+}
+
+async function mostrarResultado(){
+ if(finalizado)return;
+ finalizado=true;
+ enCurso=false;
+ estado.textContent="TRANSICIÓN TERMINADA. Preparando los dados…";
+
+ try{
+  const datos=await prepararResultado();
+  notificarCartel("resultado", datos.valores, datos.numero);
+
+  resultado.style.display="block";
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   resultado.classList.add("visible");
+  }));
+
+  estado.textContent="RESULTADO LISTO: "+datos.valores.join(" · ");
+  botonLanzar.hidden=false;
+ }catch(e){
+  estado.textContent="Error al preparar los dados: "+e.message;
+  botonLanzar.hidden=false;
+ }
+}
+
+async function iniciarTransicion(){
+ if(transicionIniciada)return;
+ transicionIniciada=true;
+ estado.textContent="TRANSICIÓN REPRODUCIÉNDOSE. Esperando al final…";
+ transicion.style.display="block";
+ transicion.classList.remove("visible");
+ transicion.currentTime=0;
+
+ try{
+  await transicion.play();
+  requestAnimationFrame(()=>transicion.classList.add("visible"));
+ }catch(e){
+  estado.textContent="No se pudo reproducir la transición.";
+  botonLanzar.hidden=false;
+  enCurso=false;
+ }
+}
+
+lanzamiento.addEventListener("loadedmetadata",()=>{
+ escena.style.aspectRatio=lanzamiento.videoWidth+"/"+lanzamiento.videoHeight;
+});
+
+lanzamiento.addEventListener("timeupdate",()=>{
+ if(transicionIniciada||!Number.isFinite(lanzamiento.duration))return;
+ if(lanzamiento.currentTime>=lanzamiento.duration-FUNDIDO){
+  iniciarTransicion();
+ }
+});
+
+lanzamiento.addEventListener("ended",iniciarTransicion);
+transicion.addEventListener("ended",mostrarResultado);
+
+async function lanzarDesdeBoton(){
+ if(enCurso)return;
+
+ enCurso=true;
+ notificarCartel("limpiar");
+ transicionIniciada=false;
+ finalizado=false;
+ botonLanzar.hidden=true;
+
+ resultado.classList.remove("visible");
+ resultado.style.display="none";
+ transicion.classList.remove("visible");
+ transicion.style.display="none";
+
+ lanzamiento.pause();
+ transicion.pause();
+ lanzamiento.currentTime=0;
+ transicion.currentTime=0;
+
+ estado.textContent="Reproduciendo el lanzamiento…";
+
+ try{
+  await lanzamiento.play();
+ }catch(e){
+  enCurso=false;
+  botonLanzar.hidden=false;
+  estado.textContent="No se pudo iniciar el vídeo.";
+ }
+}
+
+botonLanzar.addEventListener("click",lanzarDesdeBoton);
+botonLanzar.addEventListener("keydown",e=>{
+ if(e.key==="Enter"||e.key===" "){
+  e.preventDefault();
+  lanzarDesdeBoton();
+ }
+});
+
+if(new URLSearchParams(window.location.search).get("integrado")==="1"){
+ abrirJuego();
+}
+</script>
+
+
+<script id="ajuste-kama-dados">
+(() => {
+ const img = document.getElementById("botonLanzar");
+ if (!img) return;
+
+ const inicial = {size:50, x:0, y:30};
+ let valores = {...inicial};
+
+ try {
+  const guardado = JSON.parse(
+   localStorage.getItem("entreNosotrosAjusteKama")
+  );
+  if (guardado) {
+   valores = {
+    size:Number(guardado.size) || 0,
+    x:Number(guardado.x) || 0,
+    y:Number(guardado.y) || 0
+   };
+  }
+ } catch(e) {}
+
+ img.style.setProperty("--kama-size", valores.size+"px");
+ img.style.setProperty("--kama-x", valores.x+"px");
+ img.style.setProperty("--kama-y", valores.y+"px");
+})();
+</script>
+\n</body>
+</html>

@@ -232,17 +232,17 @@ button.tarjeta-acceso {
 #navegacion-inferior button {
   min-width:0;padding:7px 1px;color:var(--suave);background:transparent;
   border:1px solid transparent;border-radius:12px;box-shadow:none;
-  font-size:10px;line-height:1.4;
+  font-size:18px;line-height:1.4;
 }
 #navegacion-inferior .nav-icono { display:block;font-size:21px;margin-bottom:3px; }
-#navegacion-inferior .nav-imagen{display:block;width:29px;height:29px;object-fit:contain;margin:0 auto;}
+#navegacion-inferior .nav-imagen{display:block;width:33px;height:33px;object-fit:contain;margin:0 auto;}
 #navegacion-inferior button.activo {
   color:#ffd7e1;background:rgba(197,44,75,.18);border-color:rgba(197,44,75,.28);
 }
 @media(max-width:350px) {
   .rejilla-accesos { gap:8px; }
   button.tarjeta-acceso { padding:12px 9px; }
-  #navegacion-inferior button { font-size:9px; }
+  #navegacion-inferior button { font-size:18px; }
 }
 
 
@@ -313,7 +313,7 @@ button.tarjeta-acceso {
 .tienda-canje strong{color:#f4c5d5}
 .tienda-estado{font-size:12px;color:#e4b8c8}
 .tienda-nota{font-size:12px;line-height:1.6;color:#d8c2cb}
-#navegacion-inferior{grid-template-columns:repeat(7,minmax(0,1fr))}
+#navegacion-inferior{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
 #navegacion-inferior button{min-width:0;padding-left:1px;padding-right:1px}
 
 .tienda-tarjeta-vale{
@@ -343,7 +343,7 @@ button.tarjeta-acceso {
   transform:scale(.98);
 }
 
-@media(max-width:380px){.tienda-catalogo{grid-template-columns:1fr}#navegacion-inferior button{font-size:8px}}
+@media(max-width:380px){.tienda-catalogo{grid-template-columns:1fr}#navegacion-inferior button{font-size:18px}}
 
 
 /* === ENTRE NOSOTROS: RUEDA DE LUJO === */
@@ -1611,6 +1611,164 @@ header h1, h1 { font-family: Qwigley, cursive; }
   font-display: swap;
 }
 
+
+.avatar-junto-nombre {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex: 0 0 24px;
+  vertical-align: middle;
+}
+.perfil-resumen-persona {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+}
+.perfil-resumen-persona .nombre-perfil {
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+
+.campo-nombre-avatar {
+  width: 100%;
+  box-sizing: border-box;
+}
+.campo-nombre-avatar .nombre-con-avatar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 0 !important;
+  border-radius: 10px;
+  padding: 3px 8px;
+  overflow: hidden;
+}
+.campo-nombre-avatar .nombre-con-avatar input {
+  flex: 0 1 auto;
+  width: auto;
+  min-width: 24px;
+  max-width: calc(100% - 36px);
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  box-shadow: none;
+  background: transparent;
+  padding: 8px 0 8px 4px;
+  margin: 0;
+}
+.campo-nombre-avatar .nombre-con-avatar .avatar-junto-nombre {
+  position: static;
+  display: block;
+  transform: none;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* BARRA INFERIOR: ANCHO COMPLETO Y ELEMENTOS ALINEADOS */
+#navegacion-inferior {
+  width: 100vw !important;
+  max-width: none !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 2px !important;
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+}
+#navegacion-inferior button {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 0 !important;
+  padding: 7px 0 !important;
+  font-size: 15px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+}
+#navegacion-inferior .nav-icono {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 0 3px !important;
+}
+#navegacion-inferior .nav-imagen {
+  width: 33px !important;
+  height: 33px !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+}
+/* FIN BARRA INFERIOR */
+
+
+/* TEXTO HOT ROULETTE: PRUEBA */
+.ruleta-contenedor #ruleta-hotroulette-texto {
+  position: absolute !important;
+  left: calc(50% + 83px) !important;
+  top: calc(100% + 4px) !important;
+  transform: translate(-50%, -50%) !important;
+  width: 260px;
+  text-align: center !important;
+  font-family: "Great Vibes", cursive !important;
+  font-size: 26px !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  color: #fff0a6 !important;
+  -webkit-text-stroke: 1.5px #000;
+  paint-order: stroke fill !important;
+  text-shadow: 1px 1px 2px #000;
+  z-index: 21 !important;
+  pointer-events: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+
+}
+
+
+.ruleta-contenedor #ruleta-hotroulette-texto .hot-palabra {
+  display: inline-block;
+  transform: rotate(16deg);
+}
+.ruleta-contenedor #ruleta-hotroulette-texto .roulette-palabra {
+  display: inline-block;
+  transform: rotate(-16deg);
+}
+
+
+/* ACCESO PULSABLE A HOT ROULETTE */
+.ruleta-contenedor #boton-abrir-ruleta-hot {
+  position: absolute !important;
+  left: calc(50% + 93px) !important;
+  top: calc(100% - 28px) !important;
+  width: 208px !important;
+  height: 208px !important;
+  transform: translate(-50%, -50%) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  z-index: 22 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+.ruleta-contenedor #boton-abrir-ruleta-hot:focus-visible {
+  outline: 2px solid #F7D9A5 !important;
+  outline-offset: 3px !important;
+}
+
 </style>
 <link rel="stylesheet" href="/css/diario-libro.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -1747,6 +1905,17 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
   box-shadow:
     inset 0 2px 4px rgba(0,0,0,.48),
     0 1px 0 rgba(247,217,165,.08);
+}
+
+/* Evitar el borde doble en los campos de nombre */
+.perfil[data-vista="nosotros"] .campo-nombre-avatar .nombre-con-avatar input {
+  width: auto !important;
+  max-width: calc(100% - 36px);
+  border: 1px solid #B89A62 !important;
+  border-radius: 10px !important;
+  background: linear-gradient(145deg, #130b10, #211018) !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 /* Tarjetas de los dos perfiles con relieve */
@@ -1920,6 +2089,333 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
   outline: 2px solid #F7D9A5;
   outline-offset: 3px;
 }
+</style>
+
+<style>
+
+/* HOT_INTERFAZ_FINAL */
+#pantalla-ruleta-hot {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  background: #10090d !important;
+}
+#pantalla-ruleta-hot .hot-interfaz-final {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  background: #10090d;
+}
+#pantalla-ruleta-hot .hot-escena {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 656 / 1632;
+  overflow: hidden;
+  background: #10090d;
+}
+#pantalla-ruleta-hot .hot-interfaz-fondo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+#pantalla-ruleta-hot .hot-capa {
+  position: absolute;
+  display: block;
+  max-width: none;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+#pantalla-ruleta-hot .hot-disco {
+  left: 35.232642%;
+  top: 39.724565%;
+  width: 32.3125%;
+  z-index: 2;
+  transform: rotate(0deg);
+  transform-origin: 50% 50.8%;
+  transition: transform 4s cubic-bezier(.12,.72,.12,1);
+}
+#pantalla-ruleta-hot .hot-marco {
+  left: 35.099543%;
+  top: 40.699530%;
+  width: 33.822917%;
+  z-index: 3;
+}
+#pantalla-ruleta-hot .hot-aro-led {
+  position: absolute;
+  left: 33.490766%;
+  top: 43.666668%;
+  width: 35.385417%;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  border: 3px solid #c000ff;
+  border-radius: 50%;
+  box-shadow: 0 0 4px #fff, 0 0 9px #f0a0ff,
+    0 0 18px #e000ff, 0 0 32px #c000ff,
+    0 0 48px rgba(192,0,255,.95),
+    inset 0 0 6px #fff, inset 0 0 14px #e000ff;
+  z-index: 4;
+  pointer-events: none;
+}
+#pantalla-ruleta-hot .hot-boton-girar {
+  position: absolute;
+  left: 80.4%;
+  top: 67.9%;
+  width: 8.9%;
+  aspect-ratio: 1;
+  z-index: 8;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+#pantalla-ruleta-hot .hot-boton-girar:disabled {
+  cursor: wait;
+}
+#pantalla-ruleta-hot .hot-volver-imagen {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  right: 12px;
+  z-index: 20;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+#pantalla-ruleta-hot .hot-volver-imagen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#pantalla-ruleta-hot .hot-zona-tablero {
+  width: 100%;
+  max-width: 448px;
+  margin: 22px auto 32px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  color: #f7d9a5;
+}
+#pantalla-ruleta-hot .hot-titulo-tablero {
+  margin: 12px 0;
+  text-align: center;
+  font-size: 20px;
+  color: #f7d9a5;
+}
+#pantalla-ruleta-hot .hot-estado {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #681b32;
+  border-radius: 8px;
+  background: #211018;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+}
+#pantalla-ruleta-hot .hot-tablero-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 848 / 1264;
+}
+#pantalla-ruleta-hot .hot-tablero-imagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* HOT_CALIBRADOR_TABLERO_V1 */
+#pantalla-ruleta-hot .hot-calibrador-abrir,
+#pantalla-ruleta-hot .hot-calibrador {
+  display: none !important;
+}
+
+#pantalla-ruleta-hot .hot-calibrador-abrir {
+  display:block;width:100%;min-height:42px;margin:10px 0;padding:9px;
+  border:1px solid #F7D9A5;border-radius:8px;background:#681b32;
+  color:#fff;font-weight:bold;
+}
+#pantalla-ruleta-hot .hot-calibrador {
+  margin:10px 0 16px;padding:12px;border:1px solid #681b32;
+  border-radius:10px;background:#211018;color:#F7D9A5;
+}
+#pantalla-ruleta-hot .hot-calibrador[hidden] {display:none!important}
+#pantalla-ruleta-hot .hot-calibrador label {
+  display:block;margin:12px 0 5px;font-size:14px;
+}
+#pantalla-ruleta-hot .hot-calibrador input[type="range"] {
+  display:block;width:100%;min-height:36px;accent-color:#c52c4b;
+}
+#pantalla-ruleta-hot .hot-cal-valor {
+  float:right;font-variant-numeric:tabular-nums;
+}
+#pantalla-ruleta-hot .hot-cal-botones {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px;margin-top:12px;
+}
+#pantalla-ruleta-hot .hot-cal-botones button {
+  min-height:42px;padding:7px;border:1px solid #a34a60;
+  border-radius:7px;background:#681b32;color:white;
+}
+#pantalla-ruleta-hot #hot-tablero-wrap {transform-origin:50% 50%}
+
+#pantalla-ruleta-hot .hot-casilla {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 13%;
+  height: 5.2%;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  padding: 0;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+#pantalla-ruleta-hot .hot-casilla:focus-visible {
+  outline: 2px solid #f7d9a5;
+}
+#pantalla-ruleta-hot .hot-casilla.ganadora {
+  border-color: #ffe66a;
+  background: #ffd52f88;
+  box-shadow: 0 0 8px 4px #ffc928;
+  animation: hot-brillo .7s infinite alternate;
+}
+@keyframes hot-brillo {
+  to { filter: brightness(1.8); }
+}
+#hot-modal-reto {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  box-sizing: border-box;
+  background: #0a0408ef;
+}
+#hot-modal-reto.abierto {
+  display: flex;
+}
+#hot-modal-reto .hot-pergamino {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(88vw, 400px);
+  height: min(76dvh, 540px);
+  padding: 17% 13%;
+  box-sizing: border-box;
+  background: url("assets/ruleta-hot-test/Perga.png") center / 100% 100% no-repeat;
+  color: #35120e;
+  text-align: center;
+}
+#hot-texto-reto {
+  max-height: 72%;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: Georgia, serif;
+  font-size: clamp(16px, 4.4vw, 23px);
+  line-height: 1.35;
+}
+#hot-cerrar-reto {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #681b32;
+  border-radius: 20px;
+  padding: 10px 22px;
+  background: #211018;
+  color: #f7d9a5;
+  font-size: 15px;
+}
+@media (prefers-reduced-motion: reduce) {
+  #pantalla-ruleta-hot .hot-casilla.ganadora {
+    animation: none;
+  }
+}
+</style>
+<style>
+/* HOT_IFRAME_PANTALLA_COMPLETA */
+#pantalla-ruleta-hot > iframe {
+  position: fixed !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 100dvh !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  z-index: 9999 !important;
+  background: #10090d !important;
+}
+</style>
+
+<style>
+/* PANTALLA COMPLETA DADOS EROTICOS */
+body[data-vista-actual="dados-eroticos"] {
+  overflow: hidden !important;
+}
+body[data-vista-actual="dados-eroticos"] .portada-cabecera,
+body[data-vista-actual="dados-eroticos"] .portada-fecha,
+body[data-vista-actual="dados-eroticos"] .pie {
+  display: none !important;
+}
+body[data-vista-actual="dados-eroticos"] #pantalla-dados-eroticos {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  z-index: 100000 !important;
+  background: #10090d !important;
+}
+
+body[data-vista-actual="dados-eroticos"] #letreroReglasApp {
+  position: absolute !important;
+  z-index: 100001 !important;
+  top: auto !important;
+  bottom: calc(18% - 125px) !important;
+  left: calc(max(12px, (100vw - 430px)/2) + min(10.75px, 2.5vw) - 10px) !important;
+  width: min(60vw, 260px) !important;
+  height: auto !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+\nbody[data-vista-actual="dados-eroticos"] #pantalla-dados-eroticos iframe {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  border: 0 !important;
+}
+/* FIN PANTALLA COMPLETA DADOS EROTICOS */
 </style>
 
 </head>
@@ -2111,6 +2607,22 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
   </div>
   <p id="ruleta-tiradas-texto" class="ruleta-tiradas-texto">Tienes 2 tiradas disponibles este mes ❤️</p>
   <div class="ruleta-contenedor">
+    <video id="ruleta-hotboton"
+           src="./assets/Hotboton4-sin-fondo.webm"
+           autoplay loop muted playsinline
+           aria-hidden="true"></video>
+    <video id="ruleta-dadosboton"
+           src="./assets/dados-eroticos/Botondados.mp4"
+           autoplay loop muted playsinline
+           aria-hidden="true"></video>
+    <button type="button" id="boton-abrir-dados"
+            aria-label="Abrir Dados del amor"
+            onclick="mostrarVista('dados-eroticos')"></button>
+    <div id="ruleta-dados-texto" aria-label="Dados del amor">Dados del amor</div>
+    <button type="button" id="boton-abrir-ruleta-hot"
+            aria-label="Abrir Hot Roulette"
+            onclick="mostrarVista('ruleta-hot')"></button>
+<div id="ruleta-hotroulette-texto" aria-label="Hot Roulette"><span class="hot-palabra">Hot</span><span class="roulette-palabra">Roulette</span></div>
     <div class="ruleta-flecha">▼</div>
     <div class="ruleta-disco" id="ruleta-disco" aria-label="Ruleta de premios">
       <div class="ruleta-gajos" id="ruleta-gajos" aria-hidden="true"></div>
@@ -2138,7 +2650,30 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
     </div>
   </div>
   <div class="ruleta-nota"><span>🔒</span><p><strong>Versión de prueba:</strong> el resultado se guarda solo en este dispositivo. Aún falta sincronizarlo y proteger el límite mensual con Firebase.</p></div>
+
+
 </section>
+
+    <section class="sobre" data-vista="ruleta-hot"
+ id="pantalla-ruleta-hot" style="display:none;padding:0;overflow:hidden">
+ <iframe
+   src="prueba-resultado-hot.html"
+   title="Hot Roulette"
+   style="display:block;width:100%;height:100dvh;min-height:100dvh;border:0;background:#10090d"
+   allow="fullscreen">
+ </iframe>
+</section>
+
+<section class="sobre" data-vista="dados-eroticos" id="pantalla-dados-eroticos" style="display:none;padding:0;overflow:hidden">\n <img id="letreroReglasApp" src="0/Dados/Reglas.png" alt="Reglas de los dados">\n
+ <iframe src="prueba-dados-eroticos.html?integrado=1" title="Dados Eróticos" style="display:block;width:100%;height:100dvh;min-height:100dvh;border:0;background:#10090d" allow="autoplay; fullscreen"></iframe>
+</section>
+<div id="hot-modal-reto" role="dialog" aria-modal="true"
+     aria-label="Reto seleccionado">
+  <div class="hot-pergamino">
+    <div id="hot-texto-reto">Reto</div>
+    <button id="hot-cerrar-reto" type="button">Cerrar</button>
+  </div>
+</div>
 
     <section class="perfil" data-vista="nosotros">
       <div class="hora">Solo nosotros · Nuestros perfiles</div>
@@ -2149,10 +2684,13 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
       </div>
 
       <label for="miNombre">Tu nombre o apodo</label>
-      <input id="miNombre" maxlength="30" placeholder="Por ejemplo, mi amor">
+      <div class="campo-nombre-avatar">
+        <input id="miNombre" maxlength="30" placeholder="Por ejemplo, mi amor">
+        <img class="avatar-junto-nombre" id="miniMiAvatar" alt="" aria-hidden="true">
+      </div>
 
       <label for="miAvatar">Tu avatar</label>
-      <div class="cuadricula-avatares" id="cuadriculaMiAvatar" role="group" aria-label="Tu avatar"></div>
+      <div class="cuadricula-avatares" id="cuadriculaMiAvatar" role="group" aria-label="Tu avatar" style="display:none"></div>
       <select id="miAvatar" aria-label="Tu avatar" style="display:none">
         <option value="/assets/iconos-realistas/Icono1.png">Corazón</option>
         <option value="/assets/iconos-realistas/perfil-rosa.png">Rosa</option>
@@ -2165,10 +2703,13 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
       </select>
 
       <label for="parejaNombre">Nombre o apodo de tu pareja</label>
-      <input id="parejaNombre" maxlength="30" placeholder="Su nombre o apodo">
+      <div class="campo-nombre-avatar">
+        <input id="parejaNombre" maxlength="30" placeholder="Su nombre o apodo">
+        <img class="avatar-junto-nombre" id="miniParejaAvatar" alt="" aria-hidden="true">
+      </div>
 
       <label for="parejaAvatar">Avatar de tu pareja</label>
-      <div class="cuadricula-avatares" id="cuadriculaParejaAvatar" role="group" aria-label="Avatar de tu pareja"></div>
+      <div class="cuadricula-avatares" id="cuadriculaParejaAvatar" role="group" aria-label="Avatar de tu pareja" style="display:none"></div>
       <select id="parejaAvatar" aria-label="Avatar de tu pareja" style="display:none">
         <option value="/assets/iconos-realistas/Icono1.png">Corazón</option>
         <option value="/assets/iconos-realistas/perfil-rosa.png">Rosa</option>
@@ -2182,11 +2723,11 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
 
       <div class="pareja-resumen">
         <div>
-          <div class="avatar" id="vistaMiAvatar">❤️</div>
+          <div class="avatar" id="vistaMiAvatar" role="button" tabindex="0" aria-label="Elegir tu avatar" aria-expanded="false">❤️</div>
           <div class="nombre-perfil" id="vistaMiNombre">Tú</div>
         </div>
         <div>
-          <div class="avatar" id="vistaParejaAvatar">💕</div>
+          <div class="avatar" id="vistaParejaAvatar" role="button" tabindex="0" aria-label="Elegir avatar de tu pareja" aria-expanded="false">💕</div>
           <div class="nombre-perfil" id="vistaParejaNombre">Tu pareja</div>
         </div>
       </div>
@@ -2204,7 +2745,7 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
 
       <button type="button" class="lugares-acceso" onclick="mostrarVista('lugares-especiales')">
         <img src="/assets/globo-lugares-recortado.png" alt="Globo terráqueo" style="display:block;width:190px;height:190px;object-fit:contain;margin:0 auto -32px;transform:translateY(20px) scale(1.10);transform-origin:center bottom;">
-        <h3>Nuestros lugares especiales</h3>
+        <h3>Nuestro Mundo</h3>
         <p>Los rincones que forman nuestra historia.</p>
       </button>
 
@@ -2213,21 +2754,52 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
 
     <section class="perfil lugares-contenedor" data-vista="lugares-especiales" style="display:none">
   <div class="hora">Solo nosotros</div>
-  <div style="text-align:center;margin:12px auto;"><img src="/assets/globo-lugares-recortado.png" alt="Globo terráqueo" style="display:block;width:300px;height:300px;object-fit:contain;margin:0 auto -36px;transform:translateY(20px) scale(1.15);transform-origin:center bottom;"></div>
-  <h2>Nuestros lugares especiales</h2>
+  <div style="text-align:center;margin:12px auto;">
+    <img src="/assets/globo-lugares-recortado.png" alt="Globo terráqueo"
+      style="display:block;width:300px;height:300px;object-fit:contain;margin:0 auto -36px;transform:translateY(20px) scale(1.15);transform-origin:center bottom;">
+  </div>
+  <h2>Nuestro Mundo</h2>
+
   <div class="lugares-acciones">
-    <button type="button">Ver todos nuestros lugares</button>
-    <button type="button">Nuestros lugares</button>
-    <button type="button" class="lugar-anadir">+ Añadir lugar</button>
+    <button type="button" id="lugares-ver-todos">Ver todos nuestros lugares</button>
+    <button type="button" id="lugares-mostrar-lista">Nuestros lugares</button>
+    <button type="button" class="lugar-anadir" id="lugares-abrir-formulario">+ Añadir lugar</button>
   </div>
+
+  <div id="formulario-lugar" class="lugar-formulario" hidden>
+    <h3>Añadir un lugar especial</h3>
+    <label for="lugar-nombre">Nombre del lugar</label>
+    <input id="lugar-nombre" type="text" maxlength="100" placeholder="Ej.: Nuestro primer paseo">
+    <label for="lugar-categoria">Categoría</label>
+    <select id="lugar-categoria">
+      <option value="Citas románticas">Citas románticas</option>
+      <option value="Restaurantes y cafeterías">Restaurantes y cafeterías</option>
+      <option value="Viajes y escapadas">Viajes y escapadas</option>
+      <option value="Paseos y lugares especiales">Paseos y lugares especiales</option>
+    </select>
+    <label class="lugar-favorito">
+      <input id="lugar-favorito" type="checkbox"> Guardar también como favorito
+    </label>
+    <div class="lugares-acciones">
+      <button type="button" id="lugar-usar-ubicacion">Usar mi ubicación</button>
+      <button type="button" id="lugar-elegir-mapa">Elegir punto en el mapa</button>
+      <button type="button" class="lugar-anadir" id="lugar-guardar">Guardar lugar</button>
+      <button type="button" id="lugar-cancelar">Cancelar</button>
+    </div>
+    <p id="lugar-coordenadas">Selecciona una ubicación en el mapa o usa tu ubicación.</p>
+  </div>
+
+  <p id="estado-ubicacion" role="status" aria-live="polite"></p>
   <div id="mapa-lugares"></div>
+
   <div class="lugares-categorias">
-    <button type="button">Citas románticas</button>
-    <button type="button">Restaurantes y cafeterías</button>
-    <button type="button">Viajes y escapadas</button>
-    <button type="button">Paseos y lugares especiales</button>
-    <button type="button">Favoritos</button>
+    <button type="button" data-categoria="Citas románticas">Citas románticas</button>
+    <button type="button" data-categoria="Restaurantes y cafeterías">Restaurantes y cafeterías</button>
+    <button type="button" data-categoria="Viajes y escapadas">Viajes y escapadas</button>
+    <button type="button" data-categoria="Paseos y lugares especiales">Paseos y lugares especiales</button>
+    <button type="button" data-categoria="Favoritos">Favoritos</button>
   </div>
+  <div id="lista-lugares" class="lista-lugares" hidden></div>
   <button type="button" onclick="mostrarVista('nosotros')">Volver a Nosotros</button>
 </section>
 
@@ -2359,7 +2931,7 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
 </nav>
     <script>
     function mostrarVista(nombre) {
-      const validas = ['inicio','mensajes','retos','diario','nosotros','ruleta','tienda','pregunta-diaria','lugares-especiales'];
+      const validas = ['inicio','mensajes','retos','diario','nosotros','ruleta','ruleta-hot','dados-eroticos','tienda','pregunta-diaria','lugares-especiales'];
       if (!validas.includes(nombre)) return;
       document.body.dataset.vistaActual = nombre;
       document.dispatchEvent(new CustomEvent('vista-cambiada', { detail: { nombre: nombre } }));
@@ -2379,7 +2951,8 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
     document.querySelectorAll('[data-vista-menu]').forEach(function(b) {
       b.addEventListener('click',function() { mostrarVista(b.dataset.vistaMenu); });
     });
-    mostrarVista('inicio');
+    const destinoInicial = new URLSearchParams(window.location.search).get('abrir') || 'inicio';
+    mostrarVista(destinoInicial);
     </script>
 
     </div>
@@ -2470,6 +3043,10 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
           selector.value = opcion.value;
           selector.dispatchEvent(new Event('change', { bubbles: true }));
           actualizarSeleccionCuadricula(selectId, gridId);
+          cuadricula.style.display = 'none';
+
+          const vistaId = selectId === 'miAvatar' ? 'vistaMiAvatar' : 'vistaParejaAvatar';
+          document.getElementById(vistaId).setAttribute('aria-expanded', 'false');
         });
 
         cuadricula.appendChild(boton);
@@ -2496,6 +3073,22 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
       actualizarVistaPerfiles();
     }
 
+
+    function colocarAvatarTrasNombre(inputId, avatarId) {
+      const input = document.getElementById(inputId);
+      const avatar = document.getElementById(avatarId);
+      const contenedor = input.parentElement;
+
+      let linea = contenedor.querySelector('.nombre-con-avatar');
+      if (!linea) {
+        linea = document.createElement('div');
+        linea.className = 'nombre-con-avatar';
+        contenedor.insertBefore(linea, input);
+        linea.appendChild(input);
+        linea.appendChild(avatar);
+      }
+    }
+
     function actualizarVistaPerfiles() {
       const miNombre = document.getElementById('miNombre').value.trim() || 'Tú';
       const parejaNombre = document.getElementById('parejaNombre').value.trim() || 'Tu pareja';
@@ -2511,8 +3104,18 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
         contenedor.replaceChildren(imagen);
       };
 
-      mostrar('vistaMiAvatar', document.getElementById('miAvatar').value, 'Tu avatar');
-      mostrar('vistaParejaAvatar', document.getElementById('parejaAvatar').value, 'Avatar de tu pareja');
+      const rutaMiAvatar = normalizarAvatar(document.getElementById('miAvatar').value);
+      const rutaParejaAvatar = normalizarAvatar(document.getElementById('parejaAvatar').value);
+
+      mostrar('vistaMiAvatar', rutaMiAvatar, 'Tu avatar');
+      mostrar('vistaParejaAvatar', rutaParejaAvatar, 'Avatar de tu pareja');
+
+      document.getElementById('miniMiAvatar').src = rutaMiAvatar;
+      document.getElementById('miniParejaAvatar').src = rutaParejaAvatar;
+
+      colocarAvatarTrasNombre('miNombre', 'miniMiAvatar');
+      colocarAvatarTrasNombre('parejaNombre', 'miniParejaAvatar');
+
       actualizarSeleccionCuadricula('miAvatar', 'cuadriculaMiAvatar');
       actualizarSeleccionCuadricula('parejaAvatar', 'cuadriculaParejaAvatar');
     }
@@ -2538,6 +3141,29 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
 
     construirCuadriculaAvatar('miAvatar', 'cuadriculaMiAvatar');
     construirCuadriculaAvatar('parejaAvatar', 'cuadriculaParejaAvatar');
+
+    [
+      ['vistaMiAvatar', 'cuadriculaMiAvatar'],
+      ['vistaParejaAvatar', 'cuadriculaParejaAvatar']
+    ].forEach(([avatarId, cuadriculaId]) => {
+      const avatar = document.getElementById(avatarId);
+      const cuadricula = document.getElementById(cuadriculaId);
+
+      const alternar = () => {
+        const abrir = cuadricula.style.display === 'none';
+        cuadricula.style.display = abrir ? '' : 'none';
+        avatar.setAttribute('aria-expanded', String(abrir));
+      };
+
+      avatar.addEventListener('click', alternar);
+      avatar.addEventListener('keydown', evento => {
+        if (evento.key === 'Enter' || evento.key === ' ') {
+          evento.preventDefault();
+          alternar();
+        }
+      });
+    });
+
     cargarPerfiles();
 
   </script>
@@ -2624,10 +3250,466 @@ a:active {
   border-color: rgba(247,217,165,.75) !important;
   -webkit-tap-highlight-color: transparent !important;
 }
+
+/* AJUSTE CENTRADO RULETA PREMIOS */
+.ruleta-contenedor {
+  width: min(80vw, 300px) !important;
+  max-width: 300px !important;
+  left: 50% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  transform: translateX(-50%) !important;
+  box-sizing: border-box !important;
+}
+/* FIN AJUSTE CENTRADO RULETA PREMIOS */
+
+/* HOT BUTTON: POSICIÓN INICIAL DENTRO DE LA RULETA */
+#ruleta-contenedor #ruleta-hotboton,
+.ruleta-contenedor #ruleta-hotboton {
+  position: absolute !important;
+  left: calc(50% + 83px) !important;
+  top: calc(100% - 28px) !important;
+  width: 208px !important;
+  height: 208px !important;
+  transform: translate(-50%, -50%) !important;
+  object-fit: contain !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+/* VIDEO Y ACCESO DADOS DEL AMOR */
+.ruleta-contenedor #ruleta-dadosboton {
+  position: absolute !important;
+  left: calc(50% - 83px) !important;
+  top: calc(100% - 28px) !important;
+  width: 70px !important;
+  height: 70px !important;
+  transform: translate(-50%, -50%) !important;
+  object-fit: contain !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+.ruleta-contenedor #boton-abrir-dados {
+  position: absolute !important;
+  left: calc(50% - 83px) !important;
+  top: calc(100% - 28px) !important;
+  width: 70px !important;
+  height: 70px !important;
+  transform: translate(-50%, -50%) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  z-index: 22 !important;
+  cursor: pointer !important;
+}
+.ruleta-contenedor #ruleta-dados-texto {
+  position: absolute !important;
+  left: calc(50% - 83px) !important;
+  top: calc(100% + 4px) !important;
+  transform: translate(-50%, -50%) !important;
+  width: 260px !important;
+  text-align: center !important;
+  font-family: "Great Vibes", cursive !important;
+  font-size: 26px !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+  color: #fff0a6 !important;
+  -webkit-text-stroke: 1.5px #000;
+  paint-order: stroke fill !important;
+  text-shadow: 1px 1px 2px #000;
+  z-index: 21 !important;
+  pointer-events: none !important;
+}
+
+
+
+
+
 </style>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script type="module" src="/js/lugares-especiales.js"></script>
 <script type="module" src="/js/pregunta-diaria.js"></script>
+
+<script>
+(() => {
+  const root = document.getElementById('pantalla-ruleta-hot');
+  if (!root || root.dataset.hotIntegrada === '1') return;
+  root.dataset.hotIntegrada = '1';
+
+  const $ = id => document.getElementById(id);
+  const disco = $('hot-disco');
+  const boton = $('hot-boton-girar');
+  const estado = $('hot-estado');
+  const tablero = $('hot-tablero-wrap');
+  const modal = $('hot-modal-reto');
+  const textoReto = $('hot-texto-reto');
+  const cerrar = $('hot-cerrar-reto');
+
+  let retos = [];
+  let ganador = -1;
+  let girando = false;
+  let vueltas = 0;
+
+  const centros = [
+    [94.40,970.51],[267.36,979.72],[445.34,976.25],[624.16,965.33],
+    [116.13,622.68],[277.14,620.43],[441.23,623.10],[602.14,627.18],
+    [123.58,485.70],[273.49,485.91],[439.16,484.34],[596.34,491.51],
+    [136.11,347.29],[284.24,349.07],[440.22,351.39],[590.55,348.93],
+    [138.38,229.16],[278.87,223.30],[439.24,216.81],[594.81,218.11],
+    [99.84,793.27],[273.04,788.61],[444.46,795.16],[608.30,793.59]
+  ];
+
+  centros.forEach((xy, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'hot-casilla';
+    b.setAttribute('aria-label', 'Abrir reto de la casilla ' + (i + 1));
+    b.style.left = (xy[0] / 848 * 100) + '%';
+    b.style.top = (xy[1] / 1264 * 100) + '%';
+    b.addEventListener('click', () => {
+      if (girando || ganador !== i || !retos[i]) return;
+      textoReto.textContent = retos[i];
+      modal.classList.add('abierto');
+      cerrar.focus();
+    });
+    tablero.appendChild(b);
+  });
+
+  async function cargarRetos() {
+    try {
+      const res = await fetch('prueba-tablero-hot.html', {cache: 'no-store'});
+      if (!res.ok) throw Error('No se encuentra el archivo de retos.');
+      const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+      retos = [...doc.querySelectorAll('article.reto')]
+        .map(a => (a.innerText || a.textContent || '').trim()).filter(Boolean);
+      if (retos.length < 24) {
+        retos = [...doc.querySelectorAll('.reto')]
+          .map(a => (a.innerText || a.textContent || '').trim()).filter(Boolean);
+      }
+      if (retos.length < 24) {
+        estado.textContent = 'Solo se han encontrado ' + retos.length + ' retos; hacen falta 24.';
+        return;
+      }
+      estado.textContent = 'Lista para jugar. Pulsa el botón dibujado en la interfaz.';
+      boton.disabled = false;
+    } catch (e) {
+      estado.textContent = 'No se pudieron cargar los retos: ' + e.message;
+    }
+  }
+
+  boton.addEventListener('click', () => {
+    if (girando || retos.length < 24) return;
+    girando = true;
+    boton.disabled = true;
+    ganador = Math.floor(Math.random() * 24);
+    tablero.querySelectorAll('.hot-casilla')
+      .forEach(b => b.classList.remove('ganadora'));
+
+    const destino = (360 - ganador * (360 / 24)) % 360;
+    vueltas += 360 * 6 + destino;
+    disco.style.transform = 'rotate(' + vueltas + 'deg)';
+    estado.textContent = 'Girando…';
+
+    let finalizado = false;
+    const terminar = () => {
+      if (finalizado) return;
+      finalizado = true;
+      disco.removeEventListener('transitionend', alFinalizar);
+      girando = false;
+      boton.disabled = false;
+      const casilla = tablero.querySelectorAll('.hot-casilla')[ganador];
+      if (casilla) casilla.classList.add('ganadora');
+      estado.textContent = 'Resultado: casilla ' + (ganador + 1) +
+        '. Baja al tablero y pulsa la casilla iluminada para abrir el pergamino.';
+    };
+    const alFinalizar = e => {
+      if (e.propertyName === 'transform') terminar();
+    };
+    disco.addEventListener('transitionend', alFinalizar);
+    window.setTimeout(terminar, 4500);
+  });
+
+  function cerrarModal() {
+    modal.classList.remove('abierto');
+  }
+  cerrar.addEventListener('click', cerrarModal);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) cerrarModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('abierto')) cerrarModal();
+  });
+
+  cargarRetos();
+})();
+</script>
+
+
+<script>
+(() => {
+  const root = document.getElementById('pantalla-ruleta-hot');
+  if (!root || root.dataset.hotCalibrador === '1') return;
+  const $ = id => document.getElementById(id);
+  const wrap = $('hot-tablero-wrap');
+  const panel = $('hot-calibrador');
+  const abrir = $('hot-calibrador-abrir');
+  const mensaje = $('hot-cal-mensaje');
+  if (!wrap || !panel || !abrir) return;
+  root.dataset.hotCalibrador = '1';
+
+  const clave = 'entreNosotrosHotTableroCalibracionV1';
+  const claveInicial = 'entreNosotrosHotTableroInicialV1';
+  const base = {x:0,y:0,escala:100,inclinacion:0};
+  let ajuste = {...base};
+
+  function validar(v) {
+    if (!v || !['x','y','escala','inclinacion'].every(k => Number.isFinite(v[k]))) return null;
+    return {
+      x:Math.max(-35,Math.min(35,v.x)),
+      y:Math.max(-35,Math.min(35,v.y)),
+      escala:Math.max(50,Math.min(150,v.escala)),
+      inclinacion:Math.max(-30,Math.min(30,v.inclinacion))
+    };
+  }
+  function leer(claveLocal) {
+    try { return validar(JSON.parse(localStorage.getItem(claveLocal))); }
+    catch (_) { return null; }
+  }
+  function aplicar() {
+    $('hot-cal-x').value = ajuste.x;
+    $('hot-cal-y').value = ajuste.y;
+    $('hot-cal-escala').value = ajuste.escala;
+    $('hot-cal-inclinacion').value = ajuste.inclinacion;
+    $('hot-cal-x-valor').textContent = ajuste.x.toFixed(1)+'%';
+    $('hot-cal-y-valor').textContent = ajuste.y.toFixed(1)+'%';
+    $('hot-cal-escala-valor').textContent = ajuste.escala+'%';
+    $('hot-cal-inclinacion-valor').textContent = ajuste.inclinacion+'°';
+
+    // El tablero y las 24 casillas son hijos del mismo contenedor:
+    // se transforman juntos, sin alterar las posiciones guardadas de las casillas.
+    wrap.style.transform =
+      `translate(${ajuste.x}%,${ajuste.y}%) scale(${ajuste.escala/100}) perspective(900px) rotateX(${ajuste.inclinacion}deg)`;
+  }
+  function cambiar(k,v) {
+    ajuste[k] = Number(v);
+    aplicar();
+    mensaje.textContent = 'Vista previa. Pulsa Guardar cambios para conservarla.';
+  }
+
+  $('hot-cal-x').addEventListener('input',e=>cambiar('x',e.target.value));
+  $('hot-cal-y').addEventListener('input',e=>cambiar('y',e.target.value));
+  $('hot-cal-escala').addEventListener('input',e=>cambiar('escala',e.target.value));
+  $('hot-cal-inclinacion').addEventListener('input',e=>cambiar('inclinacion',e.target.value));
+
+  abrir.addEventListener('click',()=>{
+    panel.hidden = !panel.hidden;
+    abrir.setAttribute('aria-expanded',String(!panel.hidden));
+    abrir.textContent = panel.hidden ? 'Calibrar tablero' : 'Ocultar calibrador';
+  });
+  $('hot-cal-restablecer').addEventListener('click',()=>{
+    ajuste={...base};aplicar();
+    mensaje.textContent='Vista previa restablecida. Guarda si quieres conservarla.';
+  });
+  $('hot-cal-guardar').addEventListener('click',()=>{
+    try {
+      localStorage.setItem(clave,JSON.stringify(ajuste));
+      mensaje.textContent='Ajustes guardados.';
+    } catch (_) { mensaje.textContent='No se pudieron guardar los ajustes.'; }
+  });
+  $('hot-cal-guardar-inicial').addEventListener('click',()=>{
+    try {
+      localStorage.setItem(claveInicial,JSON.stringify(ajuste));
+      mensaje.textContent='Posición inicial guardada.';
+    } catch (_) { mensaje.textContent='No se pudo guardar la posición inicial.'; }
+  });
+  $('hot-cal-restaurar-inicial').addEventListener('click',()=>{
+    const inicial=leer(claveInicial);
+    if (!inicial) { mensaje.textContent='Primero guarda una posición inicial.';return; }
+    ajuste=inicial;aplicar();
+    mensaje.textContent='Posición inicial recuperada.';
+  });
+  $('hot-cal-exportar').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify({
+      pantalla:'Hot Roulette',elemento:'Tablero3.png y sus 24 casillas',ajustes:ajuste
+    },null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download='ajustes-tablero-hot.json';a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    mensaje.textContent='Exportación preparada.';
+  });
+
+  ajuste=leer(clave)||{...base};
+  aplicar();
+})();
+</script>
+
+
+<!-- ILUMINACION_CARTEL_DADOS -->
+<script>
+(()=>{
+ const seccion=document.getElementById("pantalla-dados-eroticos");
+ if(!seccion)return;
+ const imagen=document.getElementById("letreroReglasApp");
+ const marco=seccion.querySelector("iframe");
+ if(!imagen||!marco)return;
+
+ const NS="http://www.w3.org/2000/svg";
+ const svg=document.createElementNS(NS,"svg");
+ svg.id="iluminacion-cartel-dados";
+ svg.setAttribute("viewBox","0 0 1379 752");
+ svg.setAttribute("preserveAspectRatio","none");
+ svg.setAttribute("aria-hidden","true");
+ svg.style.cssText="position:absolute;z-index:100002;pointer-events:none;overflow:visible;display:block";
+ seccion.appendChild(svg);
+
+ let coordenadas=null;
+ let pendiente=null;
+
+ function ajustar(){
+  const cs=getComputedStyle(imagen);
+  ["position","top","right","bottom","left","width","height","margin","transform","transform-origin","box-sizing"].forEach(prop=>{
+   svg.style.setProperty(prop,cs.getPropertyValue(prop));
+  });
+  svg.style.zIndex="100002";
+  svg.style.pointerEvents="none";
+  svg.style.overflow="visible";
+  svg.style.display="block";
+ }
+ ajustar();
+ window.addEventListener("resize",ajustar);
+ if("ResizeObserver" in window)new ResizeObserver(ajustar).observe(imagen);
+ new MutationObserver(ajustar).observe(seccion,{attributes:true,attributeFilter:["style","class"]});
+ new MutationObserver(ajustar).observe(document.body,{attributes:true,attributeFilter:["data-vista-actual"]});
+
+ function limpiar(){
+  svg.replaceChildren();
+  pendiente=null;
+ }
+
+ function iluminar(valores){
+  if(!coordenadas){pendiente=valores;return;}
+  svg.innerHTML=`
+   <defs>
+    <radialGradient id="brilloCartel">
+     <stop offset="0" stop-color="#ff365e" stop-opacity="0"/>
+     <stop offset=".48" stop-color="#ff365e" stop-opacity=".16"/>
+     <stop offset=".78" stop-color="#ff365e" stop-opacity=".68"/>
+     <stop offset="1" stop-color="#ff365e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="desenfoqueCartel" x="-100%" y="-100%" width="300%" height="300%">
+     <feGaussianBlur stdDeviation="13"/>
+    </filter>
+   </defs>`;
+
+  const columnas=[
+   {x1:114,x2:398},
+   {x1:424,x2:720},
+   {x1:739,x2:1036},
+   {x1:1061,x2:1345}
+  ];
+  const filas=[183,259,336,412,489,565,642];
+
+  svg.innerHTML=`
+   <style>
+    @keyframes pulsoCasilla {
+     from { opacity:.68; }
+     to { opacity:1; }
+    }
+    .brillo-casilla {
+     animation:pulsoCasilla 1.5s ease-in-out infinite alternate;
+    }
+   </style>
+   <defs>
+    <filter id="resplandorCasilla" x="-15%" y="-15%" width="130%" height="130%">
+     <feGaussianBlur stdDeviation="12" result="desenfoque"/>
+     <feMerge>
+      <feMergeNode in="desenfoque"/>
+      <feMergeNode in="SourceGraphic"/>
+     </feMerge>
+    </filter>
+   </defs>`;
+
+  valores.forEach((numero,i)=>{
+   const punto=coordenadas.coordenadas["d"+(i+1)+"_n"+numero];
+   if(!punto)return;
+
+   const columna=columnas[i];
+   const fila=numero-1;
+
+   const x=columna.x1+70;
+   const y=filas[fila]+4;
+   const ancho=columna.x2-columna.x1-79;
+   const alto=filas[fila+1]-filas[fila]-15;
+
+   const casilla=document.createElementNS(NS,"rect");
+   casilla.setAttribute("x",x);
+   casilla.setAttribute("y",y);
+   casilla.setAttribute("width",ancho);
+   casilla.setAttribute("height",alto);
+   casilla.setAttribute("rx",String(alto/2));
+   casilla.setAttribute("fill","#F7D9A5");
+   casilla.setAttribute("fill-opacity",".48");
+   casilla.setAttribute("stroke","#fff0b8");
+   casilla.setAttribute("stroke-width","10");
+   casilla.setAttribute("filter","url(#resplandorCasilla)");
+   casilla.setAttribute("class","brillo-casilla");
+   svg.appendChild(casilla);
+  });
+ }
+
+ fetch("assets/dados-eroticos/coordenadas-cartel.json")
+  .then(r=>{if(!r.ok)throw new Error("No se pudo cargar el archivo de coordenadas");return r.json();})
+  .then(datos=>{
+   coordenadas=datos;
+   if(pendiente){
+    const p=pendiente;
+    pendiente=null;
+    procesarResultado(p.mensaje,p.origen);
+   }
+  })
+  .catch(error=>console.error("Iluminación del cartel:",error));
+
+ function procesarResultado(mensaje, origen){
+  iluminar(mensaje.valores);
+  const marcas=mensaje.valores.map((numero,i)=>{
+   const clave="d"+(i+1)+"_n"+numero;
+   const punto=coordenadas.coordenadas[clave];
+   return {
+    dado:i+1,
+    numero,
+    clave,
+    existe:!!punto,
+    x:punto?Math.round(punto.x*1379):null,
+    y:punto?Math.round(punto.y*752):null
+   };
+  });
+  origen.postMessage({
+   canal:"dados-eroticos-cartel",
+   tipo:"diagnostico-tablero",
+   numero:mensaje.numero,
+   marcas
+  },window.location.origin);
+ }
+
+ window.addEventListener("message",event=>{
+  if(event.origin!==window.location.origin || event.source!==marco.contentWindow)return;
+  const mensaje=event.data;
+  if(!mensaje || mensaje.canal!=="dados-eroticos-cartel")return;
+  if(mensaje.tipo==="limpiar"){limpiar();return;}
+  if(mensaje.tipo!=="resultado" || !Array.isArray(mensaje.valores) || mensaje.valores.length!==4)return;
+  if(!mensaje.valores.every(n=>Number.isInteger(n)&&n>=1&&n<=6))return;
+  if(!coordenadas){
+   pendiente={mensaje,origen:event.source};
+   return;
+  }
+  procesarResultado(mensaje,event.source);
+ });
+})();
+</script>
+
 </body>
 </html>
