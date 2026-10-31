@@ -39,6 +39,8 @@ h2{color:#F7D9A5;font-size:23px}
  object-fit:contain;display:block;
 }
 #lanzamiento{z-index:1}
+#escena > #lanzamiento{display:none}
+
 #transicion{z-index:2;opacity:0;display:none;transition:opacity 850ms ease}
 #transicion.visible{opacity:1}
 #resultado{
@@ -343,8 +345,10 @@ async function lanzarDesdeBoton(){
  estado.textContent="Reproduciendo el lanzamiento…";
 
  try{
+  lanzamiento.style.display="block";
   await lanzamiento.play();
  }catch(e){
+  lanzamiento.style.display="none";
   enCurso=false;
   botonLanzar.hidden=false;
   estado.textContent="No se pudo iniciar el vídeo.";
