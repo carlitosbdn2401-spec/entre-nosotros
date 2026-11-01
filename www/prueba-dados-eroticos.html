@@ -34,13 +34,11 @@ h2{color:#F7D9A5;font-size:23px}
  background:#10090d url('assets/dados-eroticos/Interfazdados.jpg') center/100% 100% no-repeat;
  overflow:hidden;
 }
-#escena > video:not(#botonLanzar){
+#escena > #transicion{
  position:absolute;inset:0;width:100%;height:100%;
  object-fit:contain;display:block;
 }
-#lanzamiento{z-index:1}
-#escena > #lanzamiento{display:none}
-
+#lanzamiento{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
 #transicion{z-index:2;opacity:0;display:none;transition:opacity 850ms ease}
 #transicion.visible{opacity:1}
 #resultado{
@@ -90,15 +88,44 @@ h2{color:#F7D9A5;font-size:23px}
 #juego{position:relative}
 button.volver{position:absolute;z-index:20;top:-30px;right:10px;display:flex;flex-direction:column;align-items:center;gap:0;padding:0;margin:0;border:0;background:transparent;cursor:pointer}
 button.volver img{display:block;width:140px;height:140px;object-fit:contain}
-button.volver span{margin-top:-50px;font-family:'Great Vibes',cursive;font-size:29px;line-height:1;color:#fff;-webkit-text-stroke:0.45px #fff;text-shadow:0 1px 2px #10090d}
+button.volver span{margin-top:-30px;font-family:'Great Vibes',cursive;font-size:29px;line-height:1;color:#fff;-webkit-text-stroke:0.45px #fff;text-shadow:0 1px 2px #10090d}
+</style>
+<style id="tamano-boton-kama">#botonLanzar{width:calc(24% + 60px)!important;}</style>
+<style id="bajar-boton-kama">#botonLanzar{translate:30px 55px!important;}</style>
+<style id="resultado-neon-dados">
+#textoResultadoDados{
+ position:absolute;
+ z-index:4;
+ top:calc(5% + 200px);
+ left:50%;
+ transform:translateX(-50%);
+ width:94%;
+ text-align:center;
+ font-family:'Great Vibes',cursive;
+ font-size:clamp(25px,6vw,40px);
+ line-height:1.25;
+ color:#ff4fd8;
+ text-shadow:0 0 4px #ff4fd8,0 0 10px #ff00b7,0 0 22px #ff00b7;
+ opacity:0;
+ pointer-events:none;
+}
+#textoResultadoDados.visible{opacity:1}
 
-#botonLanzar{
- width:calc(24% + var(--kama-size, 50px));
- right:calc(3% - var(--kama-x, 0px));
- bottom:calc(7% - var(--kama-y, 30px));
- max-width:none;
+</style>
+<style id="NEON_TIRAR_VOLVER">
+#textoTirar,
+button.volver span{
+ color:#ff4fd8!important;
+ -webkit-text-stroke:0.8px #ff4fd8;
+ text-shadow:0 0 4px #ff4fd8,0 0 10px #ff00b7,0 0 22px #ff00b7!important;
 }
 
+#botonLanzar,
+button.volver img{
+ filter:drop-shadow(0 0 4px #ff4545)
+        drop-shadow(0 0 10px #ff0000)
+        drop-shadow(0 0 20px #ff0000)!important;
+}
 </style>
 </head>
 <body>
@@ -137,8 +164,9 @@ button.volver span{margin-top:-50px;font-family:'Great Vibes',cursive;font-size:
   </video>
 
   <div id="resultado"><canvas id="dados"></canvas></div>
+  <div id="textoResultadoDados" aria-live="polite"></div>
 
-  <img id="botonLanzar" src="0/Dados/Kama.png"
+  <img id="botonLanzar" src="0/Dados/Botontirada.png"
    role="button" tabindex="0" alt="Lanzar los dados">
   <div id="textoTirar" aria-hidden="true">Tirar</div>
  </div>
@@ -156,12 +184,45 @@ const ctx=canvas.getContext("2d");
 const escena=document.getElementById("escena");
 const estado=document.getElementById("estado");
 const botonLanzar=document.getElementById("botonLanzar");
+const textoResultadoDados=document.getElementById("textoResultadoDados");
 
 const FUNDIDO=0.85;
 const POSICION={x:52.38,y:54.81,tamano:35};
 let transicionIniciada=false;
 let finalizado=false;
 let enCurso=false;
+let tokenTextoDados=0;
+
+const reglasTextoDados=[
+ ["Él","Él","Él","Ella","Ella","Ella"],
+ ["Besar","Acariciar","Masajear","Abrazar","Chupar","Morder"],
+ ["Labios","Cuello","Pecho","Espalda","Polla","Coño"],
+ ["1 minuto","2 minutos","3 minutos","4 minutos","5 minutos","6 minutos"]
+];
+
+function limpiarTextoResultadoDados(){
+ tokenTextoDados++;
+ clearTimeout(window.__dadosTextoInicio);
+ clearTimeout(window.__dadosTextoEscritura);
+ textoResultadoDados.textContent="";
+ textoResultadoDados.classList.remove("visible");
+}
+
+function escribirTextoResultadoDados(valores){
+ const token=++tokenTextoDados;
+ const frase=valores.map((n,i)=>reglasTextoDados[i][n-1]).join(" · ");
+ textoResultadoDados.textContent="";
+ textoResultadoDados.classList.add("visible");
+ let posicion=0;
+
+ function escribirLetra(){
+  if(token!==tokenTextoDados)return;
+  if(posicion>=frase.length)return;
+  textoResultadoDados.textContent+=frase[posicion++];
+  window.__dadosTextoEscritura=setTimeout(escribirLetra,40);
+ }
+ escribirLetra();
+}
 
 
 function mostrarDiagnostico(datos){
@@ -195,9 +256,21 @@ function abrirJuego(){
 }
 
 function volver(){
+ clearTimeout(window.__dadosRegresoTimer);
+ limpiarTextoResultadoDados();
+ lanzamiento.pause();
+ transicion.pause();
+ try{lanzamiento.currentTime=0;}catch(e){}
+ try{transicion.currentTime=0;}catch(e){}
+ enCurso=false;
+ finalizado=false;
+ transicionIniciada=false;
+ botonLanzar.hidden=false;
+ resultado.classList.remove("visible");
  resultado.style.display="none";
  transicion.classList.remove("visible");
  transicion.style.display="none";
+ notificarCartel("limpiar");
  document.getElementById("juego").style.display="none";
  if(new URLSearchParams(window.location.search).get("integrado")==="1" && window.parent!==window && typeof window.parent.mostrarVista==="function"){
   window.parent.mostrarVista("ruleta");
@@ -277,6 +350,10 @@ async function mostrarResultado(){
  try{
   const datos=await prepararResultado();
   notificarCartel("resultado", datos.valores, datos.numero);
+  limpiarTextoResultadoDados();
+  window.__dadosTextoInicio=setTimeout(()=>{
+   escribirTextoResultadoDados(datos.valores);
+  },1000);
 
   resultado.style.display="block";
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
@@ -284,6 +361,7 @@ async function mostrarResultado(){
   }));
 
   estado.textContent="RESULTADO LISTO: "+datos.valores.join(" · ");
+  clearTimeout(window.__dadosRegresoTimer);
   botonLanzar.hidden=false;
  }catch(e){
   estado.textContent="Error al preparar los dados: "+e.message;
@@ -327,6 +405,7 @@ async function lanzarDesdeBoton(){
  if(enCurso)return;
 
  enCurso=true;
+ limpiarTextoResultadoDados();
  notificarCartel("limpiar");
  transicionIniciada=false;
  finalizado=false;
@@ -345,10 +424,8 @@ async function lanzarDesdeBoton(){
  estado.textContent="Reproduciendo el lanzamiento…";
 
  try{
-  lanzamiento.style.display="block";
   await lanzamiento.play();
  }catch(e){
-  lanzamiento.style.display="none";
   enCurso=false;
   botonLanzar.hidden=false;
   estado.textContent="No se pudo iniciar el vídeo.";
@@ -367,33 +444,5 @@ if(new URLSearchParams(window.location.search).get("integrado")==="1"){
  abrirJuego();
 }
 </script>
-
-
-<script id="ajuste-kama-dados">
-(() => {
- const img = document.getElementById("botonLanzar");
- if (!img) return;
-
- const inicial = {size:50, x:0, y:30};
- let valores = {...inicial};
-
- try {
-  const guardado = JSON.parse(
-   localStorage.getItem("entreNosotrosAjusteKama")
-  );
-  if (guardado) {
-   valores = {
-    size:Number(guardado.size) || 0,
-    x:Number(guardado.x) || 0,
-    y:Number(guardado.y) || 0
-   };
-  }
- } catch(e) {}
-
- img.style.setProperty("--kama-size", valores.size+"px");
- img.style.setProperty("--kama-x", valores.x+"px");
- img.style.setProperty("--kama-y", valores.y+"px");
-})();
-</script>
-\n</body>
+</body>
 </html>

@@ -2399,14 +2399,17 @@ body[data-vista-actual="dados-eroticos"] #letreroReglasApp {
   position: absolute !important;
   z-index: 100001 !important;
   top: auto !important;
-  bottom: calc(18% - 125px) !important;
+  bottom: calc(18% - 100px) !important;
   left: calc(max(12px, (100vw - 430px)/2) + min(10.75px, 2.5vw) - 10px) !important;
-  width: min(60vw, 260px) !important;
+  width:min(60vw,260px)!important;
   height: auto !important;
   display: block !important;
   pointer-events: none !important;
+
+  transform: none;
 }
-\nbody[data-vista-actual="dados-eroticos"] #pantalla-dados-eroticos iframe {
+
+body[data-vista-actual="dados-eroticos"] #pantalla-dados-eroticos iframe {
   position: absolute !important;
   inset: 0 !important;
   display: block !important;
@@ -2417,6 +2420,11 @@ body[data-vista-actual="dados-eroticos"] #letreroReglasApp {
 }
 /* FIN PANTALLA COMPLETA DADOS EROTICOS */
 </style>
+
+
+
+
+
 
 </head>
 <body>
@@ -2611,10 +2619,10 @@ body[data-vista-actual="dados-eroticos"] #letreroReglasApp {
            src="./assets/Hotboton4-sin-fondo.webm"
            autoplay loop muted playsinline
            aria-hidden="true"></video>
-    <video id="ruleta-dadosboton"
-           src="./assets/dados-eroticos/Botondados.mp4"
-           autoplay loop muted playsinline
-           aria-hidden="true"></video>
+    <img id="ruleta-dadosboton"
+           src="./assets/dados-eroticos/Kama.png"
+           alt=""
+           aria-hidden="true">
     <button type="button" id="boton-abrir-dados"
             aria-label="Abrir Dados del amor"
             onclick="mostrarVista('dados-eroticos')"></button>
@@ -2664,8 +2672,14 @@ body[data-vista-actual="dados-eroticos"] #letreroReglasApp {
  </iframe>
 </section>
 
-<section class="sobre" data-vista="dados-eroticos" id="pantalla-dados-eroticos" style="display:none;padding:0;overflow:hidden">\n <img id="letreroReglasApp" src="0/Dados/Reglas.png" alt="Reglas de los dados">\n
+<section class="sobre" data-vista="dados-eroticos" id="pantalla-dados-eroticos" style="display:none;padding:0;overflow:hidden">
+ <img id="letreroReglasApp" src="0/Dados/Reglas.png" alt="Reglas de los dados">
+
  <iframe src="prueba-dados-eroticos.html?integrado=1" title="Dados Eróticos" style="display:block;width:100%;height:100dvh;min-height:100dvh;border:0;background:#10090d" allow="autoplay; fullscreen"></iframe>
+
+
+
+
 </section>
 <div id="hot-modal-reto" role="dialog" aria-modal="true"
      aria-label="Reto seleccionado">
@@ -3282,8 +3296,8 @@ a:active {
   position: absolute !important;
   left: calc(50% - 83px) !important;
   top: calc(100% - 28px) !important;
-  width: 70px !important;
-  height: 70px !important;
+  width: 170px !important;
+  height: 170px !important;
   transform: translate(-50%, -50%) !important;
   object-fit: contain !important;
   z-index: 20 !important;
@@ -3293,8 +3307,8 @@ a:active {
   position: absolute !important;
   left: calc(50% - 83px) !important;
   top: calc(100% - 28px) !important;
-  width: 70px !important;
-  height: 70px !important;
+  width: 170px !important;
+  height: 170px !important;
   transform: translate(-50%, -50%) !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -3556,6 +3570,23 @@ a:active {
  const imagen=document.getElementById("letreroReglasApp");
  const marco=seccion.querySelector("iframe");
  if(!imagen||!marco)return;
+ try{
+  const posicion=JSON.parse(localStorage.getItem("entreNosotrosPosicionLetreroDadosV1"));
+  if(posicion&&Number.isFinite(posicion.x)&&Number.isFinite(posicion.y)){
+   imagen.style.transform="translate("+posicion.x+"px,"+posicion.y+"px)";
+  }
+ }catch(e){}
+ window.addEventListener("storage",e=>{
+  if(e.key!=="entreNosotrosPosicionLetreroDadosV1")return;
+  try{
+   const posicion=JSON.parse(e.newValue);
+   if(posicion&&Number.isFinite(posicion.x)&&Number.isFinite(posicion.y)){
+    imagen.style.transform="translate("+posicion.x+"px,"+posicion.y+"px)";
+   }else imagen.style.transform="";
+   ajustar();
+  }catch(err){}
+ });
+
 
  const NS="http://www.w3.org/2000/svg";
  const svg=document.createElementNS(NS,"svg");
@@ -3710,6 +3741,9 @@ a:active {
  });
 })();
 </script>
+
+
+
 
 </body>
 </html>
