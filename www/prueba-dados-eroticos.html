@@ -250,13 +250,17 @@ function notificarCartel(tipo, valores, numero){
 function abrirJuego(){
  document.getElementById("entrada").style.display="none";
  document.getElementById("juego").style.display="block";
+ lanzamiento.style.display="none";
  resultado.style.display="none";
  transicion.classList.remove("visible");
  transicion.style.display="none";
 }
 
 function volver(){
+ clearTimeout(window.__dadosInicioTimer);
  clearTimeout(window.__dadosRegresoTimer);
+ clearTimeout(window.__dadosTransicionTimer);
+ clearTimeout(window.__dadosResultadoTimer);
  limpiarTextoResultadoDados();
  lanzamiento.pause();
  transicion.pause();
@@ -362,7 +366,24 @@ async function mostrarResultado(){
 
   estado.textContent="RESULTADO LISTO: "+datos.valores.join(" · ");
   clearTimeout(window.__dadosRegresoTimer);
-  botonLanzar.hidden=false;
+  botonLanzar.hidden=true;
+
+  window.__dadosRegresoTimer=setTimeout(()=>{
+   resultado.classList.remove("visible");
+   resultado.style.display="none";
+
+   lanzamiento.pause();
+   lanzamiento.style.display="none";
+
+   transicion.pause();
+   transicion.classList.remove("visible");
+   transicion.style.display="none";
+
+   enCurso=false;
+   finalizado=true;
+   botonLanzar.hidden=false;
+   estado.textContent="Tirada terminada. Puedes volver a tirar.";
+  },3000);
  }catch(e){
   estado.textContent="Error al preparar los dados: "+e.message;
   botonLanzar.hidden=false;
@@ -391,18 +412,21 @@ lanzamiento.addEventListener("loadedmetadata",()=>{
  escena.style.aspectRatio=lanzamiento.videoWidth+"/"+lanzamiento.videoHeight;
 });
 
-lanzamiento.addEventListener("timeupdate",()=>{
- if(transicionIniciada||!Number.isFinite(lanzamiento.duration))return;
- if(lanzamiento.currentTime>=lanzamiento.duration-FUNDIDO){
-  iniciarTransicion();
- }
+lanzamiento.addEventListener("ended",()=>{
+ window.__dadosTransicionTimer=setTimeout(iniciarTransicion,20);
 });
 
-lanzamiento.addEventListener("ended",iniciarTransicion);
-transicion.addEventListener("ended",mostrarResultado);
+transicion.addEventListener("ended",()=>{
+ window.__dadosResultadoTimer=setTimeout(mostrarResultado,20);
+});
 
 async function lanzarDesdeBoton(){
  if(enCurso)return;
+
+ clearTimeout(window.__dadosInicioTimer);
+ clearTimeout(window.__dadosRegresoTimer);
+ clearTimeout(window.__dadosTransicionTimer);
+ clearTimeout(window.__dadosResultadoTimer);
 
  enCurso=true;
  limpiarTextoResultadoDados();
@@ -420,16 +444,24 @@ async function lanzarDesdeBoton(){
  transicion.pause();
  lanzamiento.currentTime=0;
  transicion.currentTime=0;
+ lanzamiento.style.display="none";
 
- estado.textContent="Reproduciendo el lanzamiento…";
+ estado.textContent="Interfaz inicial…";
 
- try{
-  await lanzamiento.play();
- }catch(e){
-  enCurso=false;
-  botonLanzar.hidden=false;
-  estado.textContent="No se pudo iniciar el vídeo.";
- }
+ window.__dadosInicioTimer=setTimeout(async()=>{
+  if(!enCurso)return;
+
+  lanzamiento.style.display="block";
+  estado.textContent="Reproduciendo el lanzamiento…";
+
+  try{
+   await lanzamiento.play();
+  }catch(e){
+   enCurso=false;
+   botonLanzar.hidden=false;
+   estado.textContent="No se pudo iniciar el vídeo.";
+  }
+ },30);
 }
 
 botonLanzar.addEventListener("click",lanzarDesdeBoton);

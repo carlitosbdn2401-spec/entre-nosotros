@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Editor de secuencia de dados</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#10090d;color:white;font:13px Arial,sans-serif}
+#app{padding:9px;max-width:900px;margin:auto}
+h2{font-size:17px;color:#F7D9A5;margin:5px 0}
+#status{font-size:12px;color:#e6bdca;margin:6px 0 10px}
+#previewBox{height:min(43vh,430px);min-height:210px;background:#080508;border:1px solid #633044;border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#preview{position:relative;height:100%;max-width:100%;aspect-ratio:768/1376;background:#10090d center/100% 100% no-repeat;overflow:hidden}
+#preview video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:none}
+#launch{z-index:1}
+#transition{z-index:2;opacity:0}
+#diceResult{position:absolute;z-index:3;left:52.38%;top:54.81%;width:35%;aspect-ratio:1;transform:translate(-50%,-50%);display:none;opacity:0;pointer-events:none}
+#diceResult canvas{width:100%;height:100%;display:block}
+#controls{display:flex;gap:6px;margin:8px 0}
+button{background:#681b32;color:white;border:1px solid #a45a70;border-radius:7px;padding:11px 8px;flex:1;font-size:12px}
+button:active{background:#96324e}
+#timeRead{color:#F7D9A5;font-weight:bold;font-size:16px}
+#scrub{width:100%;accent-color:#c52c4b}
+#timelinePanel{background:#211018;border:1px solid #633044;border-radius:9px;padding:9px;margin-top:8px}
+#timelineHead{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px;color:#F7D9A5}
+#scroll{overflow-x:auto;overflow-y:hidden;padding-bottom:7px;touch-action:pan-x pan-y}
+#timeline{position:relative;min-width:100%;width:var(--tw);padding-top:19px}
+#ruler{height:20px;position:relative;border-bottom:1px solid #684052}
+.tick{position:absolute;top:0;transform:translateX(-50%);font-size:10px;color:#cbb4bd}
+.track{display:flex;align-items:center;height:49px;gap:7px}
+.trackName{width:75px;flex:none;color:#e8d4dc;font-size:10px}
+.lane{height:35px;position:relative;background:#10090d;border:1px solid #533041;border-radius:5px;flex:1}
+.clip{position:absolute;top:3px;bottom:3px;min-width:12px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;touch-action:none;user-select:none;overflow:visible}
+.clip.interface{background:#654354;border:1px solid #d5a6b7}
+.clip.launch{background:#a52d4b;border:1px solid #f3b5c5}
+.clip.transition{background:#9b7030;border:1px solid #f7d9a5}
+.clip.result{background:#386d59;border:1px solid #a5e0c2}
+.handle{position:absolute;top:-2px;bottom:-2px;width:12px;background:#F7D9A5;border-radius:4px;touch-action:none}
+.handle.left{left:-3px}
+.handle.right{right:-3px}
+.playhead{position:absolute;z-index:5;top:0;bottom:0;width:2px;background:#ffe0a7;pointer-events:none}
+.playhead:before{content:"";position:absolute;top:-5px;left:-4px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #ffe0a7}
+.settings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:10px}
+.setting{background:#160d12;border:1px solid #513040;border-radius:6px;padding:7px}
+.setting strong{display:block;color:#F7D9A5;font-size:11px;margin-bottom:5px}
+.setting label{font-size:10px;color:#d8c2ca;display:block;margin-top:4px}
+.setting input{width:100%;min-width:0;background:#28151f;color:white;border:1px solid #754052;border-radius:5px;padding:7px;font-size:14px}
+#saveRow{display:flex;gap:7px;margin-top:9px}
+#save{background:#386d59;border-color:#a5e0c2;font-weight:bold}
+#waitSetting{margin-top:8px}
+#info{font-size:11px;line-height:1.5;color:#d4bdc6;margin-top:9px}
+#info b{color:#F7D9A5}
+@media(max-width:390px){.trackName{width:65px;font-size:9px}.settings{gap:5px}.setting{padding:5px}}
+</style>
+</head>
+<body>
+<div id="app">
+<h2>Editor · Secuencia de dados</h2>
+<div id="status">Cargando vídeos y preparando la vista previa…</div>
+
+<div id="previewBox">
+ <div id="preview">
+  <video id="launch" muted playsinline preload="auto" src="assets/dados-eroticos/Videolanza.mp4"></video>
+  <video id="transition" muted playsinline preload="auto" src="assets/dados-eroticos/Transicion3.mp4"></video>
+  <div id="diceResult"><canvas id="diceCanvas"></canvas></div>
+ </div>
+</div>
+
+<div id="controls">
+ <button id="play">▶ Reproducir</button>
+ <button id="pause">Ⅱ Pausa</button>
+ <button id="reset">↺ Inicio</button>
+</div>
+
+<div id="timelinePanel">
+ <div id="timelineHead">
+  <span id="timeRead">00:00.00</span>
+  <span id="totalRead">Duración: calculando…</span>
+ </div>
+ <input id="scrub" type="range" min="0" max="20" step=".01" value="0">
+
+ <div id="scroll">
+  <div id="timeline">
+   <div id="ruler"></div>
+
+   <div class="track">
+    <div class="trackName">INTERFAZ</div>
+    <div class="lane"><div class="clip interface" id="clipInterface">INTERFAZ<div class="handle left"></div><div class="handle right"></div></div><div class="playhead"></div></div>
+   </div>
+
+   <div class="track">
+    <div class="trackName">LANZAMIENTO</div>
+    <div class="lane"><div class="clip launch" id="clipLaunch">VIDEOLANZA<div class="handle left"></div><div class="handle right"></div></div><div class="playhead"></div></div>
+   </div>
+
+   <div class="track">
+    <div class="trackName">TRANSICIÓN</div>
+    <div class="lane"><div class="clip transition" id="clipTransition">TRANSICIÓN<div class="handle left"></div><div class="handle right"></div></div><div class="playhead"></div></div>
+   </div>
+
+   <div class="track">
+    <div class="trackName">RESULTADOS</div>
+    <div class="lane"><div class="clip result" id="clipResult">4 DADOS<div class="handle left"></div><div class="handle right"></div></div><div class="playhead"></div></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="settings">
+  <div class="setting">
+   <strong>INTERFAZ</strong>
+   <label>Inicio (segundos)<input id="iStart" type="number" min="0" step=".1" value="0"></label>
+   <label>Duración (segundos)<input id="iDur" type="number" min=".1" step=".1" value="6.8"></label>
+  </div>
+  <div class="setting">
+   <strong>VIDEOLANZA</strong>
+   <label>Inicio (segundos)<input id="lStart" type="number" min="0" step=".1" value="7"></label>
+   <label>Duración (segundos)<input id="lDur" type="number" min=".1" step=".1" value="5"></label>
+  </div>
+  <div class="setting">
+   <strong>TRANSICIÓN</strong>
+   <label>Inicio (segundos)<input id="tStart" type="number" min="0" step=".1" value="11.15"></label>
+   <label>Duración (segundos)<input id="tDur" type="number" min=".1" step=".1" value="3"></label>
+  </div>
+  <div class="setting">
+   <strong>RESULTADOS DE LOS DADOS</strong>
+   <label>Inicio (segundos)<input id="rStart" type="number" min="0" step=".1" value="14.15"></label>
+   <label>Duración visible (segundos)<input id="rDur" type="number" min=".1" step=".1" value="3"></label>
+  </div>
+ </div>
+
+ <div id="saveRow">
+  <button id="save" type="button">Guardar ajustes</button>
+ </div>
+
+ <div id="info">
+  Arrastra cada bloque para cambiar su posición. Usa los extremos para ajustar su duración.<br>
+  <b>Secuencia:</b> interfaz → lanzamiento → transición → resultados durante 3 segundos → regreso a la interfaz.<br>
+  Al terminar, la interfaz queda quieta hasta que pulses «Tirar / Reproducir».<br>
+  <b>Guardado:</b> conserva los ajustes en este navegador.
+ </div>
+</div>
+</div>
+
+<script>
+(()=>{
+ const $=id=>document.getElementById(id);
+ const launch=$('launch'),transition=$('transition');
+ const preview=$('preview'),canvas=$('diceCanvas'),ctx=canvas.getContext('2d');
+ const clips={
+  i:{el:$('clipInterface'),start:0,dur:6.8},
+  l:{el:$('clipLaunch'),start:7,dur:5},
+  t:{el:$('clipTransition'),start:11.15,dur:3},
+  r:{el:$('clipResult'),start:14.15,dur:3}
+ };
+ const fields={
+  i:['iStart','iDur'],l:['lStart','lDur'],
+  t:['tStart','tDur'],r:['rStart','rDur']
+ };
+ const SCALE=70,FUNDIDO=.85,STORAGE_KEY='entreNosotrosEditorDadosAjustesV1';
+ let total=25,playhead=0,playing=false,raf=0,last=0;
+ let drag=null,diceReady=false;
+ let wait=5;
+
+ function fmt(v){
+  const m=Math.floor(v/60),s=v%60;
+  return String(m).padStart(2,'0')+':'+s.toFixed(2).padStart(5,'0');
+ }
+ function end(key){return clips[key].start+clips[key].dur}
+ function resultEnd(){return end('r')}
+
+ function calculateTotal(){
+  total=Math.max(20,end('i'),end('l'),end('t'),resultEnd())+2;
+  $('timeline').style.setProperty('--tw',(total*SCALE)+'px');
+  $('timeline').style.width=(total*SCALE)+'px';
+  $('totalRead').textContent='Secuencia: '+fmt(total);
+  $('scrub').max=total;
+  drawRuler();
+ }
+ function drawRuler(){
+  const ruler=$('ruler');ruler.innerHTML='';
+  const step=total>50?5:total>25?2:1;
+  for(let s=0;s<=total;s+=step){
+   const tick=document.createElement('span');
+   tick.className='tick';tick.style.left=(s*SCALE)+'px';
+   tick.textContent=s+'s';ruler.appendChild(tick);
+  }
+ }
+ function syncFields(){
+  for(const key in clips){
+   $(fields[key][0]).value=clips[key].start.toFixed(2);
+   $(fields[key][1]).value=clips[key].dur.toFixed(2);
+  }
+  $('wait').value=wait;
+ }
+ function updateTimeline(){
+  for(const key in clips){
+   const c=clips[key];
+   c.el.style.left=(c.start*SCALE)+'px';
+   c.el.style.width=Math.max(12,c.dur*SCALE)+'px';
+   c.el.parentElement.querySelector('.playhead').style.left=(playhead*SCALE)+'px';
+  }
+  $('timeRead').textContent=fmt(playhead);
+  $('scrub').value=Math.min(total,playhead);
+ }
+ function updatePreview(){
+  const i=clips.i,l=clips.l,t=clips.t,r=clips.r;
+  const inInterface=playhead>=i.start&&playhead<end('i');
+  preview.style.backgroundImage=inInterface?"url('assets/dados-eroticos/Interfazdados.jpg')":"none";
+
+  const inLaunch=playhead>=l.start&&playhead<end('l');
+  const inTransition=playhead>=t.start&&playhead<end('t');
+  const inResult=playhead>=r.start&&playhead<end('r');
+
+  syncVideo(launch,inLaunch,playhead-l.start,playing);
+  syncVideo(transition,inTransition,playhead-t.start,playing);
+
+  if(inTransition){
+   transition.style.opacity=String(Math.min(1,Math.max(0,(playhead-t.start)/FUNDIDO)));
+  }else transition.style.opacity='0';
+
+  $('diceResult').style.display=inResult&&diceReady?'block':'none';
+  $('diceResult').style.opacity=inResult?'1':'0';
+ }
+ function syncVideo(video,visible,time,isPlaying){
+  video.style.display=visible?'block':'none';
+  if(!visible){if(!isPlaying)video.pause();return}
+  const target=Math.max(0,Math.min(video.duration||0,time));
+  if(Math.abs(video.currentTime-target)>.15){
+   try{video.currentTime=target}catch(e){}
+  }
+  if(isPlaying&&video.paused)video.play().catch(()=>{});
+  if(!isPlaying)video.pause();
+ }
+ function update(){
+  updateTimeline();updatePreview();
+ }
+ function stop(){
+  playing=false;cancelAnimationFrame(raf);last=0;
+  launch.pause();transition.pause();
+  $('play').textContent='▶ Reproducir';
+ }
+ function tick(now){
+  if(!playing)return;
+  if(!last)last=now;
+  playhead+=(now-last)/1000;last=now;
+
+  if(playhead>=resultEnd()){
+   finishSequence();
+   return;
+  }
+  update();
+  if(playing)raf=requestAnimationFrame(tick);
+ }
+ $('play').onclick=()=>{
+  if(playing)return;
+  if(playhead>=resultEnd())playhead=clips.i.start;
+  playing=true;last=0;
+  $('play').textContent='▶ Reproduciendo';
+  update();raf=requestAnimationFrame(tick);
+ };
+ $('pause').onclick=stop;
+ $('reset').onclick=()=>{
+  stop();playhead=clips.i.start;update();
+ };
+ $('scrub').oninput=()=>{
+  stop();playhead=Number($('scrub').value);update();
+ };
+
+ function refresh(){
+  calculateTotal();syncFields();update();
+ }
+ function setValue(key,which,value){
+  if(!Number.isFinite(value)||value<0)return;
+  if(which==='start')clips[key].start=value;
+  else clips[key].dur=Math.max(.1,value);
+  refresh();
+ }
+ for(const key in clips){
+  const [startId,durId]=fields[key];
+  $(startId).addEventListener('change',()=>setValue(key,'start',Number($(startId).value)));
+  $(durId).addEventListener('change',()=>setValue(key,'dur',Number($(durId).value)));
+ }
+
+
+ for(const key in clips){
+  const el=clips[key].el;
+  el.addEventListener('pointerdown',e=>{
+   const rect=el.getBoundingClientRect();
+   const side=e.target.classList.contains('handle')?
+    (e.target.classList.contains('left')?'left':'right'):'move';
+   stop();
+   el.setPointerCapture(e.pointerId);
+   drag={key,side,x:e.clientX,start:clips[key].start,dur:clips[key].dur};
+   e.preventDefault();
+  });
+  el.addEventListener('pointermove',e=>{
+   if(!drag||drag.key!==key)return;
+   const delta=(e.clientX-drag.x)/SCALE;
+   const c=clips[key];
+   if(drag.side==='move')c.start=Math.max(0,drag.start+delta);
+   if(drag.side==='right')c.dur=Math.max(.2,drag.dur+delta);
+   if(drag.side==='left'){
+    const newStart=Math.max(0,drag.start+delta);
+    const fixedEnd=drag.start+drag.dur;
+    c.start=newStart;c.dur=Math.max(.2,fixedEnd-newStart);
+   }
+   calculateTotal();syncFields();update();
+  });
+  const endDrag=()=>{if(drag&&drag.key===key)drag=null};
+  el.addEventListener('pointerup',endDrag);
+  el.addEventListener('pointercancel',endDrag);
+ }
+
+ $('save').addEventListener('click',()=>{
+  const data={version:1,clips:{}};
+  for(const key in clips)data.clips[key]={start:clips[key].start,dur:clips[key].dur};
+  try{
+   localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+   $('status').textContent='Ajustes guardados correctamente.';
+  }catch(e){
+   $('status').textContent='No se pudieron guardar los ajustes.';
+  }
+ });
+
+ function restoreSaved(){
+  try{
+   const data=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');
+   if(!data||data.version!==1||!data.clips)return false;
+   for(const key of Object.keys(clips)){
+    const item=data.clips[key];
+    if(item&&Number.isFinite(item.start)&&item.start>=0&&Number.isFinite(item.dur)&&item.dur>=.1){
+     clips[key].start=item.start;
+     clips[key].dur=item.dur;
+    }
+   }
+   return true;
+  }catch(e){return false}
+ }
+
+ function finishSequence(){
+  stop();
+  playhead=clips.i.start;
+  launch.pause();transition.pause();
+  try{launch.currentTime=0;transition.currentTime=0}catch(e){}
+  update();
+  $('status').textContent='Tirada terminada. Esperando a que pulses «Tirar / Reproducir».';
+ }
+
+ function loadImage(src){
+  return new Promise((resolve,reject)=>{
+   const im=new Image();im.onload=()=>resolve(im);
+   im.onerror=()=>reject(new Error('No se pudo cargar '+src));im.src=src;
+  });
+ }
+ async function prepareDice(){
+  const number=Math.floor(Math.random()*1296)+1,index=number-1;
+  const values=[
+   Math.floor(index/216)+1,
+   Math.floor(index/36)%6+1,
+   Math.floor(index/6)%6+1,
+   index%6+1
+  ];
+  const images=await Promise.all(values.map((v,i)=>
+   loadImage('assets/dados-eroticos/dados-individuales/dado-'+(i+1)+'-numero-'+v+'.png')
+  ));
+  const w=images[0].naturalWidth,h=images[0].naturalHeight;
+  const full=document.createElement('canvas');full.width=w;full.height=h;
+  const c=full.getContext('2d');
+  images.forEach(im=>c.drawImage(im,0,0,w,h));
+  const pixels=c.getImageData(0,0,w,h).data;
+  let minX=w,minY=h,maxX=-1,maxY=-1;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+   if(pixels[(y*w+x)*4+3]>8){
+    minX=Math.min(minX,x);minY=Math.min(minY,y);
+    maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);
+   }
+  }
+  if(maxX<minX)throw new Error('No se encontraron dados visibles');
+  const margin=12;
+  minX=Math.max(0,minX-margin);minY=Math.max(0,minY-margin);
+  maxX=Math.min(w-1,maxX+margin);maxY=Math.min(h-1,maxY+margin);
+  canvas.width=maxX-minX+1;canvas.height=maxY-minY+1;
+  ctx.drawImage(full,minX,minY,canvas.width,canvas.height,0,0,canvas.width,canvas.height);
+  diceReady=true;
+  $('status').textContent='Vista previa preparada · Dados: '+values.join(' · ');
+  update();
+ }
+
+ function metadataReady(){
+  restoreSaved();
+
+  clips.i.start=0;
+  clips.i.dur=0.02;
+
+  clips.l.start=0.03;
+  clips.l.dur=4.04;
+
+  clips.t.start=4.09;
+  clips.t.dur=4.93;
+
+  clips.r.start=9.04;
+  clips.r.dur=3.00;
+
+  refresh();
+  $('status').textContent='Tiempos establecidos: interfaz 0–0,02 · lanzamiento 0,03–4,07 · transición 4,09–9,02 · resultados 9,04–12,04.';
+ }
+ let readyCount=0;
+ function ready(){
+  readyCount++;
+  if(readyCount>=2)metadataReady();
+ }
+ launch.addEventListener('loadedmetadata',ready);
+ transition.addEventListener('loadedmetadata',ready);
+ launch.addEventListener('error',()=>$('status').textContent='No se pudo cargar Videolanza.mp4');
+ transition.addEventListener('error',()=>$('status').textContent='No se pudo cargar Transicion3.mp4');
+
+ const aspect=()=>{
+  if(launch.videoWidth&&launch.videoHeight)
+   preview.style.aspectRatio=launch.videoWidth+'/'+launch.videoHeight;
+ };
+ launch.addEventListener('loadedmetadata',aspect);
+ window.addEventListener('resize',update);
+
+ calculateTotal();syncFields();update();
+ prepareDice().catch(e=>$('status').textContent='Error preparando los dados: '+e.message);
+})();
+</script>
+</body>
+</html>
