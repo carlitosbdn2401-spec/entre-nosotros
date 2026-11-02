@@ -2,7 +2,10 @@ import { auth } from "./firebase.js";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut
+  signOut,
+  setPersistence,
+  browserLocalPersistence,
+  inMemoryPersistence
 } from "firebase/auth";
 
 const formulario = document.getElementById("formularioAcceso");
@@ -17,10 +20,15 @@ formulario.addEventListener("submit", async (evento) => {
 
   const correo = document.getElementById("correoAcceso").value.trim();
   const clave = document.getElementById("claveAcceso").value;
+  const recordar = document.getElementById("recordarmeAcceso").checked;
 
   mensaje.textContent = "Comprobando tu cuenta…";
 
   try {
+    await setPersistence(
+      auth,
+      recordar ? browserLocalPersistence : inMemoryPersistence
+    );
     await signInWithEmailAndPassword(auth, correo, clave);
     mensaje.textContent = "";
   } catch (error) {
