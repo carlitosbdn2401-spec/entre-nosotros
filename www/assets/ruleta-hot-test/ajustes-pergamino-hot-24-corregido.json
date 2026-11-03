@@ -1,0 +1,698 @@
+{
+  "1": {
+    "numeroVista": {
+      "text": "1",
+      "x": 13.388885921902126,
+      "y": 20.89564250643755,
+      "size": 44,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Susurrar deseos",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 33,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Acércate y dime al oído lo que deseas.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "2": {
+    "numeroVista": {
+      "text": "2",
+      "x": 13.1296263800727,
+      "y": 17.845826447792625,
+      "size": 37,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Masaje de manos",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Regálame un momento de calma y caricias.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "3": {
+    "numeroVista": {
+      "text": "3",
+      "x": 13.950614929199217,
+      "y": 18.31676297145741,
+      "size": 35,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "10 besos",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Que cada beso sea una forma de decir te quiero.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "4": {
+    "numeroVista": {
+      "text": "4",
+      "x": 13.814815945095486,
+      "y": 19.868751918540937,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Quitar prenda",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Deja que la sorpresa marque el siguiente paso.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "5": {
+    "numeroVista": {
+      "text": "5",
+      "x": 12.012343936496311,
+      "y": 18.239570692169806,
+      "size": 36,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Cita a ciegas (Labios)",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 32,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Con los ojos cerrados, descubre mis labios.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "6": {
+    "numeroVista": {
+      "text": "6",
+      "x": 13.648145463731554,
+      "y": 18.21641300838353,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "El cumplido prohibido",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 32,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Dime aquello que siempre has querido confesarme.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "7": {
+    "numeroVista": {
+      "text": "7",
+      "x": 13.129630618625217,
+      "y": 18.378559208227763,
+      "size": 35,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Baile cercano",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Baila conmigo como si el mundo desapareciera.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "8": {
+    "numeroVista": {
+      "text": "8",
+      "x": 12.746913697984482,
+      "y": 16.726283918080753,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Intercambio de masajes",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 27,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Hoy nos toca cuidarnos el uno al otro.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "9": {
+    "numeroVista": {
+      "text": "9",
+      "x": 13.123457166883682,
+      "y": 18.046568787280666,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Recorrido con lengua",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Recorre mi piel despacio y sin prisas.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "10": {
+    "numeroVista": {
+      "text": "10",
+      "x": 13.67283821105957,
+      "y": 18.023411103494382,
+      "size": 33,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Inmovilización y besos",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 27,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Quédate cerca y déjame sorprenderte.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "11": {
+    "numeroVista": {
+      "text": "11",
+      "x": 13.376540078057184,
+      "y": 18.278188038483744,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Ropa interior a una mano",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Despierta mi curiosidad con delicadeza.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "12": {
+    "numeroVista": {
+      "text": "12",
+      "x": 13.753079308403862,
+      "y": 18.934492065789453,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Masaje lumbar",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 31,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Relájate y disfruta de cada caricia.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "13": {
+    "numeroVista": {
+      "text": "13",
+      "x": 13.49382718404134,
+      "y": 17.984814963850578,
+      "size": 33,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Exploración con cubitos",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 31,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Un pequeño escalofrío puede encender una sonrisa.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "14": {
+    "numeroVista": {
+      "text": "14",
+      "x": 13.26542748345269,
+      "y": 17.72227638759219,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Posición de sumisión",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 31,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Confía en mí y acordemos juntos cada paso.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "15": {
+    "numeroVista": {
+      "text": "15",
+      "x": 14.296296437581379,
+      "y": 19.575336430567507,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "El juego de las plumas",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 29,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Deja que una caricia suave hable por nosotros.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "16": {
+    "numeroVista": {
+      "text": "16",
+      "x": 13.345672819349502,
+      "y": 16.927005050898657,
+      "size": 33,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Desnudez parcial",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Descubramos poco a poco hasta dónde queremos llegar.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "17": {
+    "numeroVista": {
+      "text": "17",
+      "x": 14.234571456909178,
+      "y": 18.069726471066943,
+      "size": 32,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Zona íntima (Manos)",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 29,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Explora únicamente aquello que ambos deseemos.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "18": {
+    "numeroVista": {
+      "text": "18",
+      "x": 13.253084818522135,
+      "y": 18.478951584641916,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Intercambio de posiciones",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 32,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Cambiemos los papeles y sorprendámonos juntos.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "19": {
+    "numeroVista": {
+      "text": "19",
+      "x": 13.679013782077362,
+      "y": 16.928901457375403,
+      "size": 33,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Pareja decide el ritmo",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 29,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Chupale sus partes a su ritmo.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "20": {
+    "numeroVista": {
+      "text": "20",
+      "x": 13.574072519938152,
+      "y": 16.695364593025445,
+      "size": 33,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Intercambio oral previo",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Acércate y damelo todo ",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": false,
+      "outlineColor": "#000000"
+    }
+  },
+  "21": {
+    "numeroVista": {
+      "text": "21",
+      "x": 14.203703138563368,
+      "y": 18.170097640810965,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Contra la pared",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Date la vuelta y no digas nada.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "22": {
+    "numeroVista": {
+      "text": "22",
+      "x": 13.685185114542644,
+      "y": 18.841840123974194,
+      "size": 32,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Cuenta regresiva (Lento)",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 26,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Cuenta 30 despacio y disfruta de la espera.",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "23": {
+    "numeroVista": {
+      "text": "23",
+      "x": 15.043206744723841,
+      "y": 17.691314649196613,
+      "size": 33,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Sin manos",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Quitame la ropa sin manos",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  },
+  "24": {
+    "numeroVista": {
+      "text": "24",
+      "x": 15.11728604634603,
+      "y": 18.37853800155763,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#ffffff"
+    },
+    "tituloVista": {
+      "text": "Espejo simultáneo",
+      "x": 63.753085666232636,
+      "y": 25.121664257058757,
+      "size": 34,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    },
+    "fraseVista": {
+      "text": "Ahora el 69",
+      "x": 50,
+      "y": 50,
+      "size": 30,
+      "color": "#ffffff",
+      "outline": true,
+      "outlineColor": "#000000"
+    }
+  }
+}
