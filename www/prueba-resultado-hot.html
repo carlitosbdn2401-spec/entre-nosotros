@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Prueba Final</title>
+<style>
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;width:100%;height:100%;
+  overflow:hidden;background:#10090d
+}
+#escena{
+  position:fixed;inset:0;width:100vw;height:100dvh;
+  overflow:hidden;background:#10090d;touch-action:none
+}
+.capa,.obj{
+  position:absolute;display:block;max-width:none;height:auto;
+  user-select:none;-webkit-user-drag:none;object-fit:fill
+}
+#fondo{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;pointer-events:none;z-index:0
+}
+#disco{
+  transform-origin:50% 50.8%;
+  transition:transform 4s cubic-bezier(.12,.72,.12,1);
+  z-index:1
+}
+#marco{z-index:1;pointer-events:none}
+#tablero{z-index:1;transform-origin:50% 50%}
+#aroLed{
+  border:3px solid #c000ff;border-radius:50%;
+  box-shadow:0 0 4px #fff,0 0 9px #f0a0ff,
+  0 0 18px #e000ff,0 0 32px #c000ff,
+  0 0 48px rgba(192,0,255,.95),
+  inset 0 0 6px #fff,inset 0 0 14px #e000ff;
+  z-index:2;aspect-ratio:1/1;box-sizing:border-box;
+  --borrado-inicio:0deg;--borrado-arco:0deg;
+  -webkit-mask-image:conic-gradient(from var(--borrado-inicio),transparent 0deg var(--borrado-arco),#000 var(--borrado-arco) 360deg);
+  mask-image:conic-gradient(from var(--borrado-inicio),transparent 0deg var(--borrado-arco),#000 var(--borrado-arco) 360deg);
+  pointer-events:none
+}
+#girar{
+  position:absolute;left:80.4%;top:67.9%;width:8.9%;
+  aspect-ratio:1;border:0;border-radius:50%;padding:0;
+  background:transparent;z-index:10
+}
+
+#hot-volver-ruleta{
+  position:fixed;top:12px;right:12px;
+  width:clamp(48px,12vw,72px);
+  aspect-ratio:1;z-index:100001;
+  padding:0;border:0;background:transparent;
+  cursor:pointer;
+}
+#hot-volver-ruleta img{
+  display:block;width:100%;height:100%;object-fit:contain;
+}
+
+</style>
+
+<style>
+
+@font-face{font-family:'Great Vibes';src:url('assets/fuentes/GreatVibes-Regular.ttf') format('truetype')}
+@font-face{font-family:'Edwardian Script ITC';src:url('assets/fuentes/EdwardianScriptITC.ttf') format('truetype')}
+/* HOT_RESULTADO_SINCRONIZADO_V1 */
+#hot-luz-gajo {
+  position:absolute; z-index:2; pointer-events:none;
+  overflow:visible; opacity:0;
+  transform-origin:50% 50.8%;
+  filter:drop-shadow(0 0 7px #fff2a6) drop-shadow(0 0 15px #ffd34d);
+}
+#hot-luz-gajo.activa { opacity:1; }
+#hot-luz-tablero {
+  position:absolute; z-index:8; pointer-events:none;
+  aspect-ratio:848 / 1264;
+  transform-origin:50% 50%;
+}
+/* HOT_CASILLA_TOCA_PARA_PERGAMINO */
+.hot-celda-luz {
+  position:absolute; box-sizing:border-box;
+  pointer-events:auto; cursor:pointer;
+  border:2px solid #fff4ad; border-radius:7px;
+  background:rgba(255,211,77,.43);
+  box-shadow:0 0 8px #fff,0 0 18px #ffd34d,inset 0 0 12px #fff1a6;
+  animation:hotPulso 1s ease-in-out infinite alternate;
+}
+@keyframes hotPulso {
+  from { filter:brightness(1); }
+  to { filter:brightness(1.65); }
+}
+
+#hot-modal-resultado{
+  display:none;position:fixed;z-index:100000;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(90vw,520px);aspect-ratio:1152/921;
+  pointer-events:none;
+}
+#hot-modal-resultado.abierto{display:block}
+#hot-modal-resultado .hot-pergamino{
+  position:relative;width:100%;height:100%;
+  background:url("assets/ruleta-hot-test/Perga.png") center/100% 100% no-repeat;
+  pointer-events:auto;
+}
+.hot-texto-pergamino{
+  position:absolute;white-space:pre-wrap;overflow-wrap:anywhere;
+  line-height:1.12;text-align:center;transform:translate(-50%,-50%);
+  font-weight:bold;color:#fff;
+}
+.numeroVista{font-family:'Edwardian Script ITC',cursive!important;white-space:nowrap}
+.tituloVista,.fraseVista{font-family:'Great Vibes',cursive!important}
+#hot-cerrar-resultado{
+  position:absolute;left:50%;bottom:2%;transform:translateX(-50%);
+  padding:8px 20px;border:1px solid #681b32;border-radius:20px;
+  background:#211018;color:#F7D9A5;font-size:15px;z-index:2;
+}
+</style>
+
+</head>
+<body>
+
+<button id="hot-volver-ruleta" type="button" aria-label="Volver a Ruleta del Amor">
+  <img src="assets/ruleta-hot-test/Volver-final.png" alt="">
+</button>
+
+<main id="escena">
+  <img id="fondo" src="assets/ruleta-hot-test/Interfazfinal.jpg" alt="">
+  <img id="disco" class="obj" src="assets/ruleta-hot-test/Discofinal.png" draggable="false" alt="">
+
+  <svg id="hot-luz-gajo" class="obj" viewBox="0 0 843 1264"
+       aria-hidden="true">
+    <path id="hot-sector-luminoso"
+          fill="#ffd34d" fill-opacity=".56"
+          stroke="#fff3a0" stroke-width="5"></path>
+  </svg>
+  <div id="hot-luz-tablero" aria-hidden="true"></div>
+
+  <img id="marco" class="obj" src="assets/ruleta-hot-test/Marcofinal.png" draggable="false" alt="">
+  <img id="tablero" class="obj" src="assets/ruleta-hot-test/Tablero3.png" draggable="false" alt="">
+  <div id="aroLed" class="obj" aria-label="Aro LED lila"></div>
+  <button id="girar" aria-label="Girar la ruleta"></button>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+
+const estado={
+ disco:{x:35.23264153798422,y:39.72456467319542,w:32.31250000000027,g:0},
+ marco:{x:35.09954277674356,y:40.69952951350682,w:33.822916666666615,g:0},
+ tablero:{x:7.989583333333337,y:69.26760563380321,w:42.86458333333331,g:0,rx:-15},
+ aroLed:{x:33.490765730539955,y:43.66666766959177,w:35.3854166666666,g:0,borrados:[]},
+ pulsador:{x:50,y:50,w:20,g:0,visible:false},
+ gomaAncho:2.5
+};
+
+try{
+  const guardados=localStorage.getItem('hotCalibradorAjustes');
+  if(guardados){
+    const datos=JSON.parse(guardados);
+    if(Number.isFinite(datos.gomaAncho))estado.gomaAncho=datos.gomaAncho;
+    for(const n of ['disco','marco','tablero','aroLed','pulsador']){
+      if(datos[n] &&
+         Number.isFinite(datos[n].x) &&
+         Number.isFinite(datos[n].y) &&
+         Number.isFinite(datos[n].w)){
+        Object.assign(estado[n],datos[n]);
+      }
+    }
+  }
+}catch(e){
+  console.warn('Se usarán las coordenadas iniciales del calibrador.',e);
+}
+
+let vueltas=0;
+const secuenciaGiros=[978,600,1100];
+let indiceGiro=0;
+window.estado=estado;
+Object.defineProperty(window,"vueltas",{get:()=>vueltas});
+
+function actualizarMascara(){
+  const lista=estado.aroLed.borrados||[];
+  const radio=Math.max(.4,Number(estado.gomaAncho)||2.5)/2;
+  const intervalos=[];
+
+  for(const valor of lista){
+    const a=((valor%360)+360)%360,ini=a-radio,fin=a+radio;
+    if(ini<0)intervalos.push([0,fin],[360+ini,360]);
+    else if(fin>360)intervalos.push([ini,360],[0,fin-360]);
+    else intervalos.push([ini,fin]);
+  }
+
+  intervalos.sort((a,b)=>a[0]-b[0]);
+  const unidos=[];
+
+  for(const par of intervalos){
+    const u=unidos[unidos.length-1];
+    if(u&&par[0]<=u[1])u[1]=Math.max(u[1],par[1]);
+    else unidos.push(par.slice());
+  }
+
+  const partes=[];
+  let cursor=0;
+
+  for(const [ini,fin] of unidos){
+    if(ini>cursor)partes.push(`#000 ${cursor}deg ${ini}deg`);
+    partes.push(`transparent ${ini}deg ${fin}deg`);
+    cursor=fin;
+  }
+
+  if(cursor<360)partes.push(`#000 ${cursor}deg 360deg`);
+  if(!partes.length)partes.push('#000 0deg 360deg');
+
+  const grad='conic-gradient('+partes.join(',')+')';
+  $('aroLed').style.webkitMaskImage=grad;
+  $('aroLed').style.maskImage=grad;
+}
+
+function aplicar(){
+  for(const n of ['disco','marco','tablero','aroLed']){
+    const e=$(n),s=estado[n];
+    e.style.left=s.x+'%';
+    e.style.top=s.y+'%';
+    e.style.width=s.w+'%';
+    e.style.height='auto';
+
+    if(n==='tablero'){
+      e.style.transform=`perspective(220px) rotateX(${s.rx||0}deg)`;
+    }else if(n==='disco'){
+      e.style.transform=`rotate(${vueltas}deg)`;
+      e.style.transformOrigin='50% 50.8%';
+    }else{
+      e.style.transform='none';
+    }
+
+    e.style.filter=n==='aroLed'?'none':
+      s.g?`drop-shadow(0 0 ${Math.max(0,s.g)}px #F7D9A5)`:'none';
+  }
+  actualizarMascara();
+}
+
+$('girar').addEventListener('click',()=>{
+  vueltas+=secuenciaGiros[indiceGiro];
+  indiceGiro=(indiceGiro+1)%secuenciaGiros.length;
+  $('disco').style.transform=`rotate(${vueltas}deg)`;
+});
+
+aplicar();
+</script>
+
+
+
+
+<div id="hot-modal-resultado" role="dialog" aria-modal="true"
+     aria-label="Premio de la ruleta">
+  <div class="hot-pergamino" id="hot-pergamino">
+    <button id="hot-cerrar-resultado" type="button">Cerrar</button>
+  </div>
+</div>
+
+
+
+<script>
+let premiosHot={};
+const pergaminoHot=document.getElementById('hot-pergamino');
+async function cargarPergaminosHot(){
+  const r=await fetch('assets/ruleta-hot-test/ajustes-pergamino-hot-24-corregido.json');
+  if(!r.ok) throw new Error('No se pudieron cargar los pergaminos');
+  premiosHot=await r.json();
+}
+function mostrarPergaminoHot(gajo){
+  const premio=premiosHot[String(gajo)];
+  if(!premio)return;
+  pergaminoHot.querySelectorAll('.hot-texto-pergamino').forEach(e=>e.remove());
+  for(const clave of ['numeroVista','tituloVista','fraseVista']){
+    const d=premio[clave];if(!d)continue;
+    const t=document.createElement('div');
+    t.className='hot-texto-pergamino '+clave;
+    t.textContent=d.text;
+    t.style.left=d.x+'%';t.style.top=d.y+'%';
+    t.style.fontSize=(d.size/520* Math.min(innerWidth*.9,520))+'px';
+    t.style.color=d.color||'#fff';
+    if(d.outline){
+      t.style.webkitTextStroke='0.7px '+(d.outlineColor||'#000');
+      t.style.paintOrder='stroke fill';
+      t.style.textShadow='0 0 2px '+(d.outlineColor||'#000');
+    }
+    pergaminoHot.appendChild(t);
+  }
+}
+cargarPergaminosHot().catch(e=>console.error(e));
+</script>
+
+<script>
+/* HOT_RESULTADO_SINCRONIZADO_V1 */
+(() => {
+  const disco = document.getElementById('disco');
+  const tablero = document.getElementById('tablero');
+  const luzGajo = document.getElementById('hot-luz-gajo');
+  const sector = document.getElementById('hot-sector-luminoso');
+  const luzTablero = document.getElementById('hot-luz-tablero');
+  const modal = document.getElementById('hot-modal-resultado');
+  const texto = document.getElementById('hot-texto-resultado');
+  const cerrar = document.getElementById('hot-cerrar-resultado');
+
+  const casillas = [[10.855, 77.035, 16.275, 11.052], [30.655, 77.407, 18.516, 10.566], [51.898, 76.926, 18.434, 10.805], [72.116, 76.905, 19.72, 10.763], [11.829, 62.796, 16.849, 9.813], [31.717, 62.624, 17.192, 10.261], [51.973, 62.483, 17.635, 10.407], [72.553, 62.391, 16.499, 10.872], [13.596, 49.794, 15.32, 9.013], [32.584, 49.593, 16.599, 9.402], [51.654, 49.719, 16.487, 9.578], [71.467, 49.723, 15.488, 8.768], [14.538, 39.506, 15.02, 8.969], [32.815, 40.206, 15.794, 8.326], [50.918, 39.883, 17.623, 8.639], [70.025, 40.046, 16.25, 7.911], [15.593, 28.723, 15.788, 7.79], [33.202, 28.467, 15.526, 7.769], [50.986, 28.385, 15.788, 7.734], [68.677, 28.431, 14.895, 7.621], [16.742, 19.704, 15.582, 7.447], [33.983, 19.373, 14.926, 8.184], [51.317, 19.176, 14.72, 8.301], [69.32, 19.419, 13.759, 7.765]];
+  let ultimoGajo = 0;
+
+  function sectorPath(gajo) {
+    const centroX = 421, centroY = 643, radio = 362;
+    const inicio = ((gajo - 1) * 15) - 90;
+    const fin = gajo * 15 - 90;
+    const punto = a => {
+      const r = a * Math.PI / 180;
+      return [centroX + radio * Math.cos(r), centroY + radio * Math.sin(r)];
+    };
+    const a = punto(inicio), b = punto(fin);
+    return `M ${centroX} ${centroY} L ${a[0]} ${a[1]} A ${radio} ${radio} 0 0 1 ${b[0]} ${b[1]} Z`;
+  }
+
+  function crearCasillas() {
+    luzTablero.replaceChildren();
+    casillas.forEach((c, i) => {
+      const el = document.createElement('div');
+      el.className = 'hot-celda-luz';
+      el.dataset.casilla = String(i + 1);
+      el.style.left = c[0] + '%';
+      el.style.top = c[1] + '%';
+      el.style.width = c[2] + '%';
+      el.style.height = c[3] + '%';
+      el.style.display = 'none';
+      luzTablero.appendChild(el);
+    });
+  }
+
+  function sincronizarPosiciones() {
+    const estadoActual = window.estado;
+    if (!estadoActual) return;
+
+    for (const [id, nombre] of [['hot-luz-gajo','disco'],['hot-luz-tablero','tablero']]) {
+      const origen = document.getElementById(nombre);
+      const capa = document.getElementById(id);
+      const cfg = estadoActual[nombre];
+      if (!origen || !capa || !cfg) continue;
+      capa.style.left = cfg.x + '%';
+      capa.style.top = cfg.y + '%';
+      capa.style.width = cfg.w + '%';
+    }
+
+    luzTablero.style.transform = `perspective(220px) rotateX(${estadoActual.tablero.rx || 0}deg)`;
+  }
+
+  function mostrarResultado(gajo) {
+    ultimoGajo = gajo;
+    sector.setAttribute('d', sectorPath(gajo));
+    luzGajo.style.transform = `rotate(${window.vueltas || 0}deg)`;
+    luzGajo.classList.add('activa');
+
+    luzTablero.querySelectorAll('.hot-celda-luz').forEach(el => {
+      el.style.display = Number(el.dataset.casilla) === gajo ? 'block' : 'none';
+    });
+
+    mostrarPergaminoHot(gajo);
+    texto.textContent = `CASILLA ${gajo}\\n\\nPremio provisional`;
+    modal.classList.remove('abierto');
+  }
+
+  document.getElementById('hot-volver-ruleta').addEventListener('click', () => {
+    window.location.href = 'index.html?abrir=ruleta';
+  });
+
+  crearCasillas();
+  sincronizarPosiciones();
+
+  luzTablero.addEventListener('click', e => {
+    const celda = e.target.closest('.hot-celda-luz');
+    if (!celda || celda.style.display === 'none') return;
+    modal.classList.add('abierto');
+  });
+
+  cerrar.addEventListener('click', () => modal.classList.remove('abierto'));
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('abierto');
+  });
+
+  const boton = document.getElementById('girar');
+  boton.addEventListener('click', () => {
+    luzGajo.classList.remove('activa');
+    luzTablero.querySelectorAll('.hot-celda-luz').forEach(el => el.style.display = 'none');
+    modal.classList.remove('abierto');
+  });
+
+  disco.addEventListener('transitionend', e => {
+    if (e.propertyName !== 'transform') return;
+    const matriz = new DOMMatrixReadOnly(getComputedStyle(disco).transform);
+    const rotacion = Math.atan2(matriz.b, matriz.a) * 180 / Math.PI;
+    const angulo = ((-rotacion % 360) + 360) % 360;
+    const gajo = Math.floor((angulo + 0.000001) / 15) % 24 + 1;
+    mostrarResultado(gajo);
+  });
+
+  // Mantiene la iluminación alineada con el disco durante la animación.
+  disco.addEventListener('transitionrun', () => {
+    luzGajo.classList.remove('activa');
+  });
+
+  window.addEventListener('resize', sincronizarPosiciones);
+})();
+</script>
+
+</body>
+</html>

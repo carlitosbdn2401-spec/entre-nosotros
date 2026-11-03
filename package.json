@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite www --host 127.0.0.1",
-    "build": "vite build www && mkdir -p www/dist/assets www/dist/css www/dist/js && cp -R www/assets/. www/dist/assets/ && cp www/css/diario-libro.css www/css/lugares-especiales.css www/css/nuestra-historia.css www/dist/css/ && cp www/js/nuestra-historia.js www/dist/js/ && cp www/prueba-dados-eroticos.html www/dist/ && mkdir -p www/dist/0/Dados && cp www/0/Dados/Reglas.png www/0/Dados/Kama.png www/0/Dados/Karmavolver.png www/0/Dados/Botontirada.png www/dist/0/Dados/"
+    "build": "vite build www && mkdir -p www/dist/assets www/dist/css www/dist/js && cp -R www/assets/. www/dist/assets/ && cp www/css/diario-libro.css www/css/lugares-especiales.css www/css/nuestra-historia.css www/dist/css/ && cp www/js/nuestra-historia.js www/dist/js/ && cp www/prueba-dados-eroticos.html www/prueba-resultado-hot.html www/dist/ && mkdir -p www/dist/0/Dados && cp www/0/Dados/Reglas.png www/0/Dados/Kama.png www/0/Dados/Karmavolver.png www/0/Dados/Botontirada.png www/dist/0/Dados/"
   },
   "keywords": [],
   "author": "",
