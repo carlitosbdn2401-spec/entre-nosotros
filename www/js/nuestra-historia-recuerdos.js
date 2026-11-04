@@ -4,8 +4,8 @@
   const DB_NAME = 'entre-nosotros-historia';
   const STORE = 'recuerdos';
   const DB_VERSION = 1;
-  const MARCO_V = '/assets/nuestra-historia/Marcov1.png';
-  const MARCO_H = '/assets/nuestra-historia/Marcoh1.png';
+  const MARCO_V = 'assets/nuestra-historia/Marcov1.png';
+  const MARCO_H = 'assets/nuestra-historia/Marcoh1.png';
 
   const estilos = `
     .nh-recuerdos {
@@ -406,7 +406,7 @@
     const seccion = document.querySelector(
       '.nuestra-historia[data-vista="nuestra-historia"]'
     );
-    if (!seccion || !window.indexedDB) return;
+    if (!seccion) return;
 
     if (!document.getElementById('nh-estilos-recuerdos')) {
       const estilo = document.createElement('style');
