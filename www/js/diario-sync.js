@@ -21,6 +21,9 @@ const RUTA = ["parejas", "nuestro-espacio", "diarioEntradas"];
 const URL_AVISOS_DIARIO =
   "https://avisos-diario.carlitos-bdn9836.workers.dev/notificar-diario";
 
+const URL_AVISOS_REACCION =
+  "https://avisos-diario.carlitos-bdn9836.workers.dev/notificar-reaccion";
+
 let usuarioActual = null;
 let entradasRemotas = [];
 let cancelarEscucha = null;
@@ -109,6 +112,45 @@ function comprimirFoto(archivo) {
 
     imagen.src = url;
   });
+}
+
+async function avisarReaccionDiario(entradaId, reaccion) {
+  try {
+    const usuario = auth.currentUser;
+
+    if (
+      !usuario ||
+      usuario.uid !== usuarioActual?.uid ||
+      !UID_MIEMBROS.includes(usuario.uid)
+    ) {
+      return;
+    }
+
+    const token = await usuario.getIdToken();
+    const eventoId = globalThis.crypto?.randomUUID?.() ||
+      `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+    const respuesta = await fetch(URL_AVISOS_REACCION, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({ entradaId, reaccion, eventoId })
+    });
+
+    if (!respuesta.ok) {
+      const detalle = await respuesta.text();
+      throw new Error(`HTTP ${respuesta.status}: ${detalle}`);
+    }
+
+    console.info("[Diario] Aviso de reacción enviado.");
+  } catch (error) {
+    console.error(
+      "[Diario] La reacción se guardó, pero no se pudo enviar el aviso:",
+      error
+    );
+  }
 }
 
 async function avisarNuevaEntrada(entradaId) {
@@ -347,6 +389,8 @@ export async function guardarReaccionDiario(entrada, reaccion) {
     [`reacciones.${usuario.uid}`]: reaccion,
     actualizado: serverTimestamp()
   });
+
+  await avisarReaccionDiario(entrada.cloudId, reaccion);
 }
 
 export async function eliminarEntradaCompartida(entrada) {
