@@ -233,3 +233,9 @@
   object-fit: cover;
   border-radius: inherit;
 }
+
+/* Great Vibes en absolutamente todos los textos de Nuestra Historia */
+.nuestra-historia,
+.nuestra-historia * {
+  font-family: GreatVibes, cursive !important;
+}
