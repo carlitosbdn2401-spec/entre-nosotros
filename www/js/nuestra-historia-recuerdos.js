@@ -5,7 +5,7 @@
   const STORE = 'recuerdos';
   const DB_VERSION = 1;
   const MARCO_V = 'assets/nuestra-historia/Marcov1.png';
-  const MARCO_H = 'assets/nuestra-historia/Marcoh1.png';
+  const MARCO_H = 'assets/nuestra-historia/Marcoh7.png';
 
   const estilos = `
     .nh-recuerdos {
@@ -93,7 +93,7 @@
       inset: 0;
       display: block;
       width: 100%;
-      height: 100%;
+      height: 102%;
       object-fit: cover;
     }
     .nh-foto-contenido img.nh-marco {
@@ -108,46 +108,48 @@
     }
 
 .nh-foto-contenido.vertical img.nh-imagen {
-  left: 0.52% !important;
-  top: 0.6% !important;
-  width: 99.21% !important;
-  height: 98.99% !important;
-  object-fit: cover !important; object-position: center !important;
+  left: 0% !important;
+  top: 0% !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
 }
+
 .nh-foto-contenido.horizontal .nh-foto-ventana {
   position: absolute;
   overflow: hidden;
-  left: 0.26%;
-  top: 0.5%;
-  width: 98.87%;
-  height: 98.66%;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 102%;
 }
 .nh-foto-contenido.horizontal .nh-foto-ventana img.nh-imagen {
   position: absolute !important;
   left: 0 !important;
-  top: 0 !important;
+  top: -1.5% !important;
   right: auto !important;
   bottom: auto !important;
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; object-position: center !important;
+  object-fit: contain !important;
+  object-position: center center !important;
 }
-
-
 
     .nh-foto-contenido.vertical img.nh-marco {
       width: 100%;
-      height: 100%;
+      height: 102%;
       left: 0;
-      top: 0;
+      top: -1%;
     }
     .nh-foto-contenido.horizontal img.nh-marco {
       width: 100%;
-      height: 100%;
+      height: 102%;
       left: 0;
-      top: 0;
+      top: -1%;
       object-fit: fill;
     }
+
     .nh-foto button {
       display: flex;
       align-items: center;
@@ -307,7 +309,7 @@
         const ajustarContenido = () => {
           const anchoDisponible = zonaImagen.clientWidth;
           const altoDisponible = zonaImagen.clientHeight;
-          const proporcion = foto.orientacion === 'vertical' ? 0.77 : 1.925;
+          const proporcion = foto.orientacion === 'vertical' ? 0.77 : (4 / 3);
 
           let ancho = anchoDisponible;
           let alto = ancho / proporcion;
