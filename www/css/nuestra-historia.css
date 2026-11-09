@@ -570,3 +570,49 @@
     font-size: 53px;
   }
 }
+
+
+/* integracion-visual-botones-historia */
+.nh-recuerdos .nh-guardar,
+.nh-recuerdos .nh-subir {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 120px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: #3b1717 !important;
+  font-family: "Great Vibes", cursive !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  cursor: pointer;
+}
+.nh-recuerdos .nh-guardar {
+  background-image: url("../assets/nuestra-historia/Guardar.png") !important;
+}
+.nh-recuerdos .nh-subir {
+  background-image: url("../assets/nuestra-historia/Añadir.png") !important;
+}
+.nh-recuerdos .nh-foto button {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  background-image: url("../assets/nuestra-historia/Eliminar.png") !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
