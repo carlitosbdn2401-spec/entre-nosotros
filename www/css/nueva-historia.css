@@ -1,0 +1,359 @@
+/* =========================================
+   NUEVA INTERFAZ DE NUESTRA HISTORIA (V7 - RESTAURADA)
+   ========================================= */
+
+/* 1. EL FONDO DE TERCIOPELO EN TODA LA PANTALLA */
+.nuestra-historia[data-vista="nuestra-historia"] {
+  position: relative !important;
+  background-image: url('/assets/nuestra-historia/Interfazhistoria-hueco.png') !important;
+  background-size: 100% auto !important;
+  background-position: top center !important;
+  background-repeat: no-repeat !important;
+  background-color: #10090d !important;
+  min-height: calc(100vw * 2.6473) !important;
+}
+
+/* Quitamos fondos a los contenedores principales */
+#app, #root, .app, .contenedor-principal, main, ion-app, .ion-page, .capacitor-app {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* 2. OCULTAR LOS ELEMENTOS VIEJOS DE LA PORTADA */
+.nuestra-historia .portada, 
+.nuestra-historia .portada-marco, 
+.nuestra-historia .portada-cabecera, 
+.nuestra-historia .futuro, 
+.nuestra-historia .etapa {
+  display: none !important;
+}
+
+.nh-nueva-interfaz {
+  padding: 20px 10px !important;
+  background: transparent !important;
+}
+
+/* 3. EL MARCO PRINCIPAL (El de los adornos dorados) */
+.nh-marco-principal {
+  position: absolute !important;
+  top: 18% !important;
+  left: calc(16% - 20px) !important;
+  width: calc(68% + 40px) !important;
+  height: calc(57vw - 30px) !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: content-box !important;
+  display: block !important;
+  background: none !important;
+  object-fit: fill !important;
+}
+
+/* 4. CUADRÍCULA Y TARJETAS */
+.nh-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px !important;
+  max-width: 400px !important;
+  margin: 0 auto !important;
+  padding: 0 10px 80px 10px !important;
+}
+
+.nh-tarjeta {
+  background-image: url('/assets/nuestra-historia/Tarjeta.jpg') !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  padding: 25px 12px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: center !important;
+}
+
+/* Posicionamiento de las tarjetas */
+.nh-tarjeta:nth-child(1) { grid-column: 1; grid-row: 1; }
+.nh-tarjeta:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; }
+.nh-tarjeta:nth-child(3) { grid-column: 1; grid-row: 2; }
+.nh-tarjeta:nth-child(4) { grid-column: 1; grid-row: 3; }
+.nh-tarjeta:nth-child(5) { grid-column: 2; grid-row: 3; }
+
+/* Textos de las tarjetas */
+.nh-tarjeta h2 { color: #F7D9A5 !important; font-size: 18px !important; margin: 0 0 5px 0 !important; line-height: 1.1 !important; font-family: 'Great Vibes', cursive !important; }
+.nh-tarjeta p { color: #e0cfc3 !important; font-size: 14px !important; margin: 0 0 15px 0 !important; line-height: 1.2 !important; font-family: 'Great Vibes', cursive !important; }
+
+/* 5. BOTONES */
+.nh-botones-horizontal { display: flex !important; flex-direction: column !important; gap: 5px !important; margin-top: auto !important; width: 100% !important; }
+.nh-tarjeta-pequena .nh-botones-horizontal { flex-direction: row !important; }
+.nh-tarjeta-pequena .nh-btn-textura { font-size: 11px !important; height: 35px !important; }
+
+.nh-btn-textura {
+  background-size: 100% 100% !important; background-repeat: no-repeat !important; background-color: transparent !important;
+  border: none !important; width: 100% !important; height: 38px !important; cursor: pointer !important;
+  font-family: 'Great Vibes', cursive !important; color: #3b1717 !important; font-size: 14px !important;
+  font-weight: bold !important; display: flex !important; align-items: center !important; justify-content: center !important;
+}
+.nh-btn-guardar { background-image: url('/assets/nuestra-historia/Guardar.png') !important; }
+.nh-btn-anadir { background-image: url('/assets/nuestra-historia/Añadir.png') !important; }
+.nh-btn-eliminar { background-image: url('/assets/nuestra-historia/Eliminar.png') !important; }
+
+/* 6. EXPERIENCIA Y CONTADOR */
+.nh-experiencia-box { background: rgba(0,0,0,0.3) !important; border: 1px solid #80613f !important; border-radius: 10px !important; padding: 10px !important; margin-bottom: 10px !important; }
+.nh-experiencia-box h3 { color: #F7D9A5 !important; font-family: 'Great Vibes', cursive !important; margin: 0 0 5px 0 !important; font-size: 20px !important; }
+.nh-experiencia-textarea { width: 100% !important; height: 50px !important; background: rgba(0,0,0,0.5) !important; border: 1px solid #80613f !important; border-radius: 6px !important; color: #e0cfc3 !important; font-family: 'Great Vibes', cursive !important; font-size: 15px !important; padding: 5px !important; box-sizing: border-box !important; resize: none !important; }
+
+.nh-contador-box { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 5px !important; margin-top: 10px !important; margin-bottom: 15px !important; }
+.nh-contador-item { background: rgba(0,0,0,0.3) !important; border: 1px solid #F7D9A5 !important; border-radius: 8px !important; padding: 5px !important; text-align: center !important; }
+.nh-contador-item span { display: block !important; font-size: 20px !important; color: #F7D9A5 !important; font-family: 'Great Vibes', cursive !important; }
+.nh-contador-item small { font-size: 11px !important; color: #e0cfc3 !important; font-family: 'Great Vibes', cursive !important; }
+
+
+/* ADAPTACION A LAS CLASES REALES DE NUESTRA HISTORIA */
+
+/* Marco principal: Marcori.png */
+.nuestra-historia .marco-principal-foto {
+  width: 68% !important;
+  max-width: none !important;
+  aspect-ratio: 826 / 473 !important;
+  min-height: 0 !important;
+  margin: 20px auto 30px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Marco decorativo superpuesto en su posición aprobada */
+section.nuestra-historia[data-vista="nuestra-historia"]::after {
+  content: "";
+  position: absolute;
+  top: 18%;
+  left: 16%;
+  width: 68%;
+  aspect-ratio: 826 / 473;
+  background-image: url('/assets/nuestra-historia/Marcori.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* El contenedor deja visible la imagen base */
+.nuestra-historia .nuestra-historia-container {
+  position: relative;
+  background: transparent !important;
+  min-height: calc(100vw * 2.6473) !important;
+}
+
+/* Cuadrícula real de las cinco tarjetas */
+.nuestra-historia .grid-tarjetas {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  margin: 15px auto 0 !important;
+  padding: 0 10px 80px !important;
+  box-sizing: border-box !important;
+}
+
+.nuestra-historia .tarjeta-recuerdo {
+  background-image: url('/assets/nuestra-historia/Tarjeta.jpg') !important;
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 25px 12px !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: center !important;
+}
+
+.nuestra-historia .tarjeta-recuerdo:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.nuestra-historia .tarjeta-recuerdo:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.nuestra-historia .tarjeta-recuerdo:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.nuestra-historia .tarjeta-recuerdo:nth-child(4) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.nuestra-historia .tarjeta-recuerdo:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* Tipografía de las tarjetas */
+.nuestra-historia .tarjeta-recuerdo h2,
+.nuestra-historia .tarjeta-recuerdo h3,
+.nuestra-historia .tarjeta-recuerdo p {
+  font-family: 'Great Vibes', cursive !important;
+}
+
+/* Panel de experiencia */
+.nuestra-historia .caja-experiencia {
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Imágenes originales de los botones */
+.nuestra-historia button.btn-guardar,
+.nuestra-historia button.btn-anadir,
+.nuestra-historia button.btn-eliminar-foto {
+  background-size: 100% 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  border-image: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: 'Great Vibes', cursive !important;
+  cursor: pointer !important;
+}
+
+.nuestra-historia button.btn-guardar {
+  background-image: url('/assets/nuestra-historia/Guardar.png') !important;
+}
+
+.nuestra-historia button.btn-anadir {
+  background-image: url('/assets/nuestra-historia/Añadir.png') !important;
+}
+
+.nuestra-historia button.btn-eliminar-foto {
+  background-image: url('/assets/nuestra-historia/Eliminar.png') !important;
+}
+
+@media (max-width: 360px) {
+  .nuestra-historia .grid-tarjetas {
+    gap: 8px !important;
+  }
+
+  .nuestra-historia .tarjeta-recuerdo {
+    padding: 9px !important;
+  }
+}
+
+/* Mostrar únicamente la interfaz integrada en la imagen */
+section.nuestra-historia[data-vista="nuestra-historia"] > * {
+  display: none !important;
+}
+
+
+/* Hacer transparente el contenedor principal de la portada para que se vea el terciopelo */
+.portada-marco,
+#contenidoApp,
+.card-leather,
+.portada-inicio,
+#panel-inicio {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+#contenidoApp,
+.portada-marco,
+.portada-inicio,
+#panel-inicio {
+  
+  
+  background-image: none !important;
+}
+
+
+/* =========================================
+   FONDO DE TERCIOPELO CEREZA (COPIADO DE LA PRUEBA)
+   ========================================= */
+html, body {
+  min-height: 100% !important;
+  background: url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover fixed no-repeat !important;
+  background-color: transparent !important;
+}
+body {
+  min-height: 100vh !important;
+}
+main.app, 
+#contenidoApp, 
+#contenidoApp.card-leather, 
+.portada-marco, 
+.portada-inicio, 
+#panel-inicio,
+header.portada-cabecera,
+#app {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hacer transparentes los contenedores de la interfaz para que se vea el terciopelo bueno */
+#contenidoApp, 
+#contenidoApp.card-leather,
+.portada-marco,
+.portada-inicio,
+#panel-inicio,
+header.portada-cabecera,
+main.app,
+#app {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* =========================================
+   ESTILOS DE LA TIENDA (COPIADOS DE LA PRUEBA)
+   ========================================= */
+.tienda-prueba h3,
+.tienda-prueba p,
+.tienda-formulario label {
+  color: #DEA55C !important;
+}
+.tienda-prueba button,
+.tienda-formulario button {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.tienda-formulario input::placeholder,
+.tienda-formulario textarea::placeholder {
+  color: #DEA55C !important;
+  opacity: 1 !important;
+}
+.tienda-formulario select option {
+  color: #DEA55C !important;
+  background: #211018 !important;
+}
+section.marco.tienda-prueba,
+section.marco.tienda-formulario {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg?v=11") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}

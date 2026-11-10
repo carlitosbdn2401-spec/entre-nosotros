@@ -38,14 +38,14 @@ function escapar(s){
 }
 function imagenVale(id) {
   const imagenes = {
-    r1: "/muestra-tienda-recursos/Valesnu-1.png",
-    r2: "/muestra-tienda-recursos/Valesnu-2.png",
-    r3: "/muestra-tienda-recursos/Valesnu-3.png",
-    r4: "/muestra-tienda-recursos/Valesnu-4.png",
-    r5: "/muestra-tienda-recursos/Historia-5.png",
-    r6: "/muestra-tienda-recursos/Historia-6.png",
-    r7: "/assets/7.jpg",
-    r8: "/assets/8.jpg"
+    r1: "/assets/Historia/1.png",
+    r2: "/assets/Historia/2.png",
+    r3: "/assets/Historia/3.png",
+    r4: "/assets/Historia/4.png",
+    r5: "/assets/Historia/5,1.png",
+    r6: "/assets/Historia/6,1.png",
+    r7: "/assets/Historia/7.jpg",
+    r8: "/assets/Historia/8.jpg"
   };
   return imagenes[id] || "";
 }
