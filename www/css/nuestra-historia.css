@@ -530,24 +530,23 @@
   background: transparent;
   z-index: 2;
 }
-
-.nuestra-historia .nh-foto-principal {
+.nh-foto-principal {
   position: absolute;
-  top: 18%;
-  left: 16%;
-  width: 68%;
+  top: calc(18% + 33px);
+  left: calc(50% + 2px);
+  transform: translateX(-50%);
+  width: calc(45% - 2px);
   height: auto;
   object-fit: cover;
   object-position: center;
   z-index: 3;
 }
-
-.nuestra-historia .nh-marco-principal {
+.nh-marco-principal {
   position: absolute;
   top: 18%;
   left: calc(16% - 20px);
   width: calc(68% + 40px);
-  height: auto;
+  height: calc(57vw - 30px);
   z-index: 4;
   filter: sepia(.18) saturate(1.18) brightness(1.04);
   pointer-events: none;

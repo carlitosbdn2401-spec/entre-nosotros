@@ -2433,10 +2433,8 @@ body[data-vista-actual="dados-eroticos"] #pantalla-dados-eroticos iframe {
 <style id="integracion-visual-inicio-tienda">
 /* INICIO: texturas y acabados aprobados */
 #contenidoApp .portada-marco {
-  background-image: url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+  background: transparent !important;
+  background-image: none !important;
 }
 #contenidoApp .portada-bienvenida,
 #contenidoApp .portada-grid button.tarjeta-acceso {
@@ -2513,8 +2511,8 @@ main.app,
 #accesoFirebase .boton-entrar-fondo,
 #accesoFirebase .boton-Entrar-fondo {
   background: url("/assets/nuestra-historia/Fondo.jpg") center center / cover no-repeat !important;
-  border: 1px solid #d4af70 !important;
-  border-radius: 10px !important;
+  border:2px solid #d4af70 !important;
+  border-radius:15px !important;
   box-shadow: inset 0 1px 2px rgba(255,239,207,.22) !important;
 }
 #titulo-inicio, #subtitulo-inicio {
@@ -2570,13 +2568,442 @@ main.app,
 }
 </style>
 
+
+<style id="tienda-diseno-referencia">
+#pantalla-tienda {
+  box-sizing:border-box !important;
+  width:100% !important;
+  padding:18px 13px 38px !important;
+  color:#DEA55C !important;
+  background:#310811 url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center top / cover fixed no-repeat !important;
+}
+#pantalla-tienda .tienda-contenedor {
+  box-sizing:border-box;
+  width:100%;
+  max-width:440px;
+  margin:0 auto;
+  padding:12px 10px 18px;
+  border:0 !important;
+  border-radius:0;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+#pantalla-tienda .tienda-cabecera {
+  display:block;
+  text-align:center;
+  margin:0 0 15px;
+}
+#pantalla-tienda .titulo-tienda-imagen {
+  display:block;
+  width:auto;
+  max-width:90%;
+  height:auto;
+  margin:0 auto 12px;
+  object-fit:contain;
+}
+#pantalla-tienda .tienda-sello {
+  font-family:"Great Vibes",cursive !important;
+  font-size:16px;
+  letter-spacing:1px;
+  color:#FBD28C;
+}
+#pantalla-tienda .tienda-adornos {
+  color:#FBD28C;
+  letter-spacing:5px;
+  margin:8px 0;
+}
+#pantalla-tienda .tienda-cabecera p {
+  font-size:13px;
+  line-height:1.6;
+  color:#FBD28C;
+  margin:0;
+}
+#pantalla-tienda .marco {
+  box-sizing:border-box;
+  background-image:url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  border:2px solid #d4af37 !important;
+  border-radius:17px !important;
+  padding:15px !important;
+  margin:15px 3px !important;
+  box-shadow:inset 0 0 18px #fff5 !important;
+}
+#pantalla-tienda .marco h2,
+#pantalla-tienda .marco h3 {
+  color:#FBD28C !important;
+  text-align:center;
+  font-family:"Great Vibes",cursive !important;
+  font-size:29px;
+  font-weight:normal;
+  margin:0 0 9px;
+}
+#pantalla-tienda .marco p {
+  font-size:12px;
+  line-height:1.55;
+  color:#DEA55C !important;
+}
+#pantalla-tienda .tienda-aviso {
+  text-align:center;
+}
+#pantalla-tienda .tienda-aviso h2 {
+  font-size:29px;
+}
+#pantalla-tienda .tienda-aviso p {
+  margin-bottom:0;
+}
+#pantalla-tienda .tienda-selector label,
+#pantalla-tienda .tienda-formulario label {
+  display:block;
+  color:#DEA55C !important;
+  font-family:"Great Vibes",cursive !important;
+  font-size:22px;
+  margin:12px 0 5px;
+}
+#pantalla-tienda input,
+#pantalla-tienda textarea,
+#pantalla-tienda select {
+  box-sizing:border-box;
+  width:100%;
+  padding:11px;
+  border:1.5px solid #bd9453 !important;
+  border-radius:10px !important;
+  background-image:url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  color:#DEA55C !important;
+  font:14px Georgia,serif !important;
+  margin-bottom:8px;
+}
+#pantalla-tienda input::placeholder,
+#pantalla-tienda textarea::placeholder {
+  color:#DEA55C !important;
+  opacity:1;
+}
+#pantalla-tienda select option {
+  color:#DEA55C;
+  background:#211018;
+}
+#pantalla-tienda .tienda-saldo {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:#DEA55C;
+  margin:10px 0 0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:none !important;
+  box-shadow:none !important;
+}
+#pantalla-tienda .tienda-saldo strong {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:25px;
+  color:#FBD28C;
+}
+#pantalla-tienda .tienda-icono-puntos {
+  width:1.25em;
+  height:1.25em;
+  object-fit:contain;
+  vertical-align:middle;
+  position:relative;
+  top:2px;
+  border:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:none !important;
+}
+#pantalla-tienda button:not(.tienda-tarjeta-vale) {
+  box-sizing:border-box;
+  width:100%;
+  min-height:42px;
+  padding:9px 12px;
+  border:2px solid #A26622 !important;
+  border-radius:12px !important;
+  background:#A26622 url("/assets/nuestra-historia/Fondo.jpg?v=16") center / cover no-repeat !important;
+  color:#FBD28C !important;
+  text-shadow:0 1px 2px #704018;
+  font:22px "Great Vibes",cursive !important;
+}
+#pantalla-tienda .tienda-prueba p {
+  margin:0 0 10px;
+}
+#pantalla-tienda .tienda-subtitulo {
+  text-align:center;
+  color:#FBD28C !important;
+  font:34px "Great Vibes",cursive !important;
+  text-transform:none !important;
+  margin:27px 0 13px;
+  text-shadow:0 1px 2px #2b0710;
+}
+#pantalla-tienda .tienda-catalogo-marco {
+  padding:15px !important;
+}
+#pantalla-tienda .tienda-catalogo {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+#pantalla-tienda .tienda-tarjeta-vale {
+  box-sizing:border-box;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  width:100% !important;
+  min-width:0;
+  min-height:0 !important;
+  aspect-ratio:218 / 350;
+  padding:0 !important;
+  margin:0;
+  overflow:hidden;
+  border:3px solid #A26622 !important;
+  border-radius:13px !important;
+  background:transparent !important;
+  box-shadow:0 0 0 2px #C78E3F !important;
+  cursor:pointer;
+  line-height:0;
+}
+#pantalla-tienda .tienda-tarjeta-vale img {
+  display:block;
+  flex:none;
+  max-width:none;
+  height:auto;
+  margin:0;
+  padding:0;
+  border:0 !important;
+  border-radius:0;
+  object-fit:fill;
+  background:none;
+
+  transform:scale(.80);
+  transform-origin:center center;
+}
+#pantalla-tienda .tienda-tarjeta-vale:active {
+  transform:scale(.98);
+}
+#pantalla-tienda .tienda-formulario {
+  display:grid;
+  gap:5px;
+}
+#pantalla-tienda .tienda-formulario button {
+  margin-top:5px;
+}
+#pantalla-tienda .tienda-canjes {
+  display:grid;
+  gap:10px;
+}
+#pantalla-tienda .tienda-canje {
+  border:2px solid #A26622 !important;
+  border-radius:12px !important;
+  background:url("/assets/nuestra-historia/Fondo.jpg") center / cover no-repeat !important;
+  padding:12px;
+  color:#DEA55C;
+  font-size:13px;
+}
+#pantalla-tienda .tienda-canje strong {
+  display:block;
+  color:#FBD28C !important;
+  font:25px "Great Vibes",cursive !important;
+}
+#pantalla-tienda .tienda-canje .tienda-estado,
+#pantalla-tienda .tienda-canje small {
+  color:#DEA55C !important;
+}
+#pantalla-tienda .tienda-canje button {
+  margin-top:8px;
+}
+#pantalla-tienda .tienda-nota {
+  text-align:center;
+  font-size:11px;
+  line-height:1.6;
+  color:#f1dce2 !important;
+  margin:22px 8px 0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:none !important;
+  box-shadow:none !important;
+}
+#pantalla-tienda .tienda-producto {
+  min-width:0;
+  padding:12px;
+  border:2px solid #A26622;
+  border-radius:12px;
+  background:url("/assets/nuestra-historia/Fondo.jpg") center / cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+#pantalla-tienda .tienda-producto .producto-icono {
+  display:flex;
+  min-height:70px;
+  justify-content:center;
+  align-items:center;
+  font-size:29px;
+}
+#pantalla-tienda .tienda-producto h4 {
+  margin:0;
+  color:#FBD28C;
+  font:23px "Great Vibes",cursive !important;
+  text-align:center;
+}
+#pantalla-tienda .tienda-producto p {
+  overflow-wrap:anywhere;
+  margin:0;
+}
+#pantalla-tienda .tienda-producto .producto-precio,
+#pantalla-tienda .tienda-producto .tienda-etiqueta {
+  color:#DEA55C;
+  font-size:12px;
+}
+#pantalla-tienda .tienda-producto button {
+  margin-top:auto;
+}
+@media(max-width:350px) {
+  #pantalla-tienda {
+    padding:14px 9px 30px !important;
+  }
+  #pantalla-tienda .tienda-catalogo {
+    gap:8px;
+  }
+  #pantalla-tienda .marco {
+    padding:12px !important;
+  }
+}
+
+/* Marco exterior dorado exclusivo de Tienda */
+#pantalla-tienda {
+  border: 2px solid #d4af37 !important;
+  border-radius: 18px !important;
+}
+</style>
+
+
+<style>
+/* Tipografía del subtítulo principal de portada */
+.portada-cabecera .portada-subtitulo {
+  font-family:"Great Vibes",cursive !important;
+  font-size:18px !important;
+}
+</style>
+
+
+<style>
+/* TIPOGRAFÍA FINAL DE INICIO */
+#contenidoApp #panel-inicio .portada-etiqueta,
+#contenidoApp #panel-inicio .portada-bienvenida h2,
+#contenidoApp #panel-inicio .portada-bienvenida p,
+#contenidoApp #panel-inicio .portada-firma,
+#contenidoApp #panel-inicio .portada-firma span,
+#contenidoApp #panel-inicio .portada-titulo-seccion small,
+#contenidoApp #panel-inicio .portada-titulo-seccion h2,
+#contenidoApp #panel-inicio .portada-grid .nombre-acceso,
+#contenidoApp #panel-inicio .portada-grid .detalle-acceso,
+#contenidoApp #panel-inicio .portada-pie,
+#contenidoApp #panel-inicio .portada-pie span,
+.app > .pie {
+  font-family: "Great Vibes", cursive !important;
+}
+
+#contenidoApp #panel-inicio .portada-pie,
+#contenidoApp #panel-inicio .portada-pie span {
+  font-size: 13px !important;
+}
+
+.app > .pie {
+  color: #c9ad7c !important;
+}
+</style>
+
+
+<style>
+/* AUMENTO DE 5 PX EN TEXTOS DE INICIO */
+#contenidoApp #panel-inicio .portada-etiqueta { font-size:15px !important; }
+#contenidoApp #panel-inicio .portada-bienvenida h2 { font-size:26px !important; }
+#contenidoApp #panel-inicio .portada-bienvenida p { font-size:18px !important; }
+#contenidoApp #panel-inicio .portada-firma { font-size:18px !important; }
+#contenidoApp #panel-inicio .portada-titulo-seccion small { font-size:14px !important; }
+#contenidoApp #panel-inicio .portada-titulo-seccion h2 { font-size:28px !important; }
+#contenidoApp #panel-inicio .portada-grid .nombre-acceso { font-size:20px !important; }
+#contenidoApp #panel-inicio .portada-grid .detalle-acceso { font-size:16px !important; }
+#contenidoApp #panel-inicio .portada-pie,
+#contenidoApp #panel-inicio .portada-pie span { font-size:18px !important; }
+#contenidoApp #panel-inicio .portada-cabecera .portada-subtitulo {
+  font-size:23px !important;
+}
+@media (max-width:350px) {
+  #contenidoApp #panel-inicio .portada-grid .nombre-acceso {
+    font-size:18px !important;
+  }
+  #contenidoApp #panel-inicio .portada-grid .detalle-acceso {
+    font-size:15px !important;
+  }
+}
+</style>
+
+
+<style>
+/* AJUSTES TIPOGRÁFICOS ESPECÍFICOS DE PORTADA */
+
+/* Texto descriptivo: +3 px y mismo dorado que el título */
+#contenidoApp #panel-inicio .portada-bienvenida p {
+  font-size: 21px !important;
+  color: #F7D9A5 !important;
+}
+
+/* Nuestro Rincón y Nuestro Espacio: +3 px */
+#contenidoApp #panel-inicio .portada-titulo-seccion small {
+  font-size: 17px !important;
+}
+#contenidoApp #panel-inicio .portada-titulo-seccion h2 {
+  font-size: 31px !important;
+}
+
+/* Seis tarjetas de acceso: +5 px */
+#contenidoApp #panel-inicio .portada-grid .nombre-acceso {
+  font-size: 25px !important;
+}
+#contenidoApp #panel-inicio .portada-grid .detalle-acceso {
+  font-size: 21px !important;
+}
+
+/* Firma y etiqueta: +5 px */
+#contenidoApp #panel-inicio .portada-firma {
+  font-size: 23px !important;
+}
+#contenidoApp #panel-inicio .portada-etiqueta {
+  font-size: 20px !important;
+}
+
+/* Pie principal: +3 px */
+#contenidoApp #panel-inicio .portada-pie,
+#contenidoApp #panel-inicio .portada-pie span {
+  font-size: 21px !important;
+}
+
+/* Mantener el aumento de las tarjetas también en móviles */
+@media (max-width: 350px) {
+  #contenidoApp #panel-inicio .portada-grid .nombre-acceso {
+    font-size: 23px !important;
+  }
+  #contenidoApp #panel-inicio .portada-grid .detalle-acceso {
+    font-size: 20px !important;
+  }
+}
+</style>
+
 </head>
 <body>
   <main class="app">
     <section id="accesoFirebase" style="padding:24px;margin:20px 0;background:#21131b;border:1px solid #8b2945;border-radius:18px;">
-      <div style="font-size:30px;text-align:center">♡ ✦ ♡</div>
-      <h2 style="text-align:center;color:#F7D9A5">Nuestro pequeño universo</h2>
-      <p style="text-align:center">Inicia sesión para entrar en Entre Nosotros</p>
+      <div style="font-size:30px;text-align:center;color:#d4af70;">♡ ✦ ♡</div>
+      <h2 style="display:flex;align-items:center;justify-content:center;text-align:center;margin:16px 0;min-height:90px;" id="titulo-inicio"><img src="/assets/nuestra-historia/Ini.png" alt="Entre Nosotros" style="display:block;width:100%;max-width:560px;height:auto;margin:auto;object-fit:contain;"></h2>
+      <p style="text-align:center;color:#d4af70" id="subtitulo-inicio">Inicia sesión para entrar en Entre Nosotros</p>
 
       <form id="formularioAcceso">
         <label for="correoAcceso">Correo electrónico</label>
@@ -2589,11 +3016,11 @@ main.app,
 
         <label for="recordarmeAcceso" style="display:flex;align-items:center;gap:9px;margin:0 0 16px;cursor:pointer;">
           <input id="recordarmeAcceso" type="checkbox" style="width:17px;height:17px;margin:0;accent-color:#8b2945;">
-          Recordarme
+          <span id="recordarme-dorado" style="color:#d4af70">Recordarme</span>
         </label>
 
-        <button type="submit" style="width:100%;padding:13px;border:0;border-radius:12px;background:#8b2945;color:white;font-size:16px;">
-          Entrar ❤️
+        <button type="submit" style="width:100%;padding:13px;border-radius:12px;background:#8b2945;font-size:2em;color:#d4af70 !important;text-align:center;background-image:url('/assets/nuestra-historia/Fondo.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;border:2px solid #d4af70;border-radius:15px;" class="boton-Entrar-fondo">
+          <b style="position:relative;top:2px;font-weight:inherit;">Entrar</b> <img src="/assets/Iconos/Icono9.png" alt="" style="width:1em;height:1em;object-fit:contain;vertical-align:middle;transform-origin:center;transform:translateX(5px) scale(2.0);">
         </button>
       </form>
 
@@ -2606,8 +3033,10 @@ main.app,
     <div class="portada-marco">
       <header class="portada-cabecera">
         <div class="portada-ornamento">✦ ━━━━━ ♡ ━━━━━ ✦</div>
-        <h1>Entre Nosotros</h1>
-        <div class="portada-subtitulo">NUESTRO PEQUEÑO UNIVERSO</div>
+        <h1 class="portada-titulo-imagen">
+<img src="/assets/nuestra-historia/Ent.png" alt="Entre Nosotros">
+</h1>
+        <div class="portada-subtitulo">Nuestro Pequeño Universo</div>
         <div class="portada-separador"><span>❦</span></div>
       </header>
 
@@ -2615,11 +3044,11 @@ main.app,
 
       <section id="panel-inicio" class="portada-inicio">
         <div class="portada-bienvenida">
-          <div class="portada-etiqueta">✧ UN LUGAR SOLO NUESTRO ✧</div>
+          <div class="portada-etiqueta">✧ Un Lugar Solo Nuestro ✧</div>
           <div class="portada-corazon"><img src="/assets/Corazonn.png" alt="Corazón rojo" /></div>
-          <h2>Qué bonito tenerte aquí</h2>
+          <h2>Qué Bonito Tenerte Aquí</h2>
           <p>Un pequeño universo para cuidarnos, compartir momentos y guardar todo aquello que nos une.</p>
-          <div class="portada-firma">Siempre tú y yo <span>♥</span></div>
+          <div class="portada-firma">Ahora y Siempre Tú y Yo <span>♥</span></div>
         </div>
 
         <button id="aviso-romantico" type="button" data-vista-menu="mensajes" style="display:none;width:100%;margin:18px 0;padding:18px;text-align:left;border:1px solid #F7D9A5;border-radius:12px;background:#351522;color:#f3e5d8;">
@@ -2630,7 +3059,7 @@ main.app,
 
         <div class="portada-titulo-seccion">
           <span>✦</span>
-          <div><small>NUESTRO RINCÓN</small><h2>Nuestro espacio</h2></div>
+          <div><small>Nuestro Rincón</small><h2>Nuestro Espacio</h2></div>
           <span>✦</span>
         </div>
 
@@ -2684,67 +3113,76 @@ main.app,
           </button>
         </div>
 
-        <div class="portada-pie">HECHO CON AMOR <span>♥</span> SOLO PARA NOSOTROS</div>
+        <div class="portada-pie">Hecho con Amor <span>♥</span> Solo para Nosotros</div>
       </section>
     </div>
 
     <section class="sobre" data-vista="tienda" id="pantalla-tienda" style="display:none">
-      <div class="tienda-cabecera">
-        <div class="tienda-sello">DETALLES SOLO NUESTROS</div>
-        <h2>🛍️ Nuestra tienda</h2>
-        <p>Pequeñas recompensas para seguir creando recuerdos juntos.</p>
-      </div>
+      <div class="tienda-contenedor">
+        <header class="tienda-cabecera cabecera">
+          <img class="titulo-tienda-imagen" src="/assets/nuestra-historia/Titulo.png" alt="Nuestra tienda">
+          <div class="tienda-sello sello">Detalles Solo Nuestros</div>
+          <div class="tienda-adornos adornos">✦ ❧ ♥ ❧ ✦</div>
+          <p>Pequeñas recompensas para seguir creando recuerdos juntos.</p>
+        </header>
 
-      <div class="tienda-aviso">
-        <strong>💎 Nuestros puntos</strong>
-        <p>Cada persona tiene su propio saldo y elige cómo gastarlo.</p>
-      </div>
+        <section class="tienda-aviso marco aviso">
+          <h2>Nuestros puntos</h2>
+          <p>Cada persona tiene su propio saldo y elige cómo gastarlo.</p>
+        </section>
 
-      <label for="tienda-persona">¿Quién va a comprar?</label>
-      <select id="tienda-persona">
-        <option value="yo">Yo</option>
-        <option value="pareja">Mi pareja</option>
-      </select>
+        <section class="tienda-selector marco selector">
+          <label for="tienda-persona">¿Quién va a comprar?</label>
+          <select id="tienda-persona">
+            <option value="yo">Yo</option>
+            <option value="pareja">Mi pareja</option>
+          </select>
+          <div class="tienda-saldo saldo">
+            <span>Tu saldo disponible</span>
+            <strong><span id="tienda-puntos">0</span> <img src="/assets/nuestra-historia/Di.png" alt="" class="tienda-icono-puntos"></strong>
+          </div>
+        </section>
 
-      <div class="tienda-saldo">
-        <span>Tu saldo disponible</span>
-        <strong><span id="tienda-puntos">0</span> 💎</strong>
-      </div>
+        <section class="tienda-prueba marco">
+          <h3>Modo de prueba</h3>
+          <p>Añade puntos ficticios para probar las compras.</p>
+          <button type="button" id="tienda-añadir-puntos">＋ Añadir 50 puntos de prueba</button>
+        </section>
 
-      <div class="tienda-prueba">
-        <p>Modo de prueba: añade puntos ficticios para probar las compras.</p>
-        <button type="button" class="secundario" id="tienda-añadir-puntos">＋ Añadir 50 puntos de prueba</button>
-      </div>
+        <h2 class="tienda-subtitulo subtitulo">Recompensas para elegir</h2>
+        <section class="tienda-catalogo-marco marco">
+          <div id="tienda-catalogo" class="tienda-catalogo catalogo"></div>
+        </section>
 
-      <h3 class="tienda-subtitulo">💝 Recompensas para elegir</h3>
-      <div id="tienda-catalogo" class="tienda-catalogo"></div>
+        <h2 class="tienda-subtitulo subtitulo">Crear una recompensa</h2>
+        <section class="tienda-formulario formulario marco">
+          <label for="tienda-nombre-nuevo">Nombre de la recompensa</label>
+          <input id="tienda-nombre-nuevo" maxlength="60" placeholder="Ej.: Un masaje de 15 minutos">
 
-      <h3 class="tienda-subtitulo">✨ Crear una recompensa</h3>
-      <div class="tienda-formulario">
-        <label for="tienda-nombre-nuevo">Nombre de la recompensa</label>
-        <input id="tienda-nombre-nuevo" maxlength="60" placeholder="Ej.: Un masaje de 15 minutos">
+          <label for="tienda-descripcion-nueva">Descripción</label>
+          <textarea id="tienda-descripcion-nueva" maxlength="240" placeholder="¿Qué incluye esta recompensa?"></textarea>
 
-        <label for="tienda-descripcion-nueva">Descripción</label>
-        <textarea id="tienda-descripcion-nueva" maxlength="240" placeholder="¿Qué incluye esta recompensa?"></textarea>
+          <label for="tienda-precio-nuevo">Precio en puntos</label>
+          <input id="tienda-precio-nuevo" type="number" min="1" max="100000" value="30">
 
-        <label for="tienda-precio-nuevo">Precio en puntos</label>
-        <input id="tienda-precio-nuevo" type="number" min="1" max="100000" value="30">
+          <label for="tienda-tipo-nuevo">¿Cómo se canjea?</label>
+          <select id="tienda-tipo-nuevo">
+            <option value="inmediato">Disponible al comprar</option>
+            <option value="aprobacion">Necesita aprobación de mi pareja</option>
+          </select>
 
-        <label for="tienda-tipo-nuevo">¿Cómo se canjea?</label>
-        <select id="tienda-tipo-nuevo">
-          <option value="inmediato">Disponible al comprar</option>
-          <option value="aprobacion">Necesita aprobación de mi pareja</option>
-        </select>
+          <button type="button" id="tienda-crear-recompensa">＋ Añadir a nuestra tienda</button>
+        </section>
 
-        <button type="button" id="tienda-crear-recompensa">＋ Añadir a nuestra tienda</button>
-      </div>
+        <h2 class="tienda-subtitulo subtitulo">Mis canjes</h2>
+        <section class="tienda-canjes-marco marco canjes">
+          <div id="tienda-canjes" class="tienda-canjes"></div>
+        </section>
 
-      <h3 class="tienda-subtitulo">💌 Mis canjes</h3>
-      <div id="tienda-canjes" class="tienda-canjes"></div>
-
-      <div class="tienda-nota">
-        🔒 <strong>Versión de prueba:</strong> los puntos y las compras se guardan en este dispositivo.
-        Todavía no se comparten con el otro móvil. Los puntos de prueba no son puntos reales.
+        <p class="tienda-nota nota">
+          🔒 <strong>Versión de prueba:</strong> los puntos y las compras se guardan en este dispositivo.
+          Todavía no se comparten con el otro móvil. Los puntos de prueba no son puntos reales.
+        </p>
       </div>
     </section>
 
@@ -3113,7 +3551,7 @@ main.app,
 </div></div></section>
 
     <div class="pie">
-      Dos personas · Un pequeño universo<br>
+      Dos Personas · Un Pequeño Universo<br>
       Hecho para nosotros ♡
 
     <nav id="navegacion-inferior" aria-label="Navegación principal">
@@ -3841,6 +4279,22 @@ a:active {
      animation:pulsoCasilla 1.5s ease-in-out infinite alternate;
     }
    
+
+
+/* INICIO: GREAT VIBES SOLO EN TEXTOS */
+#contenidoApp #panel-inicio .portada-etiqueta,
+#contenidoApp #panel-inicio .portada-bienvenida h2,
+#contenidoApp #panel-inicio .portada-bienvenida p,
+#contenidoApp #panel-inicio .portada-firma,
+#contenidoApp #panel-inicio .portada-firma span,
+#contenidoApp #panel-inicio .portada-titulo-seccion h2,
+#contenidoApp #panel-inicio .portada-titulo-seccion small,
+#contenidoApp #panel-inicio .nombre-acceso,
+#contenidoApp #panel-inicio .detalle-acceso,
+#contenidoApp #panel-inicio .portada-pie,
+#contenidoApp #panel-inicio .portada-pie span {
+  font-family: 'Great Vibes', cursive !important;
+}
 
 </style>
    <defs>

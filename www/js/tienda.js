@@ -36,6 +36,34 @@ function persona(){ return document.getElementById("tienda-persona")?.value || "
 function escapar(s){
   return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
+function imagenVale(id) {
+  const imagenes = {
+    r1: "/muestra-tienda-recursos/Valesnu-1.png",
+    r2: "/muestra-tienda-recursos/Valesnu-2.png",
+    r3: "/muestra-tienda-recursos/Valesnu-3.png",
+    r4: "/muestra-tienda-recursos/Valesnu-4.png",
+    r5: "/muestra-tienda-recursos/Historia-5.png",
+    r6: "/muestra-tienda-recursos/Historia-6.png",
+    r7: "/assets/7.jpg",
+    r8: "/assets/8.jpg"
+  };
+  return imagenes[id] || "";
+}
+
+function estiloVale(id) {
+  const estilos = {
+    r1: "width:200px;height:313px;position:relative;left:-16px;top:-27px",
+    r2: "width:203px;height:315px;position:relative;left:16px;top:-27px",
+    r3: "width:203px;height:318px;position:relative;left:-18px;top:14px",
+    r4: "width:203px;height:315px;position:relative;left:16px;top:15px",
+    r5: "width:161px;height:253px;position:relative;left:0;top:-1px",
+    r6: "width:162px;height:254px;position:relative;top:-1px",
+    r7: "width:160px;height:251px",
+    r8: "width:160px;height:251px"
+  };
+  return estilos[id] || "width:100%;height:auto";
+}
+
 function renderizar(){
   const saldo = document.getElementById("tienda-puntos");
   if(!saldo) return;
@@ -43,7 +71,7 @@ function renderizar(){
   const catalogo = document.getElementById("tienda-catalogo");
   catalogo.innerHTML = datos.recompensas.map(r=>paginasVales[r.id] ? `
     <button type="button" class="tienda-tarjeta-vale" data-comprar="${escapar(r.id)}" aria-label="Canjear ${escapar(r.nombre)} por ${Number(r.precio)} puntos">
-      <img src="/imagenes/vales/vale-${escapar(r.id)}.png" alt="${escapar(r.nombre)}">
+      <img src="${imagenVale(r.id)}" style="${estiloVale(r.id)}" alt="${escapar(r.nombre)}">
     </button>` : `
     <article class="tienda-producto">
       <span class="producto-icono">${escapar(r.icono || "💝")}</span>
