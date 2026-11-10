@@ -52,10 +52,10 @@ function imagenVale(id) {
 
 function estiloVale(id) {
   const estilos = {
-    r1: "width:200px;height:313px;position:relative;left:-16px;top:-27px",
-    r2: "width:203px;height:315px;position:relative;left:16px;top:-27px",
-    r3: "width:203px;height:318px;position:relative;left:-18px;top:14px",
-    r4: "width:203px;height:315px;position:relative;left:16px;top:15px",
+    r1: "width:160px;height:250px;position:relative;left:0;top:-1px",
+    r2: "width:160px;height:248px;position:relative;left:0;top:-1px",
+    r3: "width:160px;height:251px;position:relative;left:0;top:-1px",
+    r4: "width:160px;height:248px;position:relative;left:0;top:-1px",
     r5: "width:161px;height:253px;position:relative;left:0;top:-1px",
     r6: "width:162px;height:254px;position:relative;top:-1px",
     r7: "width:160px;height:251px",

@@ -39,7 +39,7 @@
   top: 18% !important;
   left: calc(16% - 20px) !important;
   width: calc(68% + 40px) !important;
-  height: calc(57vw - 30px) !important;
+  height: calc(57vw - 60px) !important;
   max-width: none !important;
   aspect-ratio: auto !important;
   margin: 0 !important;
@@ -48,6 +48,7 @@
   display: block !important;
   background: none !important;
   object-fit: fill !important;
+  clip-path: none !important;
 }
 
 /* 4. CUADRÍCULA Y TARJETAS */
@@ -111,7 +112,7 @@
 
 /* ADAPTACION A LAS CLASES REALES DE NUESTRA HISTORIA */
 
-/* Marco principal: Marcori.png */
+/* Marco principal */
 .nuestra-historia .marco-principal-foto {
   width: 68% !important;
   max-width: none !important;
@@ -124,22 +125,6 @@
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-}
-
-/* Marco decorativo superpuesto en su posición aprobada */
-section.nuestra-historia[data-vista="nuestra-historia"]::after {
-  content: "";
-  position: absolute;
-  top: 18%;
-  left: 16%;
-  width: 68%;
-  aspect-ratio: 826 / 473;
-  background-image: url('/assets/nuestra-historia/Marcori.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  z-index: 2;
-  pointer-events: none;
 }
 
 /* El contenedor deja visible la imagen base */
@@ -255,10 +240,6 @@ section.nuestra-historia[data-vista="nuestra-historia"]::after {
   }
 }
 
-/* Mostrar únicamente la interfaz integrada en la imagen */
-section.nuestra-historia[data-vista="nuestra-historia"] > * {
-  display: none !important;
-}
 
 
 /* Hacer transparente el contenedor principal de la portada para que se vea el terciopelo */

@@ -536,12 +536,12 @@
 }
 .nh-foto-principal {
   position: absolute;
-  top: calc(18% + 33px);
+  top: calc(18% + 28px);
   left: calc(50% + 2px);
   transform: translateX(-50%);
-  width: calc(45% - 2px);
-  height: auto;
-  object-fit: cover;
+  width: calc(45% + 2.33px);
+  height: calc(34vw - 35px);
+  object-fit: fill;
   object-position: center;
   z-index: 3;
 }
