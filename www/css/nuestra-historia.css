@@ -458,6 +458,10 @@
   line-height: 1.2;
 }
 
+.nuestra-historia {
+  overflow-x: hidden;
+}
+
 .nuestra-historia .nh-historia {
   position: relative;
   width: 100%;

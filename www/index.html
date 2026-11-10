@@ -2997,6 +2997,20 @@ main.app,
 }
 </style>
 
+
+<style id="restauracion-titulos-graficos">
+img[src*="/nuestra-historia/Ent.png"],
+img[src*="/nuestra-historia/Ini.png"],
+img[src*="/nuestra-historia/Titulo.png"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+</style>
+
 </head>
 <body>
   <main class="app">
@@ -3045,7 +3059,7 @@ main.app,
       <section id="panel-inicio" class="portada-inicio">
         <div class="portada-bienvenida">
           <div class="portada-etiqueta">✧ Un Lugar Solo Nuestro ✧</div>
-          <div class="portada-corazon"><img src="/assets/Corazonn.png" alt="Corazón rojo" /></div>
+          <div class="portada-corazon"><img src="/assets/Iconos/Icono9.png" alt="Corazón rojo" /></div>
           <h2>Qué Bonito Tenerte Aquí</h2>
           <p>Un pequeño universo para cuidarnos, compartir momentos y guardar todo aquello que nos une.</p>
           <div class="portada-firma">Ahora y Siempre Tú y Yo <span>♥</span></div>
@@ -4392,5 +4406,27 @@ a:active {
   <script src="/js/nuestra-historia.js"></script>
   <script type="module" src="/js/nuestra-historia-recuerdos.js"></script>
 <script src="/js/nuestra-historia-foto.js"></script>
+
+<style id="restauracion-terciopelo-exteriores">
+html, body {
+  min-height: 100% !important;
+  background: #310811 url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover fixed no-repeat !important;
+}
+body, main.app, #contenidoApp, #contenidoApp.card-leather,
+#contenidoApp .portada-marco,
+.nuestra-historia-container {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+section.sobre[data-vista],
+section.perfil[data-vista] {
+  background: #310811 url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover fixed no-repeat !important;
+}
+#pantalla-tienda {
+  background: #310811 url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover fixed no-repeat !important;
+}
+/* Fondo.jpg se conserva en los marcos y tarjetas interiores. */
+</style>
+
 </body>
 </html>
