@@ -1138,9 +1138,16 @@ body {
   background:
     radial-gradient(ellipse at 50% 0%,#70254140,transparent 53%),
     transparent !important;
-  border:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
+  border:1px solid #F7D9A5 !important;
+  border-radius:17px !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
   box-sizing:border-box !important;
 }
 .portada-cabecera h1 {
@@ -1163,9 +1170,18 @@ body {
   background:
     radial-gradient(ellipse at 50% 0%,#85304c 0%,transparent 78%),
     linear-gradient(145deg,#54182f,#351321 65%,#24101b) !important;
-  border:1px solid #c39a4e !important;
+  border:1px solid #F7D9A5 !important;
   border-radius:13px !important;
-  box-shadow:inset 0 0 0 3px #F7D9A50d,inset 0 1px 12px #e5bb4820,0 8px 22px #0008 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.85),
+    inset 0 -1px 0 rgba(255,239,207,.70),
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
 }
 .portada-etiqueta {color:#e9cf8b !important;letter-spacing:2px !important;}
 .portada-corazon {
@@ -1872,17 +1888,84 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
 
 
 <style id="estilos-nosotros-relieve">
-/* Marco principal de Nosotros: relieve burdeos */
+/* Marco exterior de Nosotros */
 .perfil[data-vista="nosotros"] {
   box-sizing: border-box;
-  border: 1px solid #B89A62 !important;
+  border: 1px solid #d4af37 !important;
   border-radius: 18px;
   background: linear-gradient(145deg, #351522 0%, #211018 48%, #130b10 100%) !important;
+  position: relative;
   box-shadow:
-    inset 1px 1px 0 rgba(247,217,165,.18),
-    inset -2px -2px 4px rgba(0,0,0,.48),
-    0 5px 0 #0b0609,
-    0 9px 18px rgba(0,0,0,.55);
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48);
+}
+
+/* Reflejos luminosos arriba y abajo en todos los marcos */
+.perfil[data-vista="nosotros"]::before,
+.perfil[data-vista="nosotros"] #boton-pregunta-diaria::before,
+.perfil[data-vista="nosotros"] .lugares-acceso::before,
+.perfil[data-vista="nosotros"] .campo-nombre-avatar::before,
+.perfil[data-vista="nosotros"] .pareja-resumen > div::before,
+.perfil[data-vista="nosotros"] button[onclick="guardarPerfiles()"]::before,
+.perfil[data-vista="nosotros"]::after,
+.perfil[data-vista="nosotros"] #boton-pregunta-diaria::after,
+.perfil[data-vista="nosotros"] .lugares-acceso::after,
+.perfil[data-vista="nosotros"] .campo-nombre-avatar::after,
+.perfil[data-vista="nosotros"] .pareja-resumen > div::after,
+.perfil[data-vista="nosotros"] button[onclick="guardarPerfiles()"]::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #F7D9A5, transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.perfil[data-vista="nosotros"]::before,
+.perfil[data-vista="nosotros"] #boton-pregunta-diaria::before,
+.perfil[data-vista="nosotros"] .lugares-acceso::before,
+.perfil[data-vista="nosotros"] .campo-nombre-avatar::before,
+.perfil[data-vista="nosotros"] .pareja-resumen > div::before,
+.perfil[data-vista="nosotros"] button[onclick="guardarPerfiles()"]::before {
+  top: 0;
+}
+
+.perfil[data-vista="nosotros"]::after,
+.perfil[data-vista="nosotros"] #boton-pregunta-diaria::after,
+.perfil[data-vista="nosotros"] .lugares-acceso::after,
+.perfil[data-vista="nosotros"] .campo-nombre-avatar::after,
+.perfil[data-vista="nosotros"] .pareja-resumen > div::after,
+.perfil[data-vista="nosotros"] button[onclick="guardarPerfiles()"]::after {
+  bottom: 0;
+}
+
+.perfil[data-vista="nosotros"]::before,
+.perfil[data-vista="nosotros"] #boton-pregunta-diaria::before,
+.perfil[data-vista="nosotros"] .lugares-acceso::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16%;
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #F7D9A5, transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Encabezado: conserva su color */
+.perfil[data-vista="nosotros"] .hora {
+  color: var(--oro) !important;
+  font: 18px "Great Vibes", cursive !important;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 /* Título y etiquetas */
@@ -1895,43 +1978,70 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
   color: #F7D9A5;
 }
 
-/* Campos de nombres y selectores */
-.perfil[data-vista="nosotros"] input,
-.perfil[data-vista="nosotros"] select {
-  box-sizing: border-box;
-  width: 100%;
-  border: 1px solid #B89A62 !important;
-  border-radius: 10px;
-  background: linear-gradient(145deg, #130b10, #211018) !important;
-  color: #F7D9A5 !important;
-  box-shadow:
-    inset 0 2px 4px rgba(0,0,0,.48),
-    0 1px 0 rgba(247,217,165,.08);
+/* Descripción en dorado secundario */
+.perfil[data-vista="nosotros"] .descripcion {
+  color: #DEA55C !important;
 }
 
-/* Evitar el borde doble en los campos de nombre */
-.perfil[data-vista="nosotros"] .campo-nombre-avatar .nombre-con-avatar input {
+/* Campos de nombres con textura y marco dorado */
+.perfil[data-vista="nosotros"] .campo-nombre-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border: 1px solid #d4af37 !important;
+  border-radius: 12px;
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,.35);
+}
+
+.perfil[data-vista="nosotros"] .campo-nombre-avatar input {
+  flex: 1 1 auto;
   width: auto !important;
-  max-width: calc(100% - 36px);
-  border: 1px solid #B89A62 !important;
-  border-radius: 10px !important;
-  background: linear-gradient(145deg, #130b10, #211018) !important;
+  min-width: 0;
+  max-width: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #FBD28C !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
-/* Tarjetas de los dos perfiles con relieve */
+.perfil[data-vista="nosotros"] .campo-nombre-avatar input::placeholder {
+  color: #DEA55C !important;
+  opacity: 1;
+}
+
+.perfil[data-vista="nosotros"] .campo-nombre-avatar .avatar-junto-nombre {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Las dos tarjetas de los avatares */
 .perfil[data-vista="nosotros"] .pareja-resumen > div {
+  position: relative;
   box-sizing: border-box;
-  border: 1px solid #B89A62 !important;
+  border: 1px solid #d4af37 !important;
   border-radius: 16px;
-  background: linear-gradient(145deg, #482033 0%, #351522 48%, #1c1017 100%) !important;
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   padding: 12px 16px;
   box-shadow:
     inset 1px 1px 0 rgba(247,217,165,.2),
-    inset -2px -2px 3px rgba(0,0,0,.4),
-    0 3px 0 #0b0609,
-    0 6px 10px rgba(0,0,0,.4);
+    inset -2px -2px 3px rgba(0,0,0,.4);
 }
 
 .perfil[data-vista="nosotros"] .avatar {
@@ -1943,34 +2053,49 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
   text-shadow: 0 2px 3px #000;
 }
 
-/* Botón Guardar nuestros perfiles */
+/* Guardar nuestros perfiles */
 .perfil[data-vista="nosotros"] button[onclick="guardarPerfiles()"] {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid #B89A62 !important;
+  border: 1px solid #d4af37 !important;
   border-radius: 14px;
-  background: linear-gradient(145deg, #702844 0%, #512037 45%, #1c1017 100%) !important;
-  color: #F7D9A5 !important;
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: #FBD28C !important;
+  font: 22px "Great Vibes", cursive !important;
   box-shadow:
     inset 1px 1px 0 rgba(247,217,165,.22),
-    inset -1px -2px 3px rgba(0,0,0,.35),
-    0 3px 0 #0b0609,
-    0 6px 12px rgba(0,0,0,.4);
+    inset -1px -2px 3px rgba(0,0,0,.35);
 }
 
-/* Nuestra pregunta diaria: imagen panorámica completa */
-#boton-pregunta-diaria {
+/* Nuestra pregunta diaria: solo textura y marco */
+.perfil[data-vista="nosotros"] #boton-pregunta-diaria {
+  position: relative;
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
   max-width: 100% !important;
   padding: 8px !important;
-  background: #12090e !important;
-  border: 1px solid #B89A62 !important;
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border: 1px solid #d4af37 !important;
   border-radius: 16px !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
 }
 
-#boton-pregunta-diaria img {
+.perfil[data-vista="nosotros"] #boton-pregunta-diaria img {
   display: block !important;
   width: 100% !important;
   max-width: none !important;
@@ -1978,6 +2103,34 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
   margin: 0 auto !important;
   object-fit: contain;
   border-radius: 12px;
+}
+
+/* Acceso a Nuestro Mundo: conserva el globo y el relieve */
+.perfil[data-vista="nosotros"] .lugares-acceso {
+  position: relative;
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
+}
+
+.perfil[data-vista="nosotros"] .lugares-acceso h3 {
+  color: #FBD28C !important;
+  font: 30px "Great Vibes", cursive !important;
+}
+
+.perfil[data-vista="nosotros"] .lugares-acceso p {
+  color: #DEA55C !important;
+  font: 22px "Great Vibes", cursive !important;
 }
 </style>
 
@@ -2881,6 +3034,81 @@ main.app,
   border: 2px solid #d4af37 !important;
   border-radius: 18px !important;
 }
+
+/* MARCOS METÁLICOS: TEXTURAS ORIGINALES Y VALES INTACTOS */
+
+/* Marco exterior: conserva el terciopelo original */
+#pantalla-tienda {
+  border: 2px solid transparent !important;
+  border-radius: 18px !important;
+  background-image:
+    url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg"),
+    linear-gradient(135deg, #F5E8C3 0%, #DDBB70 25%, #C59B4A 50%, #966A2F 75%, #FDF4CE 100%) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+  background-size: cover, auto !important;
+  background-position: center top, center !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-attachment: fixed, scroll !important;
+  box-shadow:
+    0 0 12px rgba(232,200,122,.25),
+    inset 0 0 4px rgba(253,244,206,.30),
+    0 3px 0 #966A2F,
+    0 6px 0 #68451F,
+    0 10px 0 #34202A,
+    0 14px 20px rgba(0,0,0,.42) !important;
+}
+
+/* Paneles grandes: Fondo.jpg permanece como fondo interior */
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale) {
+  box-sizing: border-box;
+  border: 2px solid transparent !important;
+  border-radius: 17px !important;
+  background-image:
+    url("/assets/nuestra-historia/Fondo.jpg"),
+    linear-gradient(135deg, #B8873E 0%, #A87935 25%, #966A2F 50%, #805728 75%, #C59B4A 100%) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+  background-size: cover, auto !important;
+  background-position: center, center !important;
+  background-repeat: no-repeat, no-repeat !important;
+  box-shadow:
+    0 0 12px rgba(232,200,122,.25),
+    inset 0 0 4px rgba(253,244,206,.30),
+    0 3px 0 #966A2F,
+    0 6px 0 #68451F,
+    0 10px 0 #34202A,
+    0 14px 18px rgba(0,0,0,.38) !important;
+}
+
+/* Botones: se conserva su fondo original */
+#pantalla-tienda button:not(.tienda-tarjeta-vale) {
+  border-color: #C59B4A !important;
+  box-shadow:
+    inset 0 2px 3px rgba(253,244,206,.35),
+    inset 0 -2px 3px rgba(150,106,47,.30),
+    inset 0 0 0 1px rgba(232,200,122,.20) !important;
+}
+
+/* Campos: conservan su Fondo.jpg */
+#pantalla-tienda input,
+#pantalla-tienda textarea,
+#pantalla-tienda select {
+  border-color: #C59B4A !important;
+  box-shadow:
+    inset 0 2px 3px rgba(253,244,206,.30),
+    inset 0 -2px 3px rgba(150,106,47,.25) !important;
+}
+
+/* Canjes y productos: no sustituir sus fondos */
+#pantalla-tienda .tienda-canje,
+#pantalla-tienda .tienda-producto {
+  border-color: #C59B4A !important;
+  box-shadow:
+    inset 0 2px 3px rgba(253,244,206,.30),
+    inset 0 -2px 4px rgba(150,106,47,.25),
+    inset 0 0 0 1px rgba(232,200,122,.18) !important;
+}
 </style>
 
 
@@ -3354,7 +3582,7 @@ img[src*="/nuestra-historia/Titulo.png"] {
         onclick="mostrarVista('pregunta-diaria')"
         aria-label="Abrir Nuestra pregunta diaria"
         style="padding:8px;background:transparent;border:2px solid #754052;border-radius:16px;">
-        <img src="/assets/boton3.jpg" alt="Nuestra pregunta diaria"
+        <img src="/assets/BotonPre.png" alt="Nuestra pregunta diaria"
           style="display:block;width:100%;max-width:420px;height:auto;margin:auto;border-radius:12px;">
       </button>
 
@@ -4423,7 +4651,730 @@ section.perfil[data-vista] {
   background: #310811 url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover fixed no-repeat !important;
 }
 /* Fondo.jpg se conserva en los marcos y tarjetas interiores. */
+
+/* RESTAURAR BORDE METÁLICO DEL MARCO EXTERIOR DE TIENDA */
+#pantalla-tienda {
+  box-sizing: border-box !important;
+  border: 2px solid transparent !important;
+  border-radius: 18px !important;
+  background:
+    url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover fixed no-repeat padding-box,
+    linear-gradient(135deg, #A87935 0%, #966A2F 25%, #895D29 50%, #805728 75%, #C59B4A 100%) border-box !important;
+}
+
+
+/* REFLEJOS DORADOS INTENSIFICADOS EN LOS MARCOS DE TIENDA */
+#pantalla-tienda,
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale) {
+  position: relative !important;
+}
+
+/* Brillo superior más visible */
+#pantalla-tienda::before,
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale)::before {
+  content: "";
+  position: absolute;
+  left: 14%;
+  top: 0;
+  width: 72%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #E8C87A 20%,
+    #FFF1C9 50%,
+    #E8C87A 80%,
+    transparent
+  );
+  box-shadow: 0 0 5px rgba(247,217,165,.75);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Reflejo inferior en los marcos grandes */
+#pantalla-tienda::after,
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale)::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  bottom: 0;
+  width: 72%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #E8C87A 20%,
+    #FFF1C9 50%,
+    #E8C87A 80%,
+    transparent
+  );
+  box-shadow: 0 0 5px rgba(247,217,165,.65);
+  pointer-events: none;
+  z-index: 5;
+}
+</style>
+
+
+<style id="acabado-marcos-mensajes">
+/* Marco exterior de Mensajes */
+#seccion-mensajes {
+  position: relative !important;
+  box-sizing: border-box;
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    0 12px 35px #0005 !important;
+}
+
+/* Botón Me he acordado de ti */
+#seccion-mensajes #boton-acordado {
+  position: relative !important;
+  box-sizing: border-box;
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -2px 4px rgba(0,0,0,.32);
+}
+
+/* Reflejo superior e inferior */
+#seccion-mensajes::before,
+#seccion-mensajes::after,
+#seccion-mensajes #boton-acordado::before,
+#seccion-mensajes #boton-acordado::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,#F7D9A5,transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+
+#seccion-mensajes::before,
+#seccion-mensajes #boton-acordado::before {
+  top: 0;
+}
+
+#seccion-mensajes::after,
+#seccion-mensajes #boton-acordado::after {
+  bottom: 0;
+}
+</style>
+
+
+<style id="acabado-cuatro-elementos-login">
+/* Reflejo inferior del marco exterior; el superior se conserva */
+#accesoFirebase {
+  position: relative !important;
+}
+#accesoFirebase::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  bottom: 0;
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,#F7D9A5,transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Correo y contraseña */
+#accesoFirebase #correoAcceso,
+#accesoFirebase #claveAcceso {
+  box-sizing: border-box !important;
+  border: 1px solid #d4af70 !important;
+  background-image:
+    linear-gradient(90deg,transparent,#F7D9A5,transparent),
+    linear-gradient(90deg,transparent,#F7D9A5,transparent) !important;
+  background-size: 68% 1px,68% 1px !important;
+  background-position: center top,center bottom !important;
+  background-repeat: no-repeat !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.18),
+    inset 0 -1px 0 rgba(247,217,165,.12) !important;
+}
+
+/* Botón Entrar */
+#accesoFirebase button[type="submit"].boton-Entrar-fondo {
+  position: relative !important;
+  box-sizing: border-box;
+  border: 1px solid #d4af70 !important;
+  box-shadow:
+    inset 0 1px 2px rgba(255,239,207,.22),
+    inset 0 -1px 0 rgba(247,217,165,.14) !important;
+}
+
+#accesoFirebase button[type="submit"].boton-Entrar-fondo::before,
+#accesoFirebase button[type="submit"].boton-Entrar-fondo::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,#F7D9A5,transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+#accesoFirebase button[type="submit"].boton-Entrar-fondo::before { top: 0; }
+#accesoFirebase button[type="submit"].boton-Entrar-fondo::after { bottom: 0; }
+</style>
+
+
+<style id="acabado-dorado-ocho-retos">
+/* Dos marcos principales */
+section.sobre[data-vista="retos"] {
+  position: relative;
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    0 12px 35px #0005,
+    inset 0 1px 0 rgba(255,239,207,.30),
+    inset 0 -1px 0 rgba(247,217,165,.22);
+}
+section.sobre[data-vista="retos"]::before,
+section.sobre[data-vista="retos"]::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  width: 68%;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #F7D9A5, transparent);
+}
+section.sobre[data-vista="retos"]::before { top: 0; }
+section.sobre[data-vista="retos"]::after { bottom: 0; }
+
+/* Cuatro botones interiores */
+section.sobre[data-vista="retos"] button {
+  position: relative;
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.30),
+    inset 0 -1px 0 rgba(247,217,165,.22);
+  background-image:
+    linear-gradient(90deg, transparent, #F7D9A5, transparent),
+    linear-gradient(90deg, transparent, #F7D9A5, transparent);
+  background-size: 68% 1px, 68% 1px;
+  background-position: center top, center bottom;
+  background-repeat: no-repeat;
+}
+
+/* Dos campos para escribir */
+section.sobre[data-vista="retos"] textarea {
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.30),
+    inset 0 -1px 0 rgba(247,217,165,.22);
+}
+</style>
+
+
+<style id="acabado-dorado-tres-zonas-diario">
+/* 1. Marco exterior de Diario */
+section.sobre[data-vista="diario"] {
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    0 12px 35px #0005,
+    inset 0 1px 0 rgba(255,239,207,.38),
+    inset 0 -1px 0 rgba(247,217,165,.30);
+}
+
+/* 2. Botón para abrir el diario */
+section.sobre[data-vista="diario"] > button.secundario {
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.38),
+    inset 0 -1px 0 rgba(247,217,165,.30);
+}
+
+/* 3. Marco exterior del libro */
+#diario-libro-contenido {
+  border: 1px solid #d4af37;
+  box-shadow:
+    5px 6px 0 #a58a60,
+    10px 11px 0 #756044,
+    0 14px 28px #0008,
+    inset 0 1px 0 rgba(255,239,207,.38),
+    inset 0 -1px 0 rgba(247,217,165,.30);
+}
+</style>
+
+
+<style id="acabado-dorado-nueve-elementos-ruleta">
+/* Acabado dorado en los nueve elementos de la ruleta. */
+#pantalla-ruleta .ruleta-aviso,
+#pantalla-ruleta .ruleta-leyenda > div,
+#pantalla-ruleta .ruleta-boton,
+#pantalla-ruleta .ruleta-nota {
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.38),
+    inset 0 -1px 0 rgba(247,217,165,.30);
+}
+#pantalla-ruleta .ruleta-boton {
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.38),
+    inset 0 -1px 0 rgba(247,217,165,.30),
+    0 7px 20px rgba(0,0,0,.25);
+}
+/* Los dos círculos mantienen su estado y sus dimensiones. */
+#pantalla-ruleta .ruleta-tirada,
+#pantalla-ruleta .ruleta-tirada.usada {
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.38),
+    inset 0 -1px 0 rgba(247,217,165,.30);
+}
+
+/* Marco exterior de toda la pantalla de Ruleta. */
+#pantalla-ruleta {
+  box-sizing: border-box;
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,239,207,.38),
+    inset 0 -1px 0 rgba(247,217,165,.30),
+    0 12px 35px #0005;
+}
+</style>
+
+<style id="acabado-dorado-pregunta-diaria">
+/* Marco exterior: conserva el fondo y las dimensiones actuales. */
+section.sobre[data-vista="pregunta-diaria"] {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 12px 35px #0005;
+}
+
+/* Panel principal y tres tarjetas fijas. */
+#nuestro-momento-hoy {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -2px 4px rgba(0,0,0,.35),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 4px 0 #0b0609,
+    0 7px 14px rgba(0,0,0,.4);
+}
+
+#nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido .momento-tarjeta {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -2px 3px rgba(0,0,0,.30),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 3px 0 #0b0609,
+    0 5px 8px rgba(0,0,0,.3);
+}
+
+#pregunta-diaria-contenido .momento-seleccionado {
+  border-color: #d4af37 !important;
+}
+
+/* Panel dinámico, respuestas y campo para escribir. */
+#pregunta-diaria-contenido .pd-panel,
+#pregunta-diaria-contenido .pd-respuesta,
+#pregunta-diaria-contenido .pd-panel textarea {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.24),
+    inset 0 -2px 4px rgba(0,0,0,.30),
+    inset 0 0 0 1px rgba(212,175,55,.10);
+}
+
+/* Botones interiores y botón de regreso: solo acabado del marco. */
+#pregunta-diaria-contenido .pd-panel button,
+section.sobre[data-vista="pregunta-diaria"] > button.secundario {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -2px 3px rgba(0,0,0,.30),
+    inset 0 0 0 1px rgba(212,175,55,.10);
+}
+</style>
+
+<style id="acabado-metalico-dorado-global">
+/* Acabado metálico común: solo bordes y relieve. No modifica fondos. */
+#accesoFirebase,
+#pantalla-ruleta,
+section.perfil[data-vista="nosotros"],
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"],
+section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"],
+section.sobre[data-vista="pregunta-diaria"],
+section.sobre[data-vista="retos"],
+#seccion-mensajes,
+section.sobre[data-vista="diario"] {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,241,201,.75),
+    inset 0 -2px 4px rgba(80,47,16,.48),
+    inset 0 0 0 1px rgba(232,200,122,.24),
+    0 1px 0 #E8C87A,
+    0 3px 0 #966A2F,
+    0 5px 0 #68451F,
+    0 8px 14px rgba(0,0,0,.38) !important;
+}
+
+/* Portada: únicamente sus marcos y paneles, nunca los accesos. */
+.portada-bienvenida {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+}
+
+/* Nuestro Mundo y Lugares Especiales: tarjetas y paneles no interactivos. */
+.perfil[data-vista="nosotros"] .pareja-resumen > div,
+.lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares,
+.lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario,
+.lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,241,201,.65),
+    inset 0 -2px 3px rgba(80,47,16,.40),
+    inset 0 0 0 1px rgba(232,200,122,.20),
+    0 2px 0 #966A2F,
+    0 4px 8px rgba(0,0,0,.30) !important;
+}
+
+/* Nuestra Historia: solo los seis marcos de contador. */
+.nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,241,201,.65),
+    inset 0 -2px 3px rgba(80,47,16,.40),
+    inset 0 0 0 1px rgba(232,200,122,.20),
+    0 2px 0 #966A2F,
+    0 4px 8px rgba(0,0,0,.30) !important;
+}
+
+/* Pregunta diaria: paneles y tarjetas, excluidos sus botones y campos. */
+#nuestro-momento-hoy,
+#nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido .momento-tarjeta,
+#pregunta-diaria-contenido .pd-panel,
+#pregunta-diaria-contenido .pd-respuesta {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,241,201,.65),
+    inset 0 -2px 3px rgba(80,47,16,.40),
+    inset 0 0 0 1px rgba(232,200,122,.20),
+    0 2px 0 #966A2F,
+    0 4px 8px rgba(0,0,0,.30) !important;
+}
+
+/* Ruleta normal: paneles informativos, sin tocar sus botones ni tiradas. */
+#pantalla-ruleta .ruleta-aviso,
+#pantalla-ruleta .ruleta-leyenda > div,
+#pantalla-ruleta .ruleta-nota {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,241,201,.65),
+    inset 0 -2px 3px rgba(80,47,16,.40),
+    inset 0 0 0 1px rgba(232,200,122,.20) !important;
+}
+
+/* Diario: marco exterior, libro y páginas. */
+#diario-libro-contenido,
+#diario-libro-contenido .diario-paginas,
+#diario-libro-contenido .diario-pagina {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+}
+
+/* Tienda: se conservan los fondos y el acabado metálico ya aprobado.
+   Los vales quedan expresamente excluidos. */
+#pantalla-tienda {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+}
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale),
+#pantalla-tienda .tienda-canje,
+#pantalla-tienda .tienda-producto {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+  box-shadow:
+    0 0 10px rgba(232,200,122,.18),
+    inset 0 1px 0 rgba(253,244,206,.55),
+    inset 0 -2px 3px rgba(80,47,16,.35),
+    inset 0 0 0 1px rgba(232,200,122,.18),
+    0 3px 0 #966A2F,
+    0 5px 9px rgba(0,0,0,.30) !important;
+}
+
+/* REFLEJOS SUPERIOR E INFERIOR GLOBAL: acabado igual al de tienda */
+#accesoFirebase,
+#pantalla-ruleta,
+section.perfil[data-vista="nosotros"],
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"],
+section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"],
+section.sobre[data-vista="pregunta-diaria"],
+section.sobre[data-vista="retos"],
+#seccion-mensajes,
+section.sobre[data-vista="diario"],
+.portada-bienvenida,
+.portada-titulo-seccion,
+.perfil[data-vista="nosotros"] .pareja-resumen > div,
+.lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares,
+.lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario,
+.lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta,
+.nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item,
+#nuestro-momento-hoy,
+#nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido .momento-tarjeta,
+#pregunta-diaria-contenido .pd-panel,
+#pregunta-diaria-contenido .pd-respuesta,
+#pantalla-ruleta .ruleta-aviso,
+#pantalla-ruleta .ruleta-leyenda > div,
+#pantalla-ruleta .ruleta-nota,
+#diario-libro-contenido,
+#diario-libro-contenido .diario-paginas,
+#diario-libro-contenido .diario-pagina {
+  position: relative !important;
+}
+
+#accesoFirebase::before, #pantalla-ruleta::before, section.perfil[data-vista="nosotros"]::before, section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::before, section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"]::before, section.sobre[data-vista="pregunta-diaria"]::before, section.sobre[data-vista="retos"]::before, #seccion-mensajes::before, section.sobre[data-vista="diario"]::before, .portada-titulo-seccion::before, .perfil[data-vista="nosotros"] .pareja-resumen > div::before, .lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares::before, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario::before, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta::before, .nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item::before, #nuestro-momento-hoy::before, #nuestro-momento-hoy .momento-tarjeta::before, #pregunta-diaria-contenido .momento-tarjeta::before, #pregunta-diaria-contenido .pd-panel::before, #pregunta-diaria-contenido .pd-respuesta::before, #pantalla-ruleta .ruleta-aviso::before, #pantalla-ruleta .ruleta-leyenda > div::before, #pantalla-ruleta .ruleta-nota::before, #diario-libro-contenido::before, #diario-libro-contenido .diario-paginas::before, #diario-libro-contenido .diario-pagina::before {
+  content: "";
+  position: absolute;
+  left: 14%;
+  top: 0;
+  width: 72%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #E8C87A 20%,
+    #FFF1C9 50%,
+    #E8C87A 80%,
+    transparent
+  );
+  box-shadow: 0 0 5px rgba(247,217,165,.75);
+  pointer-events: none;
+  z-index: 5;
+}
+
+#accesoFirebase::after, #pantalla-ruleta::after, section.perfil[data-vista="nosotros"]::after, section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::after, section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"]::after, section.sobre[data-vista="pregunta-diaria"]::after, section.sobre[data-vista="retos"]::after, #seccion-mensajes::after, section.sobre[data-vista="diario"]::after, .portada-titulo-seccion::after, .perfil[data-vista="nosotros"] .pareja-resumen > div::after, .lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares::after, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario::after, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta::after, .nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item::after, #nuestro-momento-hoy::after, #nuestro-momento-hoy .momento-tarjeta::after, #pregunta-diaria-contenido .momento-tarjeta::after, #pregunta-diaria-contenido .pd-panel::after, #pregunta-diaria-contenido .pd-respuesta::after, #pantalla-ruleta .ruleta-aviso::after, #pantalla-ruleta .ruleta-leyenda > div::after, #pantalla-ruleta .ruleta-nota::after, #diario-libro-contenido::after, #diario-libro-contenido .diario-paginas::after, #diario-libro-contenido .diario-pagina::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  bottom: 0;
+  width: 72%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #E8C87A 20%,
+    #FFF1C9 50%,
+    #E8C87A 80%,
+    transparent
+  );
+  box-shadow: 0 0 5px rgba(247,217,165,.65);
+  pointer-events: none;
+  z-index: 5;
+}
+</style>
+
+
+<style id="acabado-metalico-dorado-marcos-pendientes">
+/* Solo marcos pendientes: no se modifican fondos, imágenes ni contenido. */
+#contenidoApp .portada-grid button.tarjeta-acceso,
+section.sobre[data-vista="retos"] .respuestas-compartidas,
+section.sobre[data-vista="retos"] .reto,
+section.sobre[data-vista="retos"] textarea,
+#diario-libro-contenido .diario-pagina,
+.perfil[data-vista="nosotros"] .opcion-avatar,
+#pregunta-diaria-contenido .pd-panel button,
+section.sobre[data-vista="pregunta-diaria"] > button.secundario,
+#pantalla-ruleta #boton-girar-ruleta {
+  border-color: #A87935 !important;
+  border-width: 2px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,241,201,.75),
+    inset 0 -2px 4px rgba(80,47,16,.48),
+    inset 0 0 0 1px rgba(232,200,122,.24),
+    0 1px 0 #E8C87A,
+    0 3px 0 #966A2F,
+    0 5px 0 #68451F,
+    0 8px 14px rgba(0,0,0,.38) !important;
+}
+
+/* INICIO: acabado metálico en las seis tarjetas */
+#contenidoApp .portada-grid button.tarjeta-acceso::before,
+#contenidoApp .portada-grid button.tarjeta-acceso::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 14% !important;
+  width: 72% !important;
+  height: 2px !important;
+  pointer-events: none !important;
+  background: linear-gradient(90deg, transparent, #E8C87A 20%, #FFF1C9 50%, #E8C87A 80%, transparent) !important;
+  box-shadow: 0 0 5px rgba(247,217,165,.75) !important;
+  z-index: 5 !important;
+}
+#contenidoApp .portada-grid button.tarjeta-acceso::before {
+  top: 0 !important;
+  bottom: auto !important;
+}
+#contenidoApp .portada-grid button.tarjeta-acceso::after {
+  top: auto !important;
+  bottom: 0 !important;
+}
+
+
+/* BIENVENIDA: mismo marco metálico que los paneles de la Tienda */
+#contenidoApp .portada-bienvenida {
+  box-sizing: border-box !important;
+  border: 2px solid transparent !important;
+  border-radius: 17px !important;
+  background-image:
+    url("/assets/nuestra-historia/Fondo.jpg"),
+    linear-gradient(135deg, #B8873E 0%, #A87935 25%, #966A2F 50%, #805728 75%, #C59B4A 100%) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+  background-size: cover, auto !important;
+  background-position: center, center !important;
+  background-repeat: no-repeat, no-repeat !important;
+  box-shadow:
+    0 0 12px rgba(232,200,122,.25),
+    inset 0 0 4px rgba(253,244,206,.30),
+    0 3px 0 #966A2F,
+    0 6px 0 #68451F,
+    0 10px 0 #34202A,
+    0 14px 18px rgba(0,0,0,.38) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+#contenidoApp .portada-bienvenida::before,
+#contenidoApp .portada-bienvenida::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 14% !important;
+  width: 72% !important;
+  height: 2px !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #E8C87A 20%,
+    #FFF1C9 50%,
+    #E8C87A 80%,
+    transparent
+  ) !important;
+  box-shadow: 0 0 7px rgba(247,217,165,.85) !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+#contenidoApp .portada-bienvenida::before {
+  top: 0 !important;
+  bottom: auto !important;
+}
+#contenidoApp .portada-bienvenida::after {
+  bottom: 0 !important;
+  top: auto !important;
+}
+
+</style>
+
+
+<style>
+/* MARCO BIENVENIDA: TU DEGRADADO DORADO */
+#contenidoApp .portada-bienvenida {
+  border-radius: 16px !important;
+  border: 2px solid transparent !important;
+  background:
+    linear-gradient(#4a0e1c, #4a0e1c) padding-box,
+    linear-gradient(135deg, #FDF4CE 0%, #E8C87A 25%, #C59B4A 50%, #966A2F 75%, #FDF4CE 100%) border-box !important;
+  box-shadow:
+    0 0 12px rgba(232, 200, 122, 0.25),
+    inset 0 0 4px rgba(253, 244, 206, 0.3) !important;
+}
 </style>
 
 </body>
 </html>
+
+<style>
+/* BRILLOS SOLO EN LOS BORDES SUPERIOR E INFERIOR */
+#contenidoApp .portada-bienvenida::before,
+#contenidoApp .portada-bienvenida::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 14% !important;
+  width: 72% !important;
+  height: 2px !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #E8C87A 20%,
+    #FFF1C9 50%,
+    #E8C87A 80%,
+    transparent
+  ) !important;
+  box-shadow: 0 0 5px rgba(247,217,165,.75) !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+#contenidoApp .portada-bienvenida::before {
+  top: 0 !important;
+  bottom: auto !important;
+}
+#contenidoApp .portada-bienvenida::after {
+  bottom: 0 !important;
+  top: auto !important;
+}
+</style>
+
+<style>
+/* LATERALES CON EL MISMO DORADO OSCURO DEL MARCO */
+#contenidoApp .portada-bienvenida {
+  background:
+    linear-gradient(#4a0e1c, #4a0e1c) padding-box,
+    linear-gradient(
+      90deg,
+      #966A2F 0%,
+      #966A2F 18%,
+      #C59B4A 50%,
+      #966A2F 82%,
+      #966A2F 100%
+    ) border-box !important;
+}
+</style>
+
+<style>
+/* BRILLO CLARO CENTRADO ARRIBA Y ABAJO */
+#contenidoApp .portada-bienvenida {
+  background:
+    linear-gradient(#4a0e1c, #4a0e1c) padding-box,
+    linear-gradient(
+      90deg,
+      #966A2F 0%,
+      #966A2F 25%,
+      #FDF4CE 50%,
+      #966A2F 75%,
+      #966A2F 100%
+    ) border-box !important;
+}
+</style>
+
+<style>
+/* MISMO RELIEVE Y SOMBRA INFERIOR QUE LAS TARJETAS */
+#contenidoApp .portada-bienvenida {
+  box-shadow:
+    0 0 12px rgba(232,200,122,.25),
+    inset 0 0 4px rgba(253,244,206,.30),
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
+}
+</style>

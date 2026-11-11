@@ -338,3 +338,10 @@ section.marco.tienda-formulario {
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
+
+
+/* CORRECCION: quitar bordes individuales del contador */
+.nuestra-historia .nh-contador-overlay > .nh-contador-item {
+  border: 0 !important;
+  box-shadow: none !important;
+}

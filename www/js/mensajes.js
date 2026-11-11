@@ -162,7 +162,7 @@ function escaparYMostrarMensajes(documentos) {
   for (const mensaje of propios) {
     const tarjetaMensaje = document.createElement("div");
     tarjetaMensaje.style.cssText =
-      "margin:10px 0;padding:14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(220,120,150,.2);";
+      "margin:10px 0;padding:14px;border-radius:12px;box-sizing:border-box;position:relative;background-color:rgba(255,255,255,.04);background-image:linear-gradient(90deg,transparent,#F7D9A5,transparent),linear-gradient(90deg,transparent,#F7D9A5,transparent);background-size:68% 1px,68% 1px;background-position:center top,center bottom;background-repeat:no-repeat;border:1px solid #d4af37;box-shadow:inset 0 1px 0 rgba(255,239,207,.28),inset 0 -1px 0 rgba(247,217,165,.16);";
 
     const etiqueta = document.createElement("div");
     etiqueta.style.cssText = "font-size:12px;opacity:.8;margin-bottom:6px;";

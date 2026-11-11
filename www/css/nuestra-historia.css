@@ -517,7 +517,7 @@
 .nuestra-historia .nh-contador-item small {
   margin-top: 2px;
   color: #000 !important;
-  font-family: 'Great Vibes', cursive !important;
+  font-family: Roboto, Arial, sans-serif !important;
   font-size: clamp(9px, 2.7vw, 12px);
   line-height: 1;
   -webkit-text-stroke: .8px #000;

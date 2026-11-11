@@ -159,3 +159,82 @@
   color: #F7D9A5;
   font-size: 1.25rem;
 }
+
+/* ACABADO DORADO NUESTRO MUNDO */
+
+
+/* ACABADO DORADO NUESTRO MUNDO */
+
+/* Marco exterior de la pantalla */
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] {
+  box-sizing: border-box;
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 2px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48);
+}
+
+/* Botones de acciones y categorías */
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] .lugares-acciones button,
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] .lugares-categorias button,
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] > button:not(.historia-acceso) {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -2px 3px rgba(0,0,0,.30),
+    inset 0 0 0 1px rgba(212,175,55,.10);
+}
+
+/* Formulario y tarjetas de lugares */
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario,
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta {
+  border: 1px solid #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.24),
+    inset 0 -2px 4px rgba(0,0,0,.30),
+    inset 0 0 0 1px rgba(212,175,55,.10);
+}
+
+/* Campos de texto y selección */
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario input[type="text"],
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario select {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.20),
+    inset 0 -2px 3px rgba(0,0,0,.30);
+}
+
+/* Marco del mapa: conserva su contenido y funcionamiento */
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares {
+  border-color: #d4af37 !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.24),
+    inset 0 -2px 4px rgba(0,0,0,.30),
+    0 3px 0 #8b6938,
+    0 5px 8px rgba(0,0,0,.30);
+}
+
+/* Acceso a Nuestra Historia dentro de Nuestro Mundo */
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"] .historia-acceso {
+  border-color: #d4af37 !important;
+}
+
+/* Reflejos dorados del marco exterior */
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::before,
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  width: 68%;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,#F7D9A5,transparent);
+  pointer-events: none;
+  z-index: 3;
+}
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::before { top: 0; }
+section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::after { bottom: 0; }
