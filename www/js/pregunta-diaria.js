@@ -59,7 +59,7 @@ raiz.innerHTML = `
   padding:12px 5px;text-align:center;display:flex;
   flex-direction:column;align-items:center;justify-content:center;gap:5px;
   border:1px solid #B89A62;border-radius:13px;
-  background:linear-gradient(145deg,#482033,#351522 55%,#1c1017);
+  background-color:#351522;background-image:url("/assets/nuestra-historia/Fondo.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;
   box-shadow:inset 1px 1px 0 rgba(247,217,165,.15),0 3px 0 #0b0609,0 5px 8px rgba(0,0,0,.3);
   color:#F7D9A5;font:inherit;
 }
@@ -69,7 +69,7 @@ raiz.innerHTML = `
 }
 #pregunta-diaria-contenido .momento-seleccionado {
   border:2px solid #F7D9A5 !important;
-  background:linear-gradient(145deg,#85506a,#603047 55%,#3d1b2c) !important;
+  background-color:#603047 !important;background-image:url("/assets/nuestra-historia/Fondo.jpg") !important;background-size:cover !important;background-position:center !important;background-repeat:no-repeat !important;
   box-shadow:inset 0 0 0 1px rgba(247,217,165,.55),
     0 0 14px rgba(247,217,165,.5),0 3px 0 #0b0609 !important;
   filter:brightness(1.15);
@@ -90,7 +90,7 @@ raiz.innerHTML = `
 }
 #pregunta-diaria-contenido .pd-panel {
   margin-top:18px;padding:16px;border:1px solid #754052;border-radius:15px;
-  background:#21131b;color:#f5e9ed;
+  background-color:#21131b;background-image:url("/assets/nuestra-historia/Fondo.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;color:#f5e9ed;
 }
 #pregunta-diaria-contenido .pd-panel h3 {
   margin:0 0 12px;color:#F7D9A5;font-family:'Great Vibes',cursive;
@@ -103,10 +103,10 @@ raiz.innerHTML = `
 }
 #pregunta-diaria-contenido .pd-panel button {
   width:100%;padding:11px;border:1px solid #B89A62;border-radius:10px;
-  background:#681b32;color:#fff;font-family:'Great Vibes',cursive;font-size:20px;
+  background-color:#681b32;background-image:url("/assets/nuestra-historia/Fondo.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;color:#fff;font-family:'Great Vibes',cursive;font-size:20px;
 }
 #pregunta-diaria-contenido .pd-respuesta {
-  margin:10px 0;padding:12px;border-radius:10px;background:#351522;
+  margin:10px 0;padding:12px;border-radius:10px;background-color:#351522;background-image:url("/assets/nuestra-historia/Fondo.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;
   overflow-wrap:anywhere;white-space:pre-wrap;font-family:Lora,Georgia,serif;font-size:14px;line-height:1.6;
 }
 @media(max-width:360px) {
@@ -115,6 +115,22 @@ raiz.innerHTML = `
   #pregunta-diaria-contenido .momento-nombre {font-size:17px}
   #pregunta-diaria-contenido .momento-detalle {font-size:10px}
 }
+
+/* Ajustes de texto dorado: conserva intactos botones, marcos y relieves */
+#pregunta-diaria-contenido .momento-titulo,
+#pregunta-diaria-contenido .momento-detalle,
+#pregunta-diaria-contenido .pd-panel,
+#pregunta-diaria-contenido .pd-panel h3,
+#pregunta-diaria-contenido .pd-panel p,
+#pregunta-diaria-contenido .pd-panel button,
+#pregunta-diaria-contenido .pd-respuesta,
+#pregunta-diaria-contenido .pd-respuesta strong {
+  color: #F7D9A5 !important;
+}
+#pregunta-diaria-contenido .pd-panel button {
+  font-size: 21px;
+}
+
 </style>
 <div id="nuestro-momento-hoy">
   <h3 class="momento-titulo">Nuestro momento de hoy</h3>

@@ -2,7 +2,7 @@ import { mostrarAnimacionCanje } from "./tienda-animaciones.js";
 import { ponerTextoConIconos } from "./iconos-texto.js";
 const CLAVE = "entreNosotrosTiendaPruebaV1";
 const paginasVales = {
-  r1: "prueba-vale-besos.html",
+  r1: "prueba-vale-besos.html;width:147px!important;height:231px!important;max-width:147px!important;max-height:231px!important;box-sizing:border-box;object-fit:fill",
   r2: "prueba-abrazo-para-dos.html",
   r3: "prueba-momento-relax.html",
   r4: "prueba-cena-especial.html",
@@ -36,33 +36,7 @@ function persona(){ return document.getElementById("tienda-persona")?.value || "
 function escapar(s){
   return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function imagenVale(id) {
-  const imagenes = {
-    r1: "/assets/Historia/1.png",
-    r2: "/assets/Historia/2.png",
-    r3: "/assets/Historia/3.png",
-    r4: "/assets/Historia/4.png",
-    r5: "/assets/Historia/5,1.png",
-    r6: "/assets/Historia/6,1.png",
-    r7: "/assets/Historia/7.jpg",
-    r8: "/assets/Historia/8.jpg"
-  };
-  return imagenes[id] || "";
-}
 
-function estiloVale(id) {
-  const estilos = {
-    r1: "width:160px;height:250px;position:relative;left:0;top:-1px",
-    r2: "width:160px;height:248px;position:relative;left:0;top:-1px",
-    r3: "width:160px;height:251px;position:relative;left:0;top:-1px",
-    r4: "width:160px;height:248px;position:relative;left:0;top:-1px",
-    r5: "width:161px;height:253px;position:relative;left:0;top:-1px",
-    r6: "width:162px;height:254px;position:relative;top:-1px",
-    r7: "width:160px;height:251px",
-    r8: "width:160px;height:251px"
-  };
-  return estilos[id] || "width:100%;height:auto";
-}
 
 function renderizar(){
   const saldo = document.getElementById("tienda-puntos");
@@ -70,9 +44,7 @@ function renderizar(){
   saldo.textContent = datos.saldos[persona()] || 0;
   const catalogo = document.getElementById("tienda-catalogo");
   catalogo.innerHTML = datos.recompensas.map(r=>paginasVales[r.id] ? `
-    <button type="button" class="tienda-tarjeta-vale" data-comprar="${escapar(r.id)}" aria-label="Canjear ${escapar(r.nombre)} por ${Number(r.precio)} puntos">
-      <img src="${imagenVale(r.id)}" style="${estiloVale(r.id)}" alt="${escapar(r.nombre)}">
-    </button>` : `
+    <button type="button" class="tienda-tarjeta-vale" style="width:160px;height:250px;box-sizing:border-box" data-comprar="${escapar(r.id)}" aria-label="Canjear ${escapar(r.nombre)} por ${Number(r.precio)} puntos"><img src="/assets/Vv${r.id.slice(1)}.jpg" alt="${escapar(r.nombre)}" draggable="false"></button>` : `
     <article class="tienda-producto">
       <span class="producto-icono">${escapar(r.icono || "💝")}</span>
       <h4>${escapar(r.nombre)}</h4>

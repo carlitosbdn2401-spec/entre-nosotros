@@ -94,17 +94,19 @@ function actualizarContador() {
     .forEach((corazon, i) => {
       const usada = i >= restantes;
       corazon.classList.toggle("usada", usada);
-      corazon.textContent = usada ? "♡" : "♥";
+
     });
 
   const cuenta = document.getElementById("ruleta-tiradas-texto");
 
   if (cuenta) {
-    cuenta.textContent = restantes === 2
-      ? "Tienes 2 tiradas disponibles este mes ❤️"
+    const mensaje = restantes === 2
+      ? "Tienes 2 tiradas disponibles este mes"
       : restantes === 1
-        ? "Te queda 1 tirada este mes ❤️"
-        : "Has utilizado tus 2 tiradas mensuales ❤️";
+        ? "Te queda 1 tirada este mes"
+        : "Has utilizado tus 2 tiradas mensuales";
+
+    cuenta.innerHTML = `${mensaje} <img src="./assets/iconos-realistas/Icono1.png" alt="" class="ruleta-icono-tiradas">`;
   }
 
   if (boton) {

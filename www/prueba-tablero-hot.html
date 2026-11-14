@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prueba de casillas HOT</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:14px;background:#10090d;color:#fff;font:16px Arial,sans-serif}
+h2{color:#F7D9A5;margin:4px 0 8px}
+p{font-size:14px;line-height:1.45;color:#e0d2d7}
+.panel{background:#211018;border:1px solid #681b32;border-radius:12px;padding:12px;margin-bottom:14px}
+label{display:block;margin-bottom:8px}
+select,button{width:100%;min-height:46px;padding:10px;border-radius:8px;border:1px solid #8a4359;background:#321722;color:#fff;font-size:16px}
+button{margin-top:10px;background:#681b32;font-weight:bold}
+#estado{color:#F7D9A5;font-size:14px;margin-top:10px}
+#marco{position:relative;width:100%;line-height:0}
+#tablero{display:block;width:100%;height:auto}
+.casilla{position:absolute;display:flex;align-items:center;justify-content:center;border:1px solid #F7D9A5;background:#F7D9A510;color:#fff;font-size:12px;font-weight:bold;line-height:1;text-shadow:0 1px 3px #000;overflow:hidden}
+.casilla.ganadora{z-index:2;border:3px solid #fff;background:#ff294c99;box-shadow:inset 0 0 0 2px #ff294c,0 0 12px #ff294c;color:white}
+</style>
+</head>
+<body>
+<div class="panel">
+<h2>Comprobación del tablero HOT</h2>
+<p>Selecciona un número para iluminar su casilla. Comprueba que el contorno coincide con la casilla correcta.</p>
+<label for="numero">Número ganador</label>
+<select id="numero"></select>
+<div id="estado" aria-live="polite"></div>
+<button id="siguiente">Probar siguiente número</button>
+</div>
+
+<div id="marco">
+<img id="tablero" src="assets/ruleta-hot-test/Tablero3.png" alt="Tablero original de Hot Roulette">
+</div>
+
+<script>
+(()=>{
+const datos=[
+[10.855,77.035,16.275,11.052],
+[30.655,77.407,18.516,10.566],
+[51.898,76.926,18.434,10.805],
+[72.116,76.905,19.720,10.763],
+[11.829,62.796,16.849,9.813],
+[31.717,62.624,17.192,10.261],
+[51.973,62.483,17.635,10.407],
+[72.553,62.391,16.499,10.872],
+[13.596,49.794,15.320,9.013],
+[32.584,49.593,16.599,9.402],
+[51.654,49.719,16.487,9.578],
+[71.467,49.723,15.488,8.768],
+[14.538,39.506,15.020,8.969],
+[32.815,40.206,15.794,8.326],
+[50.918,39.883,17.623,8.639],
+[70.025,40.046,16.250,7.911],
+[15.593,28.723,15.788,7.790],
+[33.202,28.467,15.526,7.769],
+[50.986,28.385,15.788,7.734],
+[68.677,28.431,14.895,7.621],
+[16.742,19.704,15.582,7.447],
+[33.983,19.373,14.926,8.184],
+[51.317,19.176,14.720,8.301],
+[69.320,19.419,13.759,7.765]
+];
+const marco=document.getElementById('marco');
+const selector=document.getElementById('numero');
+const estado=document.getElementById('estado');
+const casillas=[];
+datos.forEach((d,i)=>{
+ const n=i+1;
+ const opcion=document.createElement('option');
+ opcion.value=n;opcion.textContent='Número '+n;
+ selector.appendChild(opcion);
+ const el=document.createElement('div');
+ el.className='casilla';
+ el.textContent=n;
+ el.style.left=d[0]+'%';
+ el.style.top=d[1]+'%';
+ el.style.width=d[2]+'%';
+ el.style.height=d[3]+'%';
+ marco.appendChild(el);
+ casillas.push(el);
+});
+function actualizar(){
+ const n=Number(selector.value);
+ casillas.forEach((el,i)=>el.classList.toggle('ganadora',i===n-1));
+ const d=datos[n-1];
+ estado.textContent='Número '+n+' · X '+d[0]+'% · Y '+d[1]+'% · Ancho '+d[2]+'% · Alto '+d[3]+'%';
+}
+selector.addEventListener('change',actualizar);
+document.getElementById('siguiente').addEventListener('click',()=>{
+ selector.value=Number(selector.value)%24+1;
+ actualizar();
+});
+document.getElementById('tablero').addEventListener('error',()=>{
+ estado.textContent='No se ha podido cargar la imagen del tablero.';
+});
+actualizar();
+})();
+</script>
+</body>
+</html>

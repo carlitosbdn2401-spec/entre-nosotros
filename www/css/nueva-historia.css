@@ -345,3 +345,75 @@ section.marco.tienda-formulario {
   border: 0 !important;
   box-shadow: none !important;
 }
+
+/* AJUSTE: MARCO EXTERIOR +40 PX; DESPLAZAMIENTO NORMAL */
+.nuestra-historia[data-vista="nuestra-historia"] {
+  min-height: calc(100vw * 2.6473 + 40px) !important;
+  background-size: 100% calc(100vw * 2.6473 + 40px) !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: auto !important;
+}
+
+.nuestra-historia[data-vista="nuestra-historia"] .nuestra-historia-container {
+  min-height: calc(100vw * 2.6473 + 40px) !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: auto !important;
+}
+
+
+/* CORRECCION SCROLL GENERAL NUESTRA HISTORIA V2 */
+.nuestra-historia[data-vista="nuestra-historia"] {
+  height: auto !important;
+  max-height: none !important;
+  min-height: calc(100vw * 2.6473 + 600px) !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+.nuestra-historia .nuestra-historia-container {
+  height: auto !important;
+  max-height: none !important;
+  min-height: calc(100vw * 2.6473 + 600px) !important;
+  overflow: visible !important;
+}
+
+/* Conserva la geometría original de las cinco tarjetas. */
+.nuestra-historia .nh-tarjetas-nuevas {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  height: calc(100vw * 2.6473 + 40px) !important;
+  overflow: visible !important;
+}
+
+/* Botón primero y frase debajo, después de la tarjeta 05. */
+.nuestra-historia .nh-boton-final {
+  top: calc((100vw * 2.6473 + 40px) * 0.9761776 + 318px) !important;
+  bottom: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+.nuestra-historia .nh-frase-final {
+  top: calc((100vw * 2.6473 + 40px) * 0.9761776 + 16.65vw + 320px) !important;
+  bottom: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+section.perfil.nuestra-historia[data-vista="nuestra-historia"] {
+  height: auto !important;
+  max-height: none !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+/* ALTURA DEL MARCO: 20px después de la frase final */
+section.perfil.nuestra-historia[data-vista="nuestra-historia"],
+.nuestra-historia[data-vista="nuestra-historia"] .nuestra-historia-container {
+  min-height: calc((100vw * 2.6473 + 40px) * 0.9761776 + 33.3vw + 340px) !important;
+  height: auto !important;
+}

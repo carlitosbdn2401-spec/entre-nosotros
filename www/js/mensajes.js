@@ -159,10 +159,21 @@ function escaparYMostrarMensajes(documentos) {
     return;
   }
 
-  for (const mensaje of propios) {
+  for (const [indice, mensaje] of propios.entries()) {
     const tarjetaMensaje = document.createElement("div");
     tarjetaMensaje.style.cssText =
-      "margin:10px 0;padding:14px;border-radius:12px;box-sizing:border-box;position:relative;background-color:rgba(255,255,255,.04);background-image:linear-gradient(90deg,transparent,#F7D9A5,transparent),linear-gradient(90deg,transparent,#F7D9A5,transparent);background-size:68% 1px,68% 1px;background-position:center top,center bottom;background-repeat:no-repeat;border:1px solid #d4af37;box-shadow:inset 0 1px 0 rgba(255,239,207,.28),inset 0 -1px 0 rgba(247,217,165,.16);";
+      "margin:10px 0;padding:14px;border-radius:15px;box-sizing:border-box;position:relative;background-color:rgba(255,255,255,.04);background-image:linear-gradient(90deg,transparent,#F7D9A5,transparent),linear-gradient(90deg,transparent,#F7D9A5,transparent);background-size:68% 1px,68% 1px;background-position:center top,center bottom;background-repeat:no-repeat;border:2px solid #D4AF37;box-shadow:inset 0 1px 0 rgba(255,250,220,.98),inset 0 2px 3px rgba(255,239,190,.42),inset 0 -1px 0 rgba(255,248,210,.98),inset 0 -2px 3px rgba(120,83,19,.55),inset 0 0 0 1px rgba(255,230,150,.38),0 1px 0 rgba(255,231,160,.65),0 3px 0 #9A7426,0 5px 0 #4A321B,0 9px 16px rgba(0,0,0,.48),0 0 9px rgba(232,194,91,.22);";
+    // Alternar fondos sin modificar el diseño de las tarjetas.
+    if (indice % 2 === 0) {
+      tarjetaMensaje.style.backgroundImage =
+        "linear-gradient(90deg,transparent,#F7D9A5,transparent)," +
+        "linear-gradient(90deg,transparent,#F7D9A5,transparent)," +
+        "url('/assets/nuestra-historia/Fondo.jpg')";
+      tarjetaMensaje.style.backgroundSize = "68% 1px,68% 1px,cover";
+      tarjetaMensaje.style.backgroundPosition = "center top,center bottom,center";
+      tarjetaMensaje.style.backgroundRepeat = "no-repeat,no-repeat,no-repeat";
+    }
+
 
     const etiqueta = document.createElement("div");
     etiqueta.style.cssText = "font-size:12px;opacity:.8;margin-bottom:6px;";

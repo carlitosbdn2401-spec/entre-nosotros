@@ -68,7 +68,7 @@ main.app .bienvenida{
   width:100%;
   margin:0 0 28px!important;
   padding:23px 20px!important;
-  background:linear-gradient(145deg,#70203a 0%,#541329 48%,#390d1d 100%)!important;
+  background:url("/assets/nuestra-historia/Fondo.jpg") center/cover no-repeat!important;
   border:1px solid #8b304b!important;
   border-radius:17px!important;
   box-shadow:0 12px 28px #0007,inset 0 1px 1px #ffffff20!important;
@@ -153,7 +153,7 @@ main.app button.tarjeta-acceso:active{
 main.app #navegacion-inferior{
   box-sizing:border-box;
   background:#1b1117!important;
-  border-top:1px solid #654354!important;
+  border-top:1.5px solid #D4AF37!important;
   box-shadow:0 -5px 18px #0005!important;
 }
 main.app #navegacion-inferior button{
@@ -300,4 +300,42 @@ main.app .sobre{
   border-left: 1px solid #c1a779;
   transform: rotateY(180deg);
   backface-visibility: hidden;
+}
+
+
+
+/* MARCO METALICO DORADO COMUN - INICIO */
+main.app .bienvenida,
+main.app button.tarjeta-acceso {
+  border: 2px solid transparent !important;
+  box-sizing: border-box !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+  background-position: center, center !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+
+/* Bienvenida: conserva Fondo.jpg */
+main.app .bienvenida {
+  background-image:
+    url("/assets/nuestra-historia/Fondo.jpg"),
+    linear-gradient(135deg,
+      #B38F27 0%,
+      #F3E5AB 28%,
+      #D4AF37 58%,
+      #9A7B1C 100%
+    ) !important;
+  background-size: cover, auto !important;
+}
+
+/* Las seis tarjetas de acceso */
+main.app button.tarjeta-acceso {
+  background-image:
+    linear-gradient(135deg,#30202a 0%,#21131c 100%),
+    linear-gradient(135deg,
+      #B38F27 0%,
+      #F3E5AB 28%,
+      #D4AF37 58%,
+      #9A7B1C 100%
+    ) !important;
 }

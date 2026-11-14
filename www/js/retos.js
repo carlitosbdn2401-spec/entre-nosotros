@@ -74,9 +74,9 @@ function pintarRespuestas() {
       const tarjeta = document.createElement("div");
 
       tarjeta.style.cssText =
-        "margin:12px 0;padding:14px;border-radius:14px;" +
+        "margin:12px 0;padding:14px;border-radius:15px;" +
         "background:rgba(139,41,69,.16);" +
-        "border:1px solid rgba(220,120,150,.3);";
+        "border:2px solid #D4AF37;box-shadow:inset 0 1px 0 rgba(255,250,220,.98),inset 0 2px 3px rgba(255,239,190,.42),inset 0 -1px 0 rgba(255,248,210,.98),inset 0 -2px 3px rgba(120,83,19,.55),inset 0 0 0 1px rgba(255,230,150,.38),0 1px 0 rgba(255,231,160,.65),0 3px 0 #9A7426,0 5px 0 #4A321B,0 9px 16px rgba(0,0,0,.48),0 0 9px rgba(232,194,91,.22);";
 
       const autor = document.createElement("strong");
       ponerTextoConIconos(autor, propia ? "Tu respuesta ❤️" : "Tu pareja 💕");

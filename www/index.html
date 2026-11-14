@@ -256,7 +256,39 @@ button.tarjeta-acceso {
 .ruleta-aviso>span{font-size:28px;color:#e88ca5}
 .ruleta-aviso strong{color:var(--oro)}
 .ruleta-aviso p{margin:5px 0 0;font-size:13px}
-.ruleta-contenedor{width:min(82vw,310px);aspect-ratio:1;margin:12px auto 24px;position:relative}
+/* Cambios exclusivos de las dos tarjetas de la Ruleta del Amor */
+#pantalla-ruleta .ruleta-logo-historia {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+#pantalla-ruleta .ruleta-cabecera h2 {
+  color: #F7D9A5 !important;
+}
+#pantalla-ruleta .ruleta-cabecera p {
+  color: #F7D9A5 !important;
+  font-family: 'Great Vibes', cursive !important;
+}
+#pantalla-ruleta .ruleta-icono-historia {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex: 0 0 34px;
+}
+#pantalla-ruleta .ruleta-aviso {
+  background-image: url("./assets/ruleta-amor/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+#pantalla-ruleta .ruleta-aviso p {
+  color: #F7D9A5 !important;
+}
+.ruleta-contenedor{width:min(82vw,310px);aspect-ratio:1;margin:162px auto 24px;position:relative;
+
+  top: 0px;
+}
 .ruleta-flecha{position:absolute;z-index:3;top:-8px;left:50%;transform:translateX(-50%);color:#F7D9A5;font-size:30px;text-shadow:0 2px 8px #000}
 .ruleta-disco{width:100%;height:100%;box-sizing:border-box;border-radius:50%;position:relative;border:5px solid #F7D9A5;box-shadow:0 0 0 5px #351522,0 0 28px rgba(197,44,75,.35);background:conic-gradient(#6b1934 0deg 108deg,#291522 108deg 198deg,#78304b 198deg 270deg,#321321 270deg 338.4deg,#130b10 338.4deg 342deg,#49301d 342deg 360deg);transition:transform 5s cubic-bezier(.12,.72,.08,1);overflow:hidden}
 .ruleta-disco:before{content:"🪙";position:absolute;top:16%;left:42%;font-size:25px}
@@ -335,12 +367,18 @@ button.tarjeta-acceso {
 .tienda-tarjeta-vale img{
   display:block;
   width:100%;
-  height:auto;
+  height:100%;
   margin:0;
   object-fit:contain;
+  object-position:center;
   border:0;
   border-radius:15px;
 }
+#pantalla-tienda .tienda-tarjeta-vale[data-comprar="r2"] img {
+  transform: translateY(-2.4%) scaleY(1.06);
+  transform-origin: center top;
+}
+
 .tienda-tarjeta-vale:active{
   transform:scale(.98);
 }
@@ -354,6 +392,8 @@ button.tarjeta-acceso {
   margin: 26px auto 30px;
   filter: drop-shadow(0 16px 22px #0009);
   isolation: isolate;
+
+  top: 0px;
 }
 .ruleta-contenedor::before {
   content: "";
@@ -363,6 +403,8 @@ button.tarjeta-acceso {
   border-radius: 50%;
   background: conic-gradient(#fff0c2,#8b642b,#f7df9c,#6f491d,#fff0c2,#a87a37,#f7df9c,#fff0c2);
   box-shadow: 0 0 0 2px #3b201b,0 0 25px #F7D9A555;
+
+  top: 0px;
 }
 .ruleta-disco {
   border: 7px solid #F7D9A5;
@@ -415,8 +457,14 @@ button.tarjeta-acceso {
   filter: drop-shadow(0 0 10px #F7D9A555);
   animation: premioFlota 2s ease-in-out infinite;
 }
-.ruleta-contenedor.girando .ruleta-disco { filter: brightness(1.13) saturate(1.15); }
-.ruleta-contenedor.girando::before { animation: haloRuleta 1s linear infinite; }
+.ruleta-contenedor.girando .ruleta-disco { filter: brightness(1.13) saturate(1.15);
+
+  top: 0px;
+}
+.ruleta-contenedor.girando::before { animation: haloRuleta 1s linear infinite;
+
+  top: 0px;
+}
 @keyframes brilloBoton {
   0%,65% { left: -40%; }
   100% { left: 130%; }
@@ -433,14 +481,19 @@ button.tarjeta-acceso {
 
 
 .ruleta-resultado{position:relative;isolation:isolate;overflow:hidden}
-.ruleta-resultado::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;background-image:radial-gradient(circle at 12% 22%,#fff4bd 0 2px,transparent 4px),radial-gradient(circle at 83% 18%,#F7D9A5 0 2px,transparent 4px),radial-gradient(circle at 72% 76%,#ff8fb8 0 2px,transparent 4px),radial-gradient(circle at 24% 82%,#fff0bd 0 2px,transparent 4px),radial-gradient(circle at 50% 12%,#fff 0 1px,transparent 3px);animation:purpurinaPremio 1.8s ease-out both}
+.ruleta-resultado::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;background-image:radial-gradient(circle at 12% 22%,#fff4bd 0px,#fff4bd 2px,transparent 4px),radial-gradient(circle at 83% 18%,#F7D9A5 0px,#F7D9A5 2px,transparent 4px),radial-gradient(circle at 72% 76%,#ff8fb8 0px,#ff8fb8 2px,transparent 4px),radial-gradient(circle at 24% 82%,#fff0bd 0px,#fff0bd 2px,transparent 4px),radial-gradient(circle at 50% 12%,#fff 0px,#fff 1px,transparent 3px);animation:purpurinaPremio 1.8s ease-out both}
 @keyframes purpurinaPremio{0%{opacity:0;transform:scale(.96)}25%{opacity:1}75%{opacity:.85}100%{opacity:0;transform:scale(1.04)}}
 .ruleta-resultado>*{position:relative;z-index:1}
-.ruleta-resultado.premio-legendario::after{background-image:radial-gradient(circle at 12% 22%,#fff 0 2px,transparent 4px),radial-gradient(circle at 83% 18%,#F7D9A5 0 3px,transparent 5px),radial-gradient(circle at 72% 76%,#ffdf85 0 2px,transparent 4px),radial-gradient(circle at 24% 82%,#fff0bd 0 3px,transparent 5px);animation-duration:2.5s}
+.ruleta-resultado.premio-legendario::after{background-image:radial-gradient(circle at 12% 22%,#fff 0 2px,transparent 4px),radial-gradient(circle at 83% 18%,#F7D9A5 0px,#F7D9A5 3px,transparent 5px),radial-gradient(circle at 72% 76%,#ffdf85 0px,#ffdf85 2px,transparent 4px),radial-gradient(circle at 24% 82%,#fff0bd 0px,#fff0bd 3px,transparent 5px);animation-duration:2.5s}
 
 @media (prefers-reduced-motion: reduce){.ruleta-resultado::after{animation:none!important}}
 /* Aro dorado metalico de lujo */
-.ruleta-contenedor::before{inset:-12px;background:conic-gradient(#fff8d9,#9c7130,#f9e5a5,#68451e,#fff0bd,#b1843c,#fff8d9,#76501e,#e8ca83,#fff3c5,#8a6129,#f9e6a8,#6d481e,#fff0bd,#a77a35,#fff7d7,#79521f,#f2d591,#fff4c8,#8b642b,#fff8d9);box-shadow:0 0 0 2px #3b201b,0 0 30px #F7D9A588,inset 0 1px 2px #fff8d9}
+.ruleta-contenedor::before{
+  inset:-12px;
+  background:conic-gradient(#fff8d9,#9c7130,#f9e5a5,#68451e,#fff0bd,#b1843c,#fff8d9,#76501e,#e8ca83,#fff3c5,#8a6129,#f9e6a8,#6d481e,#fff0bd,#a77a35,#fff7d7,#79521f,#f2d591,#fff4c8,#8b642b,#fff8d9);
+  box-shadow:0 0 0 2px #3b201b,0 0 30px #F7D9A588,inset 0 1px 2px #fff8d9;
+  top:150px;
+}
 .ruleta-disco{border:8px solid #F7D9A5;outline:2px solid #fff0bd;outline-offset:-13px;box-shadow:inset 0 0 0 3px #f4d994,inset 0 0 0 7px #4c2630,inset 0 0 24px #000b,0 0 0 3px #8b642b,0 0 0 6px #321321,0 0 26px #c52c4b66}
 .ruleta-centro{border:4px double #f1d69a;box-shadow:0 0 0 4px #4b2630,0 0 22px #000c,inset 0 2px 5px #fff2c933,inset 0 -5px 10px #000b}
 /* Contador romantico de las dos tiradas mensuales */
@@ -470,11 +523,39 @@ button.tarjeta-acceso {
   border-color:#69535a;
   box-shadow:none;
 }
+
+/* IMÁGENES DE LAS TIRADAS */
+#ruleta-contador .ruleta-tirada {
+  width: 54px;
+  height: 54px;
+  border: 1px solid #d5ad72;
+  border-radius: 50%;
+  background-image: url("./assets/ruleta-amor/Fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: none;
+  object-fit: contain;
+  overflow: hidden;
+  filter: none;
+}
+#ruleta-contador .ruleta-tirada.usada {
+  filter: brightness(0.30) saturate(0.55);
+  opacity: 0.85;
+}
+
 .ruleta-tiradas-texto {
   text-align:center;
   margin:5px auto 14px;
-  color:#e8c5d0;
+  color:#F7D9A5;
   font-size:.92rem;
+}
+.ruleta-tiradas-texto .ruleta-icono-tiradas {
+  width:18px;
+  height:18px;
+  object-fit:contain;
+  vertical-align:middle;
+  margin-left:3px;
 }
 
 
@@ -508,6 +589,8 @@ button.tarjeta-acceso {
 .ruleta-contenedor {
   filter: drop-shadow(0 16px 22px #000b);
   margin-bottom: 12px;
+
+  top: 0px;
 }
 .ruleta-boton {
   display: block;
@@ -1062,11 +1145,11 @@ button:not(.tarjeta-acceso):not(.ruleta-boton):not(#navegacion-inferior button):
 .portada-bienvenida {
   position:relative; overflow:hidden; text-align:center;
   padding:22px 18px 19px; margin-bottom:25px;
-  border:1px solid #986b35; border-radius:12px;
+ border-radius:12px;
   background:
     radial-gradient(ellipse at 50% 0%,#76223e 0%,transparent 70%),
     linear-gradient(145deg,#54172e,#2a101c 78%);
-  box-shadow:inset 0 1px 0 #ffffff1c, inset 0 0 24px #0003, 0 7px 17px #0005;
+
 }
 .portada-bienvenida:before,.portada-bienvenida:after {
   content:"✦"; position:absolute; color:#F7D9A5; opacity:.55; font-size:15px;
@@ -1159,7 +1242,7 @@ body {
   color:#e1cda7 !important;
   letter-spacing:3px !important;
 }
-.portada-separador:before,.portada-separador:after {
+.portada-separador:before,.portada-separador:after { content:none!important; display:none!important;
   background:linear-gradient(90deg,transparent,#F7D9A5,transparent) !important;
 }
 .portada-fecha {
@@ -1170,18 +1253,9 @@ body {
   background:
     radial-gradient(ellipse at 50% 0%,#85304c 0%,transparent 78%),
     linear-gradient(145deg,#54182f,#351321 65%,#24101b) !important;
-  border:1px solid #F7D9A5 !important;
-  border-radius:13px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.85),
-    inset 0 -1px 0 rgba(255,239,207,.70),
-    inset 0 2px 2px rgba(255,239,207,.28),
-    inset 0 -5px 8px rgba(0,0,0,.32),
-    inset 0 0 0 2px rgba(212,175,55,.10),
-    0 3px 0 #8b6938,
-    0 5px 0 #34202a,
-    0 9px 0 #170c13,
-    0 13px 22px rgba(0,0,0,.48) !important;
+
+
+
 }
 .portada-etiqueta {color:#e9cf8b !important;letter-spacing:2px !important;}
 .portada-corazon {
@@ -1339,12 +1413,22 @@ main.app { width:100%; max-width:440px; margin:0 auto; }
   background:
     radial-gradient(ellipse at 50% 0%, rgba(135,48,72,.48), transparent 72%),
     linear-gradient(145deg, #451a2b, #2b1420 70%, #211019) !important;
-  border: 1px solid #F7D9A5 !important;
+
+
+
+
+  border: 1.25px solid #D4AF37 !important;
   border-radius: 14px !important;
   box-shadow:
-    inset 0 0 0 3px rgba(216,183,121,.07),
-    inset 0 1px 12px rgba(229,187,72,.08),
-    0 8px 22px rgba(0,0,0,.28) !important;
+    inset 0 1px 0 rgba(255,245,200,.85),
+    inset 0 -1px 0 rgba(255,245,195,.95),
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 4px 0 #8b6938,
+    0 6px 0 #34202a,
+    0 10px 0 #170c13,
+    0 14px 23px rgba(0,0,0,.50) !important;
 }
 #contenidoApp .portada-etiqueta {
   color: #F7D9A5 !important;
@@ -1434,36 +1518,41 @@ main.app { width:100%; max-width:440px; margin:0 auto; }
   overflow: hidden !important;
   text-align: center !important;
   color: #F7D9A5 !important;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(180,112,104,.30), transparent 72%),
-    linear-gradient(145deg,#49303a 0%,#2b1924 48%,#170c13 100%) !important;
-  border: 1px solid #F7D9A5 !important;
+  border: 2px solid #B99558 !important;
   border-radius: 15px !important;
-  transform: perspective(800px) rotateX(2deg) translateZ(0) !important;
-  transform-style: preserve-3d !important;
   box-shadow:
-    inset 0 2px 2px rgba(255,239,207,.28),
-    inset 0 -5px 8px rgba(0,0,0,.32),
-    inset 0 0 0 2px rgba(212,175,55,.10),
-    0 3px 0 #8b6938,
-    0 5px 0 #34202a,
-    0 9px 0 #170c13,
-    0 13px 22px rgba(0,0,0,.48) !important;
+    inset 0 1px 0 rgba(255,250,230,.98),
+    inset 0 2px 4px rgba(255,239,207,.38),
+    inset 0 0 9px rgba(255,235,190,.18),
+    inset 0 -1px 0 rgba(255,235,200,.98),
+    inset 0 -2px 0 rgba(169,129,67,.88),
+    inset 0 -4px 6px rgba(232,194,125,.30),
+    inset 0 0 0 1px rgba(255,225,175,.50),
+    inset 0 0 0 2px rgba(185,149,88,.24),
+    0 1px 0 rgba(255,225,175,.25),
+    0 3px #A78343,
+    0 5px #34251d,
+    0 9px #170c13,
+    0 13px 22px #0000007a !important;
   transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease !important;
-}
-#contenidoApp .portada-grid button.tarjeta-acceso::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 16% !important;
-  width: 68% !important;
-  height: 1px !important;
-  background: linear-gradient(90deg,transparent,#F7D9A5,transparent) !important;
 }
 #contenidoApp .portada-grid button.tarjeta-acceso:active {
   transform: scale(.97) !important;
-  border-color: #F7D9A5 !important;
-  box-shadow: 0 0 15px rgba(211,174,99,.17) !important;
+  border-color: #E8C98D !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,250,230,.98),
+    inset 0 2px 4px rgba(255,239,207,.38),
+    inset 0 0 9px rgba(255,235,190,.18),
+    inset 0 -1px 0 rgba(255,235,200,.98),
+    inset 0 -2px 0 rgba(169,129,67,.88),
+    inset 0 -4px 6px rgba(232,194,125,.30),
+    inset 0 0 0 1px rgba(255,225,175,.50),
+    inset 0 0 0 2px rgba(185,149,88,.24),
+    0 1px 0 rgba(255,225,175,.25),
+    0 3px #A78343,
+    0 5px #34251d,
+    0 9px #170c13,
+    0 13px 22px #0000007a !important;
 }
 #contenidoApp .portada-grid .portada-icono {
   position: absolute !important;
@@ -1732,7 +1821,7 @@ header h1, h1 { font-family: Qwigley, cursive; }
 .ruleta-contenedor #ruleta-hotroulette-texto {
   position: absolute !important;
   left: calc(50% + 83px) !important;
-  top: calc(100% + 4px) !important;
+  top: 0px;
   transform: translate(-50%, -50%) !important;
   width: 260px;
   text-align: center !important;
@@ -1757,10 +1846,14 @@ header h1, h1 { font-family: Qwigley, cursive; }
 .ruleta-contenedor #ruleta-hotroulette-texto .hot-palabra {
   display: inline-block;
   transform: rotate(16deg);
+
+  top: 0px;
 }
 .ruleta-contenedor #ruleta-hotroulette-texto .roulette-palabra {
   display: inline-block;
   transform: rotate(-16deg);
+
+  top: 0px;
 }
 
 
@@ -1768,7 +1861,7 @@ header h1, h1 { font-family: Qwigley, cursive; }
 .ruleta-contenedor #boton-abrir-ruleta-hot {
   position: absolute !important;
   left: calc(50% + 93px) !important;
-  top: calc(100% - 28px) !important;
+  top: 0px;
   width: 208px !important;
   height: 208px !important;
   transform: translate(-50%, -50%) !important;
@@ -1785,6 +1878,8 @@ header h1, h1 { font-family: Qwigley, cursive; }
 .ruleta-contenedor #boton-abrir-ruleta-hot:focus-visible {
   outline: 2px solid #F7D9A5 !important;
   outline-offset: 3px !important;
+
+  top: 0px;
 }
 
 </style>
@@ -2291,9 +2386,9 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
   pointer-events: none;
 }
 #pantalla-ruleta-hot .hot-disco {
-  left: 35.232642%;
-  top: 39.724565%;
-  width: 32.3125%;
+  left: calc(35.232642% + 1px);
+  top: calc(39.724565% + 50px);
+  width: calc(32.3125% + 2px);
   z-index: 2;
   transform: rotate(0deg);
   transform-origin: 50% 50.8%;
@@ -2301,7 +2396,7 @@ button:not(.nav-imagen):not(.tarjeta-acceso):not(#navegacion-inferior button) {
 }
 #pantalla-ruleta-hot .hot-marco {
   left: 35.099543%;
-  top: 40.699530%;
+  top: calc(40.699530% + 50px);
   width: 33.822917%;
   z-index: 3;
 }
@@ -2596,477 +2691,15 @@ body[data-vista-actual="dados-eroticos"] #pantalla-dados-eroticos iframe {
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
-#contenidoApp .portada-grid button.tarjeta-acceso,
-#contenidoApp .portada-grid button.tarjeta-acceso:active {
-  border-color: #d4af37 !important;
-}
-#contenidoApp .portada-subtitulo,
-#contenidoApp .portada-titulo-seccion small,
-#contenidoApp .portada-bienvenida p,
-#contenidoApp .portada-grid .detalle-acceso {
-  color: #d4b778 !important;
-}
-#contenidoApp .portada-flecha,
-#contenidoApp .portada-separador {
-  background-image: none !important;
-}
-#contenidoApp .portada-bienvenida {
-  border-color: #d4af37 !important;
-}
-html, body {
-  min-height: 100% !important;
-  background: url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover fixed no-repeat !important;
-  background-color: transparent !important;
-}
-body { min-height: 100vh !important; }
-main.app,
-#contenidoApp.card-leather {
-  background: transparent !important;
-  background-image: none !important;
-}
-#contenidoApp .portada-cabecera h1.portada-titulo-imagen img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 120px;
-  object-fit: contain;
-  margin: 0 auto;
-}
-#accesoFirebase {
-  position: relative !important;
-  box-sizing: border-box !important;
-  background: url("/assets/nuestra-historia/Fondo.jpg") center center / cover no-repeat !important;
-  border: 1px solid #F7D9A5 !important;
-  border-radius: 15px !important;
-  box-shadow: inset 0 2px 2px rgba(255,239,207,.28), inset 0 -5px 8px rgba(0,0,0,.32),
-    inset 0 0 0 2px rgba(212,175,55,.10), 0 3px 0 #8b6938, 0 5px 0 #34202a,
-    0 9px 0 #170c13, 0 13px 22px rgba(0,0,0,.48) !important;
-}
-#accesoFirebase::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 16%;
-  width: 68%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #F7D9A5, transparent);
-  pointer-events: none;
-}
-#accesoFirebase input:not([type=checkbox]) {
-  border: 1px solid #d4af70;
-  border-radius: 10px;
-}
-#accesoFirebase input:not([type=checkbox]):focus {
-  outline: 1px solid #F7D9A5;
-  border-color: #F7D9A5;
-}
-#accesoFirebase .boton-entrar-fondo,
-#accesoFirebase .boton-Entrar-fondo {
-  background: url("/assets/nuestra-historia/Fondo.jpg") center center / cover no-repeat !important;
-  border:2px solid #d4af70 !important;
-  border-radius:15px !important;
-  box-shadow: inset 0 1px 2px rgba(255,239,207,.22) !important;
-}
-#titulo-inicio, #subtitulo-inicio {
-  transform: translateY(-10px) !important;
-}
-#subtitulo-inicio,
-#formularioAcceso label[for=correoAcceso],
-#formularioAcceso label[for=claveAcceso] {
-  color: #d4af70 !important;
-}
-#accesoFirebase input::placeholder, #accesoFirebase textarea::placeholder {
-  color: #d4af70 !important;
-  opacity: 1 !important;
-}
-#correoAcceso::placeholder, #claveAcceso::placeholder {
-  color: #d4af70 !important;
-  -webkit-text-fill-color: #d4af70 !important;
-  opacity: 1 !important;
-}
-#recordarmeAcceso {
-  accent-color: #d4af70;
-}
-
-/* TIENDA: texturas y dorado suave */
-.tienda-aviso,
-.tienda-prueba,
-.tienda-formulario {
-  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-}
-.tienda-prueba h3,
-.tienda-prueba p,
-.tienda-formulario label {
-  color: #DEA55C !important;
-}
-.tienda-prueba button,
-.tienda-formulario button {
-  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-}
-.tienda-formulario input::placeholder,
-.tienda-formulario textarea::placeholder {
-  color: #DEA55C !important;
-  opacity: 1 !important;
-}
-.tienda-formulario select option {
-  color: #DEA55C !important;
-  background: #211018 !important;
-}
-</style>
-
-
-<style id="tienda-diseno-referencia">
-#pantalla-tienda {
-  box-sizing:border-box !important;
-  width:100% !important;
-  padding:18px 13px 38px !important;
-  color:#DEA55C !important;
-  background:#310811 url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center top / cover fixed no-repeat !important;
-}
-#pantalla-tienda .tienda-contenedor {
-  box-sizing:border-box;
-  width:100%;
-  max-width:440px;
-  margin:0 auto;
-  padding:12px 10px 18px;
-  border:0 !important;
-  border-radius:0;
-  background:transparent !important;
-  box-shadow:none !important;
-}
-#pantalla-tienda .tienda-cabecera {
-  display:block;
-  text-align:center;
-  margin:0 0 15px;
-}
-#pantalla-tienda .titulo-tienda-imagen {
-  display:block;
-  width:auto;
-  max-width:90%;
-  height:auto;
-  margin:0 auto 12px;
-  object-fit:contain;
-}
-#pantalla-tienda .tienda-sello {
-  font-family:"Great Vibes",cursive !important;
-  font-size:16px;
-  letter-spacing:1px;
-  color:#FBD28C;
-}
-#pantalla-tienda .tienda-adornos {
-  color:#FBD28C;
-  letter-spacing:5px;
-  margin:8px 0;
-}
-#pantalla-tienda .tienda-cabecera p {
-  font-size:13px;
-  line-height:1.6;
-  color:#FBD28C;
-  margin:0;
-}
-#pantalla-tienda .marco {
-  box-sizing:border-box;
-  background-image:url("/assets/nuestra-historia/Fondo.jpg") !important;
-  background-size:cover !important;
-  background-position:center !important;
-  background-repeat:no-repeat !important;
-  border:2px solid #d4af37 !important;
-  border-radius:17px !important;
-  padding:15px !important;
-  margin:15px 3px !important;
-  box-shadow:inset 0 0 18px #fff5 !important;
-}
-#pantalla-tienda .marco h2,
-#pantalla-tienda .marco h3 {
-  color:#FBD28C !important;
-  text-align:center;
-  font-family:"Great Vibes",cursive !important;
-  font-size:29px;
-  font-weight:normal;
-  margin:0 0 9px;
-}
-#pantalla-tienda .marco p {
-  font-size:12px;
-  line-height:1.55;
-  color:#DEA55C !important;
-}
-#pantalla-tienda .tienda-aviso {
-  text-align:center;
-}
-#pantalla-tienda .tienda-aviso h2 {
-  font-size:29px;
-}
-#pantalla-tienda .tienda-aviso p {
-  margin-bottom:0;
-}
-#pantalla-tienda .tienda-selector label,
-#pantalla-tienda .tienda-formulario label {
-  display:block;
-  color:#DEA55C !important;
-  font-family:"Great Vibes",cursive !important;
-  font-size:22px;
-  margin:12px 0 5px;
-}
-#pantalla-tienda input,
-#pantalla-tienda textarea,
-#pantalla-tienda select {
-  box-sizing:border-box;
-  width:100%;
-  padding:11px;
-  border:1.5px solid #bd9453 !important;
-  border-radius:10px !important;
-  background-image:url("/assets/nuestra-historia/Fondo.jpg") !important;
-  background-size:cover !important;
-  background-position:center !important;
-  color:#DEA55C !important;
-  font:14px Georgia,serif !important;
-  margin-bottom:8px;
-}
-#pantalla-tienda input::placeholder,
-#pantalla-tienda textarea::placeholder {
-  color:#DEA55C !important;
-  opacity:1;
-}
-#pantalla-tienda select option {
-  color:#DEA55C;
-  background:#211018;
-}
-#pantalla-tienda .tienda-saldo {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-  font-size:13px;
-  color:#DEA55C;
-  margin:10px 0 0 !important;
-  padding:0 !important;
-  border:0 !important;
-  border-radius:0 !important;
-  background:none !important;
-  box-shadow:none !important;
-}
-#pantalla-tienda .tienda-saldo strong {
-  display:flex;
-  align-items:center;
-  gap:5px;
-  font-size:25px;
-  color:#FBD28C;
-}
-#pantalla-tienda .tienda-icono-puntos {
-  width:1.25em;
-  height:1.25em;
-  object-fit:contain;
-  vertical-align:middle;
-  position:relative;
-  top:2px;
-  border:0 !important;
-  margin:0 !important;
-  padding:0 !important;
-  background:none !important;
-}
-#pantalla-tienda button:not(.tienda-tarjeta-vale) {
-  box-sizing:border-box;
-  width:100%;
-  min-height:42px;
-  padding:9px 12px;
-  border:2px solid #A26622 !important;
-  border-radius:12px !important;
-  background:#A26622 url("/assets/nuestra-historia/Fondo.jpg?v=16") center / cover no-repeat !important;
-  color:#FBD28C !important;
-  text-shadow:0 1px 2px #704018;
-  font:22px "Great Vibes",cursive !important;
-}
-#pantalla-tienda .tienda-prueba p {
-  margin:0 0 10px;
-}
-#pantalla-tienda .tienda-subtitulo {
-  text-align:center;
-  color:#FBD28C !important;
-  font:34px "Great Vibes",cursive !important;
-  text-transform:none !important;
-  margin:27px 0 13px;
-  text-shadow:0 1px 2px #2b0710;
-}
-#pantalla-tienda .tienda-catalogo-marco {
-  padding:15px !important;
-}
-#pantalla-tienda .tienda-catalogo {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-#pantalla-tienda .tienda-tarjeta-vale {
-  box-sizing:border-box;
-  display:flex !important;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  width:100% !important;
-  min-width:0;
-  min-height:0 !important;
-  aspect-ratio:218 / 350;
-  padding:0 !important;
-  margin:0;
-  overflow:hidden;
-  border:3px solid #A26622 !important;
-  border-radius:13px !important;
-  background:transparent !important;
-  box-shadow:0 0 0 2px #C78E3F !important;
-  cursor:pointer;
-  line-height:0;
-}
-#pantalla-tienda .tienda-tarjeta-vale img {
-  display:block;
-  flex:none;
-  max-width:none;
-  height:auto;
-  margin:0;
-  padding:0;
-  border:0 !important;
-  border-radius:0;
-  object-fit:fill;
-  background:none;
-
-  transform:scale(.80);
-  transform-origin:center center;
-}
-#pantalla-tienda .tienda-tarjeta-vale:active {
-  transform:scale(.98);
-}
-#pantalla-tienda .tienda-formulario {
-  display:grid;
-  gap:5px;
-}
-#pantalla-tienda .tienda-formulario button {
-  margin-top:5px;
-}
-#pantalla-tienda .tienda-canjes {
-  display:grid;
-  gap:10px;
-}
-#pantalla-tienda .tienda-canje {
-  border:2px solid #A26622 !important;
-  border-radius:12px !important;
-  background:url("/assets/nuestra-historia/Fondo.jpg") center / cover no-repeat !important;
-  padding:12px;
-  color:#DEA55C;
-  font-size:13px;
-}
-#pantalla-tienda .tienda-canje strong {
-  display:block;
-  color:#FBD28C !important;
-  font:25px "Great Vibes",cursive !important;
-}
-#pantalla-tienda .tienda-canje .tienda-estado,
-#pantalla-tienda .tienda-canje small {
-  color:#DEA55C !important;
-}
-#pantalla-tienda .tienda-canje button {
-  margin-top:8px;
-}
-#pantalla-tienda .tienda-nota {
-  text-align:center;
-  font-size:11px;
-  line-height:1.6;
-  color:#f1dce2 !important;
-  margin:22px 8px 0 !important;
-  padding:0 !important;
-  border:0 !important;
-  background:none !important;
-  box-shadow:none !important;
-}
-#pantalla-tienda .tienda-producto {
-  min-width:0;
-  padding:12px;
-  border:2px solid #A26622;
-  border-radius:12px;
-  background:url("/assets/nuestra-historia/Fondo.jpg") center / cover no-repeat;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-#pantalla-tienda .tienda-producto .producto-icono {
-  display:flex;
-  min-height:70px;
-  justify-content:center;
-  align-items:center;
-  font-size:29px;
-}
-#pantalla-tienda .tienda-producto h4 {
-  margin:0;
-  color:#FBD28C;
-  font:23px "Great Vibes",cursive !important;
-  text-align:center;
-}
-#pantalla-tienda .tienda-producto p {
-  overflow-wrap:anywhere;
-  margin:0;
-}
-#pantalla-tienda .tienda-producto .producto-precio,
-#pantalla-tienda .tienda-producto .tienda-etiqueta {
-  color:#DEA55C;
-  font-size:12px;
-}
-#pantalla-tienda .tienda-producto button {
-  margin-top:auto;
-}
-@media(max-width:350px) {
-  #pantalla-tienda {
-    padding:14px 9px 30px !important;
-  }
-  #pantalla-tienda .tienda-catalogo {
-    gap:8px;
-  }
-  #pantalla-tienda .marco {
-    padding:12px !important;
-  }
-}
-
-/* Marco exterior dorado exclusivo de Tienda */
-#pantalla-tienda {
-  border: 2px solid #d4af37 !important;
-  border-radius: 18px !important;
-}
-
-/* MARCOS METÁLICOS: TEXTURAS ORIGINALES Y VALES INTACTOS */
-
-/* Marco exterior: conserva el terciopelo original */
-#pantalla-tienda {
-  border: 2px solid transparent !important;
-  border-radius: 18px !important;
-  background-image:
-    url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg"),
-    linear-gradient(135deg, #F5E8C3 0%, #DDBB70 25%, #C59B4A 50%, #966A2F 75%, #FDF4CE 100%) !important;
-  background-origin: padding-box, border-box !important;
-  background-clip: padding-box, border-box !important;
-  background-size: cover, auto !important;
-  background-position: center top, center !important;
-  background-repeat: no-repeat, no-repeat !important;
-  background-attachment: fixed, scroll !important;
-  box-shadow:
-    0 0 12px rgba(232,200,122,.25),
-    inset 0 0 4px rgba(253,244,206,.30),
-    0 3px 0 #966A2F,
-    0 6px 0 #68451F,
-    0 10px 0 #34202A,
-    0 14px 20px rgba(0,0,0,.42) !important;
-}
-
-/* Paneles grandes: Fondo.jpg permanece como fondo interior */
 #pantalla-tienda .marco:not(.tienda-tarjeta-vale) {
-  box-sizing: border-box;
-  border: 2px solid transparent !important;
-  border-radius: 17px !important;
   background-image:
     url("/assets/nuestra-historia/Fondo.jpg"),
-    linear-gradient(135deg, #B8873E 0%, #A87935 25%, #966A2F 50%, #805728 75%, #C59B4A 100%) !important;
+    linear-gradient(90deg,
+      #C78E3F 0%,
+      #A26622 18%,
+      #854B19 50%,
+      #A26622 82%,
+      #C78E3F 100%) !important;
   background-origin: padding-box, border-box !important;
   background-clip: padding-box, border-box !important;
   background-size: cover, auto !important;
@@ -3239,6 +2872,309 @@ img[src*="/nuestra-historia/Titulo.png"] {
 }
 </style>
 
+
+<style id="sistema-marco-metalico-dorado">
+
+/* SISTEMA ÚNICO DE MARCO METÁLICO DORADO */
+:root {
+  --marco-oro-oscuro: #B38F27;
+  --marco-oro: #D4AF37;
+  --marco-oro-claro: #F3E5AB;
+  --marco-oro-sombra: #9A7B1C;
+}
+
+#accesoFirebase,
+section.sobre[data-vista='retos'],
+section.sobre[data-vista='diario'],
+#diario-libro-contenido,
+#pantalla-ruleta,
+#pantalla-ruleta .ruleta-aviso,
+#pantalla-ruleta .ruleta-leyenda > div,
+#pantalla-ruleta .ruleta-nota,
+#pantalla-ruleta .ruleta-boton,
+
+section.sobre[data-vista='pregunta-diaria'],
+#nuestro-momento-hoy,
+#nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido .momento-tarjeta,
+#pregunta-diaria-contenido .pd-panel,
+#pregunta-diaria-contenido .pd-respuesta,
+section.perfil[data-vista='nosotros'],
+.perfil[data-vista='nosotros'] .pareja-resumen > div,
+.perfil[data-vista='nosotros'] .lugares-acceso,
+.lugares-contenedor[data-vista='lugares-especiales'] #mapa-lugares,
+#pantalla-tienda,
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale),
+#pantalla-tienda .tienda-canje,
+#pantalla-tienda .tienda-producto {
+  border: 2px solid #D4AF37 !important;
+  border-radius: 16px !important;
+  border-image: none !important;
+  box-shadow:
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
+}
+
+/* El libro conserva su relieve de páginas. */
+#diario-libro-contenido {
+  border-radius: inherit;
+}
+
+/* No añadir marcos a los elementos internos de la ruleta. */
+/* Se mantienen disco, centro, gajos, tiradas y animaciones. */
+
+/* Las imágenes, los vales, Hot Roulette y los dados conservan sus estilos originales. */
+
+
+
+</style>
+<style>
+
+/* TAMAÑOS FORZADOS PNG RULETA DEL AMOR */
+#pantalla-ruleta .ruleta-cabecera h2 img.ruleta-logo-historia {
+  width: 120px !important;
+  height: 120px !important;
+  max-width: none !important;
+  max-height: none !important;
+  flex-shrink: 0 !important;
+}
+#pantalla-ruleta .ruleta-aviso img.ruleta-icono-historia {
+  width: 60px !important;
+  height: 60px !important;
+  max-width: none !important;
+  max-height: none !important;
+  flex: 0 0 60px !important;
+}
+
+
+/* Ajuste del acceso Dados del amor */
+.ruleta-contenedor #ruleta-dados-texto {
+  font-size: 0.9em !important;
+  position: relative !important;
+  left: -5px !important;
+
+  top: 0px;
+}
+</style>
+
+<style id="ajuste-posiciones-accesos-ruleta">
+.ruleta-contenedor #ruleta-hotboton,
+.ruleta-contenedor #boton-abrir-ruleta-hot,
+.ruleta-contenedor #ruleta-hotroulette-texto {
+  translate: 20px 0 !important;
+}
+.ruleta-contenedor #ruleta-dadosboton,
+.ruleta-contenedor #boton-abrir-dados,
+.ruleta-contenedor #ruleta-dados-texto {
+  translate: -20px 0 !important;
+}
+.ruleta-contenedor #ruleta-dadosboton {
+  width: 50px !important;
+  height: 50px !important;
+}
+</style>
+
+
+<style id="reducir-disco-y-base-ruleta">
+/* Disco: 20 px menos, conservando el centro */
+.ruleta-contenedor .ruleta-disco {
+  left: calc(9.0741% + 10px) !important;
+  width: calc(79.0741% - 20px) !important;
+
+  top: 0px;
+}
+
+/* Marco/base: 20 px menos en ancho y alto */
+.ruleta-contenedor::after {
+  inset: 10px !important;
+
+  top: 0px;
+}
+</style>
+
+
+<style id="bajar-ruleta-100px">
+/* Bajar disco 100 px */
+.ruleta-contenedor .ruleta-disco {
+  top: 0px;
+}
+
+/* Bajar marco/base 100 px conservando sus dimensiones */
+.ruleta-contenedor::after {
+  top: 0px;
+  bottom: -90px !important;
+}
+</style>
+
+
+<style id="corregir-desplazamiento-base-ruleta">
+.ruleta-contenedor::after {
+  top: 0px;
+  bottom: auto !important;
+  height: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+</style>
+
+<style id="bajar-base-ruleta-100px-extra">
+.ruleta-contenedor::after {
+  top: 0px;
+  bottom: auto !important;
+  height: calc(100% - 10px) !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+</style>
+\n
+<style id="ajustes-tipografia-dorada">
+/* MENSAJES */
+#seccion-mensajes h2,
+#seccion-mensajes .descripcion,
+#seccion-mensajes h3 {
+  color: #F7D9A5 !important;
+}
+#seccion-mensajes #boton-acordado {
+  color: #F7D9A5 !important;
+}
+
+/* RETOS */
+section[data-vista="retos"] .hora,
+section[data-vista="retos"] h2,
+section[data-vista="retos"] .descripcion,
+#reto-manana > p,
+#reto-noche > p,
+.respuestas-compartidas p {
+  color: #F7D9A5 !important;
+}
+section[data-vista="retos"] > button[onclick^="abrirReto"],
+#reto-manana button,
+#reto-noche button {
+  color: #F7D9A5 !important;
+  font-size: 18px !important;
+}
+#respuesta-noche::placeholder {
+  color: #F7D9A5 !important;
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 22px;
+}
+
+/* DIARIO */
+[data-vista="diario"] h2,
+[data-vista="diario"] .descripcion {
+  color: #F7D9A5 !important;
+}
+
+/* RULETA */
+#pantalla-ruleta .ruleta-cabecera h2 {
+  color: #F7D9A5 !important;
+  font-size: 30px !important;
+}
+#pantalla-ruleta .ruleta-cabecera p {
+  color: #F7D9A5 !important;
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 21px !important;
+}
+#pantalla-ruleta .ruleta-boton {
+  color: #F7D9A5 !important;
+  font-size: 19px !important;
+}
+
+/* NUESTRO MUNDO: solo el título */
+.perfil[data-vista="nosotros"] .lugares-acceso h3 {
+  color: #F7D9A5 !important;
+}
+
+/* NUESTRA PREGUNTA DIARIA */
+[data-vista="pregunta-diaria"] .hora,
+[data-vista="pregunta-diaria"] h2,
+[data-vista="pregunta-diaria"] .descripcion {
+  color: #F7D9A5 !important;
+}
+[data-vista="pregunta-diaria"] .descripcion {
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 21px !important;
+}
+[data-vista="pregunta-diaria"] > button.secundario {
+  color: #F7D9A5 !important;
+  font-size: 18px !important;
+}
+</style>
+
+
+
+
+
+<style id="acabado-metalico-login-inicio">
+/* TARJETA SUPERIOR: DORADO ORIGINAL DEL LOGIN, 2 PX */
+#contenidoApp .portada-bienvenida {
+  border: 2px solid transparent !important;
+  border-top-width: 2px !important;
+  border-right-width: 2px !important;
+  border-bottom-width: 2px !important;
+  border-left-width: 2px !important;
+  background-image:
+    url("/assets/nuestra-historia/Fondo.jpg"),
+    linear-gradient(135deg,
+      #9A7B1C 0%,
+      #D4AF37 18%,
+      #F3E5AB 38%,
+      #D4AF37 55%,
+      #B38F27 78%,
+      #F3E5AB 100%) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+  background-position: center, center !important;
+  background-size: cover, 100% 100% !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+
+/* SEIS TARJETAS DE INICIO: SOLO SE UNIFICA EL MARCO DORADO */
+#contenidoApp .portada-grid button.tarjeta-acceso,
+#contenidoApp .portada-grid button.tarjeta-acceso:active {
+  border: 2px solid #D4AF37 !important;
+  border-radius: 15px !important;
+  /* Se conserva exactamente la fotografía/fondo original de cada tarjeta. */
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-origin: padding-box !important;
+  background-clip: padding-box !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  /* Reflejo superior e inferior, canto metálico y relieve 3D. */
+  box-shadow:
+    inset 0 1px 0 rgba(255,250,220,.98),
+    inset 0 2px 3px rgba(255,239,190,.42),
+    inset 0 -1px 0 rgba(255,248,210,.98),
+    inset 0 -2px 3px rgba(120,83,19,.55),
+    inset 0 0 0 1px rgba(255,230,150,.38),
+    0 1px 0 rgba(255,231,160,.65),
+    0 3px 0 #9A7426,
+    0 5px 0 #4A321B,
+    0 9px 16px rgba(0,0,0,.48),
+    0 0 9px rgba(232,194,91,.22) !important;
+}
+</style>
+
+
+
+<style id="nh-casillas-individuales">
+.nh-historia { position: relative; }
+.nh-casillas-superpuestas {
+ position:absolute; inset:0; width:100%; height:100%;
+ z-index:50; pointer-events:none;
+}
+.nh-casillas-superpuestas img {
+ position:absolute; display:block; max-width:none;
+ object-fit:fill;
+}
+</style>
+
 </head>
 <body>
   <main class="app">
@@ -3392,7 +3328,7 @@ img[src*="/nuestra-historia/Titulo.png"] {
         </section>
 
         <h2 class="tienda-subtitulo subtitulo">Recompensas para elegir</h2>
-        <section class="tienda-catalogo-marco marco">
+        <section class="tienda-catalogo-marco">
           <div id="tienda-catalogo" class="tienda-catalogo catalogo"></div>
         </section>
 
@@ -3430,17 +3366,17 @@ img[src*="/nuestra-historia/Titulo.png"] {
 
     <section class="sobre" data-vista="ruleta" id="pantalla-ruleta" style="display:none">
   <div class="ruleta-cabecera">
-    <div class="ruleta-sello">PARA NOSOTROS DOS</div>
-    <h2>🎰 La ruleta del amor</h2>
+    <h2>La ruleta del amor</h2>
+    <img class="ruleta-logo-historia" src="./assets/ruleta-amor/Rul-transparente.png" alt="Corazón de la ruleta del amor">
     <p>Un giro, una sorpresa y un recuerdo más juntos.</p>
   </div>
   <div class="ruleta-aviso">
-    <span>♡</span><div><strong>Nuestro momento especial</strong>
+    <img class="ruleta-icono-historia" src="./assets/ruleta-amor/Co.png" alt=""><div><strong>Nuestro momento especial</strong>
     <p>La suerte decidirá qué categoría de premio te espera.</p></div>
   </div>
   <div id="ruleta-contador" class="ruleta-contador" aria-label="Tiradas mensuales">
-    <span class="ruleta-tirada">♥</span>
-    <span class="ruleta-tirada">♥</span>
+    <img class="ruleta-tirada" src="./assets/ruleta-amor/C1.png" alt="Tirada disponible">
+    <img class="ruleta-tirada" src="./assets/ruleta-amor/C1.png" alt="Tirada disponible">
   </div>
   <p id="ruleta-tiradas-texto" class="ruleta-tiradas-texto">Tienes 2 tiradas disponibles este mes ❤️</p>
   <div class="ruleta-contenedor">
@@ -3596,12 +3532,14 @@ img[src*="/nuestra-historia/Titulo.png"] {
 
 
     <section class="perfil lugares-contenedor" data-vista="lugares-especiales" style="display:none">
-  <div class="hora">Solo nosotros</div>
-  <div style="text-align:center;margin:12px auto;">
+  <div style="text-align:center;margin:12px auto 4px;">
+    <img src="/assets/Nu.png" alt="Nuestro Mundo"
+      style="display:block;width:250px;height:auto;max-width:85%;object-fit:contain;margin:0 auto 8px;transform:translateY(-20px);">
+    <img src="/assets/So.png" alt="So" style="display:block;width:140px;height:auto;max-width:85%;object-fit:contain;margin:0 auto 8px;transform:translateY(-30px);">
     <img src="/assets/globo-lugares-recortado.png" alt="Globo terráqueo"
-      style="display:block;width:300px;height:300px;object-fit:contain;margin:0 auto -36px;transform:translateY(20px) scale(1.15);transform-origin:center bottom;">
+      style="display:block;width:300px;height:300px;object-fit:contain;margin:0 auto -36px;transform:translateY(40px) scale(1.15);transform-origin:center bottom;">
   </div>
-  <h2>Nuestro Mundo</h2>
+
 
   <div class="lugares-acciones">
     <button type="button" id="lugares-ver-todos">Ver todos nuestros lugares</button>
@@ -3653,31 +3591,49 @@ img[src*="/nuestra-historia/Titulo.png"] {
 
 <section class="perfil lugares-contenedor nuestra-historia" data-vista="nuestra-historia" style="display:none">
   <div class="nuestra-historia-container">
-    <header class="nh-cabecera">
-      <div class="nh-ornamento">✦ ❧ ♥ ❧ ✦</div>
-    </header>
-
     <div class="nh-historia">
       <img class="nh-interfaz"
-           src="/assets/nuestra-historia/Interfazhistoria-contador.png"
+           src="/assets/nuestra-historia/tarjetas-nuevas/Ti.png"
            alt="Nuestra Historia">
+      <div class="nh-casillas-wrap">
+        <img class="nh-casillas"
+             src="/assets/nuestra-historia/tarjetas-nuevas/Nu.png"
+             alt="Casillas doradas del contador"
+             style="display:block;width:100%;height:auto;position:relative;z-index:1;">
 
-      <div class="nh-contador-overlay">
-        <div class="nh-contador-item"><span id="nh-anios">00</span><small>años</small></div>
-        <div class="nh-contador-item"><span id="nh-meses">00</span><small>meses</small></div>
-        <div class="nh-contador-item"><span id="nh-dias">00</span><small>días</small></div>
-        <div class="nh-contador-item"><span id="nh-horas">00</span><small>horas</small></div>
-        <div class="nh-contador-item"><span id="nh-minutos">00</span><small>minutos</small></div>
-        <div class="nh-contador-item"><span id="nh-segundos">00</span><small>segundos</small></div>
+        <div class="nh-contador-overlay" aria-label="Tiempo juntos">
+          <div class="nh-contador-item"><span id="nh-anios">00</span><small>AÑOS</small></div>
+          <div class="nh-contador-item"><span id="nh-meses">00</span><small>MESES</small></div>
+          <div class="nh-contador-item"><span id="nh-dias">00</span><small>DÍAS</small></div>
+          <div class="nh-contador-item"><span id="nh-horas">00</span><small>HORAS</small></div>
+          <div class="nh-contador-item"><span id="nh-minutos">00</span><small>MINUTOS</small></div>
+          <div class="nh-contador-item"><span id="nh-segundos">00</span><small>SEGUNDOS</small></div>
+        </div>
       </div>
+</div>
+<div class="nh-tarjetas-nuevas">
+<img src="/assets/nuestra-historia/tarjetas-nuevas/01.png" alt="" style="left:calc(2.32% - 3px);top:calc(7.33% + 290px);width:47.68%;height:28.46%;">
+<img src="/assets/nuestra-historia/tarjetas-nuevas/02.png" alt="" style="left:calc(50% + 3px);top:calc(7.33% + 290px);width:47.55%;height:43.39%;">
+<img src="/assets/nuestra-historia/tarjetas-nuevas/03.png" alt="" style="left:calc(2.32% - 3px);top:calc(36.30% + 290px);width:47.68%;height:37.35%;">
+<img src="/assets/nuestra-historia/tarjetas-nuevas/04.png" alt="" style="left:calc(50% + 3px);top:calc(51.45% + 290px);width:47.40%;height:22.82%;">
+<img src="/assets/nuestra-historia/tarjetas-nuevas/05.png" alt="" style="left:calc(1.78147%  - 52px);top:calc(74.38313% - 10px + 300px);width:calc(97.14964% + 95px);height:calc(13.23463% + 10%);">
+</div>
+<img class="nh-boton-final"
+     src="/assets/nuestra-historia/tarjetas-nuevas/Boton.png"
+     alt="Volver a nuestro mundo"
+     role="button"
+     tabindex="0"
+     onclick="mostrarVista('lugares-especiales')"
+     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();mostrarVista('lugares-especiales')}">
 
-      <div class="nh-zona-fondo-marco"></div>
+      <img class="nh-frase-final"
+           src="/assets/nuestra-historia/frase.png"
+           alt="">
+
       <img class="nh-foto-principal"
            src="/assets/nuestra-historia/Historia-4x3.jpg" alt="">
       <img class="nh-marco-principal"
            src="/assets/nuestra-historia/Marcori-4x3.png" alt="">
-      <img class="nh-marcos-dorados"
-           src="/assets/nuestra-historia/marcos-dorados.png" alt="">
     </div>
   </div>
 </section>
@@ -3790,8 +3746,8 @@ img[src*="/nuestra-historia/Titulo.png"] {
 </div></div></section>
 
     <div class="pie">
-      Dos Personas · Un Pequeño Universo<br>
-      Hecho para nosotros ♡
+      <span style="color:#F7D9A5 !important;">Dos Personas · Un Pequeño Universo<br>
+      Hecho para nosotros ♡</span>
 
     <nav id="navegacion-inferior" aria-label="Navegación principal">
       <button type="button" data-vista-menu="inicio" class="activo btn-metal"><span class="nav-icono"><img class="nav-imagen" src="/assets/iconos-barra/inicio.png" alt=""></span>Inicio</button>
@@ -4068,10 +4024,14 @@ img[src*="/nuestra-historia/Titulo.png"] {
   isolation: isolate !important;
   overflow: visible !important;
   filter: drop-shadow(0 12px 18px #0009) !important;
+
+  top: 0px;
 }
 .ruleta-contenedor::before {
   content: none !important;
   display: none !important;
+
+  top: 0px;
 }
 .ruleta-disco {
   position: absolute !important;
@@ -4099,6 +4059,9 @@ img[src*="/nuestra-historia/Titulo.png"] {
   z-index: 5 !important;
   pointer-events: none !important;
   background: url("./assets/marco_recortado.png") center / 100% 100% no-repeat !important;
+
+  top: 0px;
+  transform: translateY(40px) !important;
 }
 .ruleta-flecha {
   display: none !important;
@@ -4138,6 +4101,8 @@ a:active {
   margin-right: 0 !important;
   transform: translateX(-50%) !important;
   box-sizing: border-box !important;
+
+  top: 0px;
 }
 /* FIN AJUSTE CENTRADO RULETA PREMIOS */
 
@@ -4145,10 +4110,10 @@ a:active {
 #ruleta-contenedor #ruleta-hotboton,
 .ruleta-contenedor #ruleta-hotboton {
   position: absolute !important;
-  left: calc(50% + 83px) !important;
+  left: calc(50% + 98px) !important;
   top: calc(100% - 28px) !important;
-  width: 208px !important;
-  height: 208px !important;
+  width: 168px !important;
+  height: 168px !important;
   transform: translate(-50%, -50%) !important;
   object-fit: contain !important;
   z-index: 20 !important;
@@ -4158,10 +4123,10 @@ a:active {
 /* VIDEO Y ACCESO DADOS DEL AMOR */
 .ruleta-contenedor #ruleta-dadosboton {
   position: absolute !important;
-  left: calc(50% - 83px) !important;
+  left: calc(50% - 93px) !important;
   top: calc(100% - 28px) !important;
-  width: 170px !important;
-  height: 170px !important;
+  width: 50px !important;
+  height: 50px !important;
   transform: translate(-50%, -50%) !important;
   object-fit: contain !important;
   z-index: 20 !important;
@@ -4170,7 +4135,7 @@ a:active {
 .ruleta-contenedor #boton-abrir-dados {
   position: absolute !important;
   left: calc(50% - 83px) !important;
-  top: calc(100% - 28px) !important;
+  top: 0px;
   width: 170px !important;
   height: 170px !important;
   transform: translate(-50%, -50%) !important;
@@ -4185,7 +4150,7 @@ a:active {
 .ruleta-contenedor #ruleta-dados-texto {
   position: absolute !important;
   left: calc(50% - 83px) !important;
-  top: calc(100% + 4px) !important;
+  top: 0px;
   transform: translate(-50%, -50%) !important;
   width: 260px !important;
   text-align: center !important;
@@ -4629,6 +4594,7 @@ a:active {
 
   <link rel="stylesheet" href="/css/nueva-historia.css">
   <script src="/js/nuestra-historia.js"></script>
+  <script src="/js/nuestra-historia-posiciones.js"></script>
   <script type="module" src="/js/nuestra-historia-recuerdos.js"></script>
 
 
@@ -4716,50 +4682,61 @@ section.perfil[data-vista] {
 
 
 <style id="acabado-marcos-mensajes">
-/* Marco exterior de Mensajes */
-#seccion-mensajes {
+/* Acabado metálico fino para toda la pantalla de Mensajes */
+#seccion-mensajes,
+#seccion-mensajes #boton-acordado,
+#seccion-mensajes #mensaje-sorpresa,
+#seccion-mensajes #lista-mensajes > div {
   position: relative !important;
-  box-sizing: border-box;
-  border: 1px solid #d4af37 !important;
+  box-sizing: border-box !important;
+  border: 1.25px solid #D4AF37 !important;
+  border-image: none !important;
   box-shadow:
+    inset 0 1px 0 rgba(255,245,200,.85),
+    inset 0 -1px 0 rgba(255,245,195,.95),
     inset 0 2px 2px rgba(255,239,207,.28),
     inset 0 -5px 8px rgba(0,0,0,.32),
-    0 12px 35px #0005 !important;
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
 }
 
-/* Botón Me he acordado de ti */
-#seccion-mensajes #boton-acordado {
-  position: relative !important;
-  box-sizing: border-box;
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    inset 0 2px 2px rgba(255,239,207,.28),
-    inset 0 -2px 4px rgba(0,0,0,.32);
-}
-
-/* Reflejo superior e inferior */
+/* Reflejos metálicos superiores e inferiores */
 #seccion-mensajes::before,
 #seccion-mensajes::after,
 #seccion-mensajes #boton-acordado::before,
-#seccion-mensajes #boton-acordado::after {
-  content: "";
-  position: absolute;
-  left: 16%;
-  width: 68%;
-  height: 1px;
-  background: linear-gradient(90deg,transparent,#F7D9A5,transparent);
-  pointer-events: none;
-  z-index: 3;
+#seccion-mensajes #boton-acordado::after,
+#seccion-mensajes #mensaje-sorpresa::before,
+#seccion-mensajes #mensaje-sorpresa::after,
+#seccion-mensajes #lista-mensajes > div::before,
+#seccion-mensajes #lista-mensajes > div::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 14% !important;
+  width: 72% !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, #E8C87A 20%, #FFF1C9 50%, #E8C87A 80%, transparent) !important;
+  box-shadow: 0 0 6px rgba(247,217,165,.80) !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
 }
 
 #seccion-mensajes::before,
-#seccion-mensajes #boton-acordado::before {
-  top: 0;
+#seccion-mensajes #boton-acordado::before,
+#seccion-mensajes #mensaje-sorpresa::before,
+#seccion-mensajes #lista-mensajes > div::before {
+  top: 0 !important;
+  bottom: auto !important;
 }
 
 #seccion-mensajes::after,
-#seccion-mensajes #boton-acordado::after {
-  bottom: 0;
+#seccion-mensajes #boton-acordado::after,
+#seccion-mensajes #mensaje-sorpresa::after,
+#seccion-mensajes #lista-mensajes > div::after {
+  bottom: 0 !important;
+  top: auto !important;
 }
 </style>
 
@@ -4781,20 +4758,27 @@ section.perfil[data-vista] {
   z-index: 3;
 }
 
-/* Correo y contraseña */
-#accesoFirebase #correoAcceso,
-#accesoFirebase #claveAcceso {
+/* LOGIN: MARCO METÁLICO DEFINITIVO */
+#accesoFirebase input#correoAcceso,
+#accesoFirebase input#claveAcceso {
   box-sizing: border-box !important;
-  border: 1px solid #d4af70 !important;
+  border: 1.25px solid #D4AF37 !important;
+  border-image: none !important;
   background-image:
-    linear-gradient(90deg,transparent,#F7D9A5,transparent),
-    linear-gradient(90deg,transparent,#F7D9A5,transparent) !important;
-  background-size: 68% 1px,68% 1px !important;
-  background-position: center top,center bottom !important;
+    linear-gradient(90deg, transparent, #F7D9A5, transparent),
+    linear-gradient(90deg, transparent, #fff0c2, #fff9e8, #fff0c2, transparent),
+    url('/assets/nuestra-historia/Fondo.jpg') !important;
+  background-position: center top, center bottom, center !important;
+  background-size: 68% 1px, 78% 2px, cover !important;
   background-repeat: no-repeat !important;
   box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.18),
-    inset 0 -1px 0 rgba(247,217,165,.12) !important;
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
 }
 
 /* Botón Entrar */
@@ -4823,479 +4807,430 @@ section.perfil[data-vista] {
 </style>
 
 
-<style id="acabado-dorado-ocho-retos">
-/* Dos marcos principales */
-section.sobre[data-vista="retos"] {
-  position: relative;
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    0 12px 35px #0005,
-    inset 0 1px 0 rgba(255,239,207,.30),
-    inset 0 -1px 0 rgba(247,217,165,.22);
-}
-section.sobre[data-vista="retos"]::before,
-section.sobre[data-vista="retos"]::after {
-  content: "";
-  position: absolute;
-  left: 16%;
-  width: 68%;
-  height: 1px;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent, #F7D9A5, transparent);
-}
-section.sobre[data-vista="retos"]::before { top: 0; }
-section.sobre[data-vista="retos"]::after { bottom: 0; }
-
-/* Cuatro botones interiores */
-section.sobre[data-vista="retos"] button {
-  position: relative;
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.30),
-    inset 0 -1px 0 rgba(247,217,165,.22);
-  background-image:
-    linear-gradient(90deg, transparent, #F7D9A5, transparent),
-    linear-gradient(90deg, transparent, #F7D9A5, transparent);
-  background-size: 68% 1px, 68% 1px;
-  background-position: center top, center bottom;
-  background-repeat: no-repeat;
-}
-
-/* Dos campos para escribir */
-section.sobre[data-vista="retos"] textarea {
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.30),
-    inset 0 -1px 0 rgba(247,217,165,.22);
-}
-</style>
 
 
-<style id="acabado-dorado-tres-zonas-diario">
-/* 1. Marco exterior de Diario */
-section.sobre[data-vista="diario"] {
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    0 12px 35px #0005,
-    inset 0 1px 0 rgba(255,239,207,.38),
-    inset 0 -1px 0 rgba(247,217,165,.30);
-}
-
-/* 2. Botón para abrir el diario */
-section.sobre[data-vista="diario"] > button.secundario {
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.38),
-    inset 0 -1px 0 rgba(247,217,165,.30);
-}
-
-/* 3. Marco exterior del libro */
-#diario-libro-contenido {
-  border: 1px solid #d4af37;
-  box-shadow:
-    5px 6px 0 #a58a60,
-    10px 11px 0 #756044,
-    0 14px 28px #0008,
-    inset 0 1px 0 rgba(255,239,207,.38),
-    inset 0 -1px 0 rgba(247,217,165,.30);
-}
-</style>
 
 
-<style id="acabado-dorado-nueve-elementos-ruleta">
-/* Acabado dorado en los nueve elementos de la ruleta. */
-#pantalla-ruleta .ruleta-aviso,
-#pantalla-ruleta .ruleta-leyenda > div,
-#pantalla-ruleta .ruleta-boton,
-#pantalla-ruleta .ruleta-nota {
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.38),
-    inset 0 -1px 0 rgba(247,217,165,.30);
-}
-#pantalla-ruleta .ruleta-boton {
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.38),
-    inset 0 -1px 0 rgba(247,217,165,.30),
-    0 7px 20px rgba(0,0,0,.25);
-}
-/* Los dos círculos mantienen su estado y sus dimensiones. */
-#pantalla-ruleta .ruleta-tirada,
-#pantalla-ruleta .ruleta-tirada.usada {
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.38),
-    inset 0 -1px 0 rgba(247,217,165,.30);
-}
 
-/* Marco exterior de toda la pantalla de Ruleta. */
-#pantalla-ruleta {
-  box-sizing: border-box;
-  border: 1px solid #d4af37 !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,239,207,.38),
-    inset 0 -1px 0 rgba(247,217,165,.30),
-    0 12px 35px #0005;
-}
-</style>
 
-<style id="acabado-dorado-pregunta-diaria">
-/* Marco exterior: conserva el fondo y las dimensiones actuales. */
-section.sobre[data-vista="pregunta-diaria"] {
-  border-color: #d4af37 !important;
-  box-shadow:
-    inset 0 2px 2px rgba(255,239,207,.28),
-    inset 0 -5px 8px rgba(0,0,0,.32),
-    inset 0 0 0 2px rgba(212,175,55,.10),
-    0 12px 35px #0005;
-}
 
-/* Panel principal y tres tarjetas fijas. */
-#nuestro-momento-hoy {
-  border-color: #d4af37 !important;
-  box-shadow:
-    inset 0 2px 2px rgba(255,239,207,.28),
-    inset 0 -2px 4px rgba(0,0,0,.35),
-    inset 0 0 0 2px rgba(212,175,55,.10),
-    0 4px 0 #0b0609,
-    0 7px 14px rgba(0,0,0,.4);
-}
 
-#nuestro-momento-hoy .momento-tarjeta,
-#pregunta-diaria-contenido .momento-tarjeta {
-  border-color: #d4af37 !important;
-  box-shadow:
-    inset 0 2px 2px rgba(255,239,207,.28),
-    inset 0 -2px 3px rgba(0,0,0,.30),
-    inset 0 0 0 1px rgba(212,175,55,.10),
-    0 3px 0 #0b0609,
-    0 5px 8px rgba(0,0,0,.3);
-}
 
-#pregunta-diaria-contenido .momento-seleccionado {
-  border-color: #d4af37 !important;
-}
 
-/* Panel dinámico, respuestas y campo para escribir. */
-#pregunta-diaria-contenido .pd-panel,
-#pregunta-diaria-contenido .pd-respuesta,
-#pregunta-diaria-contenido .pd-panel textarea {
-  border-color: #d4af37 !important;
-  box-shadow:
-    inset 0 2px 2px rgba(255,239,207,.24),
-    inset 0 -2px 4px rgba(0,0,0,.30),
-    inset 0 0 0 1px rgba(212,175,55,.10);
-}
 
-/* Botones interiores y botón de regreso: solo acabado del marco. */
-#pregunta-diaria-contenido .pd-panel button,
-section.sobre[data-vista="pregunta-diaria"] > button.secundario {
-  border-color: #d4af37 !important;
-  box-shadow:
-    inset 0 2px 2px rgba(255,239,207,.28),
-    inset 0 -2px 3px rgba(0,0,0,.30),
-    inset 0 0 0 1px rgba(212,175,55,.10);
-}
-</style>
 
-<style id="acabado-metalico-dorado-global">
-/* Acabado metálico común: solo bordes y relieve. No modifica fondos. */
+
+
+
+
+
+
+
+<style id="marco-metalico-fusion-final">
 #accesoFirebase,
-#pantalla-ruleta,
-section.perfil[data-vista="nosotros"],
-section.perfil.lugares-contenedor[data-vista="lugares-especiales"],
-section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"],
-section.sobre[data-vista="pregunta-diaria"],
-section.sobre[data-vista="retos"],
-#seccion-mensajes,
-section.sobre[data-vista="diario"] {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,241,201,.75),
-    inset 0 -2px 4px rgba(80,47,16,.48),
-    inset 0 0 0 1px rgba(232,200,122,.24),
-    0 1px 0 #E8C87A,
-    0 3px 0 #966A2F,
-    0 5px 0 #68451F,
-    0 8px 14px rgba(0,0,0,.38) !important;
-}
-
-/* Portada: únicamente sus marcos y paneles, nunca los accesos. */
-.portada-bienvenida {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-}
-
-/* Nuestro Mundo y Lugares Especiales: tarjetas y paneles no interactivos. */
-.perfil[data-vista="nosotros"] .pareja-resumen > div,
-.lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares,
-.lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario,
-.lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,241,201,.65),
-    inset 0 -2px 3px rgba(80,47,16,.40),
-    inset 0 0 0 1px rgba(232,200,122,.20),
-    0 2px 0 #966A2F,
-    0 4px 8px rgba(0,0,0,.30) !important;
-}
-
-/* Nuestra Historia: solo los seis marcos de contador. */
-.nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,241,201,.65),
-    inset 0 -2px 3px rgba(80,47,16,.40),
-    inset 0 0 0 1px rgba(232,200,122,.20),
-    0 2px 0 #966A2F,
-    0 4px 8px rgba(0,0,0,.30) !important;
-}
-
-/* Pregunta diaria: paneles y tarjetas, excluidos sus botones y campos. */
-#nuestro-momento-hoy,
-#nuestro-momento-hoy .momento-tarjeta,
-#pregunta-diaria-contenido .momento-tarjeta,
-#pregunta-diaria-contenido .pd-panel,
-#pregunta-diaria-contenido .pd-respuesta {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,241,201,.65),
-    inset 0 -2px 3px rgba(80,47,16,.40),
-    inset 0 0 0 1px rgba(232,200,122,.20),
-    0 2px 0 #966A2F,
-    0 4px 8px rgba(0,0,0,.30) !important;
-}
-
-/* Ruleta normal: paneles informativos, sin tocar sus botones ni tiradas. */
-#pantalla-ruleta .ruleta-aviso,
-#pantalla-ruleta .ruleta-leyenda > div,
-#pantalla-ruleta .ruleta-nota {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,241,201,.65),
-    inset 0 -2px 3px rgba(80,47,16,.40),
-    inset 0 0 0 1px rgba(232,200,122,.20) !important;
-}
-
-/* Diario: marco exterior, libro y páginas. */
+section.sobre[data-vista='retos'],
+section.sobre[data-vista='diario'],
 #diario-libro-contenido,
-#diario-libro-contenido .diario-paginas,
-#diario-libro-contenido .diario-pagina {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-}
-
-/* Tienda: se conservan los fondos y el acabado metálico ya aprobado.
-   Los vales quedan expresamente excluidos. */
-#pantalla-tienda {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-}
-#pantalla-tienda .marco:not(.tienda-tarjeta-vale),
-#pantalla-tienda .tienda-canje,
-#pantalla-tienda .tienda-producto {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-  box-shadow:
-    0 0 10px rgba(232,200,122,.18),
-    inset 0 1px 0 rgba(253,244,206,.55),
-    inset 0 -2px 3px rgba(80,47,16,.35),
-    inset 0 0 0 1px rgba(232,200,122,.18),
-    0 3px 0 #966A2F,
-    0 5px 9px rgba(0,0,0,.30) !important;
-}
-
-/* REFLEJOS SUPERIOR E INFERIOR GLOBAL: acabado igual al de tienda */
-#accesoFirebase,
 #pantalla-ruleta,
-section.perfil[data-vista="nosotros"],
-section.perfil.lugares-contenedor[data-vista="lugares-especiales"],
-section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"],
-section.sobre[data-vista="pregunta-diaria"],
-section.sobre[data-vista="retos"],
-#seccion-mensajes,
-section.sobre[data-vista="diario"],
-.portada-bienvenida,
-.portada-titulo-seccion,
-.perfil[data-vista="nosotros"] .pareja-resumen > div,
-.lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares,
-.lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario,
-.lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta,
-.nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item,
-#nuestro-momento-hoy,
-#nuestro-momento-hoy .momento-tarjeta,
-#pregunta-diaria-contenido .momento-tarjeta,
-#pregunta-diaria-contenido .pd-panel,
-#pregunta-diaria-contenido .pd-respuesta,
 #pantalla-ruleta .ruleta-aviso,
 #pantalla-ruleta .ruleta-leyenda > div,
 #pantalla-ruleta .ruleta-nota,
-#diario-libro-contenido,
-#diario-libro-contenido .diario-paginas,
-#diario-libro-contenido .diario-pagina {
-  position: relative !important;
-}
+#pantalla-ruleta .ruleta-boton,
 
-#accesoFirebase::before, #pantalla-ruleta::before, section.perfil[data-vista="nosotros"]::before, section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::before, section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"]::before, section.sobre[data-vista="pregunta-diaria"]::before, section.sobre[data-vista="retos"]::before, #seccion-mensajes::before, section.sobre[data-vista="diario"]::before, .portada-titulo-seccion::before, .perfil[data-vista="nosotros"] .pareja-resumen > div::before, .lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares::before, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario::before, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta::before, .nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item::before, #nuestro-momento-hoy::before, #nuestro-momento-hoy .momento-tarjeta::before, #pregunta-diaria-contenido .momento-tarjeta::before, #pregunta-diaria-contenido .pd-panel::before, #pregunta-diaria-contenido .pd-respuesta::before, #pantalla-ruleta .ruleta-aviso::before, #pantalla-ruleta .ruleta-leyenda > div::before, #pantalla-ruleta .ruleta-nota::before, #diario-libro-contenido::before, #diario-libro-contenido .diario-paginas::before, #diario-libro-contenido .diario-pagina::before {
-  content: "";
-  position: absolute;
-  left: 14%;
-  top: 0;
-  width: 72%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #E8C87A 20%,
-    #FFF1C9 50%,
-    #E8C87A 80%,
-    transparent
-  );
-  box-shadow: 0 0 5px rgba(247,217,165,.75);
-  pointer-events: none;
-  z-index: 5;
-}
-
-#accesoFirebase::after, #pantalla-ruleta::after, section.perfil[data-vista="nosotros"]::after, section.perfil.lugares-contenedor[data-vista="lugares-especiales"]::after, section.perfil.lugares-contenedor.nuestra-historia[data-vista="nuestra-historia"]::after, section.sobre[data-vista="pregunta-diaria"]::after, section.sobre[data-vista="retos"]::after, #seccion-mensajes::after, section.sobre[data-vista="diario"]::after, .portada-titulo-seccion::after, .perfil[data-vista="nosotros"] .pareja-resumen > div::after, .lugares-contenedor[data-vista="lugares-especiales"] #mapa-lugares::after, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-formulario::after, .lugares-contenedor[data-vista="lugares-especiales"] .lugar-tarjeta::after, .nuestra-historia[data-vista="nuestra-historia"] .nh-contador-item::after, #nuestro-momento-hoy::after, #nuestro-momento-hoy .momento-tarjeta::after, #pregunta-diaria-contenido .momento-tarjeta::after, #pregunta-diaria-contenido .pd-panel::after, #pregunta-diaria-contenido .pd-respuesta::after, #pantalla-ruleta .ruleta-aviso::after, #pantalla-ruleta .ruleta-leyenda > div::after, #pantalla-ruleta .ruleta-nota::after, #diario-libro-contenido::after, #diario-libro-contenido .diario-paginas::after, #diario-libro-contenido .diario-pagina::after {
-  content: "";
-  position: absolute;
-  left: 14%;
-  bottom: 0;
-  width: 72%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #E8C87A 20%,
-    #FFF1C9 50%,
-    #E8C87A 80%,
-    transparent
-  );
-  box-shadow: 0 0 5px rgba(247,217,165,.65);
-  pointer-events: none;
-  z-index: 5;
-}
-</style>
-
-
-<style id="acabado-metalico-dorado-marcos-pendientes">
-/* Solo marcos pendientes: no se modifican fondos, imágenes ni contenido. */
-#contenidoApp .portada-grid button.tarjeta-acceso,
-section.sobre[data-vista="retos"] .respuestas-compartidas,
-section.sobre[data-vista="retos"] .reto,
-section.sobre[data-vista="retos"] textarea,
-#diario-libro-contenido .diario-pagina,
-.perfil[data-vista="nosotros"] .opcion-avatar,
-#pregunta-diaria-contenido .pd-panel button,
-section.sobre[data-vista="pregunta-diaria"] > button.secundario,
-#pantalla-ruleta #boton-girar-ruleta {
-  border-color: #A87935 !important;
-  border-width: 2px !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,241,201,.75),
-    inset 0 -2px 4px rgba(80,47,16,.48),
-    inset 0 0 0 1px rgba(232,200,122,.24),
-    0 1px 0 #E8C87A,
-    0 3px 0 #966A2F,
-    0 5px 0 #68451F,
-    0 8px 14px rgba(0,0,0,.38) !important;
-}
-
-/* INICIO: acabado metálico en las seis tarjetas */
-#contenidoApp .portada-grid button.tarjeta-acceso::before,
-#contenidoApp .portada-grid button.tarjeta-acceso::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 14% !important;
-  width: 72% !important;
-  height: 2px !important;
-  pointer-events: none !important;
-  background: linear-gradient(90deg, transparent, #E8C87A 20%, #FFF1C9 50%, #E8C87A 80%, transparent) !important;
-  box-shadow: 0 0 5px rgba(247,217,165,.75) !important;
-  z-index: 5 !important;
-}
-#contenidoApp .portada-grid button.tarjeta-acceso::before {
-  top: 0 !important;
-  bottom: auto !important;
-}
-#contenidoApp .portada-grid button.tarjeta-acceso::after {
-  top: auto !important;
-  bottom: 0 !important;
-}
-
-
-/* BIENVENIDA: mismo marco metálico que los paneles de la Tienda */
-#contenidoApp .portada-bienvenida {
-  box-sizing: border-box !important;
-  border: 2px solid transparent !important;
-  border-radius: 17px !important;
-  background-image:
-    url("/assets/nuestra-historia/Fondo.jpg"),
-    linear-gradient(135deg, #B8873E 0%, #A87935 25%, #966A2F 50%, #805728 75%, #C59B4A 100%) !important;
-  background-origin: padding-box, border-box !important;
-  background-clip: padding-box, border-box !important;
-  background-size: cover, auto !important;
-  background-position: center, center !important;
-  background-repeat: no-repeat, no-repeat !important;
-  box-shadow:
-    0 0 12px rgba(232,200,122,.25),
-    inset 0 0 4px rgba(253,244,206,.30),
-    0 3px 0 #966A2F,
-    0 6px 0 #68451F,
-    0 10px 0 #34202A,
-    0 14px 18px rgba(0,0,0,.38) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-#contenidoApp .portada-bienvenida::before,
-#contenidoApp .portada-bienvenida::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 14% !important;
-  width: 72% !important;
-  height: 2px !important;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #E8C87A 20%,
-    #FFF1C9 50%,
-    #E8C87A 80%,
-    transparent
-  ) !important;
-  box-shadow: 0 0 7px rgba(247,217,165,.85) !important;
-  pointer-events: none !important;
-  z-index: 10 !important;
-}
-#contenidoApp .portada-bienvenida::before {
-  top: 0 !important;
-  bottom: auto !important;
-}
-#contenidoApp .portada-bienvenida::after {
-  bottom: 0 !important;
-  top: auto !important;
-}
-
-</style>
-
-
-<style>
-/* MARCO BIENVENIDA: TU DEGRADADO DORADO */
-#contenidoApp .portada-bienvenida {
+section.sobre[data-vista='pregunta-diaria'],
+#nuestro-momento-hoy,
+#nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido .momento-tarjeta,
+#pregunta-diaria-contenido .pd-panel,
+#pregunta-diaria-contenido .pd-respuesta,
+section.perfil[data-vista='nosotros'],
+.perfil[data-vista='nosotros'] .pareja-resumen > div,
+.perfil[data-vista='nosotros'] .lugares-acceso,
+.lugares-contenedor[data-vista='lugares-especiales'] #mapa-lugares,
+#pantalla-tienda,
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale),
+#pantalla-tienda .tienda-canje,
+#pantalla-tienda .tienda-producto {
+  border: 2px solid #D4AF37 !important;
   border-radius: 16px !important;
-  border: 2px solid transparent !important;
-  background:
-    linear-gradient(#4a0e1c, #4a0e1c) padding-box,
-    linear-gradient(135deg, #FDF4CE 0%, #E8C87A 25%, #C59B4A 50%, #966A2F 75%, #FDF4CE 100%) border-box !important;
+  border-image: none !important;
   box-shadow:
-    0 0 12px rgba(232, 200, 122, 0.25),
-    inset 0 0 4px rgba(253, 244, 206, 0.3) !important;
+    inset 0 1px 0 rgba(255,245,200,.85),
+    inset 0 -1px 0 rgba(255,245,195,.95),
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 4px 0 #8b6938,
+    0 6px 0 #34202a,
+    0 10px 0 #170c13,
+    0 14px 23px rgba(0,0,0,.50)!important;
 }
 </style>
+
+
+
+
+<style id="bajar-solo-base-ruleta-200">
+.ruleta-contenedor::after {
+  transform: translateY(-5px) !important;
+
+  top: -5px;
+}
+</style>
+
+
+<style id="bajar-disco-ruleta-50-extra">
+.ruleta-contenedor .ruleta-disco {
+  top: 0px;
+}
+</style>
+
+
+<style id="reducir-base-ruleta-15px">
+.ruleta-contenedor::after {
+  inset: 7.5px !important;
+  transform: translateY(0px) !important;
+
+  top: 0px;
+}
+</style>
+
+
+<style id="ajuste-final-disco2-base5">
+.ruleta-contenedor .ruleta-disco {
+  top: 0px;
+}
+.ruleta-contenedor::after {
+  height: calc(100% - 5px) !important;
+
+  top: 0px;
+}
+</style>
+
+
+<style id="recorte-superior-base-ruleta-5px">
+.ruleta-contenedor::after {
+  top: 0px;
+  bottom: 28.5px !important;
+  height: auto !important;
+}
+</style>
+
+
+<style id="ajuste-tamano-posicion-disco-ruleta">
+.ruleta-contenedor .ruleta-disco {
+  top: 0px;
+  left: calc(9.0741% + 8px) !important;
+  width: calc(79.0741% - 16px) !important;
+}
+</style>
+
+
+<style id="fondo-imagen-casillas-ruleta">
+#pantalla-ruleta .ruleta-boton,
+#pantalla-ruleta .ruleta-leyenda > div {
+  background-image: url("assets/ruleta-amor/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+</style>
+
+
+<style id="bajar-bloque-ruleta-500px">
+#pantalla-ruleta > *:has(~ .ruleta-contenedor) {
+  position: relative !important;
+  top: 0px;
+}
+</style>
+\n
+\n
+<style id="fondo-mensajes-separado">
+#seccion-mensajes {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+#seccion-mensajes #lista-mensajes {
+  background: url("/assets/nuestra-historia/Aterciopeladocereza-final.jpg") center center / cover no-repeat !important;
+}
+</style>
+
+
+<style id="fondo-jpg-boton-acordado">
+#seccion-mensajes #boton-acordado {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+</style>
+
+<style id="fondos-once-pregunta-diaria">
+/* 3 fondos grandes */
+section.sobre[data-vista="pregunta-diaria"] #nuestro-momento-hoy,
+#pregunta-diaria-contenido #pd-panel.pd-panel {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 6 fondos normales */
+section.sobre[data-vista="pregunta-diaria"] #nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido #nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido #nuestro-momento-hoy .momento-tarjeta.momento-seleccionado {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 2 fondos horizontales */
+#pregunta-diaria-contenido #pd-panel button[data-ir-respuestas],
+section.sobre[data-vista="pregunta-diaria"] > button.secundario {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+</style>
+
+
+
+
+
+<style id="marcos-unificados-modelo-inicio-v1">
+/* MISMO ACABADO METÁLICO QUE LAS SEIS TARJETAS DE INICIO.
+   Solo se modifican borde, esquinas y relieve. */
+
+#nuestro-momento-hoy .momento-tarjeta,
+#pregunta-diaria-contenido .momento-tarjeta,
+#pregunta-diaria-contenido .pd-panel,
+#pregunta-diaria-contenido .pd-respuesta,
+.perfil[data-vista="nosotros"] .pareja-resumen > div,
+.perfil[data-vista="nosotros"] .lugares-acceso,
+.lugares-contenedor .lugar-tarjeta,
+
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale),
+#pantalla-tienda .tienda-canje,
+#pantalla-tienda .tienda-producto {
+  border: 2px solid #D4AF37 !important;
+  border-radius: 15px !important;
+  border-image: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,250,220,.98),
+    inset 0 2px 3px rgba(255,239,190,.42),
+    inset 0 -1px 0 rgba(255,248,210,.98),
+    inset 0 -2px 3px rgba(120,83,19,.55),
+    inset 0 0 0 1px rgba(255,230,150,.38),
+    0 1px 0 rgba(255,231,160,.65),
+    0 3px 0 #9A7426,
+    0 5px 0 #4A321B,
+    0 9px 16px rgba(0,0,0,.48),
+    0 0 9px rgba(232,194,91,.22) !important;
+}
+</style>
+
+
+
+<style id="bajar-conjunto-ruleta-30px">
+#pantalla-ruleta .ruleta-contenedor {
+  top: 180px !important;
+}
+</style>
+<style id="bajar-base-ruleta-40px-definitivo">
+.ruleta-contenedor::after {
+  transform: translateY(0px) !important;
+}
+</style>
+
+
+<style id="reparacion-esquinas-diamante-tienda">
+/* CORRECCIÓN EXCLUSIVA DE LOS MARCOS NORMALES DE LA TIENDA */
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale),
+#pantalla-tienda .tienda-canje,
+#pantalla-tienda .tienda-producto {
+  border-radius: 16px !important;
+  border-image: none !important;
+}
+
+/* Los reflejos conservan su acabado y sus extremos redondeados */
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale)::before,
+#pantalla-tienda .marco:not(.tienda-tarjeta-vale)::after {
+  border-radius: 16px !important;
+}
+
+/* Tamaño correcto del icono de puntos */
+#pantalla-tienda .tienda-icono-puntos {
+  display: inline-block;
+  width: 1.2em !important;
+  height: 1.2em !important;
+  max-width: 1.2em !important;
+  object-fit: contain;
+  vertical-align: -0.25em;
+}
+</style>
+
+
+<style id="ajuste-final-acabados-tienda-v2">
+/* Fondos de imagen en los elementos indicados */
+#pantalla-tienda .tienda-saldo,
+#pantalla-tienda .tienda-selector,
+#pantalla-tienda .tienda-formulario,
+#pantalla-tienda .tienda-formulario input,
+#pantalla-tienda .tienda-formulario textarea,
+#pantalla-tienda .tienda-formulario select,
+#pantalla-tienda #tienda-persona,
+#pantalla-tienda .tienda-producto .producto-precio,
+#pantalla-tienda .tienda-producto button {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* Esquinas redondeadas de los controles y paneles */
+#pantalla-tienda .tienda-selector,
+#pantalla-tienda .tienda-saldo,
+#pantalla-tienda .tienda-formulario,
+#pantalla-tienda .tienda-formulario input,
+#pantalla-tienda .tienda-formulario textarea,
+#pantalla-tienda .tienda-formulario select,
+#pantalla-tienda #tienda-persona,
+#pantalla-tienda .tienda-producto .producto-precio,
+#pantalla-tienda .tienda-producto button {
+  border-radius: 16px !important;
+}
+
+/* Ocho marcos de vales: tamaño uniforme y centrado */
+#pantalla-tienda .tienda-tarjeta-vale {
+  box-sizing: border-box;
+}
+</style>
+
+
+
+<style id="compensar-bajada-botones-ruleta">
+.ruleta-contenedor #ruleta-hotboton,
+.ruleta-contenedor #ruleta-dadosboton,
+.ruleta-contenedor #boton-abrir-dados,
+.ruleta-contenedor #ruleta-dados-texto,
+.ruleta-contenedor #boton-abrir-ruleta-hot,
+.ruleta-contenedor #ruleta-hotroulette-texto {
+  translate: 0 -180px !important;
+}
+</style>
+
+
+<style id="texto-hot-roulette-debajo">
+.ruleta-contenedor #ruleta-hotroulette-texto {
+  left: calc(50% + 93px) !important;
+  top: calc(100% + 8px) !important;
+}
+</style>
+
+<style id="texto-dados-debajo">
+.ruleta-contenedor #ruleta-dados-texto {
+  top: calc(100% + 8px) !important;
+  left: calc(50% - 98px) !important;
+}
+</style>
+<script id="sumar-20px-dados">
+(() => {
+  const dado = document.getElementById("ruleta-dadosboton");
+  if (!dado || dado.dataset.ampliado20 === "1") return;
+
+  const estilo = getComputedStyle(dado);
+  const ancho = parseFloat(estilo.width);
+  const alto = parseFloat(estilo.height);
+
+  if (!Number.isFinite(ancho) || !Number.isFinite(alto)) return;
+
+  dado.style.setProperty("width", (ancho + 60) + "px", "important");
+  dado.style.setProperty("height", (alto + 60) + "px", "important");
+  dado.dataset.ampliado20 = "1";
+})();
+</script>
+<style id="desplazar-dado-10px">
+.ruleta-contenedor #ruleta-dadosboton {
+  margin-left: -10px !important;
+}
+</style>
+<style id="mover-logo-ruleta-corazon">
+#pantalla-ruleta .ruleta-logo-historia {
+  position: relative !important;
+  left: -20px !important;
+}
+</style>
+
+<style id="cabecera-ruleta-centrada">
+#pantalla-ruleta .ruleta-cabecera {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: center !important;
+  padding: 24px 18px 12px !important;
+}
+#pantalla-ruleta .ruleta-cabecera h2 {
+  width: 100% !important;
+  margin: 0 0 4px !important;
+  text-align: center !important;
+}
+#pantalla-ruleta .ruleta-cabecera img.ruleta-logo-historia {
+  display: block !important;
+  width: 120px !important;
+  height: 120px !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 auto !important;
+  object-fit: contain !important;
+}
+#pantalla-ruleta .ruleta-cabecera p {
+  width: 100% !important;
+  margin: 6px 0 0 !important;
+  text-align: center !important;
+}
+</style>
+
+
+<style id="navegacion-activo-neon-fucsia">
+#navegacion-inferior button.activo {
+  border: 2px solid #ff20d5 !important;
+  border-color: #ff20d5 !important;
+  box-shadow:
+    0 0 5px #ff20d5,
+    0 0 12px #ff20d5,
+    0 0 22px #ff20d588,
+    inset 0 0 8px #ff20d533 !important;
+}
+</style>
+
+
+<style id="neon-cereza-linea-navegacion">
+#navegacion-inferior {
+  overflow: visible !important;
+}
+#navegacion-inferior::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #c52c4b;
+  opacity: .85;
+  box-shadow:
+    0 0 3px 1px rgba(197,44,75,.55),
+    0 0 6px 1px rgba(197,44,75,.22);
+  pointer-events: none;
+  z-index: 20;
+}
+</style>
+
+
+
 
 </body>
 </html>
@@ -5317,7 +5252,7 @@ section.sobre[data-vista="pregunta-diaria"] > button.secundario,
     #E8C87A 80%,
     transparent
   ) !important;
-  box-shadow: 0 0 5px rgba(247,217,165,.75) !important;
+  box-shadow: 0 0 6px rgba(247,217,165,.80) !important;
   pointer-events: none !important;
   z-index: 10 !important;
 }
@@ -5331,50 +5266,192 @@ section.sobre[data-vista="pregunta-diaria"] > button.secundario,
 }
 </style>
 
-<style>
-/* LATERALES CON EL MISMO DORADO OSCURO DEL MARCO */
-#contenidoApp .portada-bienvenida {
-  background:
-    linear-gradient(#4a0e1c, #4a0e1c) padding-box,
-    linear-gradient(
-      90deg,
-      #966A2F 0%,
-      #966A2F 18%,
-      #C59B4A 50%,
-      #966A2F 82%,
-      #966A2F 100%
-    ) border-box !important;
-}
-</style>
 
-<style>
-/* BRILLO CLARO CENTRADO ARRIBA Y ABAJO */
-#contenidoApp .portada-bienvenida {
-  background:
-    linear-gradient(#4a0e1c, #4a0e1c) padding-box,
-    linear-gradient(
-      90deg,
-      #966A2F 0%,
-      #966A2F 25%,
-      #FDF4CE 50%,
-      #966A2F 75%,
-      #966A2F 100%
-    ) border-box !important;
-}
-</style>
 
-<style>
-/* MISMO RELIEVE Y SOMBRA INFERIOR QUE LAS TARJETAS */
-#contenidoApp .portada-bienvenida {
+
+
+
+
+
+<style id="marcos-interiores-metalicos-dorados">
+/* Acabado metálico común: solo en los elementos solicitados */
+#accesoFirebase button[type="submit"].boton-Entrar-fondo,
+#lista-mensajes > div,
+#nuestro-momento-hoy button[onclick*="abrirReto"],
+#nuestro-momento-hoy textarea,
+#nuestro-momento-hoy button[onclick*="guardar"],
+#pregunta-diaria-contenido textarea,
+#pregunta-diaria-contenido button[onclick*="guardar"],
+section.sobre[data-vista="diario"] > button.secundario,
+.perfil[data-vista="nosotros"] input,
+.perfil[data-vista="nosotros"] textarea,
+.perfil[data-vista="nosotros"] select,
+.perfil[data-vista="nosotros"] button[onclick="guardarPerfiles()"],
+#boton-pregunta-diaria,
+
+
+
+
+
+#pantalla-tienda #tienda-persona,
+#pantalla-tienda #tienda-añadir-puntos,
+#pantalla-tienda #tienda-nombre-nuevo,
+#pantalla-tienda #tienda-descripcion-nueva,
+#pantalla-tienda #tienda-precio-nuevo,
+#pantalla-tienda #tienda-tipo-nuevo,
+#pantalla-tienda #tienda-crear-recompensa,
+.nh-historia .momento-tarjeta,
+#ruleta-contador .ruleta-tirada {
+  border: 1.25px solid #D4AF37 !important;
+  border-image: none !important;
   box-shadow:
-    0 0 12px rgba(232,200,122,.25),
-    inset 0 0 4px rgba(253,244,206,.30),
     inset 0 2px 2px rgba(255,239,207,.28),
     inset 0 -5px 8px rgba(0,0,0,.32),
-    inset 0 0 0 2px rgba(212,175,55,.10),
+    inset 0 0 0 1px rgba(212,175,55,.10),
     0 3px 0 #8b6938,
     0 5px 0 #34202a,
     0 9px 0 #170c13,
     0 13px 22px rgba(0,0,0,.48) !important;
+}
+
+/* Reflejo metálico inferior: únicamente los seis marcos de Tienda */
+#pantalla-tienda #tienda-persona,
+#pantalla-tienda #tienda-nombre-nuevo,
+#pantalla-tienda #tienda-descripcion-nueva,
+#pantalla-tienda #tienda-precio-nuevo,
+#pantalla-tienda #tienda-tipo-nuevo,
+#pantalla-tienda #tienda-crear-recompensa {
+  box-shadow:
+    inset 0 1px 0 rgba(255,245,200,.85),
+    inset 0 -1px 0 rgba(255,245,195,.95),
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 4px 0 #8b6938,
+    0 6px 0 #34202a,
+    0 10px 0 #170c13,
+    0 14px 23px rgba(0,0,0,.50) !important;
+}
+
+/* Acabado de Nuestro Mundo centralizado en lugares-especiales.css. */
+/* PRUEBA-MARCO-LOGIN-METALICO */
+#accesoFirebase {
+  border: 2px solid transparent !important;
+  background-image:
+    url("/assets/nuestra-historia/Fondo.jpg"),
+    linear-gradient(135deg,
+      #9A7B1C 0%,
+      #D4AF37 18%,
+      #F3E5AB 38%,
+      #D4AF37 55%,
+      #B38F27 78%,
+      #F3E5AB 100%) !important;
+  background-origin: padding-box, border-box !important;
+  background-clip: padding-box, border-box !important;
+  background-position: center, center !important;
+  background-size: cover, auto !important;
+  background-repeat: no-repeat, no-repeat !important;
+}
+
+
+/* SEIS CONTROLES DE RETOS: FONDO Y TEXTO DORADOS */
+section.sobre[data-vista='retos'] > button[onclick^='abrirReto'],
+#respuesta-manana,
+#reto-manana > button,
+#respuesta-noche,
+#reto-noche > button {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: #D4AF37 !important;
+  -webkit-text-fill-color: #D4AF37 !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.75);
+  border: 1.25px solid #D4AF37 !important;
+  border-image: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,245,200,.85),
+    inset 0 -1px 0 rgba(255,245,195,.95),
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
+}
+
+#respuesta-manana::placeholder,
+#respuesta-noche::placeholder {
+  color: #D4AF37 !important;
+  -webkit-text-fill-color: #D4AF37 !important;
+  opacity: 1 !important;
+}
+
+
+/* FONDO Y TEXTO DORADOS: ABRIR NUESTRO DIARIO */
+button[onclick*="mostrarVista('diario')"] {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: #D4AF37 !important;
+  -webkit-text-fill-color: #D4AF37 !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.75);
+}
+
+/* ACABADO DEFINITIVO: BOTÓN ABRIR NUESTRO DIARIO */
+section.sobre[data-vista="diario"] > button.secundario {
+  background-image: url("/assets/nuestra-historia/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: #D4AF37 !important;
+  -webkit-text-fill-color: #D4AF37 !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.75) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,245,200,.85),
+    inset 0 -1px 0 rgba(255,245,195,.95),
+    inset 0 2px 2px rgba(255,239,207,.28),
+    inset 0 -5px 8px rgba(0,0,0,.32),
+    inset 0 0 0 1px rgba(212,175,55,.10),
+    0 3px 0 #8b6938,
+    0 5px 0 #34202a,
+    0 9px 0 #170c13,
+    0 13px 22px rgba(0,0,0,.48) !important;
+}
+</style>
+
+
+<style id="fondo-imagen-barra-navegacion">
+main.app #navegacion-inferior {
+  background-image: url("assets/ruleta-amor/Fondo.jpg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+</style>
+
+
+
+
+<style id="ampliar-marco-catalogo-vales">
+#pantalla-tienda .tienda-catalogo-marco {
+  box-sizing: border-box;
+  width: calc(100% + 10px);
+  margin-left: -5px;
+  margin-right: -5px;
+}
+</style>
+
+<style id="desplazar-marco-individual-vv1">
+#pantalla-tienda .tienda-tarjeta-vale[data-comprar="r1"] {
+  position: relative;
+  overflow: visible;
+  border-color: #F7D9A5 !important;
+}
+
+#pantalla-tienda .tienda-tarjeta-vale[data-comprar="r1"]:focus-visible {
+  outline: none !important;
 }
 </style>
