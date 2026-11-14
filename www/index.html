@@ -3175,6 +3175,31 @@ section[data-vista="retos"] > button[onclick^="abrirReto"],
 }
 </style>
 
+
+<style id="correccion-imagen-titulo-portada">
+#contenidoApp .portada-marco .portada-cabecera h1.portada-titulo-imagen {
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  margin:4px 0 2px !important;
+  padding:0 !important;
+  font-size:0 !important;
+  line-height:0 !important;
+  overflow:visible !important;
+}
+#contenidoApp .portada-marco .portada-cabecera h1.portada-titulo-imagen img {
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  max-height:none !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  margin:0 auto !important;
+}
+</style>
+
 </head>
 <body>
   <main class="app">
@@ -4593,6 +4618,7 @@ a:active {
 
 
   <link rel="stylesheet" href="/css/nueva-historia.css">
+  <script src="/js/nuestra-historia-foto.js"></script>
   <script src="/js/nuestra-historia.js"></script>
   <script src="/js/nuestra-historia-posiciones.js"></script>
   <script type="module" src="/js/nuestra-historia-recuerdos.js"></script>

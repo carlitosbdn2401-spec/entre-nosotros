@@ -2,7 +2,7 @@ import { mostrarAnimacionCanje } from "./tienda-animaciones.js";
 import { ponerTextoConIconos } from "./iconos-texto.js";
 const CLAVE = "entreNosotrosTiendaPruebaV1";
 const paginasVales = {
-  r1: "prueba-vale-besos.html;width:147px!important;height:231px!important;max-width:147px!important;max-height:231px!important;box-sizing:border-box;object-fit:fill",
+  r1: "prueba-vale-besos.html",
   r2: "prueba-abrazo-para-dos.html",
   r3: "prueba-momento-relax.html",
   r4: "prueba-cena-especial.html",

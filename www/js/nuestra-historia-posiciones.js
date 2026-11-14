@@ -123,16 +123,23 @@
     const box = overlay.getBoundingClientRect();
     if (!box.width || !box.height || !readPairBase()) return false;
 
-    try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-      if (Array.isArray(saved) && saved.length === 5) {
-        geometry = saved.map((g, i) =>
-          g && ['x','y','w','h'].every(k => Number.isFinite(g[k]))
-            ? {...g}
-            : null
-        );
-      }
-    } catch (_) {}
+    const esAndroidNativo =
+      typeof Capacitor !== 'undefined' &&
+      typeof Capacitor.isNativePlatform === 'function' &&
+      Capacitor.isNativePlatform();
+
+    if (!esAndroidNativo) {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        if (Array.isArray(saved) && saved.length === 5) {
+          geometry = saved.map((g, i) =>
+            g && ['x','y','w','h'].every(k => Number.isFinite(g[k]))
+              ? {...g}
+              : null
+          );
+        }
+      } catch (_) {}
+    }
 
     geometry.forEach((g, i) => {
       if (g) applyCard(i);

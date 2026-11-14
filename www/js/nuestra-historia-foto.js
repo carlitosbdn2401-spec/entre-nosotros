@@ -1,38 +1,54 @@
 (() => {
   function ajustarFotoHistoria() {
-    document.querySelectorAll('.nuestra-historia .nh-historia').forEach(historia => {
+    document.querySelectorAll('.nuestra-historia').forEach(historia => {
+      const contenedor = historia.querySelector('.nuestra-historia-container');
       const marco = historia.querySelector('.nh-marco-principal');
       const foto = historia.querySelector('.nh-foto-principal');
-      if (!marco || !foto || !marco.complete || !marco.naturalWidth) return;
 
-      const x = marco.offsetLeft;
-      const y = marco.offsetTop;
-      const w = marco.offsetWidth;
-      const h = marco.offsetHeight;
+      if (!contenedor || !marco || !foto || !marco.complete || !marco.naturalWidth) return;
+
+      const ancho = marco.offsetWidth;
+      const alto = marco.offsetHeight;
+
+      // La vista puede estar oculta al iniciar la aplicación.
+      if (!ancho || !alto) return;
 
       foto.style.position = 'absolute';
-      foto.style.left = (x + w * 271 / 1200) + 'px';
-      foto.style.top = (y + h * 159 / 900) + 'px';
-      foto.style.width = (w * 678 / 1200) + 'px';
-      foto.style.height = (h * 534 / 900) + 'px';
+      foto.style.left = (marco.offsetLeft + ancho * 271 / 1200) + 'px';
+      foto.style.top = (marco.offsetTop + alto * 159 / 900) + 'px';
+      foto.style.width = (ancho * 678 / 1200) + 'px';
+      foto.style.height = (alto * 534 / 900) + 'px';
       foto.style.objectFit = 'cover';
       foto.style.objectPosition = 'center';
     });
   }
 
   function iniciar() {
-    document.querySelectorAll('.nuestra-historia .nh-marco-principal').forEach(marco => {
-      if (!marco.complete) marco.addEventListener('load', ajustarFotoHistoria, {once:true});
+    document.querySelectorAll('.nuestra-historia').forEach(historia => {
+      const contenedor = historia.querySelector('.nuestra-historia-container');
+      const marco = historia.querySelector('.nh-marco-principal');
+
+      if (marco && !marco.complete) {
+        marco.addEventListener('load', ajustarFotoHistoria);
+      }
+
+      if (window.ResizeObserver && contenedor) {
+        const observador = new ResizeObserver(ajustarFotoHistoria);
+        observador.observe(contenedor);
+      }
     });
+
     ajustarFotoHistoria();
+    requestAnimationFrame(ajustarFotoHistoria);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', iniciar, {once:true});
+    document.addEventListener('DOMContentLoaded', iniciar, { once: true });
   } else {
     iniciar();
   }
 
   window.addEventListener('load', ajustarFotoHistoria);
   window.addEventListener('resize', ajustarFotoHistoria);
+  window.addEventListener('pageshow', ajustarFotoHistoria);
 })();
