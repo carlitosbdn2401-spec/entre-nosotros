@@ -703,3 +703,10 @@ section.perfil.nuestra-historia[data-vista="nuestra-historia"] {
 #nh-segundos + small {
   font-size: clamp(7px, calc(2.7vw - 2px), 10px) !important;
 }
+
+
+/* FOTO PRINCIPAL DEBAJO DEL CONTADOR */
+.nh-marco-principal {
+  top: 42% !important;
+}
+/* FIN FOTO PRINCIPAL DEBAJO DEL CONTADOR */
