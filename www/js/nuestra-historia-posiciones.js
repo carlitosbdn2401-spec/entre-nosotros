@@ -69,7 +69,6 @@
     const box = historia.getBoundingClientRect();
 
     pairElements = [
-      section.querySelector('.nh-foto-principal'),
       section.querySelector('.nh-marco-principal')
     ];
 
@@ -99,7 +98,7 @@
   }
 
   function applyPairGeometry() {
-    if (!pairGeometry || !pairBaseBounds || !pairElements.length) return;
+    if (!pairGeometry || !pairElements.length) return;
 
     const historia = section.querySelector('.nh-historia');
     const container = section.querySelector('.nuestra-historia-container');
@@ -110,25 +109,14 @@
     if (!historiaBox.width || !historiaBox.height ||
         !containerBox.width || !containerBox.height) return;
 
-    const sx = pairGeometry.w / pairBaseBounds.w;
-    const sy = pairGeometry.h / pairBaseBounds.h;
+    const g = {
+      x: (historiaBox.left - containerBox.left + pairGeometry.x / 100 * historiaBox.width) / containerBox.width * 100,
+      y: (historiaBox.top - containerBox.top + pairGeometry.y / 100 * historiaBox.height) / containerBox.height * 100,
+      w: (pairGeometry.w / 100 * historiaBox.width) / containerBox.width * 100,
+      h: (pairGeometry.h / 100 * historiaBox.height) / containerBox.height * 100
+    };
 
-    pairElements.forEach((el, i) => {
-      const base = pairBase[i];
-      const factorX = i === 0 ? 1 : sx;
-      const factorY = i === 0 ? 1 : sy;
-      const hx = pairGeometry.x + (base.x - pairBaseBounds.x) * factorX;
-      const hy = pairGeometry.y + (base.y - pairBaseBounds.y) * factorY;
-      const hw = base.w * factorX;
-      const hh = base.h * factorY;
-
-      const g = {
-        x: (historiaBox.left - containerBox.left + hx / 100 * historiaBox.width) / containerBox.width * 100,
-        y: (historiaBox.top - containerBox.top + hy / 100 * historiaBox.height) / containerBox.height * 100,
-        w: (hw / 100 * historiaBox.width) / containerBox.width * 100,
-        h: (hh / 100 * historiaBox.height) / containerBox.height * 100
-      };
-
+    pairElements.forEach(el => {
       el.classList.add('nh-posicion-pair');
       el.dataset.nhPosicionPair = '1';
       el.style.setProperty('--nh-pair-left', `${g.x}%`);

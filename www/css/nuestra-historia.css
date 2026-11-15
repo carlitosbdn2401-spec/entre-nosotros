@@ -560,25 +560,14 @@
   background: transparent;
   z-index: 2;
 }
-.nh-foto-principal {
-  position: absolute;
-  top: calc(18% + 28px);
-  left: calc(50% + 2px);
-  transform: translateX(-50%);
-  width: calc(45% + 2.33px);
-  height: calc(34vw - 35px);
-  object-fit: fill;
-  object-position: center;
-  z-index: 3;
-}
 .nh-marco-principal {
   position: absolute;
   top: 18%;
   left: calc(16% - 20px);
   width: calc(68% + 40px);
   height: calc(57vw - 30px);
+  object-fit: fill;
   z-index: 4;
-  filter: sepia(.18) saturate(1.18) brightness(1.04);
   pointer-events: none;
 }
 
