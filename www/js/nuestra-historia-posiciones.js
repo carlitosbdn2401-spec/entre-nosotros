@@ -115,10 +115,12 @@
 
     pairElements.forEach((el, i) => {
       const base = pairBase[i];
-      const hx = pairGeometry.x + (base.x - pairBaseBounds.x) * sx;
-      const hy = pairGeometry.y + (base.y - pairBaseBounds.y) * sy;
-      const hw = base.w * sx;
-      const hh = base.h * sy;
+      const factorX = i === 0 ? 1 : sx;
+      const factorY = i === 0 ? 1 : sy;
+      const hx = pairGeometry.x + (base.x - pairBaseBounds.x) * factorX;
+      const hy = pairGeometry.y + (base.y - pairBaseBounds.y) * factorY;
+      const hw = base.w * factorX;
+      const hh = base.h * factorY;
 
       const g = {
         x: (historiaBox.left - containerBox.left + hx / 100 * historiaBox.width) / containerBox.width * 100,
