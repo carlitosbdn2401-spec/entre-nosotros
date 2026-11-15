@@ -5,8 +5,22 @@
   const PAIR_STORAGE_KEY = 'nh-editor-foto-marco-v1';
   const SECTION = '.nuestra-historia[data-vista="nuestra-historia"]';
 
+  const DEFAULT_CARD_GEOMETRY = [
+    {x:-1.8421047490862632,y:40.32563647632678,w:54.080725285158096,h:29.463441423880095},
+    {x:50.96016821349107,y:40.182277574814364,w:51.71052374543131,h:43.38996377440258},
+    {x:-2.4822185193071427,y:68.14841078431864,w:55.68100971071029,h:37.34977130737735},
+    {x:50.96016821349107,y:81.43539397280999,w:50.91927471484189,h:22.81955170768504},
+    {x:-15.501422127760987,y:103.67230380522707,w:128.19345821229948,h:23.234495403178972}
+  ];
+  const DEFAULT_PAIR_GEOMETRY = {
+    x:5.75746861258544,
+    y:15.62783690193539,
+    w:88.48328511512793,
+    h:25.357003826958184
+  };
+
   let section, overlay, cards = [];
-  let geometry = [];
+  let geometry = DEFAULT_CARD_GEOMETRY.map(g => ({...g}));
   let pairElements = [];
   let pairBase = [];
   let pairBaseBounds = null;
@@ -87,16 +101,30 @@
   function applyPairGeometry() {
     if (!pairGeometry || !pairBaseBounds || !pairElements.length) return;
 
+    const historia = section.querySelector('.nh-historia');
+    const container = section.querySelector('.nuestra-historia-container');
+    if (!historia || !container) return;
+
+    const historiaBox = historia.getBoundingClientRect();
+    const containerBox = container.getBoundingClientRect();
+    if (!historiaBox.width || !historiaBox.height ||
+        !containerBox.width || !containerBox.height) return;
+
     const sx = pairGeometry.w / pairBaseBounds.w;
     const sy = pairGeometry.h / pairBaseBounds.h;
 
     pairElements.forEach((el, i) => {
       const base = pairBase[i];
+      const hx = pairGeometry.x + (base.x - pairBaseBounds.x) * sx;
+      const hy = pairGeometry.y + (base.y - pairBaseBounds.y) * sy;
+      const hw = base.w * sx;
+      const hh = base.h * sy;
+
       const g = {
-        x: pairGeometry.x + (base.x - pairBaseBounds.x) * sx,
-        y: pairGeometry.y + (base.y - pairBaseBounds.y) * sy,
-        w: base.w * sx,
-        h: base.h * sy
+        x: (historiaBox.left - containerBox.left + hx / 100 * historiaBox.width) / containerBox.width * 100,
+        y: (historiaBox.top - containerBox.top + hy / 100 * historiaBox.height) / containerBox.height * 100,
+        w: (hw / 100 * historiaBox.width) / containerBox.width * 100,
+        h: (hh / 100 * historiaBox.height) / containerBox.height * 100
       };
 
       el.classList.add('nh-posicion-pair');
@@ -123,23 +151,19 @@
     const box = overlay.getBoundingClientRect();
     if (!box.width || !box.height || !readPairBase()) return false;
 
-    const esAndroidNativo =
-      typeof Capacitor !== 'undefined' &&
-      typeof Capacitor.isNativePlatform === 'function' &&
-      Capacitor.isNativePlatform();
+    geometry = DEFAULT_CARD_GEOMETRY.map(g => ({...g}));
+    pairGeometry = {...DEFAULT_PAIR_GEOMETRY};
 
-    if (!esAndroidNativo) {
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-        if (Array.isArray(saved) && saved.length === 5) {
-          geometry = saved.map((g, i) =>
-            g && ['x','y','w','h'].every(k => Number.isFinite(g[k]))
-              ? {...g}
-              : null
-          );
-        }
-      } catch (_) {}
-    }
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (Array.isArray(saved) && saved.length === 5) {
+        saved.forEach((g, i) => {
+          if (g && ['x','y','w','h'].every(k => Number.isFinite(g[k]))) {
+            geometry[i] = {...g};
+          }
+        });
+      }
+    } catch (_) {}
 
     geometry.forEach((g, i) => {
       if (g) applyCard(i);
