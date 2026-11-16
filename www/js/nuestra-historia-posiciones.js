@@ -139,10 +139,9 @@
     if (cards.length !== 5) return false;
 
     const box = overlay.getBoundingClientRect();
-    if (!box.width || !box.height || !readPairBase()) return false;
+    if (!box.width || !box.height) return false;
 
     geometry = DEFAULT_CARD_GEOMETRY.map(g => ({...g}));
-    pairGeometry = {...DEFAULT_PAIR_GEOMETRY};
 
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
@@ -159,14 +158,6 @@
       if (g) applyCard(i);
     });
 
-    try {
-      const savedPair = JSON.parse(localStorage.getItem(PAIR_STORAGE_KEY) || 'null');
-      if (savedPair && ['x','y','w','h'].every(k => Number.isFinite(savedPair[k]))) {
-        pairGeometry = {...savedPair};
-      }
-    } catch (_) {}
-
-    applyPairGeometry();
     applied = true;
     observer.disconnect();
     console.log('Nuestra Historia: posiciones guardadas restauradas.');
@@ -192,7 +183,6 @@
         geometry.forEach((g, i) => {
           if (g) applyCard(i);
         });
-        applyPairGeometry();
       } else {
         initialize();
       }
