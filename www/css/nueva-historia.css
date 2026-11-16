@@ -427,13 +427,19 @@ section.perfil.nuestra-historia[data-vista="nuestra-historia"],
   width: 88.48% !important;
   height: auto !important;
   max-width: none !important;
-  margin: 24px auto 0 !important;
+  margin: 4px auto 0 !important;
   padding: 0 !important;
   display: block !important;
-  object-fit: contain !important;
+
   object-position: center top !important;
   box-sizing: border-box !important;
   z-index: 4 !important;
   pointer-events: none !important;
+
+
+
+
+  aspect-ratio: 960 / 751 !important;
+  object-fit: fill !important;
 }
 /* FIN MMARCO */
